@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://buurnhams3v0g"]
+
+[ext_resource type="Script" uid="uid://d4g6y0w3xa3ke" path="res://addons/Hitokoto's Plugin/hitokotoPanel.gd" id="1_50hcf"]
+
+[node name="HITOKOTO" type="Control" unique_id=417263377]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+grow_horizontal = 2
+grow_vertical = 2
+layout_direction = 1
+script = ExtResource("1_50hcf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1633464407]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1937332277]
+layout_mode = 2
+
+[node name="titlesectionMapping" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1309932840]
+layout_mode = 2
+
+[node name="Mapping" type="Label" parent="ScrollContainer/VBoxContainer/titlesectionMapping" unique_id=1002441992]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Mapping"
+
+[node name="SectionRandom" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1055075226]
+layout_mode = 2
+alignment = 1
+
+[node name="sectionRotate" type="Label" parent="ScrollContainer/VBoxContainer/SectionRandom" unique_id=24006721]
+layout_mode = 2
+text = "Random Rotation"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/SectionRandom" unique_id=817997313]
+layout_mode = 2
+
+[node name="grades" type="SpinBox" parent="ScrollContainer/VBoxContainer/SectionRandom/HBoxContainer" unique_id=1546624302]
+layout_mode = 2
+alignment = 1
+
+[node name="Euler" type="OptionButton" parent="ScrollContainer/VBoxContainer/SectionRandom/HBoxContainer" unique_id=595769925]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Y"
+popup/item_0/id = 0
+popup/item_1/text = "X"
+popup/item_1/id = 1
+popup/item_2/text = "Z"
+popup/item_2/id = 2
+
+[node name="Action" type="Button" parent="ScrollContainer/VBoxContainer/SectionRandom/HBoxContainer" unique_id=890559902]
+layout_mode = 2
+text = "Action
+"
+
+[node name="titlesectionAccessibility" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1407941519]
+layout_mode = 2
+
+[node name="Settings" type="Label" parent="ScrollContainer/VBoxContainer/titlesectionAccessibility" unique_id=1207801908]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+
+[node name="Time" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=698033195]
+layout_mode = 2
+alignment = 1
+
+[node name="Time" type="Label" parent="ScrollContainer/VBoxContainer/Time" unique_id=970392782]
+layout_mode = 2
+text = "Time"
+
+[node name="h" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Time" unique_id=1353172930]
+layout_mode = 2
+
+[node name="hour" type="SpinBox" parent="ScrollContainer/VBoxContainer/Time/h" unique_id=873004588]
+layout_mode = 2
+max_value = 23.0
+value = 14.0
+alignment = 1
+
+[node name="minute" type="SpinBox" parent="ScrollContainer/VBoxContainer/Time/h" unique_id=1909295311]
+layout_mode = 2
+max_value = 59.0
+value = 58.0
+alignment = 1
+
+[node name="reset button" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Time" unique_id=1924334446]
+layout_mode = 2
+
+[node name="Reset Time" type="Button" parent="ScrollContainer/VBoxContainer/Time/reset button" unique_id=1516253265]
+layout_mode = 2
+text = "Reset Time"
+
+[node name="Timer" type="Timer" parent="ScrollContainer/VBoxContainer/Time" unique_id=300282941]
+one_shot = true
+
+[node name="Lenguage" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=920075397]
+layout_mode = 2
+alignment = 1
+
+[node name="Lenguage" type="Label" parent="ScrollContainer/VBoxContainer/Lenguage" unique_id=149265463]
+layout_mode = 2
+text = "Lenguage"
+
+[node name="h" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Lenguage" unique_id=924536373]
+layout_mode = 2
+
+[node name="lenguageOption" type="OptionButton" parent="ScrollContainer/VBoxContainer/Lenguage/h" unique_id=1321253668]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Español"
+popup/item_1/id = 1
+popup/item_2/text = "Portugués"
+popup/item_2/id = 2
+popup/item_3/text = "Frances"
+popup/item_3/id = 3
+popup/item_4/text = "Japanes"
+popup/item_4/id = 4
+popup/item_5/text = "Arabe"
+popup/item_5/id = 5
+popup/item_6/text = "Ruso"
+popup/item_6/id = 6
+
+[node name="Signals" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=451393860]
+layout_mode = 2
+alignment = 1
+
+[node name="Signals" type="Label" parent="ScrollContainer/VBoxContainer/Signals" unique_id=180619355]
+layout_mode = 2
+text = "Signals"
+
+[node name="Update Settings" type="Button" parent="ScrollContainer/VBoxContainer/Signals" unique_id=1719136438]
+layout_mode = 2
+text = "Update Settings
+"
+
+[node name="Reboot Settings" type="Button" parent="ScrollContainer/VBoxContainer/Signals" unique_id=1693195961]
+layout_mode = 2
+text = "Reboot Settings
+"
+
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/SectionRandom/HBoxContainer/grades" to="." method="_on_grades_value_changed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/SectionRandom/HBoxContainer/Action" to="." method="_on_action_pressed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/Time/h/hour" to="." method="_on_hour_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/Time/h/minute" to="." method="_on_minute_value_changed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Time/reset button/Reset Time" to="." method="_on_reset_time_pressed"]
+[connection signal="item_selected" from="ScrollContainer/VBoxContainer/Lenguage/h/lenguageOption" to="." method="_on_lenguage_option_item_selected"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Signals/Update Settings" to="." method="_on_update_settings_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Signals/Reboot Settings" to="." method="_on_reboot_settings_pressed"]

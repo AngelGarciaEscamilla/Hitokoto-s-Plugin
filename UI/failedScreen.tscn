@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwor0jx65rvss"]
+
+[ext_resource type="Script" uid="uid://2bjqo3y2blny" path="res://addons/Hitokoto's Plugin/UI/failed_screen.gd" id="1_0l2jx"]
+
+[node name="failedScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0l2jx")

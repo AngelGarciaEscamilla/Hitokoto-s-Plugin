@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b87fcv5x8ouxv"]
+
+[ext_resource type="Script" uid="uid://bgkfvbvmhr4pc" path="res://addons/Hitokoto's Plugin/item/readable/read_item.gd" id="1_5xwoi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5xwoi"]
+
+[node name="document" type="Node3D"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+script = ExtResource("1_5xwoi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.378161, 0, 0, 0, 0.00222423, -0.378155, 0, 0.378155, 0.00222423, 0, 0, 0)
+mesh = SubResource("PlaneMesh_5xwoi")

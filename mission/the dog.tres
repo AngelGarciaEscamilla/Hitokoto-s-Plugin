@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Mission" format=3 uid="uid://cgeybbcmqpeem"]
+
+[ext_resource type="PackedScene" uid="uid://dwor0jx65rvss" path="res://addons/Hitokoto's Plugin/UI/failedScreen.tscn" id="1_rfiwy"]
+[ext_resource type="Script" uid="uid://cuyxcqsbcn4sb" path="res://addons/Hitokoto's Plugin/mission/mission.gd" id="2_txylw"]
+
+[resource]
+script = ExtResource("2_txylw")
+mission_id = "the dog"
+objectives = Array[String](["yes", "dawd"])
+dependence_value = null
+limit_target = NodePath("../pivoteMission")
+timer_failure = 3.0
+failure_screen = ExtResource("1_rfiwy")
+metadata/_custom_type_script = "uid://cuyxcqsbcn4sb"

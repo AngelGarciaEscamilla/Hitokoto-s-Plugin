@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://g10vxkpou6in"]
+
+[ext_resource type="Script" uid="uid://vubwikyxuln0" path="res://addons/Hitokoto's Plugin/UI/inventoryPanel.gd" id="1_dfv75"]
+[ext_resource type="Shader" uid="uid://i17nefyutcea" path="res://addons/Hitokoto's Plugin/shaders/blur.gdshader" id="2_f6tyq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_se05t"]
+shader = ExtResource("2_f6tyq")
+shader_parameter/blur = 2.0
+
+[node name="InventoryPanel" type="Control" node_paths=PackedStringArray("details_item", "items_list")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 6
+script = ExtResource("1_dfv75")
+details_item = NodePath("detailsItem")
+items_list = NodePath("Items")
+
+[node name="BackgroundInventory" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_se05t")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.756863)
+
+[node name="detailsItem" type="Label" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = 118.0
+offset_right = 165.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wdadawdasdawda"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Items" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.359
+anchor_top = 0.182
+anchor_right = 0.642
+anchor_bottom = 0.647
+offset_left = -0.568024
+offset_top = 0.0639954
+offset_right = 0.415955
+offset_bottom = -0.256012
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/guide_color = Color(1, 1, 1, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 845.0
+offset_top = 200.0
+offset_right = -374.0
+offset_bottom = -411.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "reset
+"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -436.0
+offset_top = -389.0
+offset_right = -371.0
+offset_bottom = -263.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "deselect"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

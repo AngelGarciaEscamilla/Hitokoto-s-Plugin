@@ -1,0 +1,164 @@
+[gd_scene load_steps=16 format=3 uid="uid://cc5sfyikk2afp"]
+
+[ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto's Plugin/UI/text.gd" id="1_m7cxj"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="2_p5s1x"]
+
+[sub_resource type="Resource" id="Resource_o6r2s"]
+script = ExtResource("2_p5s1x")
+textEN = "Settings"
+textES = "Ajustes"
+textPT = "Texto em português"
+textFR = "Texte en français"
+textJA = "日本語テキスト"
+textAR = "النص العربي"
+textRU = "текст на русском языке"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p5s1x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o6r2s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abfs3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syrch"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oksh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pcgr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6pd0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rt6mr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41ypw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvyhk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7cxj"]
+
+[sub_resource type="Resource" id="Resource_p5s1x"]
+script = ExtResource("2_p5s1x")
+textEN = "text in english"
+textES = "Texto en Español"
+textPT = "Texto em português"
+textFR = "Texte en français"
+textJA = "日本語テキスト"
+textAR = "النص العربي"
+textRU = "текст на русском языке"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[node name="Ui_test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 23.0
+text = "Settings"
+autowrap_mode = 1
+language = "en"
+script = ExtResource("1_m7cxj")
+translator = SubResource("Resource_o6r2s")
+metadata/_custom_type_script = "uid://b2httkvsvj6yb"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 29.0
+offset_right = 181.0
+offset_bottom = 53.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_p5s1x")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_o6r2s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_abfs3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_syrch")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_oksh7")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_7pcgr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k6pd0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_rt6mr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_41ypw")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qvyhk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m7cxj")
+text = "dadwdadawd"
+
+[node name="Text2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 114.0
+offset_right = 360.0
+offset_bottom = 137.0
+text = "text in english"
+autowrap_mode = 1
+script = ExtResource("1_m7cxj")
+translator = SubResource("Resource_p5s1x")
+metadata/_custom_type_script = "uid://b2httkvsvj6yb"
+
+[node name="ScrollBar" type="VScrollBar" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+min_value = 1.0
+page = 51.87
+value = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="ScrollBar"]
+layout_mode = 0
+offset_left = -266.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_top = 143.0
+offset_right = 39.0
+offset_bottom = 183.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "dadaddadwad"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "dadaddadwad"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.107
+anchor_bottom = 0.125
+offset_left = 546.0
+offset_top = 250.0
+offset_right = 543.04
+offset_bottom = 331.0
+mouse_default_cursor_shape = 16
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 296.0
+offset_top = 310.0
+offset_right = 437.0
+offset_bottom = 421.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 252.0
+offset_right = 288.0
+offset_bottom = 579.0

@@ -1,0 +1,9 @@
+set {Close_up.anim_start} = 1.0
+dada
+set {Close_up.anim} = 2.0
+hola
+set {Close_up.anim} = 3.0
+dwadwda
+set {Close_up.same} = false
+set {Close_up.finally} = true
+[end_timeline]

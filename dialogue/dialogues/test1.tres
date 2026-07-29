@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=8 format=3 uid="uid://dksdibknkuhoi"]
+
+[ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto's Plugin/dialogue/dialogueData.gd" id="1_6l2a0"]
+[ext_resource type="AudioStream" uid="uid://reympjbb3613" path="res://addons/Hitokoto's Plugin/dialogue/dialogueTest/howyoudoingPlayerogg.ogg" id="1_khlsp"]
+[ext_resource type="AudioStream" uid="uid://cgungippedqgk" path="res://addons/Hitokoto's Plugin/dialogue/dialogueTest/finalogg.ogg" id="2_2ex1n"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="4_eixib"]
+
+[sub_resource type="Resource" id="Resource_np5a6"]
+script = ExtResource("4_eixib")
+textEN = "hello"
+textES = "hola"
+textPT = ""
+textFR = "nwid"
+textJA = ""
+textAR = ""
+textRU = ""
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_eixib"]
+script = ExtResource("1_6l2a0")
+dialogueChained = false
+audio = ExtResource("2_2ex1n")
+delayToSpeak = 0.2
+duration = 3.0
+state = "neutral"
+addGlobalDependence = {}
+animMouth = &"testMouth"
+subtitles = SubResource("Resource_np5a6")
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_ocpai"]
+script = ExtResource("4_eixib")
+textEN = "helloNPC"
+textES = "holaNPC"
+textPT = ""
+textFR = "bonjour :vNPC"
+textJA = ""
+textAR = ""
+textRU = ""
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[resource]
+script = ExtResource("1_6l2a0")
+dialogueChained = false
+audio = ExtResource("1_khlsp")
+delayToSpeak = 0.2
+duration = 2.0
+state = "neutral"
+addGlobalDependence = {
+"yes": 2
+}
+animMouth = &"testMouth"
+subtitles = SubResource("Resource_ocpai")
+dialogueExternal = SubResource("Resource_eixib")
+metadata/_custom_type_script = "uid://bung0s3emq7k2"

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://mja5xwexcqan"]
+
+[ext_resource type="Script" uid="uid://b4p565kh464nu" path="res://addons/Hitokoto's Plugin/dialogue/subtitles_test.gd" id="1_ygne0"]
+
+[sub_resource type="FontVariation" id="FontVariation_xo7k4"]
+
+[sub_resource type="Theme" id="Theme_ygne0"]
+default_font = SubResource("FontVariation_xo7k4")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo7k4"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Subtitles" type="Label" node_paths=PackedStringArray("color")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.5
+offset_top = -99.0
+offset_right = 23.5
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_ygne0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xo7k4")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ygne0")
+color = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 2.5
+offset_top = -51.0
+offset_right = 42.5
+offset_bottom = -11.0

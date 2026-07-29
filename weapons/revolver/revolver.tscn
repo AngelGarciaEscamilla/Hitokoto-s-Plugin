@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://xeg7lktjrqwl"]
+
+[ext_resource type="Script" uid="uid://dg8tn2ws4lmso" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.gd" id="1_1amoo"]
+[ext_resource type="ArrayMesh" uid="uid://diuy77wrra1sj" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.obj" id="1_2kgx2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1amoo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1amoo"]
+size = Vector3(0.3215332, 0.22189331, 0.10473633)
+
+[node name="Revolver" type="RigidBody3D" unique_id=553087116]
+collision_layer = 80
+collision_mask = 80
+max_contacts_reported = 1
+script = ExtResource("1_1amoo")
+
+[node name="target" type="Marker3D" parent="." unique_id=1402201853]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.13355988, 0.06117335, 0)
+
+[node name="weapon" type="MeshInstance3D" parent="." unique_id=978871570]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+mesh = ExtResource("1_2kgx2")
+
+[node name="bullet_1" type="MeshInstance3D" parent="." unique_id=1843992163]
+transform = Transform3D(-7.8680495e-10, 0.023, 0, -0.018, -1.0053619e-09, 0, 0, 0, 0.022, 0, 0.018805996, -0.068675995)
+mesh = SubResource("CapsuleMesh_1amoo")
+
+[node name="bullet_2" type="MeshInstance3D" parent="." unique_id=1927162991]
+transform = Transform3D(-7.8680495e-10, 0.023, 0, -0.018, -1.0053619e-09, 0, 0, 0, 0.022, 0, 0.08299434, -0.07271215)
+mesh = SubResource("CapsuleMesh_1amoo")
+
+[node name="bullet_3" type="MeshInstance3D" parent="." unique_id=1361321907]
+transform = Transform3D(-7.8680495e-10, 0.023, 0, -0.018, -1.0053619e-09, 0, 0, 0, 0.022, 0, 0.13447124, -0.01638177)
+mesh = SubResource("CapsuleMesh_1amoo")
+
+[node name="bullet_4" type="MeshInstance3D" parent="." unique_id=428154214]
+transform = Transform3D(-7.8680495e-10, 0.023, 0, -0.018, -1.0053619e-09, 0, 0, 0, 0.022, 0, 0.08808142, 0.08808884)
+mesh = SubResource("CapsuleMesh_1amoo")
+
+[node name="bullet_5" type="MeshInstance3D" parent="." unique_id=1153272214]
+transform = Transform3D(-7.8680495e-10, 0.023, 0, -0.018, -1.0053619e-09, 0, 0, 0, 0.022, 0, 0.033274814, 0.086372495)
+mesh = SubResource("CapsuleMesh_1amoo")
+
+[node name="bullet_6" type="MeshInstance3D" parent="." unique_id=1777871345]
+transform = Transform3D(-7.8680495e-10, 0.023, 0, -0.018, -1.0053619e-09, 0, 0, 0, 0.022, 0.044923767, -0.028600648, 0.005366415)
+mesh = SubResource("CapsuleMesh_1amoo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=543998752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.032104492, -0.0024261475, -0.01550293)
+shape = SubResource("BoxShape3D_1amoo")

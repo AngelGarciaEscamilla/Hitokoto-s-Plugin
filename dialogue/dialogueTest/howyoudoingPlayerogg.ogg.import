@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://reympjbb3613"
+path="res://.godot/imported/howyoudoingPlayerogg.ogg-b8c9d0b9aa7c9891ebb6c6dc55e15cdb.oggvorbisstr"
+
+[deps]
+
+source_file="res://addons/Hitokoto's Plugin/dialogue/dialogueTest/howyoudoingPlayerogg.ogg"
+dest_files=["res://.godot/imported/howyoudoingPlayerogg.ogg-b8c9d0b9aa7c9891ebb6c6dc55e15cdb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

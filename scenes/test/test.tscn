@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://dn2gu4ekt4q4p"]
+
+[ext_resource type="Script" uid="uid://cseindbceroku" path="res://addons/Hitokoto's Plugin/cinematics/test_cutscene.gd" id="1_csmsy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0fk2"]
+albedo_color = Color(0.71739393, 0, 0.20067847, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l0fk2"]
+material = SubResource("StandardMaterial3D_l0fk2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csmsy"]
+metallic = 0.84
+metallic_specular = 0.0
+roughness = 0.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_rnvml"]
+material = SubResource("StandardMaterial3D_csmsy")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l0fk2"]
+
+[sub_resource type="Sky" id="Sky_csmsy"]
+sky_material = SubResource("ProceduralSkyMaterial_l0fk2")
+
+[sub_resource type="Environment" id="Environment_rnvml"]
+background_mode = 2
+sky = SubResource("Sky_csmsy")
+
+[sub_resource type="Animation" id="Animation_csmsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5002625, 2.864356)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.26248008, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l0fk2"]
+resource_name = "new_animation"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.93),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.93920004]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29, 2.23, 3.19, 5.719376, 6.6448417),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.5002625, 2.864356), Vector3(1.934014, 0.5002625, 2.864356), Vector3(1.934014, 0.5002625, -0.363842), Vector3(1.934014, 3.6166384, -0.363842), Vector3(-2.7315607, 0.85903335, -3.3450956), Vector3(-5.41459, -0.523141, -3.3450956)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.29, 2.23, 2.87, 3.19, 5.719376, 6.6448417),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.26248008, 0), Vector3(0, 0.26248008, 0), Vector3(0, 0.74349284, 0), Vector3(-0.5196446, 0.45859498, 0.0017754887), Vector3(-0.5196447, 0.45859498, 0.0017754886), Vector3(-0.5196447, 0.244094, 0.0017755188)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnvml"]
+_data = {
+&"RESET": SubResource("Animation_csmsy"),
+&"new_animation": SubResource("Animation_l0fk2")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_l0fk2"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.088125, 0, 1.8158743, 0, 0, 0, 0, 0, 0, 0.37777185, -0.06208551, 1.8889141, 0, 0, 0, 0, 0, 0, 0, 0, 1.5308218, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.29, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="BoxMesh" id="BoxMesh_csmsy"]
+size = Vector3(0.1, 0.2, 2)
+
+[node name="test" type="Node3D" unique_id=1118888923]
+script = ExtResource("1_csmsy")
+
+[node name="box" type="MeshInstance3D" parent="." unique_id=24780821]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9973645, 0, 0)
+mesh = SubResource("BoxMesh_l0fk2")
+
+[node name="box2" type="MeshInstance3D" parent="." unique_id=152181027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83395016, 0, 0)
+mesh = SubResource("SphereMesh_rnvml")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1167472383]
+environment = SubResource("Environment_rnvml")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=527074911]
+libraries/ = SubResource("AnimationLibrary_rnvml")
+
+[node name="Path3D" type="Path3D" parent="." unique_id=141155446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.821677, -1.063622, -6.452547)
+curve = SubResource("Curve3D_l0fk2")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1618010275]
+transform = Transform3D(-0.006236804, -0.0053009065, 0.9999627, 2.3282212e-10, 0.9998775, 0.005301564, -0.99994385, 3.3062806e-05, -0.006236922, 12.088125, 0, 1.8158743)
+
+[node name="player}" type="Marker3D" parent="Path3D/PathFollow3D" unique_id=143838042]
+gizmo_extents = 1.85
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/player}" unique_id=1511375818]
+mesh = SubResource("BoxMesh_csmsy")
+
+[node name="Path3D2" type="Path3D" parent="." unique_id=546649049]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.5096626, -1.063622, -2.0091114)
+curve = SubResource("Curve3D_l0fk2")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2" unique_id=270592418]
+transform = Transform3D(-0.0062368684, -0.0053013377, 0.9999611, 2.3282452e-10, 0.9999589, 0.005301555, -0.99995416, 3.3065495e-05, -0.0062369118, 12.088125, 0, 1.8158743)
+
+[node name="NPC" type="Marker3D" parent="Path3D2/PathFollow3D" unique_id=136806529]
+transform = Transform3D(1.0000037, 0, 0, -3.637979e-12, 1.0000077, 4.355627e-11, 4.656613e-10, 5.1784355e-11, 1.0000043, 2.6604977, -8.7976456e-05, 0.016593456)
+gizmo_extents = 1.85
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2017623029]
+transform = Transform3D(0.96574944, 0, 0.25947648, 0, 0.99999994, 0, -0.25947648, 0, 0.96574944, 0, 0.5002625, 2.864356)

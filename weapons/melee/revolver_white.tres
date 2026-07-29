@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://dxuduh3uyhk0f"]
+
+[ext_resource type="PackedScene" uid="uid://dj6ax7ivt2jxr" path="res://addons/Hitokoto's Plugin/weapons/melee/bullet.tscn" id="1_cwxfd"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="2_cddy7"]
+[ext_resource type="PackedScene" uid="uid://xeg7lktjrqwl" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.tscn" id="3_cwxfd"]
+[ext_resource type="Script" uid="uid://bum7vocry2bty" path="res://addons/Hitokoto's Plugin/weapons/weapons_resource.gd" id="4_bt8s1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_13sj3"]
+
+[sub_resource type="Resource" id="Resource_idgwn"]
+script = ExtResource("2_cddy7")
+textEN = "triangle"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[resource]
+script = ExtResource("4_bt8s1")
+type = "short"
+type_weapon = "revolver"
+type_ammo = "9mm"
+duration_anim = 1.0
+bullet_at_time = true
+charger = 6
+current_charger = 4
+time_to_charger = 6.0
+damage_amount = 30.0
+sensibility_input = Vector2(0.235, 0.105)
+aim_fov = 117.0
+hitbox_size = Vector3(0.5, 0.5, 0.5)
+collision = SubResource("SphereShape3D_13sj3")
+name = SubResource("Resource_idgwn")
+scene = ExtResource("3_cwxfd")

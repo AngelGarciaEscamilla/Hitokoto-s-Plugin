@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://beb673xmf3ekd"]
+
+[ext_resource type="Script" uid="uid://cr2lyi1fltdrf" path="res://addons/Hitokoto's Plugin/item/read_panel.gd" id="1_55k0t"]
+[ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto's Plugin/UI/text.gd" id="2_66gby"]
+
+[node name="ReadPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_55k0t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.337255)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -292.0
+offset_right = 200.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -175.5
+offset_right = 190.0
+offset_bottom = 276.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="content" type="Label" parent="Panel/ScrollContainer"]
+custom_minimum_size = Vector2(365.785, 2.055)
+layout_mode = 2
+mouse_default_cursor_shape = 6
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 1
+script = ExtResource("2_66gby")
+metadata/_custom_type_script = "uid://b2httkvsvj6yb"
+
+[node name="title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.062
+anchor_right = 0.5
+anchor_bottom = 0.062
+offset_left = -171.0
+offset_top = -24.518
+offset_right = 166.0
+offset_bottom = 24.482
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="autor" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.154
+anchor_right = 0.5
+anchor_bottom = 0.155
+offset_left = -20.0
+offset_top = -21.706
+offset_right = 20.0
+offset_bottom = 0.705002
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12

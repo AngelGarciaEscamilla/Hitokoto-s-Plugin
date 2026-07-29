@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxtae7myfarvr"]
+
+[ext_resource type="Script" uid="uid://1vsro7hjgcxm" path="res://addons/Hitokoto's Plugin/scenes/test_script/testScript.gd" id="1_wanai"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("background")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wanai")
+background = NodePath("background")
+
+[node name="background" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

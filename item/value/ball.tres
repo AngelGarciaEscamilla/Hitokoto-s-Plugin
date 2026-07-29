@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bsdmhtyhfp5jc"]
+
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="1_h4mt4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h4mt4"]
+
+[resource]
+script = ExtResource("1_h4mt4")
+name = &"ball"
+type = "value"
+mesh = SubResource("BoxMesh_h4mt4")
+value = 10
+toReceived = "Life"
+scopeReceived = 0.0
+description = ""
+metadata/_custom_type_script = "uid://bre3hs2ph4cjw"

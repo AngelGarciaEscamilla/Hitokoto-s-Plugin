@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://sw1m5k4oudtr"]
+
+[ext_resource type="Texture2D" uid="uid://2drvccqpjmhw" path="res://icon.svg" id="1_2krgm"]
+[ext_resource type="PackedScene" uid="uid://bthcqm41c86hp" path="res://addons/Hitokoto's Plugin/item/consumable/juice_in_stock.tscn" id="1_iig3e"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="1_nmcff"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="2_1f3qj"]
+[ext_resource type="AudioStream" uid="uid://bvy3alhiq5nwf" path="res://addons/Hitokoto's Plugin/resources/sounds/button3.wav" id="5_3ae4x"]
+
+[sub_resource type="Resource" id="Resource_1f3qj"]
+script = ExtResource("2_1f3qj")
+textEN = "a juice ,well, in stock"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_3ae4x"]
+script = ExtResource("2_1f3qj")
+textEN = "juice in stock"
+textES = "jugo en bolsa"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[resource]
+script = ExtResource("1_nmcff")
+weight = 1.4
+description = SubResource("Resource_1f3qj")
+sound_take = ExtResource("5_3ae4x")
+to_received = "Energy_limit"
+scope_received = 20.0
+img = ExtResource("1_2krgm")
+name = SubResource("Resource_3ae4x")
+scene = ExtResource("1_iig3e")
+metadata/_custom_type_script = "uid://bre3hs2ph4cjw"

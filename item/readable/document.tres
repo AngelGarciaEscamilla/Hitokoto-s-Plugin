@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b4t7f8fxyftje"]
+
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="1_084j2"]
+[ext_resource type="PackedScene" uid="uid://b87fcv5x8ouxv" path="res://addons/Hitokoto's Plugin/item/readable/document.tscn" id="2_5a7ht"]
+[ext_resource type="Texture2D" uid="uid://2drvccqpjmhw" path="res://icon.svg" id="2_boala"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="3_boala"]
+
+[sub_resource type="Resource" id="Resource_pqayd"]
+script = ExtResource("1_084j2")
+textEN = "teadawawdawdawd"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_084j2"]
+script = ExtResource("1_084j2")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_lbqgv"]
+script = ExtResource("1_084j2")
+textEN = "document"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[resource]
+script = ExtResource("3_boala")
+hold_anim = "document"
+weight = 7.1
+description = SubResource("Resource_084j2")
+title = &"dwa"
+autor = &"awdaw"
+content = SubResource("Resource_pqayd")
+img = ExtResource("2_boala")
+name = SubResource("Resource_lbqgv")
+scene = ExtResource("2_5a7ht")
+metadata/_custom_type_script = "uid://bre3hs2ph4cjw"

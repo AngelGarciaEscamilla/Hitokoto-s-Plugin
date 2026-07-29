@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://clo8i3cyfrmua"]
+
+[ext_resource type="Script" uid="uid://cru0px2eeik4p" path="res://addons/Hitokoto's Plugin/UI/bumper_loadscreen.gd" id="1_lw5so"]
+[ext_resource type="FontFile" uid="uid://ddooor80gicua" path="res://addons/Hitokoto's Plugin/resources/fonts/papyrus.ttf" id="2_o63lx"]
+[ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto's Plugin/UI/load_setting.gd" id="2_qftru"]
+[ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto's Plugin/UI/property_node.gd" id="3_fen2i"]
+[ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto's Plugin/UI/text.gd" id="4_dmmb1"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="5_qftru"]
+
+[sub_resource type="Resource" id="Resource_kvcv6"]
+script = ExtResource("3_fen2i")
+property = "key_skip"
+section_setting = "controls"
+setting = "down"
+metadata/_custom_type_script = "uid://i4ri6t1liild"
+
+[sub_resource type="Resource" id="Resource_fen2i"]
+script = ExtResource("5_qftru")
+textEN = "Skip with"
+textES = "Omitir con"
+textPT = "Pular com"
+textFR = "Passer avec"
+textJA = "でスキップ"
+textAR = "تخطي بـ"
+textRU = "Пропустить с помощью"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[node name="Bumper_loadscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lw5so")
+
+[node name="SettingsInNodes" type="Node" parent="."]
+script = ExtResource("2_qftru")
+nodes = Array[ExtResource("3_fen2i")]([SubResource("Resource_kvcv6")])
+metadata/_custom_type_script = "uid://c6jid8qojtnsk"
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -24.0
+offset_right = 79.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_o63lx")
+theme_override_font_sizes/font_size = 30
+text = "Skip with"
+autowrap_mode = 1
+script = ExtResource("4_dmmb1")
+translator = SubResource("Resource_fen2i")
+metadata/_custom_type_script = "uid://b2httkvsvj6yb"
+
+[node name="bumper" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+expand = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="in" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="finished" from="bumper" to="." method="_on_video_stream_player_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

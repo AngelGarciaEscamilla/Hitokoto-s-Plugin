@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn5efjfg2xla"]
+
+[ext_resource type="Script" uid="uid://ckgc4n30m81yj" path="res://addons/Hitokoto's Plugin/UI/death_screen_player.gd" id="1_f5rxb"]
+
+[node name="deathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f5rxb")

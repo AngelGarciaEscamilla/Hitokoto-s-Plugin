@@ -1,0 +1,724 @@
+[gd_scene load_steps=85 format=3 uid="uid://bk0857mhuygf"]
+
+[ext_resource type="Script" uid="uid://13fg8hd0rbd3" path="res://addons/Hitokoto's Plugin/player/player.gd" id="1_3n3ca"]
+[ext_resource type="Script" uid="uid://dxx7vy0fd68sh" path="res://addons/Hitokoto's Plugin/UI/transition_start.gd" id="1_bm86r"]
+[ext_resource type="Script" uid="uid://vrjxlcm0821p" path="res://addons/Hitokoto's Plugin/SoundScript/Music.gd" id="1_bmvok"]
+[ext_resource type="Environment" uid="uid://ryq6apmj1dqu" path="res://addons/Hitokoto's Plugin/shaders/clouds.tres" id="2_2u76e"]
+[ext_resource type="PackedScene" uid="uid://btb35g1bin5fc" path="res://addons/Hitokoto's Plugin/player/model/humanoid.tscn" id="3_aq4kq"]
+[ext_resource type="Script" uid="uid://bofj0bjugq8hy" path="res://addons/Hitokoto's Plugin/Componets/componets.gd" id="3_tfwsm"]
+[ext_resource type="Resource" uid="uid://dksdibknkuhoi" path="res://addons/Hitokoto's Plugin/dialogue/dialogues/test1.tres" id="4_guw84"]
+[ext_resource type="Script" uid="uid://fagckpkf111j" path="res://addons/Hitokoto's Plugin/Componets/soundSteps.gd" id="4_x5cjl"]
+[ext_resource type="Script" uid="uid://cpw50h4bsfi2f" path="res://addons/Hitokoto's Plugin/dialogue/dialogueManager.gd" id="5_6hem0"]
+[ext_resource type="Script" uid="uid://bwlst6wr3qxd6" path="res://addons/Hitokoto's Plugin/cinematics/close_up.gd" id="5_aiyec"]
+[ext_resource type="Script" uid="uid://ccj4iqlg53w33" path="res://addons/Hitokoto's Plugin/weapons/item/weapon_item.gd" id="5_jd361"]
+[ext_resource type="Resource" uid="uid://cvrfx2t72lrw2" path="res://addons/Hitokoto's Plugin/weapons/melee/triangle.tres" id="6_2u76e"]
+[ext_resource type="PackedScene" uid="uid://mja5xwexcqan" path="res://addons/Hitokoto's Plugin/dialogue/subtitles.tscn" id="6_cc03v"]
+[ext_resource type="Script" uid="uid://b83q2fhcgpadc" path="res://addons/Hitokoto's Plugin/Componets/Interact.gd" id="7_bm86r"]
+[ext_resource type="Script" uid="uid://tafqwm4yq813" path="res://addons/Hitokoto's Plugin/movement/freefall.gd" id="8_5rxwi"]
+[ext_resource type="Script" uid="uid://fyjddk3owh1e" path="res://addons/Hitokoto's Plugin/cinematics/cutscene.gd" id="8_kqyrw"]
+[ext_resource type="Script" uid="uid://wt4oc86ib0rl" path="res://addons/Hitokoto's Plugin/Componets/levelIluminance.gd" id="9_0hrsv"]
+[ext_resource type="Script" uid="uid://twfmjfueluyq" path="res://addons/Hitokoto's Plugin/item/item.gd" id="9_hroh1"]
+[ext_resource type="Script" uid="uid://bolklkv28xgbe" path="res://addons/Hitokoto's Plugin/UI/saveManager.gd" id="12_lbqgv"]
+[ext_resource type="Script" uid="uid://dwksru2ek2ycx" path="res://addons/Hitokoto's Plugin/Componets/alignamentUser.gd" id="13_cc03v"]
+[ext_resource type="Script" uid="uid://bbl0haaqibcfj" path="res://addons/Hitokoto's Plugin/Componets/inventory.gd" id="13_pqayd"]
+[ext_resource type="Script" uid="uid://danlpdtp3xsit" path="res://addons/Hitokoto's Plugin/ambient/weather.gd" id="14_u0bac"]
+[ext_resource type="Script" uid="uid://dtwie0joy1t36" path="res://addons/Hitokoto's Plugin/UI/gizmo.gd" id="15_cc03v"]
+[ext_resource type="Script" uid="uid://2ctt3ingr8be" path="res://addons/Hitokoto's Plugin/furniture/door.gd" id="15_u0bac"]
+[ext_resource type="Script" uid="uid://yxpnc6bj5crb" path="res://addons/Hitokoto's Plugin/ambient/sun.gd" id="15_w0aq2"]
+[ext_resource type="Script" uid="uid://bnq8je56yns4x" path="res://addons/Hitokoto's Plugin/weapons/item/ammo_item.gd" id="16_rrefu"]
+[ext_resource type="Script" uid="uid://t6278ijmdsgj" path="res://addons/Hitokoto's Plugin/SoundScript/SFX.gd" id="16_tfwsm"]
+[ext_resource type="Shader" uid="uid://c8xobutnwqvyc" path="res://addons/Hitokoto's Plugin/shaders/transparency.gdshader" id="17_bm86r"]
+[ext_resource type="Script" uid="uid://cuyxcqsbcn4sb" path="res://addons/Hitokoto's Plugin/mission/mission.gd" id="17_bxjre"]
+[ext_resource type="PackedScene" uid="uid://dj6ax7ivt2jxr" path="res://addons/Hitokoto's Plugin/weapons/melee/bullet.tscn" id="17_kqyrw"]
+[ext_resource type="Script" uid="uid://ibaaryuohfo3" path="res://addons/Hitokoto's Plugin/Entitys/mob/mob.gd" id="17_mb2y6"]
+[ext_resource type="Script" uid="uid://1vsro7hjgcxm" path="res://addons/Hitokoto's Plugin/scenes/test_script/testScript.gd" id="18_5xj4c"]
+[ext_resource type="PackedScene" uid="uid://xeg7lktjrqwl" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.tscn" id="18_msexu"]
+[ext_resource type="Script" uid="uid://bum7vocry2bty" path="res://addons/Hitokoto's Plugin/weapons/weapons_resource.gd" id="19_2m4tk"]
+[ext_resource type="PackedScene" uid="uid://dq5u5epekgoxh" path="res://addons/Hitokoto's Plugin/Entitys/mob/models/cucaracha.tscn" id="19_cb1ch"]
+[ext_resource type="Script" uid="uid://cndhjyp157jdj" path="res://addons/Hitokoto's Plugin/furniture/home.gd" id="21_bhdhq"]
+[ext_resource type="PackedScene" uid="uid://b5beynp1p51e8" path="res://addons/Hitokoto's Plugin/Entitys/NPC/npc.tscn" id="21_esxjw"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="21_f6xuk"]
+[ext_resource type="Script" uid="uid://ccu6rfa11wigy" path="res://addons/Hitokoto's Plugin/Entitys/NPC/npc.gd" id="21_o7kkv"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="21_tfwsm"]
+[ext_resource type="Texture2D" uid="uid://2drvccqpjmhw" path="res://icon.svg" id="22_6hem0"]
+[ext_resource type="PackedScene" uid="uid://b87fcv5x8ouxv" path="res://addons/Hitokoto's Plugin/item/readable/document.tscn" id="22_x5cjl"]
+[ext_resource type="Script" uid="uid://dj8g8ns5ghcby" path="res://addons/Hitokoto's Plugin/furniture/work.gd" id="23_esxjw"]
+[ext_resource type="Script" uid="uid://cr4x8io65ig3s" path="res://addons/Hitokoto's Plugin/furniture/BulbLight.gd" id="24_u50qv"]
+[ext_resource type="Script" uid="uid://c5y8ed4q2k1kk" path="res://addons/Hitokoto's Plugin/SoundScript/dynamicmusic.gd" id="25_kvr7o"]
+[ext_resource type="Script" uid="uid://duidjh2ou2muh" path="res://addons/Hitokoto's Plugin/ambient/time/clock.gd" id="26_bmvok"]
+[ext_resource type="Resource" uid="uid://sw1m5k4oudtr" path="res://addons/Hitokoto's Plugin/item/consumable/juice_in_stock.tres" id="28_5d1fl"]
+[ext_resource type="Script" uid="uid://dosnws0bm0joa" path="res://addons/Hitokoto's Plugin/Entitys/interpolationAnimation.gd" id="29_5rxwi"]
+[ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto's Plugin/dialogue/dialogueData.gd" id="31_5rxwi"]
+[ext_resource type="ArrayMesh" uid="uid://bwsvmxja4m31u" path="res://addons/Hitokoto's Plugin/furniture/models/steps.obj" id="37_7hfam"]
+[ext_resource type="Script" uid="uid://le836i7v06mw" path="res://addons/Hitokoto's Plugin/scenes/test/AreaMissionStarter.gd" id="38_o5blj"]
+[ext_resource type="Script" uid="uid://deqmp2nxl8ca" path="res://addons/Hitokoto's Plugin/ambient/floor.gd" id="46_rgqp3"]
+[ext_resource type="AudioStream" uid="uid://cxf8kroetjpnx" path="res://addons/Hitokoto's Plugin/audio/player/metal.mp3" id="47_f6xuk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5rxwi"]
+render_priority = 0
+shader = ExtResource("17_bm86r")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/transparency = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_5rxwi"]
+material = SubResource("ShaderMaterial_5rxwi")
+
+[sub_resource type="Resource" id="Resource_x5cjl"]
+script = ExtResource("21_tfwsm")
+textEN = "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+textES = "Texto en Español"
+textPT = "Texto em português"
+textFR = "Texte en français"
+textJA = "日本語テキスト"
+textAR = "النص العربي"
+textRU = "текст на русском языке"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_lbqgv"]
+script = ExtResource("21_tfwsm")
+textEN = "text in english"
+textES = "Texto en Español"
+textPT = "Texto em português"
+textFR = "Texte en français"
+textJA = "日本語テキスト"
+textAR = "النص العربي"
+textRU = "текст на русском языке"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="BoxMesh" id="BoxMesh_6hem0"]
+size = Vector3(0.2, 0.2, 0.01)
+
+[sub_resource type="Resource" id="Resource_cc03v"]
+script = ExtResource("21_tfwsm")
+textEN = "text in english"
+textES = "Texto en Español"
+textPT = "Texto em português"
+textFR = "Texte en français"
+textJA = "日本語テキスト"
+textAR = "النص العربي"
+textRU = "текст на русском языке"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_tfwsm"]
+script = ExtResource("21_f6xuk")
+img = ExtResource("22_6hem0")
+name = SubResource("Resource_cc03v")
+type = "document"
+mesh = SubResource("BoxMesh_6hem0")
+scene = ExtResource("22_x5cjl")
+holdAnim = "holditem"
+value = 0
+delayToUse = 1.0
+description = SubResource("Resource_lbqgv")
+size_collision = Vector3(0.2, 0.2, 0.2)
+toReceived = "Life"
+scopeReceived = 0.0
+title = &"Unknow"
+autor = &"Unknow"
+content = SubResource("Resource_x5cjl")
+metadata/_custom_type_script = "uid://bre3hs2ph4cjw"
+
+[sub_resource type="Resource" id="Resource_5rxwi"]
+script = ExtResource("21_tfwsm")
+textEN = "this is the first dialogue"
+textES = "Texto en Español"
+textPT = "Texto em português"
+textFR = "Texte en français"
+textJA = "日本語テキスト"
+textAR = "النص العربي"
+textRU = "текст на русском языке"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_s5fh0"]
+script = ExtResource("31_5rxwi")
+dialogueChained = true
+delayToSpeak = 0.2
+duration = 1.0
+state = "neutral"
+addGlobalDependence = {}
+animMouth = &"testMouth"
+subtitles = SubResource("Resource_5rxwi")
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_lhud8"]
+script = ExtResource("21_tfwsm")
+textEN = "what the flip"
+textES = "Texto en Español"
+textPT = "Texto em português"
+textFR = "Texte en français"
+textJA = "日本語テキスト"
+textAR = "النص العربي"
+textRU = "текст на русском языке"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_0hrsv"]
+script = ExtResource("31_5rxwi")
+dialogueChained = false
+delayToSpeak = 0.2
+duration = 1.0
+state = "neutral"
+addGlobalDependence = {}
+animMouth = &"testMouth"
+subtitles = SubResource("Resource_lhud8")
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_ermtg"]
+script = ExtResource("17_bxjre")
+mission_id = "1"
+title = "the dog"
+description = ""
+objectives = Array[String](["enter"])
+metadata/_custom_type_script = "uid://cuyxcqsbcn4sb"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7hfam"]
+radius = 3.61708
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bxjre"]
+radius = 3.48272
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kqyrw"]
+top_radius = 0.01
+bottom_radius = 0.09
+height = 0.705
+
+[sub_resource type="Resource" id="Resource_ttav7"]
+script = ExtResource("19_2m4tk")
+type = "Short"
+type_weapon = "revolver"
+type_ammo = "9mm"
+charger = 240
+current_charger = 185
+time_to_charger = 1.195
+weight = 19.9
+damage_amount = 400.0
+scope = 5.405
+delayToShoot = 0.34
+velocity = 500.0
+trauma = 1.0
+sensibility_input = 0.7
+aimFov = 45.0
+bullet_size = Vector3(0.1, 0.1, 0.1)
+hitbox_size = Vector3(0.96, 0.75, 0.325)
+bullet = ExtResource("17_kqyrw")
+mesh = SubResource("CylinderMesh_kqyrw")
+scene = ExtResource("18_msexu")
+Note = ""
+metadata/_custom_type_script = "uid://bum7vocry2bty"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6xuk"]
+size = Vector3(6.72607, 0.001, 6.32898)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rrefu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyds2"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.2039e-44
+
+[sub_resource type="SphereMesh" id="SphereMesh_pyds2"]
+material = SubResource("StandardMaterial3D_pyds2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmvok"]
+albedo_color = Color(0.906808, 0, 0.184093, 1)
+emission_energy_multiplier = 5.05
+
+[sub_resource type="BoxMesh" id="BoxMesh_bmvok"]
+material = SubResource("StandardMaterial3D_bmvok")
+size = Vector3(0.01, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hroh1"]
+albedo_color = Color(1.82897e-06, 0.428085, 0.450112, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kvr7o"]
+material = SubResource("StandardMaterial3D_hroh1")
+size = Vector3(0.1, 0.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5d1fl"]
+albedo_color = Color(0, 0.358509, 0.806151, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kqyrw"]
+material = SubResource("StandardMaterial3D_5d1fl")
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_5ytrk"]
+vertices = PackedVector3Array(-56.9001, 0.609412, -5.6725, -38.2001, 0.609412, -5.5725, -38.2001, 0.609412, -6.1725, -37.6001, 0.609412, -7.1725, -36.8001, 0.609412, -7.5725, -36.0001, 0.609412, -34.7725, -56.9001, 0.609412, -34.7725, -36.0001, 0.609412, -7.5725, -22.1001, 0.609412, -7.5725, -22.1001, 0.609412, -34.7725, -19.9001, 0.609412, -2.8725, -16.9001, 0.609412, -2.8725, -16.9001, 0.609412, -3.6725, -16.5001, 0.609412, -4.4725, -19.9001, 0.609412, -6.1725, -21.3001, 0.609412, -7.5725, -20.5001, 0.609412, -7.1725, -15.3001, 0.609412, -4.9725, -15.3001, 0.609412, -34.7725, -14.4001, 0.609412, -4.4725, -13.3001, 0.609412, -4.9725, -13.3001, 0.609412, -34.7725, -11.8001, 0.609412, -3.6725, -11.8001, 0.609412, -3.0725, -6.7001, 0.609412, -3.1725, -12.2001, 0.609412, -4.4725, -6.7001, 0.609412, -6.3725, -6.1001, 0.609412, -7.3725, -5.1001, 0.609412, -7.7725, -5.1001, 0.609412, -34.7725, -3.9001, 0.609412, -7.1725, 0.399899, 0.609412, -7.3725, 0.399899, 0.609412, -7.7725, 0.999901, 0.609412, -8.7725, 1.7999, 0.609412, -9.1725, 2.5999, 0.609412, -34.7725, 2.5999, 0.609412, -9.1725, 7.6999, 0.609412, -9.1725, 7.6999, 0.609412, -34.7725, 8.4999, 0.609412, -9.1725, 9.2999, 0.609412, -8.7725, 9.8999, 0.609412, -7.4725, 36.1999, 0.609412, -7.4725, 36.1999, 0.609412, -34.7725, -4.1001, 0.609412, 1.6275, -4.8001, 0.609412, -0.272499, -5.3001, 0.609412, -0.172497, -16.9001, 0.609412, 8.2275, -16.9001, 0.609412, 7.4275, -19.9001, 0.609412, 7.4275, -6.3001, 0.609412, -0.772499, -11.8001, 0.609412, -2.0725, -16.5001, 0.609412, 9.0275, -15.5001, 0.609412, 9.6275, -19.9001, 0.609412, 17.6275, -6.7001, 0.609412, -1.5725, -6.7001, 0.609412, -2.1725, 1.7999, 0.609412, -5.8725, 1.0999, 0.609412, -6.2725, -1.1001, 0.609412, -1.3725, -0.400101, 0.609412, 0.127502, 9.4999, 0.609412, -6.4725, -0.800098, 0.609412, 1.2275, 8.4999, 0.609412, -5.8725, -12.2001, 0.609412, 9.0275, -20.5001, 0.609412, 18.6275, -1.9001, 0.609412, 1.9275, -3.1001, 0.609412, 2.2275, -11.8001, 0.609412, 8.2275, -13.2001, 0.609412, 9.6275, -21.3001, 0.609412, 19.0275, -21.8001, 0.609412, 34.7275, -21.9001, 0.609412, 19.0275, 36.1999, 0.609412, 34.7275, -3.5001, 0.609412, -6.3725, 0.7999, 0.609412, -6.4725, -3.5001, 0.609412, -1.7725, -2.7001, 0.609412, -2.1725, -2.2001, 0.609412, -2.1725, -1.4001, 0.609412, -1.7725, -56.9001, 0.609412, 17.1275, -38.2001, 0.609412, 17.0275, -35.2001, 9.30941, -4.5725, -35.2001, 9.30941, 16.0275, -22.9001, 9.30941, 16.0275, -22.9001, 9.30941, -4.5725, -13.4001, 7.30941, 5.2275, -14.4001, 7.30941, 4.6275, -15.3001, 7.30941, 5.2275, -16.1001, 7.30941, 8.9275, -12.4001, 7.30941, 8.9275, -16.1001, 7.30941, 5.2275, -12.4001, 7.30941, 5.2275, -36.3001, 0.609412, 34.7275, -36.2001, 0.609412, 19.0275, -36.8001, 0.609412, 19.0275, -37.8001, 0.609412, 18.4275, -38.2001, 0.609412, 17.6275, -56.9001, 0.609412, 34.7275)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 2, 0), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 6), PackedInt32Array(4, 6, 5), PackedInt32Array(4, 5, 7), PackedInt32Array(5, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(12, 11, 10), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 15, 9), PackedInt32Array(14, 16, 13), PackedInt32Array(13, 16, 17), PackedInt32Array(15, 8, 9), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 18), PackedInt32Array(20, 18, 21), PackedInt32Array(24, 23, 22), PackedInt32Array(22, 25, 24), PackedInt32Array(24, 25, 26), PackedInt32Array(27, 20, 28), PackedInt32Array(28, 20, 29), PackedInt32Array(29, 20, 21), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 20), PackedInt32Array(32, 31, 30), PackedInt32Array(33, 32, 30), PackedInt32Array(33, 30, 34), PackedInt32Array(34, 30, 28), PackedInt32Array(34, 28, 29), PackedInt32Array(34, 29, 35), PackedInt32Array(35, 36, 34), PackedInt32Array(35, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(39, 37, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43), PackedInt32Array(43, 40, 38), PackedInt32Array(44, 46, 45), PackedInt32Array(49, 48, 47), PackedInt32Array(46, 44, 50), PackedInt32Array(50, 44, 51), PackedInt32Array(47, 52, 49), PackedInt32Array(52, 53, 49), PackedInt32Array(49, 53, 54), PackedInt32Array(51, 56, 55), PackedInt32Array(58, 57, 59), PackedInt32Array(59, 57, 60), PackedInt32Array(51, 55, 50), PackedInt32Array(61, 41, 42), PackedInt32Array(60, 57, 62), PackedInt32Array(62, 57, 63), PackedInt32Array(54, 64, 65), PackedInt32Array(65, 64, 66), PackedInt32Array(65, 66, 62), PackedInt32Array(62, 63, 61), PackedInt32Array(44, 67, 51), PackedInt32Array(51, 67, 68), PackedInt32Array(54, 53, 69), PackedInt32Array(71, 70, 65), PackedInt32Array(68, 67, 64), PackedInt32Array(64, 67, 66), PackedInt32Array(54, 69, 64), PackedInt32Array(71, 72, 70), PackedInt32Array(61, 42, 62), PackedInt32Array(62, 42, 65), PackedInt32Array(65, 42, 71), PackedInt32Array(71, 42, 73), PackedInt32Array(30, 31, 74), PackedInt32Array(74, 31, 75), PackedInt32Array(77, 76, 74), PackedInt32Array(74, 79, 78), PackedInt32Array(78, 77, 74), PackedInt32Array(75, 58, 74), PackedInt32Array(74, 58, 79), PackedInt32Array(79, 58, 59), PackedInt32Array(81, 80, 1), PackedInt32Array(1, 80, 0), PackedInt32Array(85, 84, 82), PackedInt32Array(82, 84, 83), PackedInt32Array(24, 56, 23), PackedInt32Array(23, 56, 51), PackedInt32Array(10, 11, 49), PackedInt32Array(49, 11, 48), PackedInt32Array(87, 86, 88), PackedInt32Array(88, 86, 89), PackedInt32Array(89, 86, 90), PackedInt32Array(89, 91, 88), PackedInt32Array(86, 92, 90), PackedInt32Array(95, 94, 93), PackedInt32Array(96, 95, 93), PackedInt32Array(96, 93, 97), PackedInt32Array(97, 93, 80), PackedInt32Array(80, 93, 98), PackedInt32Array(80, 81, 97), PackedInt32Array(94, 72, 93), PackedInt32Array(93, 72, 71)]
+cell_size = 0.1
+cell_height = 0.1
+agent_radius = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ytrk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6hem0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u0bac"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2u76e"]
+
+[node name="world_test" type="Node"]
+
+[node name="TransitionStart" type="Node" parent="."]
+script = ExtResource("1_bm86r")
+transitionDuration = 3.0
+metadata/_custom_type_script = "uid://dxx7vy0fd68sh"
+
+[node name="AlignamentObjects" type="Node" parent="."]
+
+[node name="alignamentObject" type="Marker3D" parent="AlignamentObjects"]
+transform = Transform3D(0.000889735, 0, -1, 0, 1, 0, 1, 0, 0.000889735, -11.3506, 0.9, -12.3851)
+
+[node name="alignamentObject2" type="Marker3D" parent="AlignamentObjects"]
+transform = Transform3D(0.000889735, 0, -1, 0, 1, 0, 1, 0, 0.000889735, -11.3506, 0.9, -10.9314)
+
+[node name="cutscenePositions" type="Node" parent="."]
+
+[node name="positionCutscene" type="Marker3D" parent="cutscenePositions"]
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, -15.6146, 0.9, -7.40816)
+gizmo_extents = 10.0
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("1_bmvok")
+metadata/_custom_type_script = "uid://vrjxlcm0821p"
+
+[node name="DynamicMusic" type="Node" parent="."]
+script = ExtResource("25_kvr7o")
+metadata/_custom_type_script = "uid://c5y8ed4q2k1kk"
+
+[node name="Component" type="Node" parent="."]
+script = ExtResource("3_tfwsm")
+metadata/_custom_type_script = "uid://bofj0bjugq8hy"
+
+[node name="SoundSteps" type="Node" parent="Component"]
+script = ExtResource("4_x5cjl")
+metadata/_custom_type_script = "uid://fagckpkf111j"
+
+[node name="DialogueManager" type="Node" parent="Component"]
+script = ExtResource("5_6hem0")
+subtitlesScene = ExtResource("6_cc03v")
+dialogues = {
+"1": ExtResource("4_guw84"),
+"10": ExtResource("4_guw84"),
+"2": ExtResource("4_guw84"),
+"3": ExtResource("4_guw84"),
+"4": ExtResource("4_guw84"),
+"5": ExtResource("4_guw84"),
+"6": ExtResource("4_guw84"),
+"7": ExtResource("4_guw84"),
+"8": ExtResource("4_guw84"),
+"9": ExtResource("4_guw84")
+}
+metadata/_custom_type_script = "uid://cpw50h4bsfi2f"
+
+[node name="Interact" type="Node" parent="Component"]
+script = ExtResource("7_bm86r")
+metadata/_custom_type_script = "uid://b83q2fhcgpadc"
+
+[node name="FallState" type="Node" parent="Component"]
+script = ExtResource("8_5rxwi")
+metadata/_custom_type_script = "uid://tafqwm4yq813"
+
+[node name="IluminanceLevel" type="Node" parent="Component"]
+script = ExtResource("9_0hrsv")
+isDisabled = true
+metadata/_custom_type_script = "uid://wt4oc86ib0rl"
+
+[node name="SaveManager" type="Node" parent="Component"]
+script = ExtResource("12_lbqgv")
+metadata/_custom_type_script = "uid://bolklkv28xgbe"
+
+[node name="Inventory" type="Node" parent="Component"]
+script = ExtResource("13_pqayd")
+slot_2 = null
+slot_3 = null
+current_slot = ""
+inventorySlots = {}
+metadata/_custom_type_script = "uid://bbl0haaqibcfj"
+
+[node name="AlignamentUser" type="Node" parent="Component"]
+script = ExtResource("13_cc03v")
+metadata/_custom_type_script = "uid://dwksru2ek2ycx"
+
+[node name="InterpolationState" type="Node" parent="Component"]
+script = ExtResource("29_5rxwi")
+metadata/_custom_type_script = "uid://dosnws0bm0joa"
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.22386, 1.05239, -8.67123)
+bus = &"SFX"
+script = ExtResource("16_tfwsm")
+metadata/_custom_type_script = "uid://t6278ijmdsgj"
+
+[node name="Gizmo" type="Node" parent="SFX"]
+script = ExtResource("15_cc03v")
+mesh = SubResource("BoxMesh_5rxwi")
+metadata/_custom_type_script = "uid://dtwie0joy1t36"
+
+[node name="Weather" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_2u76e")
+script = ExtResource("14_u0bac")
+metadata/_custom_type_script = "uid://danlpdtp3xsit"
+
+[node name="OrbitZ" type="Marker3D" parent="."]
+transform = Transform3D(0.97123, -0.238144, 0, 0.238144, 0.97123, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Sun" type="Marker3D" parent="OrbitZ"]
+transform = Transform3D(1, 0, 0, 0, -0.863835, 0.503774, 0, -0.503774, -0.863835, 0.824051, 4.92432, 0)
+script = ExtResource("15_w0aq2")
+moonIntensity = 4.25
+metadata/_custom_type_script = "uid://yxpnc6bj5crb"
+
+[node name="ItemObject" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.87718, 0.796789, -10.8876)
+collision_layer = 7
+collision_mask = 7
+freeze = true
+script = ExtResource("9_hroh1")
+itemSlot = ExtResource("28_5d1fl")
+alignmentPath = NodePath("../AlignamentObjects/alignamentObject2")
+metadata/_custom_type_script = "uid://twfmjfueluyq"
+
+[node name="ItemObject2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.87718, 0.796789, -12.4779)
+collision_layer = 7
+collision_mask = 7
+freeze = true
+script = ExtResource("9_hroh1")
+itemSlot = SubResource("Resource_tfwsm")
+alignmentPath = NodePath("../AlignamentObjects/alignamentObject")
+metadata/_custom_type_script = "uid://twfmjfueluyq"
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1464, 0.955392, -6.28064)
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("1_3n3ca")
+can_courch = true
+can_jump = true
+test_mode = true
+max_rotate_cam_x = Vector2(-0.8, 1)
+timeToFall = 1.0
+upKey = "w"
+downKey = "s"
+rightKey = "d"
+leftKey = "a"
+shootKey = "shoot"
+inventoryKey = "v"
+chargerKey = "r"
+runKey = "run"
+crouchKey = "crouch"
+jumpKey = "space"
+interactKey = "e"
+aimKey = "right_mouse"
+readKey = "2"
+undoItemKey = "1"
+rightMouseKey = "right_mouse"
+annotations = &"f3"
+cutExit = &"test"
+saveCommand = &"f2"
+reboot = &"f6"
+stadistics = {
+"Energy": 8,
+"Energy_limit": 8,
+"Life": 100000000,
+"Life_limit": 200
+}
+delayToRun = 14.0
+modelScene = ExtResource("3_aq4kq")
+bone_neck = "mixamorig_Head"
+bone_head = "mixamorig_Head"
+bone_torso = "mixamorig_Spine1"
+bone_shoulderRight = "mixamorig_RightShoulder"
+bone_shoulderLeft = "mixamorig_LeftShoulder"
+bone_spine = "mixamorig_Spine"
+
+[node name="NPC" type="CharacterBody3D" parent="." node_paths=PackedStringArray("myHome", "myWork")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9363, 0.914555, -4.37066)
+collision_layer = 30
+collision_mask = 30
+script = ExtResource("21_o7kkv")
+myHome = NodePath("../Home")
+myWork = NodePath("../Work")
+timeToGoHome = 22
+timeToGoWork = 16
+dialogueArchive = {
+"1": ExtResource("4_guw84"),
+"2": ExtResource("4_guw84")
+}
+areaEyeLayers = 12
+stadistics = {
+"Energy": 20,
+"Energy_limit": 20,
+"Life": 30,
+"Life_limit": 200
+}
+SPEED_WALK = 0.8
+modelScene = ExtResource("21_esxjw")
+bone_neck = "mixamorig_Head"
+bone_head = "mixamorig_Head"
+bone_torso = "mixamorig_Spine2"
+bone_spine = "mixamorig_RightShoulder"
+NAMEPATH = "NPC"
+metadata/_custom_type_script = "uid://ccu6rfa11wigy"
+
+[node name="CutScene" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8174, 1.45937, -9.46039)
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("8_kqyrw")
+cinematic = "uid://b05hy2urmrnsp"
+dialogues = {
+1: SubResource("Resource_s5fh0"),
+2: SubResource("Resource_0hrsv")
+}
+new_state = "crouch"
+newPositionPath = "/root/world_test/cutscenePositions/positionCutscene"
+disabled = true
+maxHour = 17
+minHour = 12
+newHours = 5
+newMinute = 30
+metadata/_custom_type_script = "uid://fyjddk3owh1e"
+
+[node name="startermission" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1015, 0, -20.0487)
+script = ExtResource("38_o5blj")
+mission = SubResource("Resource_ermtg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="startermission"]
+shape = SubResource("SphereShape3D_7hfam")
+
+[node name="completeMission" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1015, 0, -11.2174)
+script = ExtResource("18_5xj4c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="completeMission"]
+shape = SubResource("SphereShape3D_bxjre")
+
+[node name="CloseUp" type="Camera3D" parent="."]
+transform = Transform3D(-0.692427, -0.0425901, 0.123315, -0.0601271, 0.695236, -0.097502, -0.115781, -0.106339, -0.686849, -9.71056, 1.00283, -21.0834)
+cull_mask = 273409
+fov = 75.9
+script = ExtResource("5_aiyec")
+radius_area = 7.4
+metadata/_custom_type_script = "uid://bwlst6wr3qxd6"
+
+[node name="CloseUp3" type="Camera3D" parent="."]
+process_mode = 3
+transform = Transform3D(0.949932, -0.0250915, 0.311446, 0.00773757, 0.998354, 0.0568316, -0.31236, -0.0515763, 0.948563, -14.2646, 0.470603, 15.1607)
+cull_mask = 523775
+fov = 52.5
+script = ExtResource("5_aiyec")
+radius_area = 6.4
+collision_layers_area = 8
+collision_masks_area = 8
+metadata/_custom_type_script = "uid://bwlst6wr3qxd6"
+
+[node name="WeaponItem" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -9.91341, 0.838935, -13.2618)
+collision_layer = 515
+collision_mask = 515
+mass = 1.05
+freeze = true
+script = ExtResource("5_jd361")
+weapon = ExtResource("6_2u76e")
+metadata/_custom_type_script = "uid://ccj4iqlg53w33"
+
+[node name="WeaponItem2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6.75355, 1.32285, -15.7941)
+collision_layer = 515
+collision_mask = 515
+mass = 19.9
+freeze = true
+script = ExtResource("5_jd361")
+weapon = SubResource("Resource_ttav7")
+metadata/_custom_type_script = "uid://ccj4iqlg53w33"
+
+[node name="FloorSound" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42.0836)
+collision_layer = 513
+collision_mask = 513
+script = ExtResource("46_rgqp3")
+step_sound = ExtResource("47_f6xuk")
+metadata/_custom_type_script = "uid://deqmp2nxl8ca"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorSound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.86304, -0.195324, 2.66449)
+shape = SubResource("BoxShape3D_f6xuk")
+
+[node name="Mob" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28111, -0.0344939, -8.00075)
+collision_layer = 516
+collision_mask = 516
+script = ExtResource("17_mb2y6")
+collisionable = false
+collisionShape = SubResource("SphereShape3D_rrefu")
+randomRangeDistance = Vector2(-15, 15)
+stadistics = {
+"Energy": 5,
+"Energy_limit": 20,
+"Life": 30,
+"Life_limit": 30
+}
+modelScene = ExtResource("19_cb1ch")
+NAMEPATH = "Mob"
+metadata/_custom_type_script = "uid://ibaaryuohfo3"
+
+[node name="Ammo" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1741, 0.432745, -11.8512)
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("16_rrefu")
+metadata/_custom_type_script = "uid://bnq8je56yns4x"
+
+[node name="Door" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -16.1319, 0.920898, -19.9073)
+script = ExtResource("15_u0bac")
+closed = true
+metadata/_custom_type_script = "uid://2ctt3ingr8be"
+
+[node name="Home" type="Area3D" parent="." node_paths=PackedStringArray("homeOf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1071, 0.635355, 20.3894)
+script = ExtResource("21_bhdhq")
+homeOf = NodePath("../NPC")
+metadata/_custom_type_script = "uid://cndhjyp157jdj"
+
+[node name="Work" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8451, 0, -25.599)
+script = ExtResource("23_esxjw")
+metadata/_custom_type_script = "uid://dj8g8ns5ghcby"
+
+[node name="BulbLight" type="SpotLight3D" parent="."]
+transform = Transform3D(0.0492537, -0.81162, 0.582106, 0.0164756, 0.583394, 0.812022, -0.99865, -0.0304047, 0.0421059, -18.4893, 5.16097, -13.2548)
+light_energy = 4.2039e-44
+light_indirect_energy = 0.0
+shadow_enabled = true
+spot_range = 269.014
+spot_angle_attenuation = 0.001
+script = ExtResource("24_u50qv")
+bulbMaterial = SubResource("StandardMaterial3D_pyds2")
+mesh = SubResource("SphereMesh_pyds2")
+metadata/_custom_type_script = "uid://cr4x8io65ig3s"
+
+[node name="Clock" type="MeshInstance3D" parent="." node_paths=PackedStringArray("handMinute", "handHour")]
+transform = Transform3D(1, -8.74228e-08, -8.74228e-08, -8.74228e-08, -1, 5.0822e-21, -8.74228e-08, 7.64274e-15, -1, -25.5091, 2.63154, -16.0998)
+mesh = SubResource("BoxMesh_bmvok")
+script = ExtResource("26_bmvok")
+handMinute = NodePath("Marker3D2")
+handHour = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="Clock"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/Marker3D"]
+transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
+mesh = SubResource("BoxMesh_kvr7o")
+skeleton = NodePath("../../..")
+
+[node name="Marker3D2" type="Marker3D" parent="Clock"]
+transform = Transform3D(1, 0, 0, 0, 0.994522, -0.104528, 0, 0.104528, 0.994522, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/Marker3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527947, -0.00369453)
+mesh = SubResource("BoxMesh_kqyrw")
+skeleton = NodePath("../../..")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.596821, 0)
+navigation_mesh = SubResource("NavigationMesh_5ytrk")
+
+[node name="collision" type="CSGCombiner3D" parent="NavigationRegion3D"]
+layers = 543
+use_collision = true
+collision_layer = 537
+collision_mask = 537
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-1.94866e-07, 0, -0.101178, 0, 1, 0, 4.458, 0, -4.42265e-09, -5.12106, 0.978457, -3.97397)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-1.02442e-06, 0, -15.1184, 0, 6.69417, 0, 23.4359, 0, -6.60849e-07, -29.0455, 2.59246, 5.7123)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-4.50114e-07, 0, -6.64279, 0, 0.310634, 0, 10.2974, 0, -2.90367e-07, -29.0455, 4.61692, -17.0028)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-2.02725e-07, 0, -6.64279, 4.6378, -1.35783e-08, -2.90367e-07, -2.02725e-07, -0.310634, 1.26923e-14, -29.0455, 2.47012, -22.307)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-2.02725e-07, 0, -6.64279, 4.6378, -1.35783e-08, -2.90367e-07, -2.02725e-07, -0.310634, 1.26923e-14, -29.0455, 2.47012, -11.9117)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(2.02725e-07, 0.310634, 4.62914e-07, 4.6378, -1.35783e-08, -4.62916e-07, -2.02725e-07, 1.35783e-08, -10.5902, -32.4012, 2.47012, -17.1918)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="pavement" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1.85626e-08, 2.94381, 2.03545e-07, 0.424662, -1.28678e-07, -2.03546e-07, -1.85626e-08, 1.28678e-07, -4.65656, -9.43172, 0.595101, -4.8708)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(2.02725e-07, 0.310634, 4.62914e-07, 4.6378, -1.35783e-08, -4.62916e-07, -2.02725e-07, 1.35783e-08, -10.5902, -25.9692, 2.47012, -19.8473)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1.01942e-07, 9.64944, 4.62914e-07, 2.33215, -4.21792e-07, -4.62916e-07, -1.01942e-07, 4.21792e-07, -10.5902, -13.6913, 0.288558, 9.97847)
+mesh = SubResource("SphereMesh_6hem0")
+
+[node name="floor" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(96.135, 0, 0, 0, 0.991, 0, 0, 0, 72.545, -10.3326, 0, 0)
+layers = 0
+mesh = SubResource("BoxMesh_u0bac")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(-0.349729, 0, 0.936851, 0, 1, 0, -0.936851, 0, -0.349729, -2.62288, 0.863326, 0)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.20446, 0.863326, -11.9079)
+size = Vector3(2.16003, 1, 4.2132)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13971, 2.40193, -7.5585)
+size = Vector3(6.42084, 4.61121, 0.225098)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(0.315711, 0, 0, 0, 0.662921, -0.74869, 0, 0.74869, 0.662921, -14.3379, 1.29927, 2.20145)
+size = Vector3(6.42084, 10.2275, 6.67792)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03256, 2.61974, 0)
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(6.53869, 0, 0, 0, 3.35294, 0, 0, 0, 6.53869, -14.238, 5.51315, 7.07887)
+mesh = SubResource("BoxMesh_2u76e")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(0, 0, -0.406802, 0, 0.406803, 0, 0.406802, 0, 0, -42.8473, 0.461949, -26.3054)
+mesh = ExtResource("37_7hfam")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2312, 0.0617676, -16.5355)
+size = Vector3(6.89661, 1.12354, 3.87283)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/collision"]
+transform = Transform3D(0.7354, -0.677634, 0, 0.677634, 0.7354, 0, 0, 0, 1, -51.6299, -0.0557796, -13.0115)
+size = Vector3(6.89661, 7.21912, 3.87283)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 7.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 1, 1)
+
+[node name="Timer" type="Timer" parent="."]

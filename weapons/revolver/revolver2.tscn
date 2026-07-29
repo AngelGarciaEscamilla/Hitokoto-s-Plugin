@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dih4m51rormrf"]
+
+[ext_resource type="Script" uid="uid://dg8tn2ws4lmso" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.gd" id="1_wt7yo"]
+[ext_resource type="ArrayMesh" uid="uid://diuy77wrra1sj" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.obj" id="2_s6wgd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6wgd"]
+albedo_color = Color(0.21950102, 0.21950102, 0.21950102, 1)
+metallic = 0.2
+metallic_specular = 0.74
+roughness = 0.13
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt7yo"]
+albedo_color = Color(0.36463544, 0.18008104, 0.084512465, 1)
+metallic = 1.0
+metallic_specular = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5f5v5"]
+size = Vector3(0.3293457, 0.18841553, 0.059814453)
+
+[node name="Revolver" type="RigidBody3D" unique_id=1542434799]
+script = ExtResource("1_wt7yo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2126863181]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+mesh = ExtResource("2_s6wgd")
+surface_material_override/0 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/1 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/2 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/3 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/4 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/5 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/6 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/7 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/8 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/9 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/10 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/11 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/12 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/13 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/14 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/15 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/16 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/17 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/18 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/19 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/20 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/21 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/22 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/23 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/24 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/25 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/26 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/27 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/28 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/29 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/30 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/31 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/32 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/33 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/34 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/35 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/36 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/37 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/38 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/39 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/40 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/41 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/42 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/43 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/44 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/45 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/46 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/47 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/48 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/49 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/50 = SubResource("StandardMaterial3D_wt7yo")
+surface_material_override/51 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/52 = SubResource("StandardMaterial3D_s6wgd")
+surface_material_override/53 = SubResource("StandardMaterial3D_s6wgd")
+
+[node name="target" type="Marker3D" parent="." unique_id=1577285561]
+transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 0.13513084, 0.05812499, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1422855598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0057373047, -0.006439209, 0.006958008)
+shape = SubResource("BoxShape3D_5f5v5")
