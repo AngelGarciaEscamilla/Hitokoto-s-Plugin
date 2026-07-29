@@ -77,11 +77,14 @@ enum ViewMode {
 	set(value):
 		slot_interactive = value
 		inventory.slot_interactive = value
-@export var default : Weapon = load("res://addons/Hitokoto's Plugin/weapons/melee/fist.tres"):
+@export var default : Weapon = load("res://addons/Hitokoto´s Plugin/weapons/melee/fist.tres"):
 	set(value):
 		default = value
 		inventory.default = value
-@export var slots : Array[Asset] = []
+@export var slots : Array[Asset] = []:
+	set(value):
+		slots = value
+		inventory.slots = slots
 @export var gun_attachment : Array[Array] = [
 	[2,"holster_left","melee"],[1,"holster_right","melee"],[2,"holster_left","short"],[1,"holster_right","short"],[2,"gun_upper_back","large"],[1,"gun_shoulder","large"]
 ]
@@ -94,8 +97,14 @@ enum ViewMode {
 	".22" : 0,
 	".16" : 0,
 	".12" : 0,
-}
-@export var inventory_slots : Array[Item] = []
+}:
+	set(value):
+		ammo = value
+		inventory.ammo = ammo
+@export var inventory_slots : Array[Item] = []:
+	set(value):
+		inventory_slots = value
+		inventory.inventory_slots = inventory_slots
 
 var rotation_body : Quaternion
 
@@ -155,11 +164,6 @@ func setup_signals_humanoid() -> void:
 	var pause_callable = Callable(self, "pause")
 	if !GameTime.in_pause_game.is_connected(pause_callable):
 		GameTime.in_pause_game.connect(pause_callable)
-	var update_callable = Callable(self, "update_propietys")
-	if !Hitokoto.saved.is_connected(update_callable):
-		Hitokoto.saved.connect(update_callable)
-	if !Engine.is_editor_hint():
-		load_propietys()
 
 func create_target_camera() -> void:
 	if cam_target && !cam_target.is_inside_tree():
@@ -293,17 +297,17 @@ func create_inventory() -> void:
 	inventory.gun_attachment = gun_attachment
 
 
-func load_propietys() -> void:
-	inventory.ammo = ammo
-	inventory.inventory_slots = inventory_slots
-	inventory.slots = slots
+# func load_propietys() -> void:
+# 	inventory.ammo = ammo
+# 	inventory.inventory_slots = inventory_slots
+# 	inventory.slots = slots
 
-func update_propietys() -> void:
-	if save_slot:
-		slot = inventory.current_slot
-	ammo = inventory.ammo
-	inventory_slots = inventory.inventory_slots
-	slots = inventory.slots
+# func update_propietys() -> void:
+# 	if save_slot:
+# 		slot = inventory.current_slot
+# 	ammo = inventory.ammo
+# 	inventory_slots = inventory.inventory_slots
+# 	slots = inventory.slots
 
 func examine(anim : String,animation_duration:float=0.0) -> void:
 	if state == Entity.WALK || state == Entity.IDLE:

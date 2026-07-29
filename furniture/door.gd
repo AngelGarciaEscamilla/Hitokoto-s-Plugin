@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/Hitokoto's Plugin/icons/door.png")
+@icon("res://addons/Hitokoto´s Plugin/icons/door.png")
 class_name Door extends StaticBody3D
 
 @export var examin_anim : String = "test"
@@ -29,7 +29,7 @@ var alignment : Node3D
 
 var visibility : VisibleOnScreenEnabler3D = VisibleOnScreenEnabler3D.new()
 
-@export var hinge : PackedScene = preload("res://addons/Hitokoto's Plugin/furniture/hinge.tscn"):
+@export var hinge : PackedScene = preload("res://addons/Hitokoto´s Plugin/furniture/hinge.tscn"):
 	set(value):
 		hinge = value
 		if door_tree && door_tree.is_inside_tree():

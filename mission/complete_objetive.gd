@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/Hitokoto's Plugin/icons/indication.png")
+@icon("res://addons/Hitokoto´s Plugin/icons/indication.png")
 class_name CompleteObjetive extends Area3D
 
 @export var id_mission : String 

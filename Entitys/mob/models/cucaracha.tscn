@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dq5u5epekgoxh"]
+[gd_scene format=3 uid="uid://dq5u5epekgoxh"]
 
-[ext_resource type="PackedScene" uid="uid://b04lm8xqukpmq" path="res://addons/Hitokoto's Plugin/Entitys/mob/models/cucaracha.blend" id="1_w1r6h"]
+[ext_resource type="PackedScene" uid="uid://b04lm8xqukpmq" path="res://addons/Hitokoto´s Plugin/Entitys/mob/models/cucaracha.blend" id="1_w1r6h"]
 
 [sub_resource type="Animation" id="Animation_w1r6h"]
 resource_name = "idle"

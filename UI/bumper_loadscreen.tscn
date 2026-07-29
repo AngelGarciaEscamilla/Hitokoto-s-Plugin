@@ -1,17 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://clo8i3cyfrmua"]
+[gd_scene format=3 uid="uid://clo8i3cyfrmua"]
 
-[ext_resource type="Script" uid="uid://cru0px2eeik4p" path="res://addons/Hitokoto's Plugin/UI/bumper_loadscreen.gd" id="1_lw5so"]
-[ext_resource type="FontFile" uid="uid://ddooor80gicua" path="res://addons/Hitokoto's Plugin/resources/fonts/papyrus.ttf" id="2_o63lx"]
-[ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto's Plugin/UI/load_setting.gd" id="2_qftru"]
-[ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto's Plugin/UI/property_node.gd" id="3_fen2i"]
-[ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto's Plugin/UI/text.gd" id="4_dmmb1"]
-[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="5_qftru"]
+[ext_resource type="Script" uid="uid://cru0px2eeik4p" path="res://addons/Hitokoto´s Plugin/UI/bumper_loadscreen.gd" id="1_lw5so"]
+[ext_resource type="FontFile" uid="uid://ddooor80gicua" path="res://addons/Hitokoto´s Plugin/resources/fonts/papyrus.ttf" id="2_o63lx"]
+[ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto´s Plugin/UI/load_setting.gd" id="2_qftru"]
+[ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto´s Plugin/UI/property_node.gd" id="3_fen2i"]
+[ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto´s Plugin/UI/text.gd" id="4_dmmb1"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto´s Plugin/UI/translator.gd" id="5_qftru"]
 
 [sub_resource type="Resource" id="Resource_kvcv6"]
 script = ExtResource("3_fen2i")
 property = "key_skip"
-section_setting = "controls"
-setting = "down"
 metadata/_custom_type_script = "uid://i4ri6t1liild"
 
 [sub_resource type="Resource" id="Resource_fen2i"]
@@ -25,7 +23,7 @@ textAR = "تخطي بـ"
 textRU = "Пропустить с помощью"
 metadata/_custom_type_script = "uid://dxy5ox0runloa"
 
-[node name="Bumper_loadscreen" type="Control"]
+[node name="Bumper_loadscreen" type="Control" unique_id=1984628644]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,12 +32,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lw5so")
 
-[node name="SettingsInNodes" type="Node" parent="."]
+[node name="SettingsInNodes" type="Node" parent="." unique_id=1848310961]
 script = ExtResource("2_qftru")
 nodes = Array[ExtResource("3_fen2i")]([SubResource("Resource_kvcv6")])
 metadata/_custom_type_script = "uid://c6jid8qojtnsk"
 
-[node name="background" type="ColorRect" parent="."]
+[node name="background" type="ColorRect" parent="." unique_id=830767907]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1497612896]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,17 +67,17 @@ script = ExtResource("4_dmmb1")
 translator = SubResource("Resource_fen2i")
 metadata/_custom_type_script = "uid://b2httkvsvj6yb"
 
-[node name="bumper" type="VideoStreamPlayer" parent="."]
+[node name="bumper" type="VideoStreamPlayer" parent="." unique_id=1856235055]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 expand = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1319482943]
 wait_time = 2.0
 one_shot = true
 
-[node name="in" type="ColorRect" parent="."]
+[node name="in" type="ColorRect" parent="." unique_id=843683288]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

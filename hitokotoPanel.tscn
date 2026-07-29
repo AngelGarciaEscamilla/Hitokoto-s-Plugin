@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://buurnhams3v0g"]
 
-[ext_resource type="Script" uid="uid://d4g6y0w3xa3ke" path="res://addons/Hitokoto's Plugin/hitokotoPanel.gd" id="1_50hcf"]
+[ext_resource type="Script" uid="uid://d4g6y0w3xa3ke" path="res://addons/Hitokoto´s Plugin/hitokotoPanel.gd" id="1_50hcf"]
 
 [node name="HITOKOTO" type="Control" unique_id=417263377]
 clip_contents = true

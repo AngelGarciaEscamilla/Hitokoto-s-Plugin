@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://bwsvmxja4m31u"
-path="res://.godot/imported/steps.obj-7931e4e7d73c4b48ec8a44ef571764a6.mesh"
+path="res://.godot/imported/steps.obj-92c754d126c79cdb8de5d49423253568.mesh"
 
 [deps]
 
-files=["res://.godot/imported/steps.obj-7931e4e7d73c4b48ec8a44ef571764a6.mesh"]
+files=["res://.godot/imported/steps.obj-92c754d126c79cdb8de5d49423253568.mesh"]
 
-source_file="res://addons/Hitokoto's Plugin/furniture/models/steps.obj"
-dest_files=["res://.godot/imported/steps.obj-7931e4e7d73c4b48ec8a44ef571764a6.mesh", "res://.godot/imported/steps.obj-7931e4e7d73c4b48ec8a44ef571764a6.mesh"]
+source_file="res://addons/Hitokoto´s Plugin/furniture/models/steps.obj"
+dest_files=["res://.godot/imported/steps.obj-92c754d126c79cdb8de5d49423253568.mesh", "res://.godot/imported/steps.obj-92c754d126c79cdb8de5d49423253568.mesh"]
 
 [params]
 

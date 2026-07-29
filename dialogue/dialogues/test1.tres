@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="DialogueData" load_steps=8 format=3 uid="uid://dksdibknkuhoi"]
+[gd_resource type="Resource" script_class="DialogueData" format=3 uid="uid://dksdibknkuhoi"]
 
-[ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto's Plugin/dialogue/dialogueData.gd" id="1_6l2a0"]
-[ext_resource type="AudioStream" uid="uid://reympjbb3613" path="res://addons/Hitokoto's Plugin/dialogue/dialogueTest/howyoudoingPlayerogg.ogg" id="1_khlsp"]
-[ext_resource type="AudioStream" uid="uid://cgungippedqgk" path="res://addons/Hitokoto's Plugin/dialogue/dialogueTest/finalogg.ogg" id="2_2ex1n"]
-[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="4_eixib"]
+[ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueData.gd" id="1_6l2a0"]
+[ext_resource type="AudioStream" uid="uid://reympjbb3613" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueTest/howyoudoingPlayerogg.ogg" id="1_khlsp"]
+[ext_resource type="AudioStream" uid="uid://cgungippedqgk" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueTest/finalogg.ogg" id="2_2ex1n"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto´s Plugin/UI/translator.gd" id="4_eixib"]
 
 [sub_resource type="Resource" id="Resource_np5a6"]
 script = ExtResource("4_eixib")

@@ -1,19 +1,20 @@
 @tool
 extends EditorPlugin
 
-const PANELPLUGIN := preload("res://addons/Hitokoto's Plugin/hitokotoPanel.tscn")
+const PANELPLUGIN := preload("res://addons/Hitokoto´s Plugin/hitokotoPanel.tscn")
 var PANEL := PANELPLUGIN.instantiate()
 
+const PLUGIN := "res://addons/Hitokoto´s Plugin/Hitokoto.gd"
+const AUDIOMANAGER = "res://addons/Hitokoto´s Plugin/audioManager.gd"
+const MISSIONMANAGER = "res://addons/Hitokoto´s Plugin/mission/missionManager.gd"
+const GAMESETTINGS := "res://addons/Hitokoto´s Plugin/game_settings.gd"
+const GAMETIME := "res://addons/Hitokoto´s Plugin/game_time.gd"
+
 const PLUGIN_NAME := "Hitokoto"
-const PLUGIN := "res://addons/Hitokoto's Plugin/Hitokoto.gd"
-const AUDIOMANAGER = "res://addons/Hitokoto's Plugin/audioManager.gd"
+const GAMESETTINGS_NAME := "GameSettings"
+const GAMETIME_NAME := "GameTime"
 const AUDIOMANAGER_NAME = "AudioManager"
 const MISSIONMANAGER_NAME = "MissionManager"
-const MISSIONMANAGER = "res://addons/Hitokoto's Plugin/mission/missionManager.gd"
-const GAMESETTINGS_NAME := "GameSettings"
-const GAMESETTINGS := "res://addons/Hitokoto's Plugin/gameSettings.gd"
-const GAMETIME := "res://addons/Hitokoto's Plugin/game_time.gd"
-const GAMETIME_NAME := "GameTime"
 
 func _enter_tree() -> void:
 	add_control_to_dock(EditorPlugin.DOCK_SLOT_LEFT_BL,PANEL)

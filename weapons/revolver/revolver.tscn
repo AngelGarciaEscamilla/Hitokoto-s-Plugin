@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://xeg7lktjrqwl"]
 
-[ext_resource type="Script" uid="uid://dg8tn2ws4lmso" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.gd" id="1_1amoo"]
-[ext_resource type="ArrayMesh" uid="uid://diuy77wrra1sj" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.obj" id="1_2kgx2"]
+[ext_resource type="Script" uid="uid://dg8tn2ws4lmso" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.gd" id="1_1amoo"]
+[ext_resource type="ArrayMesh" uid="uid://diuy77wrra1sj" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.obj" id="1_2kgx2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1amoo"]
 

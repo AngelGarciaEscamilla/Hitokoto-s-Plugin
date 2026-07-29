@@ -13,26 +13,39 @@ enum Direction {IDLE=0,FORWARD=1,RIGHT=3,LEFT=7,BACK=5,FORWARD_RIGHT=2,BACK_RIGH
 @export_range(0.0,20,0.1) var WALK_SPEED : float = 2.5:
 	set(value):
 		WALK_SPEED = value
-		emit_signal("update_property")
 
 @export_range(0,50) var JUMP_SIZE : float = 19.0:
 	set(value):
 		JUMP_SIZE = value
-		emit_signal("update_property")
+		var fall : FallState = get_fall()
+		if fall:
+			fall.JUMP_SIZE = JUMP_SIZE
+
+
+
+
+func get_fall(node: Node = self) -> FallState:
+	for child in node.get_children():
+		if child is FallState:
+			return child
+
+		var fall : FallState = get_fall(child)
+		if fall:
+			return fall
+
+	return null
 
 @export_range(0.0,20,0.1) var RUN_SPEED : float = 4.0:
 	set(value):
 		RUN_SPEED = value
-		emit_signal("update_property")
 
 var CURRENT_SPEED_LIMIT : float = 0.0:
 	set(value):
 		CURRENT_SPEED_LIMIT = value
-		emit_signal("update_property")
 var CURRENT_SPEED : float = 0.0:
 	set(value):
 		CURRENT_SPEED = value
-		emit_signal("update_property")
+
 @export var accel : float = 4.0
 
 @export_category("Model")
@@ -117,8 +130,6 @@ var touch_target : bool
 var tween_animation : Tween
 
 signal in_state(value)
-
-signal update_property
 signal setting_stadistic
 signal received_damage(damage:float)
 signal dead

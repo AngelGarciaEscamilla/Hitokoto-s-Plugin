@@ -1,6 +1,6 @@
 class_name ReadItem extends Node3D
 
-@export var panel_scene : PackedScene = preload("res://addons/Hitokoto's Plugin/item/readPanel.tscn")
+@export var panel_scene : PackedScene = preload("res://addons/Hitokoto´s Plugin/item/readPanel.tscn")
 var panel : ReadPanel = panel_scene.instantiate()
 
 signal read

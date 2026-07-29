@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/Hitokoto's Plugin/icons/item.png")
+@icon("res://addons/Hitokoto´s Plugin/icons/item.png")
 class_name ItemObject extends StaticBody3D
 
 var alignment_node : AlignmentUser = AlignmentUser.new()

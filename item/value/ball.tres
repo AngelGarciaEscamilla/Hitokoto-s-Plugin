@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bsdmhtyhfp5jc"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bsdmhtyhfp5jc"]
 
-[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="1_h4mt4"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto´s Plugin/item/item_resource.gd" id="1_h4mt4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_h4mt4"]
 

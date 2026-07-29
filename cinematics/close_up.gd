@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/Hitokoto's Plugin/icons/close_up.webp")
+@icon("res://addons/Hitokoto´s Plugin/icons/close_up.webp")
 class_name CloseUp extends Area3D
 
 var body_ : Node

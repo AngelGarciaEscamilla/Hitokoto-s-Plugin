@@ -1,7 +1,7 @@
 
 class_name PauseMenu extends Control
 
-@export var pause_menu_screen : PackedScene = preload("res://addons/Hitokoto's Plugin/UI/pauseMenu.tscn")
+@export var pause_menu_screen : PackedScene = preload("res://addons/Hitokoto´s Plugin/UI/pauseMenu.tscn")
 @onready var pause_menu : Control = pause_menu_screen.instantiate()
 @export var escape_key : String = "ui_cancel"
 @export var enabled : bool = true

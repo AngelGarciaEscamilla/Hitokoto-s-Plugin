@@ -79,6 +79,7 @@ func get_sun() -> Node3D:
 	return get_tree().get_first_node_in_group("sun")
 
 func set_time(new_hours:int, new_minute:float,pass_day:bool=true) -> void:
+	await get_tree().process_frame
 	var sun := get_sun()
 	if !sun:
 		return

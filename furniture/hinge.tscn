@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://1ll35pp48phd"]
 
-[ext_resource type="Script" uid="uid://t6278ijmdsgj" path="res://addons/Hitokoto's Plugin/SoundScript/SFX.gd" id="1_sofp7"]
+[ext_resource type="Script" uid="uid://t6278ijmdsgj" path="res://addons/Hitokoto´s Plugin/SoundScript/SFX.gd" id="1_sofp7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_mhmde"]
 size = Vector3(1, 2, 0.1)

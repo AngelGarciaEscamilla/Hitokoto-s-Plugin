@@ -1,69 +1,73 @@
 [gd_scene format=3 uid="uid://bk0857mhuygf"]
 
-[ext_resource type="Script" uid="uid://13fg8hd0rbd3" path="res://addons/Hitokoto's Plugin/player/player.gd" id="1_3n3ca"]
-[ext_resource type="Script" uid="uid://dxx7vy0fd68sh" path="res://addons/Hitokoto's Plugin/UI/transition_start.gd" id="1_bm86r"]
-[ext_resource type="Script" uid="uid://bq7ojtukhreqp" path="res://addons/Hitokoto's Plugin/UI/calendar.gd" id="1_brtl8"]
-[ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto's Plugin/UI/load_setting.gd" id="1_fa6tm"]
-[ext_resource type="Script" uid="uid://ui0nqqye7n4t" path="res://addons/Hitokoto's Plugin/scenes/test/test_.gd" id="2_0hrsv"]
-[ext_resource type="Environment" uid="uid://ryq6apmj1dqu" path="res://addons/Hitokoto's Plugin/shaders/clouds.tres" id="2_2u76e"]
-[ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto's Plugin/UI/property_node.gd" id="3_3ypb7"]
-[ext_resource type="Script" uid="uid://q4xjgyqtgi15" path="res://addons/Hitokoto's Plugin/weapons/ammo_ui.gd" id="3_lbqgv"]
-[ext_resource type="Script" uid="uid://bofj0bjugq8hy" path="res://addons/Hitokoto's Plugin/Componets/componets.gd" id="3_tfwsm"]
-[ext_resource type="Script" uid="uid://cpw50h4bsfi2f" path="res://addons/Hitokoto's Plugin/dialogue/dialogueManager.gd" id="5_6hem0"]
-[ext_resource type="Script" uid="uid://b83q2fhcgpadc" path="res://addons/Hitokoto's Plugin/Componets/Interact.gd" id="7_bm86r"]
-[ext_resource type="Script" uid="uid://tafqwm4yq813" path="res://addons/Hitokoto's Plugin/movement/fall_state.gd" id="8_5rxwi"]
-[ext_resource type="Script" uid="uid://wt4oc86ib0rl" path="res://addons/Hitokoto's Plugin/Componets/levelIluminance.gd" id="9_0hrsv"]
-[ext_resource type="Script" uid="uid://twfmjfueluyq" path="res://addons/Hitokoto's Plugin/item/item.gd" id="9_hroh1"]
-[ext_resource type="Script" uid="uid://bolklkv28xgbe" path="res://addons/Hitokoto's Plugin/UI/saveManager.gd" id="12_lbqgv"]
-[ext_resource type="Script" uid="uid://dwksru2ek2ycx" path="res://addons/Hitokoto's Plugin/Componets/alignamentUser.gd" id="13_cc03v"]
-[ext_resource type="Script" uid="uid://danlpdtp3xsit" path="res://addons/Hitokoto's Plugin/ambient/weather.gd" id="14_u0bac"]
-[ext_resource type="Script" uid="uid://2ctt3ingr8be" path="res://addons/Hitokoto's Plugin/furniture/door.gd" id="15_u0bac"]
-[ext_resource type="Script" uid="uid://yxpnc6bj5crb" path="res://addons/Hitokoto's Plugin/ambient/sun.gd" id="15_w0aq2"]
-[ext_resource type="PackedScene" uid="uid://sy7y77covuwb" path="res://addons/Hitokoto's Plugin/UI/loadscreen.tscn" id="15_wdxcr"]
-[ext_resource type="Script" uid="uid://bnq8je56yns4x" path="res://addons/Hitokoto's Plugin/weapons/item/ammo_item.gd" id="16_rrefu"]
-[ext_resource type="PackedScene" uid="uid://xeg7lktjrqwl" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.tscn" id="18_msexu"]
-[ext_resource type="Script" uid="uid://dschnphk4dsnf" path="res://addons/Hitokoto's Plugin/UI/indication.gd" id="19_bm86r"]
-[ext_resource type="PackedScene" uid="uid://g10vxkpou6in" path="res://addons/Hitokoto's Plugin/UI/inventory.tscn" id="19_qgejc"]
-[ext_resource type="Script" uid="uid://bh04scojksqo6" path="res://addons/Hitokoto's Plugin/Componets/crouch_state.gd" id="19_s5fh0"]
-[ext_resource type="Script" uid="uid://bbl0haaqibcfj" path="res://addons/Hitokoto's Plugin/Componets/inventory.gd" id="21_lbqgv"]
-[ext_resource type="Script" uid="uid://t6278ijmdsgj" path="res://addons/Hitokoto's Plugin/SoundScript/SFX.gd" id="21_lhud8"]
-[ext_resource type="Script" uid="uid://ccu6rfa11wigy" path="res://addons/Hitokoto's Plugin/Entitys/NPC/npc.gd" id="21_o7kkv"]
-[ext_resource type="Script" uid="uid://dnjh7do120isj" path="res://addons/Hitokoto's Plugin/movement/pushSense.gd" id="21_pqayd"]
-[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="21_tfwsm"]
-[ext_resource type="Script" uid="uid://ddql7mgooxrt" path="res://addons/Hitokoto's Plugin/weapons/asset.gd" id="22_3ypb7"]
-[ext_resource type="Script" uid="uid://bbebjoiue0hdu" path="res://addons/Hitokoto's Plugin/dialogue/voice.gd" id="22_lbqgv"]
-[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="23_brtl8"]
-[ext_resource type="AudioStream" uid="uid://bc7gh32iweuv1" path="res://addons/Hitokoto's Plugin/audio/wait.mp3" id="23_u3vuk"]
-[ext_resource type="Resource" uid="uid://dxuduh3uyhk0f" path="res://addons/Hitokoto's Plugin/weapons/melee/revolver_white.tres" id="24_qgejc"]
-[ext_resource type="Script" uid="uid://cr4x8io65ig3s" path="res://addons/Hitokoto's Plugin/furniture/BulbLight.gd" id="24_u50qv"]
-[ext_resource type="Script" uid="uid://duidjh2ou2muh" path="res://addons/Hitokoto's Plugin/ambient/time/clock.gd" id="26_bmvok"]
-[ext_resource type="Script" uid="uid://drewru2cgh7ii" path="res://addons/Hitokoto's Plugin/mission/complete_objetive.gd" id="26_lhud8"]
+[ext_resource type="Script" uid="uid://13fg8hd0rbd3" path="res://addons/Hitokoto´s Plugin/player/player.gd" id="1_3n3ca"]
+[ext_resource type="Script" uid="uid://dxx7vy0fd68sh" path="res://addons/Hitokoto´s Plugin/UI/transition_start.gd" id="1_bm86r"]
+[ext_resource type="Script" uid="uid://bq7ojtukhreqp" path="res://addons/Hitokoto´s Plugin/UI/calendar.gd" id="1_brtl8"]
+[ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto´s Plugin/UI/load_setting.gd" id="1_fa6tm"]
+[ext_resource type="Script" uid="uid://ui0nqqye7n4t" path="res://addons/Hitokoto´s Plugin/scenes/test/test_.gd" id="2_0hrsv"]
+[ext_resource type="Environment" uid="uid://ryq6apmj1dqu" path="res://addons/Hitokoto´s Plugin/shaders/clouds.tres" id="2_2u76e"]
+[ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto´s Plugin/UI/property_node.gd" id="3_3ypb7"]
+[ext_resource type="Script" uid="uid://q4xjgyqtgi15" path="res://addons/Hitokoto´s Plugin/weapons/ammo_ui.gd" id="3_lbqgv"]
+[ext_resource type="Script" uid="uid://bofj0bjugq8hy" path="res://addons/Hitokoto´s Plugin/Componets/componets.gd" id="3_tfwsm"]
+[ext_resource type="Script" uid="uid://cpw50h4bsfi2f" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueManager.gd" id="5_6hem0"]
+[ext_resource type="Script" uid="uid://b83q2fhcgpadc" path="res://addons/Hitokoto´s Plugin/Componets/Interact.gd" id="7_bm86r"]
+[ext_resource type="Script" uid="uid://tafqwm4yq813" path="res://addons/Hitokoto´s Plugin/movement/fall_state.gd" id="8_5rxwi"]
+[ext_resource type="Script" uid="uid://wt4oc86ib0rl" path="res://addons/Hitokoto´s Plugin/Componets/levelIluminance.gd" id="9_0hrsv"]
+[ext_resource type="Script" uid="uid://twfmjfueluyq" path="res://addons/Hitokoto´s Plugin/item/item.gd" id="9_hroh1"]
+[ext_resource type="Script" uid="uid://bolklkv28xgbe" path="res://addons/Hitokoto´s Plugin/UI/saveManager.gd" id="12_lbqgv"]
+[ext_resource type="Script" uid="uid://dwksru2ek2ycx" path="res://addons/Hitokoto´s Plugin/Componets/alignamentUser.gd" id="13_cc03v"]
+[ext_resource type="Script" uid="uid://danlpdtp3xsit" path="res://addons/Hitokoto´s Plugin/ambient/weather.gd" id="14_u0bac"]
+[ext_resource type="Script" uid="uid://2ctt3ingr8be" path="res://addons/Hitokoto´s Plugin/furniture/door.gd" id="15_u0bac"]
+[ext_resource type="Script" uid="uid://yxpnc6bj5crb" path="res://addons/Hitokoto´s Plugin/ambient/sun.gd" id="15_w0aq2"]
+[ext_resource type="PackedScene" uid="uid://sy7y77covuwb" path="res://addons/Hitokoto´s Plugin/UI/loadscreen.tscn" id="15_wdxcr"]
+[ext_resource type="Script" uid="uid://bnq8je56yns4x" path="res://addons/Hitokoto´s Plugin/weapons/item/ammo_item.gd" id="16_rrefu"]
+[ext_resource type="PackedScene" uid="uid://xeg7lktjrqwl" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.tscn" id="18_msexu"]
+[ext_resource type="Script" uid="uid://dschnphk4dsnf" path="res://addons/Hitokoto´s Plugin/UI/indication.gd" id="19_bm86r"]
+[ext_resource type="PackedScene" uid="uid://g10vxkpou6in" path="res://addons/Hitokoto´s Plugin/UI/inventory.tscn" id="19_qgejc"]
+[ext_resource type="Script" uid="uid://bh04scojksqo6" path="res://addons/Hitokoto´s Plugin/Componets/crouch_state.gd" id="19_s5fh0"]
+[ext_resource type="Script" uid="uid://bbl0haaqibcfj" path="res://addons/Hitokoto´s Plugin/Componets/inventory.gd" id="21_lbqgv"]
+[ext_resource type="Script" uid="uid://t6278ijmdsgj" path="res://addons/Hitokoto´s Plugin/SoundScript/SFX.gd" id="21_lhud8"]
+[ext_resource type="Script" uid="uid://ccu6rfa11wigy" path="res://addons/Hitokoto´s Plugin/Entitys/NPC/npc.gd" id="21_o7kkv"]
+[ext_resource type="Script" uid="uid://dnjh7do120isj" path="res://addons/Hitokoto´s Plugin/movement/pushSense.gd" id="21_pqayd"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto´s Plugin/UI/translator.gd" id="21_tfwsm"]
+[ext_resource type="Script" uid="uid://bbebjoiue0hdu" path="res://addons/Hitokoto´s Plugin/dialogue/voice.gd" id="22_lbqgv"]
+[ext_resource type="PackedScene" uid="uid://dj6ax7ivt2jxr" path="res://addons/Hitokoto´s Plugin/weapons/melee/bullet.tscn" id="23_8bdiv"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto´s Plugin/item/item_resource.gd" id="23_brtl8"]
+[ext_resource type="AudioStream" uid="uid://bc7gh32iweuv1" path="res://addons/Hitokoto´s Plugin/audio/wait.mp3" id="23_u3vuk"]
+[ext_resource type="Resource" uid="uid://dxuduh3uyhk0f" path="res://addons/Hitokoto´s Plugin/weapons/melee/revolver_white.tres" id="24_qgejc"]
+[ext_resource type="Script" uid="uid://cr4x8io65ig3s" path="res://addons/Hitokoto´s Plugin/furniture/BulbLight.gd" id="24_u50qv"]
+[ext_resource type="Script" uid="uid://duidjh2ou2muh" path="res://addons/Hitokoto´s Plugin/ambient/time/clock.gd" id="26_bmvok"]
+[ext_resource type="Script" uid="uid://bum7vocry2bty" path="res://addons/Hitokoto´s Plugin/weapons/weapons_resource.gd" id="26_h2alf"]
+[ext_resource type="Script" uid="uid://drewru2cgh7ii" path="res://addons/Hitokoto´s Plugin/mission/complete_objetive.gd" id="26_lhud8"]
 [ext_resource type="Texture2D" uid="uid://2drvccqpjmhw" path="res://icon.svg" id="28_wa62t"]
-[ext_resource type="Resource" uid="uid://bfwoq6j31bdd1" path="res://addons/Hitokoto's Plugin/weapons/melee/fist.tres" id="29_0hrsv"]
-[ext_resource type="Script" uid="uid://dosnws0bm0joa" path="res://addons/Hitokoto's Plugin/Entitys/interpolationAnimation.gd" id="29_5rxwi"]
-[ext_resource type="Script" uid="uid://2j03bofleeam" path="res://addons/Hitokoto's Plugin/UI/UI.gd" id="30_lhud8"]
-[ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto's Plugin/dialogue/dialogueData.gd" id="31_5rxwi"]
-[ext_resource type="PackedScene" uid="uid://btb35g1bin5fc" path="res://addons/Hitokoto's Plugin/player/model/humanoid.tscn" id="32_s5fh0"]
-[ext_resource type="Resource" uid="uid://cgeybbcmqpeem" path="res://addons/Hitokoto's Plugin/mission/the dog.tres" id="35_brtl8"]
-[ext_resource type="ArrayMesh" uid="uid://bwsvmxja4m31u" path="res://addons/Hitokoto's Plugin/furniture/models/steps.obj" id="37_7hfam"]
-[ext_resource type="PackedScene" uid="uid://dih4m51rormrf" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver2.tscn" id="38_qgejc"]
-[ext_resource type="Resource" uid="uid://bwfa86qo0v7w" path="res://addons/Hitokoto's Plugin/weapons/melee/revolver.tres" id="40_df2rt"]
-[ext_resource type="Script" uid="uid://b6d8x7famu8wh" path="res://addons/Hitokoto's Plugin/UI/pause_menu.gd" id="41_lhud8"]
-[ext_resource type="Resource" uid="uid://sw1m5k4oudtr" path="res://addons/Hitokoto's Plugin/item/consumable/juice_in_stock.tres" id="41_s5fh0"]
-[ext_resource type="PackedScene" uid="uid://dggs3gebptlrg" path="res://addons/Hitokoto's Plugin/UI/transition.tscn" id="42_u3vuk"]
-[ext_resource type="Script" uid="uid://cub5lqivv1hyp" path="res://addons/Hitokoto's Plugin/cinematics/cut_scene.gd" id="44_df2rt"]
-[ext_resource type="Script" uid="uid://bxw3dqk8xcd4v" path="res://addons/Hitokoto's Plugin/dialogue/timeline.gd" id="44_pqayd"]
-[ext_resource type="PackedScene" uid="uid://dn2gu4ekt4q4p" path="res://addons/Hitokoto's Plugin/scenes/test/test.tscn" id="45_bn43r"]
-[ext_resource type="PackedScene" uid="uid://dn5efjfg2xla" path="res://addons/Hitokoto's Plugin/UI/death Screen.tscn" id="51_bn43r"]
-[ext_resource type="Script" uid="uid://bwlst6wr3qxd6" path="res://addons/Hitokoto's Plugin/cinematics/close_up.gd" id="51_cc03v"]
-[ext_resource type="Script" uid="uid://d3cln6nsvm7u5" path="res://addons/Hitokoto's Plugin/player/wheel_slot_input.gd" id="51_wa62t"]
-[ext_resource type="PackedScene" uid="uid://bm8xl00gstbco" path="res://addons/Hitokoto's Plugin/UI/takeDamageScreen.tscn" id="52_4fieg"]
-[ext_resource type="Script" uid="uid://cccttabml57hn" path="res://addons/Hitokoto's Plugin/player/debug_overlay.gd" id="52_07isp"]
-[ext_resource type="PackedScene" uid="uid://beismlemw86ie" path="res://addons/Hitokoto's Plugin/player/overlay.tscn" id="53_07isp"]
-[ext_resource type="Script" uid="uid://bp1l4yxiw8522" path="res://addons/Hitokoto's Plugin/mission/Mission_starter.gd" id="55_lhud8"]
-[ext_resource type="Script" uid="uid://c2r1107bvqr3l" path="res://addons/Hitokoto's Plugin/UI/ScreenCallBack.gd" id="55_s5fh0"]
-[ext_resource type="AudioStream" uid="uid://bijx1fyl2oevt" path="res://addons/Hitokoto's Plugin/resources/sounds/button7.wav" id="56_pqayd"]
-[ext_resource type="PackedScene" uid="uid://b87fcv5x8ouxv" path="res://addons/Hitokoto's Plugin/item/readable/document.tscn" id="59_bn43r"]
+[ext_resource type="Script" uid="uid://dosnws0bm0joa" path="res://addons/Hitokoto´s Plugin/Entitys/interpolationAnimation.gd" id="29_5rxwi"]
+[ext_resource type="Script" uid="uid://2j03bofleeam" path="res://addons/Hitokoto´s Plugin/UI/UI.gd" id="30_lhud8"]
+[ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueData.gd" id="31_5rxwi"]
+[ext_resource type="PackedScene" uid="uid://btb35g1bin5fc" path="res://addons/Hitokoto´s Plugin/player/model/humanoid.tscn" id="32_s5fh0"]
+[ext_resource type="Resource" uid="uid://cgeybbcmqpeem" path="res://addons/Hitokoto´s Plugin/mission/the dog.tres" id="35_brtl8"]
+[ext_resource type="ArrayMesh" uid="uid://bwsvmxja4m31u" path="res://addons/Hitokoto´s Plugin/furniture/models/steps.obj" id="37_7hfam"]
+[ext_resource type="PackedScene" uid="uid://dih4m51rormrf" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver2.tscn" id="38_qgejc"]
+[ext_resource type="Resource" uid="uid://bwfa86qo0v7w" path="res://addons/Hitokoto´s Plugin/weapons/melee/revolver.tres" id="40_df2rt"]
+[ext_resource type="Script" uid="uid://b6d8x7famu8wh" path="res://addons/Hitokoto´s Plugin/UI/pause_menu.gd" id="41_lhud8"]
+[ext_resource type="Resource" uid="uid://sw1m5k4oudtr" path="res://addons/Hitokoto´s Plugin/item/consumable/juice_in_stock.tres" id="41_s5fh0"]
+[ext_resource type="PackedScene" uid="uid://bthcqm41c86hp" path="res://addons/Hitokoto´s Plugin/item/consumable/juice_in_stock.tscn" id="42_f0xmd"]
+[ext_resource type="PackedScene" uid="uid://dggs3gebptlrg" path="res://addons/Hitokoto´s Plugin/UI/transition.tscn" id="42_u3vuk"]
+[ext_resource type="Script" uid="uid://ddql7mgooxrt" path="res://addons/Hitokoto´s Plugin/weapons/asset.gd" id="43_8bdiv"]
+[ext_resource type="AudioStream" uid="uid://bvy3alhiq5nwf" path="res://addons/Hitokoto´s Plugin/resources/sounds/button3.wav" id="44_8bdiv"]
+[ext_resource type="Script" uid="uid://cub5lqivv1hyp" path="res://addons/Hitokoto´s Plugin/cinematics/cut_scene.gd" id="44_df2rt"]
+[ext_resource type="Script" uid="uid://bxw3dqk8xcd4v" path="res://addons/Hitokoto´s Plugin/dialogue/timeline.gd" id="44_pqayd"]
+[ext_resource type="PackedScene" uid="uid://dn2gu4ekt4q4p" path="res://addons/Hitokoto´s Plugin/scenes/test/test.tscn" id="45_bn43r"]
+[ext_resource type="Resource" uid="uid://cvrfx2t72lrw2" path="res://addons/Hitokoto´s Plugin/weapons/melee/triangle.tres" id="51_3xpcf"]
+[ext_resource type="PackedScene" uid="uid://dn5efjfg2xla" path="res://addons/Hitokoto´s Plugin/UI/death Screen.tscn" id="51_bn43r"]
+[ext_resource type="Script" uid="uid://bwlst6wr3qxd6" path="res://addons/Hitokoto´s Plugin/cinematics/close_up.gd" id="51_cc03v"]
+[ext_resource type="Script" uid="uid://d3cln6nsvm7u5" path="res://addons/Hitokoto´s Plugin/player/wheel_slot_input.gd" id="51_wa62t"]
+[ext_resource type="PackedScene" uid="uid://bm8xl00gstbco" path="res://addons/Hitokoto´s Plugin/UI/takeDamageScreen.tscn" id="52_4fieg"]
+[ext_resource type="Script" uid="uid://cccttabml57hn" path="res://addons/Hitokoto´s Plugin/player/debug_overlay.gd" id="52_07isp"]
+[ext_resource type="PackedScene" uid="uid://beismlemw86ie" path="res://addons/Hitokoto´s Plugin/player/overlay.tscn" id="53_07isp"]
+[ext_resource type="Script" uid="uid://bp1l4yxiw8522" path="res://addons/Hitokoto´s Plugin/mission/Mission_starter.gd" id="55_lhud8"]
+[ext_resource type="Script" uid="uid://c2r1107bvqr3l" path="res://addons/Hitokoto´s Plugin/UI/ScreenCallBack.gd" id="55_s5fh0"]
+[ext_resource type="AudioStream" uid="uid://bijx1fyl2oevt" path="res://addons/Hitokoto´s Plugin/resources/sounds/button7.wav" id="56_pqayd"]
+[ext_resource type="PackedScene" uid="uid://b87fcv5x8ouxv" path="res://addons/Hitokoto´s Plugin/item/readable/document.tscn" id="59_bn43r"]
 
 [sub_resource type="Resource" id="Resource_qgejc"]
 script = ExtResource("3_3ypb7")
@@ -76,6 +80,22 @@ metadata/_custom_type_script = "uid://i4ri6t1liild"
 size = Vector3(0.285, 0.12, 0.26)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lbqgv"]
+
+[sub_resource type="Resource" id="Resource_ojs63"]
+script = ExtResource("21_tfwsm")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_3xpcf"]
+script = ExtResource("26_h2alf")
+type_weapon = "fist"
+duration_anim = 1.0
+damage_amount = 20.0
+scope = 1.0
+bullet_size = Vector3(0.5, 0.5, 0.5)
+hitbox_size = Vector3(0.1, 0.1, 0.1)
+img = ExtResource("28_wa62t")
+name = SubResource("Resource_ojs63")
+metadata/_custom_type_script = "uid://bum7vocry2bty"
 
 [sub_resource type="Resource" id="Resource_bm86r"]
 script = ExtResource("21_tfwsm")
@@ -183,6 +203,29 @@ condition_value = null
 metadata/_custom_type_script = "uid://bung0s3emq7k2"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgejc"]
+
+[sub_resource type="Resource" id="Resource_1f3qj"]
+script = ExtResource("21_tfwsm")
+textEN = "a juice ,well, in stock"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_3ae4x"]
+script = ExtResource("21_tfwsm")
+textEN = "juice in stock"
+textES = "jugo en bolsa"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_h2alf"]
+script = ExtResource("23_brtl8")
+weight = 1.4
+description = SubResource("Resource_1f3qj")
+sound_take = ExtResource("44_8bdiv")
+to_received = "Energy_limit"
+scope_received = 20.0
+img = ExtResource("28_wa62t")
+name = SubResource("Resource_3ae4x")
+scene = ExtResource("42_f0xmd")
+metadata/_custom_type_script = "uid://bre3hs2ph4cjw"
 
 [sub_resource type="Resource" id="Resource_7nhvg"]
 script = ExtResource("21_tfwsm")
@@ -374,6 +417,11 @@ metallic_specular = 1.0
 
 [node name="main" type="Node3D" unique_id=1070606866]
 
+[node name="SaveManager" type="Node" parent="." unique_id=1000504592]
+script = ExtResource("12_lbqgv")
+load_screen = ExtResource("15_wdxcr")
+metadata/_custom_type_script = "uid://bolklkv28xgbe"
+
 [node name="PauseMenu" type="Control" parent="." unique_id=1069691800]
 layout_mode = 3
 anchors_preset = 15
@@ -400,26 +448,6 @@ script = ExtResource("1_brtl8")
 day_of_the_week = "Thursday"
 month = "March"
 metadata/_custom_type_script = "uid://bq7ojtukhreqp"
-
-[node name="AlignamentObjects" type="Node" parent="." unique_id=1350994580]
-
-[node name="alignamentObject" type="Marker3D" parent="AlignamentObjects" unique_id=231117975]
-transform = Transform3D(0.0008897346, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0.0008897346, -11.426678, 0.59658635, -11.0602665)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="AlignamentObjects/alignamentObject" unique_id=1482864809]
-mesh = SubResource("BoxMesh_wdxcr")
-
-[node name="alignamentObject2" type="Marker3D" parent="AlignamentObjects" unique_id=1320041436]
-transform = Transform3D(0.000889735, 0, -1, 0, 1, 0, 1, 0, 0.000889735, -11.699847, 2.0426931, -10.9314)
-
-[node name="Marker3D" type="Marker3D" parent="AlignamentObjects" unique_id=1212362128]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147, 0.3894341, -18.397884)
-
-[node name="positionCutscene" type="Marker3D" parent="." unique_id=194388762]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17.662, 0.9, -2.77115)
-gizmo_extents = 10.0
-
-[node name="cutscenePositions" type="Node" parent="." unique_id=1898872414]
 
 [node name="Component" type="Node" parent="." unique_id=960545059]
 script = ExtResource("3_tfwsm")
@@ -449,11 +477,6 @@ script = ExtResource("9_0hrsv")
 isDisabled = true
 metadata/_custom_type_script = "uid://wt4oc86ib0rl"
 
-[node name="SaveManager" type="Node" parent="Component" unique_id=1000504592]
-script = ExtResource("12_lbqgv")
-load_screen = ExtResource("15_wdxcr")
-metadata/_custom_type_script = "uid://bolklkv28xgbe"
-
 [node name="AlignamentUser" type="Node" parent="Component" unique_id=599472925]
 script = ExtResource("13_cc03v")
 metadata/_custom_type_script = "uid://dwksru2ek2ycx"
@@ -479,6 +502,26 @@ process_mode = 1
 script = ExtResource("21_lbqgv")
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
 metadata/_custom_type_script = "uid://bbl0haaqibcfj"
+
+[node name="cutscenePositions" type="Node" parent="." unique_id=1898872414]
+
+[node name="positionCutscene" type="Marker3D" parent="cutscenePositions" unique_id=194388762]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17.662, 0.9, -2.77115)
+gizmo_extents = 10.0
+
+[node name="AlignamentObjects" type="Node" parent="." unique_id=1350994580]
+
+[node name="alignamentObject" type="Marker3D" parent="AlignamentObjects" unique_id=231117975]
+transform = Transform3D(0.0008897346, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0.0008897346, -11.426678, 0.59658635, -11.0602665)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AlignamentObjects/alignamentObject" unique_id=1482864809]
+mesh = SubResource("BoxMesh_wdxcr")
+
+[node name="alignamentObject2" type="Marker3D" parent="AlignamentObjects" unique_id=1320041436]
+transform = Transform3D(0.000889735, 0, -1, 0, 1, 0, 1, 0, 0.000889735, -11.699847, 2.0426931, -10.9314)
+
+[node name="Marker3D" type="Marker3D" parent="AlignamentObjects" unique_id=1212362128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147, 0.3894341, -18.397884)
 
 [node name="Door" type="StaticBody3D" parent="." unique_id=979326796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.146463, 0.87468207, -19.883589)
@@ -515,8 +558,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.858688)
 process_mode = 1
 script = ExtResource("21_lbqgv")
 use_inventory = false
-slots = Array[ExtResource("22_3ypb7")]([ExtResource("24_qgejc"), null])
-default = ExtResource("29_0hrsv")
+default = SubResource("Resource_3xpcf")
 interval_asset_time = 0.32
 slot_interactive = -1
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
@@ -601,10 +643,6 @@ metadata/_custom_type_script = "uid://cub5lqivv1hyp"
 transform = Transform3D(-3.6955277e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -3.6955277e-07, -13.897693, 1.0189226, -17.353598)
 weapon = ExtResource("24_qgejc")
 
-[node name="Revolver2" parent="." unique_id=1542434799 instance=ExtResource("38_qgejc")]
-transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -15.894566, 0.84333897, -17.852585)
-weapon = ExtResource("40_df2rt")
-
 [node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)
 collision_layer = 14
@@ -613,11 +651,12 @@ script = ExtResource("21_o7kkv")
 target_look = NodePath("../Player")
 target = NodePath("../target")
 timeline = SubResource("Resource_uhj0f")
+view_mode = 0
 distance_interact = 2.0
-interrupt_movement = false
-default = ExtResource("29_0hrsv")
-slots = Array[ExtResource("22_3ypb7")]([ExtResource("41_s5fh0"), ExtResource("24_qgejc"), ExtResource("29_0hrsv")])
+default = SubResource("Resource_3xpcf")
+slots = Array[ExtResource("43_8bdiv")]([ExtResource("41_s5fh0"), null, null])
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
+inventory_slots = Array[ExtResource("23_brtl8")]([null, null, null])
 dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_s5fh0")])
 model_scene = ExtResource("32_s5fh0")
 collision_shape = SubResource("CapsuleShape3D_qgejc")
@@ -650,9 +689,8 @@ undo_key = "1"
 use_key = "q"
 time_get_up = 1.0
 time_fall = 1.0
-slot = 1
-default = ExtResource("29_0hrsv")
-slots = Array[ExtResource("22_3ypb7")]([ExtResource("41_s5fh0"), ExtResource("24_qgejc"), ExtResource("29_0hrsv")])
+default = SubResource("Resource_3xpcf")
+slots = Array[ExtResource("43_8bdiv")]([null, ExtResource("51_3xpcf"), null])
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
 ammo = {
 ".12": 0,
@@ -663,11 +701,10 @@ ammo = {
 "general_ammo": 0,
 "melee": 0
 }
-inventory_slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null, null])
+inventory_slots = Array[ExtResource("23_brtl8")]([SubResource("Resource_h2alf"), null, null])
 dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_kv82n"), SubResource("Resource_lhud8")])
 exhausted_dialogue = SubResource("Resource_wa62t")
 dialogue_fall = SubResource("Resource_brtl8")
-accel = 10.0
 model_scene = ExtResource("32_s5fh0")
 collision_shape = SubResource("CapsuleShape3D_wdxcr")
 bone_neck = "mixamorig_Head"
@@ -682,13 +719,6 @@ metadata/_custom_type_script = "uid://bh04scojksqo6"
 process_mode = 1
 script = ExtResource("51_wa62t")
 metadata/_custom_type_script = "uid://d3cln6nsvm7u5"
-
-[node name="DebugOverlay" type="Node" parent="Player" unique_id=117507507]
-script = ExtResource("52_07isp")
-HUD = ExtResource("53_07isp")
-enabled = true
-key_hud = "f3"
-metadata/_custom_type_script = "uid://cccttabml57hn"
 
 [node name="layer_ammo" type="CanvasLayer" parent="Player" unique_id=1262118783]
 layer = -1
@@ -720,8 +750,15 @@ grow_horizontal = 0
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=178317360]
 transform = Transform3D(1.0000001, -3.1583216e-09, -1.4998705e-09, 3.1967886e-09, 0.9996495, 0.026419044, 1.4149464e-09, -0.02642015, 0.99965256, 0.6491947, 0.7210264, 1.64785)
 
+[node name="DebugOverlay" type="Node" parent="Player" unique_id=117507507]
+script = ExtResource("52_07isp")
+HUD = ExtResource("53_07isp")
+enabled = true
+key_hud = "f3"
+metadata/_custom_type_script = "uid://cccttabml57hn"
+
 [node name="CloseUp" type="Area3D" parent="." unique_id=1726554988]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -20.287285, 1.0581703, -14.199105)
+transform = Transform3D(2, 0, -5.684342e-14, 0, 2, 0, 5.684342e-14, 0, 2, -20.287285, 1.0581703, -14.199106)
 collision_layer = 9
 collision_mask = 9
 monitorable = false
@@ -1033,3 +1070,7 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 1, 1)
+
+[node name="Revolver2" parent="." unique_id=1542434799 instance=ExtResource("38_qgejc")]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -15.894566, 0.84333897, -17.852585)
+weapon = ExtResource("40_df2rt")

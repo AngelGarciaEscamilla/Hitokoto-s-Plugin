@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://ddooor80gicua"
-path="res://.godot/imported/papyrus.ttf-50a2b1a116e29214e89e551fd3baf36f.fontdata"
+path="res://.godot/imported/papyrus.ttf-0c09433f286079223c6ec81e0360faa9.fontdata"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/resources/fonts/papyrus.ttf"
-dest_files=["res://.godot/imported/papyrus.ttf-50a2b1a116e29214e89e551fd3baf36f.fontdata"]
+source_file="res://addons/Hitokoto´s Plugin/resources/fonts/papyrus.ttf"
+dest_files=["res://.godot/imported/papyrus.ttf-0c09433f286079223c6ec81e0360faa9.fontdata"]
 
 [params]
 
@@ -21,6 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
+modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true

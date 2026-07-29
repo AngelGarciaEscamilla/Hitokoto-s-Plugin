@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/Hitokoto's Plugin/icons/npcr.png")
+@icon("res://addons/Hitokoto´s Plugin/icons/npcr.png")
 class_name NPC extends Humanoid
 
 enum Behaviour {REST,WALK,TALKING,FALL,FALLEN}
@@ -30,7 +30,6 @@ var current_behaviour : Behaviour = Behaviour.REST
 func _ready() -> void:
 	Hitokoto.save(self) 
 	in_target.connect(in_target_node)
-	update_property.connect(func():fall.JUMP_SIZE = JUMP_SIZE)
 	add_child(interpolation)
 	call_deferred("create_dialogue")
 	if !Engine.is_editor_hint():

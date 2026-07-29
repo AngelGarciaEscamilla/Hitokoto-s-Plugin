@@ -12,7 +12,7 @@ var on_transition : bool = false
 
 @export var key_skip : String 
 
-var transition = preload("res://addons/Hitokoto's Plugin/resources/bumpers/transition.ogv")
+var transition = preload("res://addons/Hitokoto´s Plugin/resources/bumpers/transition.ogv")
 
 @onready var bumper : VideoStreamPlayer = $bumper
 @onready var timer : Timer = $Timer
@@ -21,7 +21,7 @@ var transition = preload("res://addons/Hitokoto's Plugin/resources/bumpers/trans
 
 @export var video_list : Dictionary = {
 	1:null,
-	2:preload("res://addons/Hitokoto's Plugin/resources/bumpers/testing.ogv"),
+	2:preload("res://addons/Hitokoto´s Plugin/resources/bumpers/testing.ogv"),
 	3:null,
 	4:null,
 	5:null,

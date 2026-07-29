@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://b4t7f8fxyftje"]
 
-[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="1_084j2"]
-[ext_resource type="PackedScene" uid="uid://b87fcv5x8ouxv" path="res://addons/Hitokoto's Plugin/item/readable/document.tscn" id="2_5a7ht"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto´s Plugin/UI/translator.gd" id="1_084j2"]
+[ext_resource type="PackedScene" uid="uid://b87fcv5x8ouxv" path="res://addons/Hitokoto´s Plugin/item/readable/document.tscn" id="2_5a7ht"]
 [ext_resource type="Texture2D" uid="uid://2drvccqpjmhw" path="res://icon.svg" id="2_boala"]
-[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="3_boala"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto´s Plugin/item/item_resource.gd" id="3_boala"]
 
 [sub_resource type="Resource" id="Resource_pqayd"]
 script = ExtResource("1_084j2")

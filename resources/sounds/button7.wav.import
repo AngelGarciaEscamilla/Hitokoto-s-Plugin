@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bijx1fyl2oevt"
-path="res://.godot/imported/button7.wav-7b7b43c3425d787c6385a0945e1d5aa4.sample"
+path="res://.godot/imported/button7.wav-3237b75d56e20bf001f290e99d5595b1.sample"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/resources/sounds/button7.wav"
-dest_files=["res://.godot/imported/button7.wav-7b7b43c3425d787c6385a0945e1d5aa4.sample"]
+source_file="res://addons/Hitokoto´s Plugin/resources/sounds/button7.wav"
+dest_files=["res://.godot/imported/button7.wav-3237b75d56e20bf001f290e99d5595b1.sample"]
 
 [params]
 

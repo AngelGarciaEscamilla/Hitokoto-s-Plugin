@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/Hitokoto's Plugin/icons/indication.png")
+@icon("res://addons/Hitokoto´s Plugin/icons/indication.png")
 class_name IndicationAlert extends Area3D
 
 var timer : Timer = Timer.new()
@@ -8,7 +8,7 @@ var canvas : CanvasLayer = CanvasLayer.new()
 
 @export var activate : bool 
 @export var time_indication : float = 5.0
-@export var indication_interface_scene : PackedScene = preload("res://addons/Hitokoto's Plugin/UI/indication.tscn")
+@export var indication_interface_scene : PackedScene = preload("res://addons/Hitokoto´s Plugin/UI/indication.tscn")
 @export var indication : TranslatorText
 @export var mission : Mission
 @export var in_objetive : String

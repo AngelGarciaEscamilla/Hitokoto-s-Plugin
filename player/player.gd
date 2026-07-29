@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/Hitokoto's Plugin/icons/player.png")
+@icon("res://addons/Hitokoto´s Plugin/icons/player.png")
 class_name Player extends Humanoid
 
 enum KeyAction {JUST_PRESSED,PRESSED,RELEASED}
@@ -118,7 +118,7 @@ func _ready() -> void:
 	print_stack()
 	print_debug("Start Player"+":"+OS.get_name())
 	received_damage.connect(take_damage_player)
-	update_property.connect(func():fall.JUMP_SIZE = JUMP_SIZE)
+	# update_property.connect(func():fall.JUMP_SIZE = JUMP_SIZE)
 	dead.connect(death_player)
 	if !Engine.is_editor_hint():
 		captured_mouse(mouse_captured)

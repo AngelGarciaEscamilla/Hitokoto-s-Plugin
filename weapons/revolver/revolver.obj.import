@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://diuy77wrra1sj"
-path="res://.godot/imported/revolver.obj-0ce0ec425b977dfa63174060b2d14c2d.mesh"
+path="res://.godot/imported/revolver.obj-212315199da85e29ae9a7badbce42f7c.mesh"
 
 [deps]
 
-files=["res://.godot/imported/revolver.obj-0ce0ec425b977dfa63174060b2d14c2d.mesh"]
+files=["res://.godot/imported/revolver.obj-212315199da85e29ae9a7badbce42f7c.mesh"]
 
-source_file="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.obj"
-dest_files=["res://.godot/imported/revolver.obj-0ce0ec425b977dfa63174060b2d14c2d.mesh", "res://.godot/imported/revolver.obj-0ce0ec425b977dfa63174060b2d14c2d.mesh"]
+source_file="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.obj"
+dest_files=["res://.godot/imported/revolver.obj-212315199da85e29ae9a7badbce42f7c.mesh", "res://.godot/imported/revolver.obj-212315199da85e29ae9a7badbce42f7c.mesh"]
 
 [params]
 

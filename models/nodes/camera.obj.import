@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://bwumytpyhidf4"
-path="res://.godot/imported/camera.obj-80030ef95412efce289c89175fb314a4.mesh"
+path="res://.godot/imported/camera.obj-65744fda171135d9b4a2fd6bcee384df.mesh"
 
 [deps]
 
-files=["res://.godot/imported/camera.obj-80030ef95412efce289c89175fb314a4.mesh"]
+files=["res://.godot/imported/camera.obj-65744fda171135d9b4a2fd6bcee384df.mesh"]
 
-source_file="res://addons/Hitokoto's Plugin/models/nodes/camera.obj"
-dest_files=["res://.godot/imported/camera.obj-80030ef95412efce289c89175fb314a4.mesh", "res://.godot/imported/camera.obj-80030ef95412efce289c89175fb314a4.mesh"]
+source_file="res://addons/Hitokoto´s Plugin/models/nodes/camera.obj"
+dest_files=["res://.godot/imported/camera.obj-65744fda171135d9b4a2fd6bcee384df.mesh", "res://.godot/imported/camera.obj-65744fda171135d9b4a2fd6bcee384df.mesh"]
 
 [params]
 

@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://btb35g1bin5fc"]
 
-[ext_resource type="PackedScene" uid="uid://c0lu62r1lgnpf" path="res://addons/Hitokoto's Plugin/player/model/humanoid.blend" id="1_i3seb"]
-[ext_resource type="Script" uid="uid://dptpym40xbaw8" path="res://addons/Hitokoto's Plugin/player/model/humanoid.gd" id="2_e5uhs"]
-[ext_resource type="Script" uid="uid://c1uthly4rtjb7" path="res://addons/Hitokoto's Plugin/models/nodes/surface_follower.gd" id="3_62m7t"]
-[ext_resource type="Script" uid="uid://dldly4pyrii6p" path="res://addons/Hitokoto's Plugin/Entitys/rotation_body.gd" id="3_p3rv4"]
-[ext_resource type="Script" uid="uid://dsj7qvjjcmh7r" path="res://addons/Hitokoto's Plugin/player/model/step_sound.gd" id="4_nrnlq"]
-[ext_resource type="Script" uid="uid://d03dwge0da5ww" path="res://addons/Hitokoto's Plugin/Entitys/ray_step.gd" id="5_e5uhs"]
-[ext_resource type="Script" uid="uid://babe7a2mwryuu" path="res://addons/Hitokoto's Plugin/player/model/sound_step_group_resource.gd" id="5_qjw82"]
-[ext_resource type="Script" uid="uid://1bhov33o43xu" path="res://addons/Hitokoto's Plugin/Entitys/ikbone.gd" id="5_v0fbq"]
-[ext_resource type="AudioStream" uid="uid://heusqlh7vjki" path="res://addons/Hitokoto's Plugin/player/model/dry-fart.mp3" id="6_nimve"]
+[ext_resource type="PackedScene" uid="uid://c0lu62r1lgnpf" path="res://addons/Hitokoto´s Plugin/player/model/humanoid.blend" id="1_i3seb"]
+[ext_resource type="Script" uid="uid://dptpym40xbaw8" path="res://addons/Hitokoto´s Plugin/player/model/humanoid.gd" id="2_e5uhs"]
+[ext_resource type="Script" uid="uid://c1uthly4rtjb7" path="res://addons/Hitokoto´s Plugin/models/nodes/surface_follower.gd" id="3_62m7t"]
+[ext_resource type="Script" uid="uid://dldly4pyrii6p" path="res://addons/Hitokoto´s Plugin/Entitys/rotation_body.gd" id="3_p3rv4"]
+[ext_resource type="Script" uid="uid://dsj7qvjjcmh7r" path="res://addons/Hitokoto´s Plugin/player/model/step_sound.gd" id="4_nrnlq"]
+[ext_resource type="Script" uid="uid://d03dwge0da5ww" path="res://addons/Hitokoto´s Plugin/Entitys/ray_step.gd" id="5_e5uhs"]
+[ext_resource type="Script" uid="uid://babe7a2mwryuu" path="res://addons/Hitokoto´s Plugin/player/model/sound_step_group_resource.gd" id="5_qjw82"]
+[ext_resource type="Script" uid="uid://1bhov33o43xu" path="res://addons/Hitokoto´s Plugin/Entitys/ikbone.gd" id="5_v0fbq"]
+[ext_resource type="AudioStream" uid="uid://heusqlh7vjki" path="res://addons/Hitokoto´s Plugin/player/model/dry-fart.mp3" id="6_nimve"]
 
 [sub_resource type="Resource" id="Resource_nimve"]
 script = ExtResource("5_qjw82")

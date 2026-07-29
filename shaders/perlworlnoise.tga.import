@@ -3,7 +3,7 @@
 importer="3d_texture"
 type="CompressedTexture3D"
 uid="uid://dbfbysid168mx"
-path.bptc="res://.godot/imported/perlworlnoise.tga-1a4acad8d0f56403aed971dead35bc92.bptc.ctex3d"
+path.bptc="res://.godot/imported/perlworlnoise.tga-0a66158aaa6c2c7bbdfbe98bbe0fabbe.bptc.ctex3d"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,14 +11,16 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/shaders/perlworlnoise.tga"
-dest_files=["res://.godot/imported/perlworlnoise.tga-1a4acad8d0f56403aed971dead35bc92.bptc.ctex3d"]
+source_file="res://addons/Hitokoto´s Plugin/shaders/perlworlnoise.tga"
+dest_files=["res://.godot/imported/perlworlnoise.tga-0a66158aaa6c2c7bbdfbe98bbe0fabbe.bptc.ctex3d"]
 
 [params]
 
 compress/mode=2
 compress/high_quality=true
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/channel_pack=0
 mipmaps/generate=true

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://beb673xmf3ekd"]
+[gd_scene format=3 uid="uid://beb673xmf3ekd"]
 
-[ext_resource type="Script" uid="uid://cr2lyi1fltdrf" path="res://addons/Hitokoto's Plugin/item/read_panel.gd" id="1_55k0t"]
-[ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto's Plugin/UI/text.gd" id="2_66gby"]
+[ext_resource type="Script" uid="uid://cr2lyi1fltdrf" path="res://addons/Hitokoto´s Plugin/item/read_panel.gd" id="1_55k0t"]
+[ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto´s Plugin/UI/text.gd" id="2_66gby"]
 
 [node name="ReadPanel" type="Control"]
 layout_mode = 3

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://heusqlh7vjki"
-path="res://.godot/imported/dry-fart.mp3-3432b88eae9b97717a27603901e6438a.mp3str"
+path="res://.godot/imported/dry-fart.mp3-316f342039a49533b5b2421f93dd46d3.mp3str"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/player/model/dry-fart.mp3"
-dest_files=["res://.godot/imported/dry-fart.mp3-3432b88eae9b97717a27603901e6438a.mp3str"]
+source_file="res://addons/Hitokoto´s Plugin/player/model/dry-fart.mp3"
+dest_files=["res://.godot/imported/dry-fart.mp3-316f342039a49533b5b2421f93dd46d3.mp3str"]
 
 [params]
 

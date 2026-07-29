@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cxf8kroetjpnx"
-path="res://.godot/imported/metal.mp3-89c0e5741390d721effab08f5706e595.mp3str"
+path="res://.godot/imported/metal.mp3-e5f3c3da79c98d870d620bd71f7d0915.mp3str"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/audio/player/metal.mp3"
-dest_files=["res://.godot/imported/metal.mp3-89c0e5741390d721effab08f5706e595.mp3str"]
+source_file="res://addons/Hitokoto´s Plugin/audio/player/metal.mp3"
+dest_files=["res://.godot/imported/metal.mp3-e5f3c3da79c98d870d620bd71f7d0915.mp3str"]
 
 [params]
 

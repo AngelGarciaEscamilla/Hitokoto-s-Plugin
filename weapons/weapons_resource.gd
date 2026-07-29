@@ -37,7 +37,7 @@ class_name Weapon
 @export var hitbox_size : Vector3 = Vector3(1.0,1.0,1.0)
 @export var collision : Shape3D = BoxShape3D.new()
 @export var data : Dictionary = {}
-@export var bullet : PackedScene = preload("res://addons/Hitokoto's Plugin/weapons/melee/bullet.tscn")
+@export var bullet : PackedScene = preload("res://addons/Hitokoto´s Plugin/weapons/melee/bullet.tscn")
 
 
 func current_charger_full() -> bool:

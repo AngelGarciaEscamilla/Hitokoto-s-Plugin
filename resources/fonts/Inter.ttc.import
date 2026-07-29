@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://pooyr2i0y1gn"
-path="res://.godot/imported/Inter.ttc-0fd2ef86c8883e4eb886ca84d396cbe9.fontdata"
+path="res://.godot/imported/Inter.ttc-2abaee991bbcdc2f104fab7617c86177.fontdata"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/resources/fonts/Inter.ttc"
-dest_files=["res://.godot/imported/Inter.ttc-0fd2ef86c8883e4eb886ca84d396cbe9.fontdata"]
+source_file="res://addons/Hitokoto´s Plugin/resources/fonts/Inter.ttc"
+dest_files=["res://.godot/imported/Inter.ttc-2abaee991bbcdc2f104fab7617c86177.fontdata"]
 
 [params]
 
@@ -21,6 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
+modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bc7gh32iweuv1"
-path="res://.godot/imported/wait.mp3-38eab7adc446fac4230cd542a8d8fa41.mp3str"
+path="res://.godot/imported/wait.mp3-a5a3c60a3c5146cfafe2c2586e86966f.mp3str"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/audio/wait.mp3"
-dest_files=["res://.godot/imported/wait.mp3-38eab7adc446fac4230cd542a8d8fa41.mp3str"]
+source_file="res://addons/Hitokoto´s Plugin/audio/wait.mp3"
+dest_files=["res://.godot/imported/wait.mp3-a5a3c60a3c5146cfafe2c2586e86966f.mp3str"]
 
 [params]
 

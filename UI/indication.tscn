@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvkqsdujwompk"]
 
-[ext_resource type="Script" uid="uid://bbm7xmkw7h8lq" path="res://addons/Hitokoto's Plugin/UI/indicationPlayer.gd" id="1_fa57x"]
+[ext_resource type="Script" uid="uid://bbm7xmkw7h8lq" path="res://addons/Hitokoto´s Plugin/UI/indicationPlayer.gd" id="1_fa57x"]
 
 [node name="Indication" type="Control" unique_id=1890243917 node_paths=PackedStringArray("label")]
 layout_mode = 3

@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://cgungippedqgk"
-path="res://.godot/imported/finalogg.ogg-f733ea2b1933fe280417c116e7702080.oggvorbisstr"
+path="res://.godot/imported/finalogg.ogg-c7d4ab3381bac762b776ba9191ff533b.oggvorbisstr"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/dialogue/dialogueTest/finalogg.ogg"
-dest_files=["res://.godot/imported/finalogg.ogg-f733ea2b1933fe280417c116e7702080.oggvorbisstr"]
+source_file="res://addons/Hitokoto´s Plugin/dialogue/dialogueTest/finalogg.ogg"
+dest_files=["res://.godot/imported/finalogg.ogg-c7d4ab3381bac762b776ba9191ff533b.oggvorbisstr"]
 
 [params]
 

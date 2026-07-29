@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxtae7myfarvr"]
+[gd_scene format=3 uid="uid://dxtae7myfarvr"]
 
-[ext_resource type="Script" uid="uid://1vsro7hjgcxm" path="res://addons/Hitokoto's Plugin/scenes/test_script/testScript.gd" id="1_wanai"]
+[ext_resource type="Script" uid="uid://1vsro7hjgcxm" path="res://addons/Hitokoto´s Plugin/scenes/test_script/testScript.gd" id="1_wanai"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("background")]
 layout_mode = 3

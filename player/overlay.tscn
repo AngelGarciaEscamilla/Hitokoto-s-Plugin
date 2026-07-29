@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://beismlemw86ie"]
 
-[ext_resource type="Script" uid="uid://cl2wd4ibby8on" path="res://addons/Hitokoto's Plugin/player/overlay.gd" id="1_4xqph"]
+[ext_resource type="Script" uid="uid://cl2wd4ibby8on" path="res://addons/Hitokoto´s Plugin/player/overlay.gd" id="1_4xqph"]
 
 [node name="Overlay" type="Control" unique_id=1656566609]
 layout_mode = 3

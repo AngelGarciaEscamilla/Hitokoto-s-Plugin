@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dih4m51rormrf"]
 
-[ext_resource type="Script" uid="uid://dg8tn2ws4lmso" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.gd" id="1_wt7yo"]
-[ext_resource type="ArrayMesh" uid="uid://diuy77wrra1sj" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.obj" id="2_s6wgd"]
+[ext_resource type="Script" uid="uid://dg8tn2ws4lmso" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.gd" id="1_wt7yo"]
+[ext_resource type="ArrayMesh" uid="uid://diuy77wrra1sj" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.obj" id="2_s6wgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6wgd"]
 albedo_color = Color(0.21950102, 0.21950102, 0.21950102, 1)

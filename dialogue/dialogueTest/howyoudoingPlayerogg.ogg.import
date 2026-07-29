@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://reympjbb3613"
-path="res://.godot/imported/howyoudoingPlayerogg.ogg-b8c9d0b9aa7c9891ebb6c6dc55e15cdb.oggvorbisstr"
+path="res://.godot/imported/howyoudoingPlayerogg.ogg-d8cd7e92e6c747482dcaa6eb13733aff.oggvorbisstr"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/dialogue/dialogueTest/howyoudoingPlayerogg.ogg"
-dest_files=["res://.godot/imported/howyoudoingPlayerogg.ogg-b8c9d0b9aa7c9891ebb6c6dc55e15cdb.oggvorbisstr"]
+source_file="res://addons/Hitokoto´s Plugin/dialogue/dialogueTest/howyoudoingPlayerogg.ogg"
+dest_files=["res://.godot/imported/howyoudoingPlayerogg.ogg-d8cd7e92e6c747482dcaa6eb13733aff.oggvorbisstr"]
 
 [params]
 

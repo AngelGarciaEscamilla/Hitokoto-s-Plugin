@@ -1,11 +1,11 @@
 [gd_resource type="Environment" format=3 uid="uid://ryq6apmj1dqu"]
 
-[ext_resource type="Shader" uid="uid://btmgmqxlcybxw" path="res://addons/Hitokoto's Plugin/shaders/clouds.gdshader" id="1_2i4io"]
-[ext_resource type="Texture2D" uid="uid://c03vri4l3a5hb" path="res://addons/Hitokoto's Plugin/shaders/pngimg.com - moon_PNG5.png" id="2_agur4"]
-[ext_resource type="CompressedTexture3D" uid="uid://dbfbysid168mx" path="res://addons/Hitokoto's Plugin/shaders/perlworlnoise.tga" id="2_ntolf"]
-[ext_resource type="Texture2D" uid="uid://dner188c56fx2" path="res://addons/Hitokoto's Plugin/shaders/weather.bmp" id="3_agur4"]
-[ext_resource type="Texture2D" uid="uid://cgto5mb5xqg6r" path="res://addons/Hitokoto's Plugin/shaders/milky.exr" id="3_ntolf"]
-[ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://addons/Hitokoto's Plugin/shaders/worlnoise.bmp" id="4_2p4ba"]
+[ext_resource type="Shader" uid="uid://btmgmqxlcybxw" path="res://addons/Hitokoto´s Plugin/shaders/clouds.gdshader" id="1_2i4io"]
+[ext_resource type="Texture2D" uid="uid://c03vri4l3a5hb" path="res://addons/Hitokoto´s Plugin/shaders/pngimg.com - moon_PNG5.png" id="2_agur4"]
+[ext_resource type="CompressedTexture3D" uid="uid://dbfbysid168mx" path="res://addons/Hitokoto´s Plugin/shaders/perlworlnoise.tga" id="2_ntolf"]
+[ext_resource type="Texture2D" uid="uid://dner188c56fx2" path="res://addons/Hitokoto´s Plugin/shaders/weather.bmp" id="3_agur4"]
+[ext_resource type="Texture2D" uid="uid://cgto5mb5xqg6r" path="res://addons/Hitokoto´s Plugin/shaders/milky.exr" id="3_ntolf"]
+[ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://addons/Hitokoto´s Plugin/shaders/worlnoise.bmp" id="4_2p4ba"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fqg2w"]
 shader = ExtResource("1_2i4io")

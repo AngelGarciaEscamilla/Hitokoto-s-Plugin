@@ -151,6 +151,7 @@ func _ready() -> void:
 		call_deferred("load_slot_deferred")
 
 func find_nodes_requirements() -> void:
+	owner = user
 	current_cam = find_node(user,"Camera3D")
 	interpolation = find_node(user,"InterpolationState")
 	animation_tree = find_node(user,"AnimationTree")
@@ -190,11 +191,9 @@ func load_slot_deferred() -> void:
 		if asset is Weapon:
 			set_weapon(index,slots[index])
 			attachment_gun_in_body(slots[index],index)
-	if slots[slot_interactive] is Item:
+	if (slot_interactive >= 0 && slot_interactive < slots.size()) && slots[slot_interactive] is Item:
 		current_item = slots[slot_interactive]
 	slot_select(current_slot)
-	if !is_interacted():
-		current_item = null
 	set_description_panel("")
 
 func find_inventory_list() -> void:
@@ -1051,7 +1050,7 @@ func attachment_gun_in_body(weapon: Weapon,slot_num:int) -> void:
 func show_all_attachment() -> void:
 	for slot_ in gun_attachment:
 		if slot_[1] in user:
-			if user[slot_[1]] is Node3D:
+			if user[slot_[1]] is Node3D && (slot_[0] >= 0 && slot_[0] < slots.size()):
 				var weapon = slots[slot_[0]]
 				if !weapon.scene:continue
 				if weapon.type.to_lower() == slot_[2].to_lower():
@@ -1065,10 +1064,10 @@ func show_all_attachment() -> void:
 func delete_all_attachment() -> void:
 	for slot_ in gun_attachment:
 		if slot_[1] in user:
-			if user[slot_[1]] is Node3D:
+			if user[slot_[1]] is Node3D && (slot_[0] >= 0 && slot_[0] < slots.size()):
 				var weapon = slots[slot_[0]]
-				if !weapon.scene:continue
-				if weapon.type.to_lower() == slot_[2].to_lower():
+				if weapon && !weapon.scene:continue
+				if weapon && weapon.type.to_lower() == slot_[2].to_lower():
 					if !user[slot_[1]].get_children():continue
 					user[slot_[1]].get_child(0).queue_free()
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dn2gu4ekt4q4p"]
 
-[ext_resource type="Script" uid="uid://cseindbceroku" path="res://addons/Hitokoto's Plugin/cinematics/test_cutscene.gd" id="1_csmsy"]
+[ext_resource type="Script" uid="uid://cseindbceroku" path="res://addons/Hitokoto´s Plugin/cinematics/test_cutscene.gd" id="1_csmsy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0fk2"]
 albedo_color = Color(0.71739393, 0, 0.20067847, 1)

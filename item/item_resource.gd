@@ -1,6 +1,4 @@
-extends Asset
-
-class_name  Item
+class_name Item extends Asset
 
 @export var id : int
 @export var use_anim : String = "consumable"

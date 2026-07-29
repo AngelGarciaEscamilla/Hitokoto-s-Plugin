@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b8rc0ahf5rops"
-path="res://.godot/imported/fabric.mp3-2fd8b8d45607ac008e45fe1d751ec13b.mp3str"
+path="res://.godot/imported/fabric.mp3-5a06266719a7e45bc9346b097b68903b.mp3str"
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/audio/player/fabric.mp3"
-dest_files=["res://.godot/imported/fabric.mp3-2fd8b8d45607ac008e45fe1d751ec13b.mp3str"]
+source_file="res://addons/Hitokoto´s Plugin/audio/player/fabric.mp3"
+dest_files=["res://.godot/imported/fabric.mp3-5a06266719a7e45bc9346b097b68903b.mp3str"]
 
 [params]
 

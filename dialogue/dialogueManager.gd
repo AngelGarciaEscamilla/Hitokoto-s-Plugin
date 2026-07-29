@@ -1,7 +1,7 @@
 @tool
 class_name DialogueManager extends Component
 
-@export var subtitles_scene : PackedScene = preload("res://addons/Hitokoto's Plugin/dialogue/subtitles.tscn")
+@export var subtitles_scene : PackedScene = preload("res://addons/Hitokoto´s Plugin/dialogue/subtitles.tscn")
 @onready var subtitles : Label = subtitles_scene.instantiate()
 @onready var voice : Voice = Voice.new()
 @export var interpolation_anim : float = 0.2

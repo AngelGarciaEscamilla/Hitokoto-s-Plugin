@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb5046tv2hnbu"]
+[gd_scene format=3 uid="uid://cb5046tv2hnbu"]
 
-[ext_resource type="Script" uid="uid://twfmjfueluyq" path="res://addons/Hitokoto's Plugin/item/item.gd" id="1_2n2jg"]
+[ext_resource type="Script" uid="uid://twfmjfueluyq" path="res://addons/Hitokoto´s Plugin/item/item.gd" id="1_2n2jg"]
 
 [node name="ObjectItem" type="RigidBody3D"]
 collision_layer = 7

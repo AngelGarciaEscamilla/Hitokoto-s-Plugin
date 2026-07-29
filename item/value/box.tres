@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://jy8vut281lrm"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://jy8vut281lrm"]
 
-[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto's Plugin/item/item_resource.gd" id="1_mikgk"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto´s Plugin/item/item_resource.gd" id="1_mikgk"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_eqsr6"]
 

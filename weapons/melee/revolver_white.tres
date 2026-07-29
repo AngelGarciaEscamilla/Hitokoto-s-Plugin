@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://dxuduh3uyhk0f"]
 
-[ext_resource type="PackedScene" uid="uid://dj6ax7ivt2jxr" path="res://addons/Hitokoto's Plugin/weapons/melee/bullet.tscn" id="1_cwxfd"]
-[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto's Plugin/UI/translator.gd" id="2_cddy7"]
-[ext_resource type="PackedScene" uid="uid://xeg7lktjrqwl" path="res://addons/Hitokoto's Plugin/weapons/revolver/revolver.tscn" id="3_cwxfd"]
-[ext_resource type="Script" uid="uid://bum7vocry2bty" path="res://addons/Hitokoto's Plugin/weapons/weapons_resource.gd" id="4_bt8s1"]
+[ext_resource type="PackedScene" uid="uid://dj6ax7ivt2jxr" path="res://addons/Hitokoto´s Plugin/weapons/melee/bullet.tscn" id="1_66vs5"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto´s Plugin/UI/translator.gd" id="2_cddy7"]
+[ext_resource type="PackedScene" uid="uid://xeg7lktjrqwl" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.tscn" id="3_cwxfd"]
+[ext_resource type="Script" uid="uid://bum7vocry2bty" path="res://addons/Hitokoto´s Plugin/weapons/weapons_resource.gd" id="4_bt8s1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_13sj3"]
 

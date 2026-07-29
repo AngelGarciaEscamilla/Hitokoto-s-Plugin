@@ -51,7 +51,7 @@ func hide() -> void:
 	HUD.text = ""
 
 func _process(delta):
-	if user.inventory.current_weapon:
+	if user && "inventory" in user && user.inventory.current_weapon:
 		current_weapon = user.inventory.current_weapon.name.current_lenguage_text() 
 	else:
 		current_weapon = "not found weapon"

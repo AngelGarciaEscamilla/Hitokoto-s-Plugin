@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://edejmdk8gp8h"]
+[gd_scene format=3 uid="uid://edejmdk8gp8h"]
 
-[ext_resource type="Shader" uid="uid://coih4jp6e8mai" path="res://addons/Hitokoto's Plugin/shaders/mandelbrot.gdshader" id="1_bxnyj"]
+[ext_resource type="Shader" uid="uid://coih4jp6e8mai" path="res://addons/Hitokoto´s Plugin/shaders/mandelbrot.gdshader" id="1_bxnyj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tnkt2"]
 shader = ExtResource("1_bxnyj")

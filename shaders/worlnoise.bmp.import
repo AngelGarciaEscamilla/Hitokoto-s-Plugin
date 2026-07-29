@@ -3,7 +3,7 @@
 importer="3d_texture"
 type="CompressedTexture3D"
 uid="uid://c4dp6g6gouj2b"
-path.bptc="res://.godot/imported/worlnoise.bmp-f93a3f40fcc85e574eeabd6264570c71.bptc.ctex3d"
+path.bptc="res://.godot/imported/worlnoise.bmp-2cd444787e5a418c66dd906fcc4c6c26.bptc.ctex3d"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,14 +11,16 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Hitokoto's Plugin/shaders/worlnoise.bmp"
-dest_files=["res://.godot/imported/worlnoise.bmp-f93a3f40fcc85e574eeabd6264570c71.bptc.ctex3d"]
+source_file="res://addons/Hitokoto´s Plugin/shaders/worlnoise.bmp"
+dest_files=["res://.godot/imported/worlnoise.bmp-2cd444787e5a418c66dd906fcc4c6c26.bptc.ctex3d"]
 
 [params]
 
 compress/mode=2
 compress/high_quality=true
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/channel_pack=0
 mipmaps/generate=true
