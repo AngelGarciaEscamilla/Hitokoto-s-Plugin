@@ -191,7 +191,7 @@ func load_slot_deferred() -> void:
 		if asset is Weapon:
 			set_weapon(index,slots[index])
 			attachment_gun_in_body(slots[index],index)
-	if (slot_interactive >= 0 && slot_interactive < slots.size()) && slots[slot_interactive] is Item:
+	if is_valid_slot(slot_interactive) && slots[slot_interactive] is Item:
 		current_item = slots[slot_interactive]
 	slot_select(current_slot)
 	set_description_panel("")
@@ -1050,7 +1050,7 @@ func attachment_gun_in_body(weapon: Weapon,slot_num:int) -> void:
 func show_all_attachment() -> void:
 	for slot_ in gun_attachment:
 		if slot_[1] in user:
-			if user[slot_[1]] is Node3D && (slot_[0] >= 0 && slot_[0] < slots.size()):
+			if user[slot_[1]] is Node3D && is_valid_slot(slot_[0]):
 				var weapon = slots[slot_[0]]
 				if !weapon.scene:continue
 				if weapon.type.to_lower() == slot_[2].to_lower():
@@ -1061,10 +1061,14 @@ func show_all_attachment() -> void:
 					user[slot_[1]].add_child(inst)
 					inst.scale = global_scale(inst)
 
+
+func is_valid_slot(index: int) -> bool:
+	return index >= 0 && index < slots.size()
+
 func delete_all_attachment() -> void:
 	for slot_ in gun_attachment:
 		if slot_[1] in user:
-			if user[slot_[1]] is Node3D && (slot_[0] >= 0 && slot_[0] < slots.size()):
+			if user[slot_[1]] is Node3D && is_valid_slot(slot_[0]):
 				var weapon = slots[slot_[0]]
 				if weapon && !weapon.scene:continue
 				if weapon && weapon.type.to_lower() == slot_[2].to_lower():
@@ -1080,7 +1084,7 @@ func attachment_property_slot(slot:int) -> Variant:
 
 func attachment_visible() -> void:
 	for slot_ in gun_attachment:
-		if current_weapon && current_slot == slot_[0]&& current_weapon.type.to_lower() == slot_[2].to_lower():
+		if current_weapon && current_slot == slot_[0] && current_weapon.type.to_lower() == slot_[2].to_lower():
 			if slot_[1] in user:
 				if user[slot_[1]] is Node3D:
 					if user[slot_[1]].get_children():
