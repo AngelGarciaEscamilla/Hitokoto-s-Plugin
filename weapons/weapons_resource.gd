@@ -9,9 +9,6 @@ class_name Weapon
 "general_ammo",
 "9mm",".45",".22",".16",".12",) var type_ammo = "melee"
 @export_category("Animation")
-@export var select : String = "select_weapon"
-@export var deselect : String = "deselect_weapon"
-@export var duration_anim : float = 0.2
 @export_category("stadistic Weapon")
 @export var bullet_at_time : bool 
 @export var propertys : Dictionary

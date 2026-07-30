@@ -142,12 +142,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.821677, -1.063622, -6.4525
 curve = SubResource("Curve3D_l0fk2")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1618010275]
-transform = Transform3D(-0.006236804, -0.0053009065, 0.9999627, 2.3282212e-10, 0.9998775, 0.005301564, -0.99994385, 3.3062806e-05, -0.006236922, 12.088125, 0, 1.8158743)
+transform = Transform3D(-0.006236804, -0.0053009056, 0.9999627, 2.3282212e-10, 0.9998774, 0.005301564, -0.99994385, 3.30628e-05, -0.006236922, 12.088125, 0, 1.8158743)
 
-[node name="player}" type="Marker3D" parent="Path3D/PathFollow3D" unique_id=143838042]
+[node name="player" type="Marker3D" parent="Path3D/PathFollow3D" unique_id=143838042]
 gizmo_extents = 1.85
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/player}" unique_id=1511375818]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D/player" unique_id=1511375818]
 mesh = SubResource("BoxMesh_csmsy")
 
 [node name="Path3D2" type="Path3D" parent="." unique_id=546649049]
@@ -158,7 +158,7 @@ curve = SubResource("Curve3D_l0fk2")
 transform = Transform3D(-0.0062368684, -0.0053013377, 0.9999611, 2.3282452e-10, 0.9999589, 0.005301555, -0.99995416, 3.3065495e-05, -0.0062369118, 12.088125, 0, 1.8158743)
 
 [node name="NPC" type="Marker3D" parent="Path3D2/PathFollow3D" unique_id=136806529]
-transform = Transform3D(1.0000037, 0, 0, -3.637979e-12, 1.0000077, 4.355627e-11, 4.656613e-10, 5.1784355e-11, 1.0000043, 2.6604977, -8.7976456e-05, 0.016593456)
+transform = Transform3D(1.0000037, 0, 0, -7.275958e-12, 1.0000077, 4.355627e-11, 9.313226e-10, 5.1784355e-11, 1.0000043, 1.5429828, -5.1021576e-05, 0.0096235275)
 gizmo_extents = 1.85
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2017623029]

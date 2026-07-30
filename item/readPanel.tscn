@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cr2lyi1fltdrf" path="res://addons/Hitokoto´s Plugin/item/read_panel.gd" id="1_55k0t"]
 [ext_resource type="Script" uid="uid://b2httkvsvj6yb" path="res://addons/Hitokoto´s Plugin/UI/text.gd" id="2_66gby"]
 
-[node name="ReadPanel" type="Control"]
+[node name="ReadPanel" type="Control" unique_id=1468862073]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_55k0t")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1879518617]
 self_modulate = Color(1, 1, 1, 0.337255)
 layout_mode = 1
 anchors_preset = 15
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1144553561]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,7 +36,7 @@ offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=994799247]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="content" type="Label" parent="Panel/ScrollContainer"]
+[node name="content" type="Label" parent="Panel/ScrollContainer" unique_id=1155404407]
 custom_minimum_size = Vector2(365.785, 2.055)
 layout_mode = 2
 mouse_default_cursor_shape = 6
@@ -60,7 +60,7 @@ autowrap_mode = 1
 script = ExtResource("2_66gby")
 metadata/_custom_type_script = "uid://b2httkvsvj6yb"
 
-[node name="title" type="Label" parent="Panel"]
+[node name="title" type="Label" parent="Panel" unique_id=1496983066]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -74,7 +74,7 @@ offset_bottom = 24.482
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="autor" type="Label" parent="Panel"]
+[node name="autor" type="Label" parent="Panel" unique_id=2139958482]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

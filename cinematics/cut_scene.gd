@@ -80,7 +80,6 @@ func stop() -> void:
 	is_playing = false
 	emit_signal("exit")
 	for node in data:
-
 		method(get_node(node),"exit_cutscene",[])
 	for node in data:
 		method(get_node(node),"freeze",[false])

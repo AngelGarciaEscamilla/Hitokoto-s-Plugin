@@ -14,9 +14,7 @@ enum ViewMode {
 	FAR
 }
 
-@export var view_mode: ViewMode = ViewMode.FAR:
-	set(value):
-		view_mode = value
+@export var view_mode: ViewMode = ViewMode.FAR
 @export var max_rotate_head : float = 90.0
 @export var rotation_self_duration: float = 0.2
 @export_range(0,180,0.1,"prefer_slider") var max_angle : float = 45
@@ -153,6 +151,7 @@ var to_target_model : bool
 var reproducing_dialogue_damage : bool
 
 var current_anim_examine : String
+var default_anim_examine : String
 
 signal in_cutscene
 signal out_cutscene
@@ -164,6 +163,12 @@ func setup_signals_humanoid() -> void:
 	var pause_callable = Callable(self, "pause")
 	if !GameTime.in_pause_game.is_connected(pause_callable):
 		GameTime.in_pause_game.connect(pause_callable)
+	if !in_state.is_connected(changed_state):
+		in_state.connect(changed_state)
+
+func changed_state(old_state:int,new_state:int) -> void:
+	if old_state == Humanoid.EXAMINE && new_state != Humanoid.EXAMINE:
+		examin_stop()
 
 func create_target_camera() -> void:
 	if cam_target && !cam_target.is_inside_tree():
@@ -296,39 +301,31 @@ func create_inventory() -> void:
 	inventory.hand_target = hand_target
 	inventory.gun_attachment = gun_attachment
 
-
-# func load_propietys() -> void:
-# 	inventory.ammo = ammo
-# 	inventory.inventory_slots = inventory_slots
-# 	inventory.slots = slots
-
-# func update_propietys() -> void:
-# 	if save_slot:
-# 		slot = inventory.current_slot
-# 	ammo = inventory.ammo
-# 	inventory_slots = inventory.inventory_slots
-# 	slots = inventory.slots
-
 func examine(anim : String,animation_duration:float=0.0) -> void:
 	if state == Entity.WALK || state == Entity.IDLE:
 		if !has_animation(anim):
 			return
 		if interpolation:
 			interpolation.set_animation(5,anim)
+		if default_anim_examine.is_empty():
+			default_anim_examine = current_anim_examine
 		current_anim_examine = anim
 		state = Humanoid.EXAMINE
-		# lock_state = true
 		velocity = Vector3.ZERO
 		set_ik_bones(false,animation_duration)
 		if animation_duration > 0:
 			await get_tree().create_timer(animation_duration).timeout
-			examin_stop()
+			if state == Humanoid.EXAMINE:
+				examin_stop()
 
 func examin_stop() -> void:
 	emit_signal("finish_examine",current_anim_examine)
 	current_anim_examine = ""
 	if state == Humanoid.EXAMINE:
 		state = Humanoid.IDLE
+	while interpolation.value_anim[5] > 0.001:
+		await get_tree().process_frame
+	interpolation.set_animation(5, default_anim_examine)
 		
 
 func hide_head() -> void:
@@ -428,6 +425,7 @@ func exclude_body_physics() -> void:
 
 func movement_direction(direction:Vector3,delta:float) -> void:
 	call_deferred("exclude_body_physics")
+	if !can_move:return
 	if is_walk_back() && state == RUN:
 		state = WALK
 	if fall.in_free_fall():
@@ -439,7 +437,6 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 	if is_exhausted():
 		state = WALK
 		return
-	if !can_move:return
 	if interrupt_movement:
 		if is_on_wall() && is_on_floor():
 			var n := get_wall_normal()
@@ -464,8 +461,8 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 			var rdot := dir.dot(n)
 			dot = rdot
 	if direction:
-		var target_x = direction.x * (CURRENT_SPEED_LIMIT)
-		var target_z = direction.z * (CURRENT_SPEED_LIMIT)
+		var target_x = direction.x * (CURRENT_SPEED_LIMIT - friction)
+		var target_z = direction.z * (CURRENT_SPEED_LIMIT - friction)
 		velocity.x = move_toward(velocity.x, target_x, accel * delta)
 		velocity.z = move_toward(velocity.z, target_z, accel * delta)
 		if state == IDLE && dot > -0.9:
@@ -505,7 +502,7 @@ func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
 		if main_keys:
 			model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
 			return
-		if !neck_back && laterals_keys:
+		if laterals_keys:
 			model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
 
 func animation_rotate_look(delta:float)  -> void:
@@ -514,22 +511,23 @@ func animation_rotate_look(delta:float)  -> void:
 	neck_rotation = neck.rotation
 	measurement = -measurement_shoulder
 	over_shoulder = is_on_over_shoulder_view(neck.rotation_degrees)
-	if over_shoulder:
-		if can_move:
-			if model.rotation.y > 0:
-				measurement = abs(measurement)
-			if measurement > 0:
-				method(model,"over_shoulder_view",[Vector3.RIGHT])
-			else:
-				method(model,"over_shoulder_view",[Vector3.LEFT])
-			var current_angle = (model.global_rotation.y)
-			var interval_angle = blend_speed*delta
-			if (view_mode == ViewMode.CLOSE  || (view_mode == ViewMode.FAR && state == WALK)) && !stop_tween :
-				if !(model_rot && model_rot.is_running()):
-					set_ik_bones(false,rotation_self_duration)
-					rotate_motion = create_tween()
-					timer_kill_rot.start()
-					rotate_motion.tween_property(model,"rotation:y",model.rotation.y-measurement,rotation_self_duration)
+	if over_shoulder && can_move:
+		if model.rotation.y > 0:
+			measurement = abs(measurement)
+		if measurement > 0:
+			method(model,"over_shoulder_view",[Vector3.RIGHT])
+		else:
+			method(model,"over_shoulder_view",[Vector3.LEFT])
+		if inventory.aim && view_mode == ViewMode.FAR && state == IDLE:
+			set_model_relative_to_target()
+		var current_angle = (model.global_rotation.y)
+		var interval_angle = blend_speed*delta
+		if (view_mode == ViewMode.CLOSE  || (view_mode == ViewMode.FAR && state == WALK)) && !stop_tween:
+			if !(model_rot && model_rot.is_running()):
+				set_ik_bones(false,rotation_self_duration)
+				rotate_motion = create_tween()
+				timer_kill_rot.start()
+				rotate_motion.tween_property(model,"rotation:y",model.rotation.y-measurement,rotation_self_duration)
 	neck.rotation.y = clamp(neck.rotation.y,-1,1)
 	rotate_model_assign()
 

@@ -69,8 +69,8 @@ var current_item_index : int
 var speed_walk_user : float
 var speed_run_user : float
 var global_delta : float
-var first_unequip : bool
 var anim_weapon : bool 
+var anim_item : bool 
 var flag_show_inventory : bool = true
 var flag_change_slot : bool = true
 var flag_shoot : bool = true
@@ -102,7 +102,6 @@ var aim : bool:
 			undo_aim()
 
 var inventory_full : bool
-var affect_weight : bool
 var is_using : bool
 var in_inventory : bool
 var captured : bool
@@ -110,8 +109,8 @@ var reboot_repos : bool
 var user_strafe_init : bool
 
 var current_item : Item
-var item_load : Item
 var current_weapon : Weapon
+var current_weapon_load: Weapon
 
 const METAPATHFOV : String = "target_fov"
 const PARAMETERSPATH : String = "parameters/"
@@ -141,7 +140,6 @@ func _ready() -> void:
 	add_hand.connect(attachment_visible)
 	create_timers()
 	create_use()
-	load_weapon()
 	if !Engine.is_editor_hint():
 		find_inventory_list()
 		create_inventory()
@@ -275,6 +273,8 @@ func _physics_process(delta: float) -> void:
 			undo_aim_fov()
 		Humanoid.FALLEN:
 			undo_aim_fov()
+	if user.state > Entity.WALK && aim:
+		aim = false
 
 func user_front() -> bool:
 	if !(current_asset_in_hand() is RigidBody3D):return false
@@ -295,6 +295,7 @@ func undo_use_item() -> void:
 	revers_speed_item_weight()
 	current_asset_method("undo_use",[user,self,current_item])
 	flag_change_inventory = true
+	is_using = false
 
 
 
@@ -324,18 +325,15 @@ func hide_inventory(ignore_freeze : bool = false) -> void:
 	if user.velocity == Vector3.ZERO && !ignore_freeze:
 		user_method("freeze",[false])
 	if inventory && !inventory.get_selected_items().is_empty():
-		if item_load:
-			load_item(item_load)
+		if !is_interacted():
+			slot_select(slot_interactive)
 		else:
 			load_item(current_item)
-		if !is_interacted():
-			current_slot = slot_interactive
-	item_load = null
 	inventory_panel.process_mode = Node.PROCESS_MODE_DISABLED
 
 func select_item(index: int)  -> void:
 	slots[slot_interactive] = inventory_slots[index]
-	item_load = inventory_slots[index]
+	current_item = inventory_slots[index]
 	current_item_index = index
 	set_description_panel(inventory_slots[index].description.current_lenguage_text())
 
@@ -345,14 +343,15 @@ func used_item(item:Item) -> void:
 	emit_signal("use_item",item)
 	set_animation(10,item.use_anim)
 	user_has("state_hands",use_item_state)
-	current_asset_method("use")
 	if item.time_use > 0.0:
 		timer_use_item.wait_time = item.time_use
 		timer_use_item.start()
 	current_asset_method("init_animation_use")
 	flag_change_inventory = false
+	await get_tree().process_frame
+	is_using = true
 
-func load_item(item:Item) -> void:
+func load_item(item:Item,anim:bool=true) -> void:
 	if current_slot != slot_interactive:return
 	if item:
 		unequip_current_item()
@@ -363,11 +362,29 @@ func load_item(item:Item) -> void:
 		add_item_in_hand(item)
 		current_weapon = null
 		current_item = item
+		if anim:
+			anim_select_item(current_item)
 		user_has("state_hands",hold_item_state)
 		current_asset_method("hold")
 	else:
 		if current_asset_in_hand():
 			reboot_asset_in_hand()
+
+func anim_select_item(item:Item) -> void:
+	var slot = current_slot
+	var inter : Interact = get_interact()
+	if current_asset_in_hand():
+		method(current_asset_in_hand(),"select",[current_asset_in_hand()])
+	if item:
+		anim_item = true
+		if inter:
+			inter.can_interact_no_share = false
+		await play(get_animation_select(item),0.2,item.duration_anim)
+		if item:
+			stop(get_animation_select(item),0.2)
+		if inter:
+			inter.can_interact_no_share = true
+		anim_item = false
 
 func get_items() -> Array[Item]:
 	var items_return : Array[Item]
@@ -386,13 +403,11 @@ func get_item(id:int) -> Item:
 	return item_data
 
 func affect_speed_item_weight(weight:float) -> void:
-	if !("friction" in user ) || affect_weight:return
-	affect_weight = true
+	if !("friction" in user ):return
 	user.friction = weight / 2
 
 func revers_speed_item_weight() -> void:
-	if !("friction" in user ) || affect_weight:return
-	affect_weight = true
+	if !("friction" in user ):return
 	user.friction = 0
 
 func give_item(item: Item) -> void:
@@ -418,10 +433,9 @@ func add_item_panel(item_:Item,i:int) -> void:
 		inventory_full = true
 
 func remove_item(index:int) -> void:
-	if !(inventory_slots[index] && inventory_slots[index].is_disposable && in_inventory):return
-	if !inventory_slots[index]:
-		current_item = null
+	if is_valid_slot_inventory(index) && !inventory_slots[index]:
 		return
+	if !inventory_slots[index].is_disposable:return
 	inventory_full = false
 	inventory_slots[index] = null
 	if inventory:
@@ -449,11 +463,11 @@ func slot_select(slot_select: int,ignore_limit:bool=false) -> void:
 	emit_signal("in_slot",slot_select)
 	if slot_select == slot_interactive && has_slot_interactive():
 		current_slot = slot_select
-		current_weapon = null
+		current_weapon_load = null
 		if !ignore_limit:
 			await anim_deselect_weapon(current_weapon)
-		if "sensibility_cam" in user:
-			user_has("sensibility_cam",apply_input_sensibility_weapon,[user.sensibility_cam])
+		current_weapon = null
+		undo_aim_fov()
 		load_item(current_item)
 	if slot_select != slot_interactive:
 		current_slot = slot_select
@@ -595,17 +609,16 @@ func add_ammo(received_ammo: int,type_ammo: String) -> void:
 func unequip_current_item() -> void:
 	revers_speed_item_weight()
 	if is_interacted():
+		if "state_hands" in user:
+			user.state_hands = Humanoid.REPOS
 		repos_animation(current_weapon)
 		reboot_animation_per_item_use()
 		reboot_animation_per_item_hold()
 		reboot_asset_in_hand()
 	current_item_index = 0
 	set_slot_interactive(null)
-	if first_unequip:
-		current_item = null
 	if inventory:
 		inventory.deselect_all()
-	first_unequip = true
 
 func drop_current_item() -> void:
 	if current_weapon:
@@ -669,7 +682,6 @@ func reboot_asset_in_hand() -> void:
 	if !hand_target:return
 	if hand_target.get_child_count() > 0:
 		for child in hand_target.get_children():
-			current_item = null
 			is_using = false
 			child.queue_free()
 			emit_signal("reboot_hand")
@@ -694,7 +706,6 @@ func add_item_in_hand(item:Asset) -> void:
 	if !hand_target:return
 	if current_asset_in_hand():
 		reboot_asset_in_hand()
-	await get_tree().process_frame
 	var slot = item.scene.instantiate()
 	emit_signal("add_hand")
 	has(slot,"inventory",self)
@@ -860,19 +871,21 @@ func stop_load_weapon() -> void:
 	if anim_weapon:
 		anim_weapon_stopped = true
 
-func load_weapon(weapon: Weapon = null,animation:bool=true,first_animation = true) -> void:#######################################################################################################LOAD WEAPON
+
+func load_weapon(weapon: Weapon = null,animation:bool=true,first_animation = true) -> void:
 	if !weapon:return
 	reboot_animation_per_weapon("repos")
 	if aim:
 		aim_action()
 	reboot_repos = true
-	var slot = current_slot
+	current_weapon_load = weapon
 	if animation:
 		if first_animation:
-			await anim_deselect_weapon(current_weapon)
-			if current_slot != slot || anim_weapon_stopped:
-				anim_weapon_stopped = false
-				return
+			if current_weapon_load != weapon:return
+			if current_weapon:
+				await anim_deselect_weapon(current_weapon)
+			if current_weapon_load != weapon:return
+			current_weapon = weapon
 			reboot_asset_in_hand()
 		else:
 			if weapon.scene:
@@ -880,14 +893,7 @@ func load_weapon(weapon: Weapon = null,animation:bool=true,first_animation = tru
 			else:
 				reboot_asset_in_hand()
 		await anim_select_weapon(weapon)
-		if current_slot != slot || anim_weapon_stopped:
-			anim_weapon_stopped = false
-			return
-	if !animation:
-		await get_tree().create_timer(abs(interval_asset_time)).timeout
-	if current_slot != slot || anim_weapon_stopped:
-		anim_weapon_stopped = false
-		return
+		if current_weapon_load != weapon:return
 	if first_animation:
 		if weapon.scene:
 			add_item_in_hand(weapon)
@@ -896,20 +902,19 @@ func load_weapon(weapon: Weapon = null,animation:bool=true,first_animation = tru
 	reboot_repos = false
 	flag_shoot = true
 	flag_charger = true
-	current_weapon = weapon
-	timer_shoot.wait_time = current_weapon.delay_to_shoot
+	timer_shoot.wait_time = weapon.delay_to_shoot
 	repos_animation(weapon)
 	set_weapon(current_slot,weapon)
 
 
 
-func get_animation_select(weapon:Weapon) -> String:
-	if !weapon:return ""
-	return weapon.select
+func get_animation_select(asset:Asset) -> String:
+	if !asset:return ""
+	return asset.select_anim
 
-func get_animation_deselect(weapon:Weapon) -> String:
-	if !weapon:return ""
-	return weapon.deselect
+func get_animation_deselect(asset:Asset) -> String:
+	if !asset:return ""
+	return asset.deselect_anim
 
 func aim_process() -> void:
 	if is_interacted() || user_front() || current_weapon && get_animation_blend("repos"+current_weapon.type) > 0.8:
@@ -1064,6 +1069,9 @@ func show_all_attachment() -> void:
 
 func is_valid_slot(index: int) -> bool:
 	return index >= 0 && index < slots.size()
+
+func is_valid_slot_inventory(index: int) -> bool:
+	return index >= 0 && index < inventory_slots.size()
 
 func delete_all_attachment() -> void:
 	for slot_ in gun_attachment:

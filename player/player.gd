@@ -118,7 +118,6 @@ func _ready() -> void:
 	print_stack()
 	print_debug("Start Player"+":"+OS.get_name())
 	received_damage.connect(take_damage_player)
-	# update_property.connect(func():fall.JUMP_SIZE = JUMP_SIZE)
 	dead.connect(death_player)
 	if !Engine.is_editor_hint():
 		captured_mouse(mouse_captured)
@@ -156,7 +155,7 @@ func inventory_button() -> void:
 		if Input.is_action_pressed(inventory_key):
 			inventory.show_inventory()
 		remove_item_button()
-	if InputMap.has_action(use_key) && Input.is_action_just_pressed(use_key):
+	if InputMap.has_action(use_key) && Input.is_action_just_pressed(use_key) && inventory.is_using:
 		inventory.undo_use_item()
 
 func remove_item_button() -> void:
@@ -230,7 +229,6 @@ func setting_node() -> void:
 func freeze(value:bool) -> void:
 	state = IDLE
 	if is_freeze == value:return
-	velocity = Vector3.ZERO
 	var propertys : Dictionary = {
 		"can_move":can_move,
 		"cam_move":cam_move,

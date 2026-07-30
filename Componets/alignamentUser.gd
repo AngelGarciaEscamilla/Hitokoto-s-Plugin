@@ -32,7 +32,6 @@ func play_alignment(body: Node3D) -> void:
 	emit_signal("start_alignment")
 	walk_in(body)
 	has(body,"cam_move",false)
-	has(body,"can_move",false)
 	tween_transform(body,alignment.global_transform)
 
 func tween_transform(body: CharacterBody3D, alignment: Transform3D) -> void:
@@ -56,7 +55,6 @@ func call_signal() -> void:
 					body_.stop_alignment()
 	walk_out(body_)
 	has(body_,"cam_move",true)
-	has(body_,"can_move",true)
 	emit_signal("finished_alignment")
 
 func _physics_process(delta:float) -> void:

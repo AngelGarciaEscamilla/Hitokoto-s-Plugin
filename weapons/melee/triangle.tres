@@ -30,3 +30,5 @@ hitbox_size = Vector3(0.5, 0.5, 0.5)
 collision = SubResource("SphereShape3D_13sj3")
 name = SubResource("Resource_idgwn")
 scene = ExtResource("3_fdjg6")
+select_anim = "select_weapon"
+deselect_anim = "deselect_weapon"

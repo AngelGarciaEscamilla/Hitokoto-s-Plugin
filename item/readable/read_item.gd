@@ -26,7 +26,7 @@ func undo_use(user,inventory:Inventory,item:Item) -> void:
 	inventory.inventory.deselect(inventory.current_item_index)
 	inventory.is_using = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	inventory.reboot_asset_in_hand()
+	inventory.unequip_current_item()
 	emit_signal("undo_read")
 
 func slow_motion() -> void:

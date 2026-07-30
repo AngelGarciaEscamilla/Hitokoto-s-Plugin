@@ -9,9 +9,7 @@ var move_head : bool = true
 var rotate_to_target : bool
 var is_freeze : bool 
 var target_rotation_y := 0.0
-@export var target_look : Node3D:
-	set(value):
-		target_look = value
+@export var target_look : Node3D
 @export var target : NodePath
 @export var old_target : Node
 @export var timeline : Timeline:
@@ -135,11 +133,12 @@ func _process(delta:float) -> void:
 		input_vec = input_vec.normalized()
 	else:
 		input_vec = Vector2.ZERO
-	if get_node_or_null(target):
+	if get_node_or_null(target) && can_move:
 		var target_pos: Vector3 = get_node_or_null(target).global_position
 		var direction = (target_pos - global_position).normalized()
 		movement_direction(direction,delta)
-	movement_model(self,input_vec,delta)
+	if !is_freeze:
+		movement_model(self,input_vec,delta)
 	process_behaviour()
 	if target_look:
 		cam_target.rotation.y = clamp(cam_target.rotation.y,-deg_to_rad(limit_look),deg_to_rad(limit_look))
@@ -211,7 +210,6 @@ func move_to_position(target_:NodePath)->void:
 func in_target_node() -> void:
 	current_behaviour = Behaviour.REST
 	if inherited_global_rotation && velocity.length() > 0.1:
-		target_look = null
 		target_rotation_y = get_node(target).rotation.y
 		rotate_to_target = true
 

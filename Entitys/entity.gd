@@ -10,19 +10,14 @@ enum Direction {IDLE=0,FORWARD=1,RIGHT=3,LEFT=7,BACK=5,FORWARD_RIGHT=2,BACK_RIGH
 	"Energy_limit":[0,20],
 }
 @export_range(0,50) var blend_speed : float = 11.0
-@export_range(0.0,20,0.1) var WALK_SPEED : float = 2.5:
-	set(value):
-		WALK_SPEED = value
-
+@export_range(0,50) var friction : float = 0.0
+@export_range(0.0,20,0.1) var WALK_SPEED : float = 2.5
 @export_range(0,50) var JUMP_SIZE : float = 19.0:
 	set(value):
 		JUMP_SIZE = value
 		var fall : FallState = get_fall()
 		if fall:
 			fall.JUMP_SIZE = JUMP_SIZE
-
-
-
 
 func get_fall(node: Node = self) -> FallState:
 	for child in node.get_children():
@@ -35,17 +30,9 @@ func get_fall(node: Node = self) -> FallState:
 
 	return null
 
-@export_range(0.0,20,0.1) var RUN_SPEED : float = 4.0:
-	set(value):
-		RUN_SPEED = value
-
-var CURRENT_SPEED_LIMIT : float = 0.0:
-	set(value):
-		CURRENT_SPEED_LIMIT = value
-var CURRENT_SPEED : float = 0.0:
-	set(value):
-		CURRENT_SPEED = value
-
+@export_range(0.0,20,0.1) var RUN_SPEED : float = 4.0
+var CURRENT_SPEED_LIMIT : float = 0.0
+var CURRENT_SPEED : float = 0.0
 @export var accel : float = 4.0
 
 @export_category("Model")
@@ -101,6 +88,7 @@ enum {IDLE,WALK,RUN,FALL}
 var state : int = IDLE:
 	set(value):
 		if lock_state:return
+		var old_state : int = state
 		state = value
 		if state == IDLE:
 			var smooth_idle_x = create_tween()
@@ -110,7 +98,7 @@ var state : int = IDLE:
 		var speed_state : Array = [0,WALK_SPEED,RUN_SPEED]
 		if state < FALL:
 			CURRENT_SPEED_LIMIT = speed_state[state]
-		emit_signal("in_state",state)
+		emit_signal("in_state",old_state,state)
 
 var nav_agent = NavigationAgent3D.new()
 var interpolation : InterpolationState = InterpolationState.new()
@@ -129,7 +117,7 @@ var touch_target : bool
 
 var tween_animation : Tween
 
-signal in_state(value)
+signal in_state(old_state,new_state)
 signal setting_stadistic
 signal received_damage(damage:float)
 signal dead
@@ -274,10 +262,10 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 			state = IDLE
 			return
 	if direction:
-		var target_x = direction.x * (CURRENT_SPEED_LIMIT)
-		var target_z = direction.z * (CURRENT_SPEED_LIMIT)
-		velocity.x = lerp(velocity.x, target_x, accel * delta)
-		velocity.z = lerp(velocity.z, target_z, accel * delta)
+		var target_x = direction.x * (CURRENT_SPEED_LIMIT - friction)
+		var target_z = direction.z * (CURRENT_SPEED_LIMIT - friction)
+		velocity.x = move_toward(velocity.x, target_x, accel * delta)
+		velocity.z = move_toward(velocity.z, target_z, accel * delta)
 		if state == IDLE:
 			state = WALK
 	else:
