@@ -353,7 +353,15 @@ func _input(event:InputEvent) -> void:
 			camera_move(event)
 			aim_button()
 		RUN:camera_move(event)
+	if input_movement():
+		if in_alignment():
+			get_meta("alignment").stop_alignment()
 
+func input_movement() -> bool:
+	return key_input(up_key,KeyAction.PRESSED) || key_input(down_key,KeyAction.PRESSED) \
+	|| key_input(left_key,KeyAction.PRESSED) \
+	|| key_input(right_key,KeyAction.PRESSED) || \
+	key_input(jump_key,KeyAction.PRESSED) || (get_crouch() && get_crouch().is_crouching)
 
 func key_input(key:String,index:int=1) -> bool:
 	if !InputMap.has_action(key):return false

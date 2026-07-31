@@ -33,6 +33,8 @@ func play_alignment(body: Node3D) -> void:
 	walk_in(body)
 	has(body,"cam_move",false)
 	tween_transform(body,alignment.global_transform)
+	await get_tree().create_timer(0.2).timeout
+	body.set_meta("alignment",self)
 
 func tween_transform(body: CharacterBody3D, alignment: Transform3D) -> void:
 	body_ = body
@@ -87,14 +89,11 @@ func _physics_process(delta:float) -> void:
 func stop_alignment() -> void:
 	aligning = false
 	has(body_,"strafe",save_strafe)
+	body_.set_meta("alignment",null)
 	body_.velocity.x = 0
 	body_.velocity.z = 0
-	var body = body_
-	if !body:return
-	has(body_,"can_move",true)
 	has(body_,"cam_move",true)
-	walk_out(body)
-	await get_tree().create_timer(0.35).timeout
+	walk_out(body_)
 	look_at = false
 
 func walk_in(body:Node) -> void:

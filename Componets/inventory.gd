@@ -69,31 +69,27 @@ var current_item_index : int
 var speed_walk_user : float
 var speed_run_user : float
 var global_delta : float
-var anim_weapon : bool 
-var anim_item : bool 
+var anim_asset : bool 
 var flag_show_inventory : bool = true
 var flag_change_slot : bool = true
 var flag_shoot : bool = true
 var flag_charger : bool = true
 var flag_change_inventory : bool = true
-var action_aim_flag : bool
-var anim_weapon_stopped : bool 
 var shoot_no_auto : bool
 var is_shooting : bool
 var old_aim : bool
 var aim : bool:
 	set(value):
-		if anim_weapon:return
+		if in_inventory || anim_asset:return
 		if user is PhysicsBody3D:
-			if user_front():
+			if user_front_asset():
 				aim = false
 				return
 		if is_interacted():
 			aim = false
 			return
 		aim = value
-		if "strafe" in user && !user_strafe_init:
-			user.strafe = aim
+		change_strafe_user(aim)
 		if aim == old_aim:return
 		old_aim = aim
 		if old_aim:
@@ -101,6 +97,9 @@ var aim : bool:
 		else:
 			undo_aim()
 
+func change_strafe_user(value:bool) -> void:
+	if "strafe" in user && !user_strafe_init:
+		user.strafe = value
 var inventory_full : bool
 var is_using : bool
 var in_inventory : bool
@@ -259,7 +258,7 @@ func _physics_process(delta: float) -> void:
 	if !user:return
 	if !has_state():return
 	global_delta = delta
-	if user_front():
+	if user_front_asset():
 		undo_aim()
 	match user.state:
 		Entity.IDLE:
@@ -276,7 +275,7 @@ func _physics_process(delta: float) -> void:
 	if user.state > Entity.WALK && aim:
 		aim = false
 
-func user_front() -> bool:
+func user_front_asset() -> bool:
 	if !(current_asset_in_hand() is RigidBody3D):return false
 	return current_asset_in_hand().get_contact_count()
 
@@ -305,7 +304,7 @@ func undo_use_item() -> void:
 
 func show_inventory() -> void:
 	if !inventory_scene || !use_inventory :return
-	if in_inventory ||  can_use_inventory():return
+	if in_inventory ||  !flag_show_inventory:return
 	if !(flag_show_inventory && !is_using):return
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		captured = true
@@ -339,7 +338,7 @@ func select_item(index: int)  -> void:
 
 func used_item(item:Item) -> void:
 	if is_using || !item || !(is_interacted() && flag_change_inventory && !in_inventory):return
-	if true in [!flag_change_inventory,in_failure(),!item.can_use]:return
+	if true in [!flag_change_inventory,no_actions(),!item.can_use]:return
 	emit_signal("use_item",item)
 	set_animation(10,item.use_anim)
 	user_has("state_hands",use_item_state)
@@ -376,7 +375,7 @@ func anim_select_item(item:Item) -> void:
 	if current_asset_in_hand():
 		method(current_asset_in_hand(),"select",[current_asset_in_hand()])
 	if item:
-		anim_item = true
+		anim_asset = true
 		if inter:
 			inter.can_interact_no_share = false
 		await play(get_animation_select(item),0.2,item.duration_anim)
@@ -384,7 +383,7 @@ func anim_select_item(item:Item) -> void:
 			stop(get_animation_select(item),0.2)
 		if inter:
 			inter.can_interact_no_share = true
-		anim_item = false
+		anim_asset = false
 
 func get_items() -> Array[Item]:
 	var items_return : Array[Item]
@@ -456,7 +455,7 @@ func timeout_use_item() -> void:
 func slot_select(slot_select: int,ignore_limit:bool=false) -> void:
 	if slot_select < 0 || slot_select > slots.size()-1: return
 	if !ignore_limit:
-		if only_interact || in_failure() :return
+		if only_interact || no_actions():return
 		if !slots || !can_change_slot:return
 	unequip_current_item()
 	stop_activities()
@@ -490,7 +489,7 @@ func unequip_weapon(slot:int) -> void:
 
 func charger_current_slot() -> void:
 	if no_load_asset():return
-	if in_failure():return
+	if no_actions():return
 	if !ammo_available() || current_weapon.current_charger_full():
 		return
 	if current_weapon.is_melee():
@@ -579,13 +578,6 @@ func ammo_available() -> bool:
 	for i in slots:
 		if current_weapon.current_charger >= i:continue
 		if current_weapon.current_charger + ammo[current_weapon.type_ammo] >= i:
-			return true
-	return false
-
-func ammo_available_shoot() -> bool:
-	var slots = get_divisibles(current_weapon.charger, current_weapon.shoot_bullet)
-	for i in slots:
-		if current_weapon.current_charger >= i:
 			return true
 	return false
 
@@ -711,6 +703,8 @@ func add_item_in_hand(item:Asset) -> void:
 	has(slot,"inventory",self)
 	has(slot,"weapon",get_weapon(current_slot))
 	hand_target.add_child(slot)
+	if slot is RigidBody3D:
+		slot.freeze = false
 	slot.scale = global_scale(slot)
 	current_asset_method("load")
 
@@ -724,22 +718,13 @@ func undo_shoot() -> void:
 	shoot_no_auto = false
 
 func shoot() -> void:
+	if in_inventory || !current_weapon || !can_shoot:return
+	if is_shooting || shoot_no_auto:return
 	if no_load_asset():return
-	if !current_weapon.is_melee():
-		if !ammo_available_shoot():
-			return
+	if !current_weapon.is_melee() && !ammo_available_shoot():return
 	if current_weapon.fully_automatic:
 		shoot_no_auto = false
-	if is_shooting || shoot_no_auto:return
 	shoot_no_auto = !current_weapon.fully_automatic
-	if current_weapon != get_weapon(current_slot):
-		return
-	if is_interacted() || !flag_show_inventory || in_failure() || !can_shoot:return
-	if in_inventory || !current_weapon:
-		return
-	if !get_weapon(current_slot):return
-	if current_weapon.current_charger <= 0 && !get_weapon(current_slot).is_melee():
-		return
 	reboot_charger_action()
 	var slot = current_slot
 	var shoot_no_aim : bool
@@ -769,6 +754,13 @@ func shoot() -> void:
 	if aim && shoot_no_aim:
 		await get_tree().create_timer(interval_asset_time).timeout
 		aim = false
+
+func ammo_available_shoot() -> bool:
+	var slots = get_divisibles(current_weapon.charger, current_weapon.shoot_bullet)
+	for i in slots:
+		if current_weapon.current_charger >= i:
+			return true
+	return false
 
 func rest_charger_bullet(value:int) -> void:
 	current_weapon.current_charger -= value
@@ -834,7 +826,7 @@ func anim_select_weapon(weapon:Weapon) -> void:
 	if get_attachment(slot) in user && user[get_attachment(slot)].get_children():
 		method(user[get_attachment(slot)].get_child(0),"select",[get_attachment(slot)])
 	if weapon:
-		anim_weapon = true
+		anim_asset = true
 		if inter:
 			inter.can_interact_no_share = false
 		await play(get_animation_select(weapon),0.2,weapon.duration_anim)
@@ -842,7 +834,7 @@ func anim_select_weapon(weapon:Weapon) -> void:
 			stop(get_animation_select(weapon),0.2)
 		if inter:
 			inter.can_interact_no_share = true
-		anim_weapon = false
+		anim_asset = false
 	
 func anim_deselect_weapon(weapon:Weapon) -> void:
 	var slot = current_slot
@@ -850,7 +842,7 @@ func anim_deselect_weapon(weapon:Weapon) -> void:
 	if get_attachment(slot) in user && user[get_attachment(slot)].get_children():
 		method(user[get_attachment(slot)].get_child(0),"deselect",[get_attachment(slot)])
 	if weapon:
-		anim_weapon = true
+		anim_asset = true
 		if inter:
 			inter.can_interact_no_share = false
 		await play(get_animation_deselect(weapon),0.2,weapon.duration_anim)
@@ -858,7 +850,7 @@ func anim_deselect_weapon(weapon:Weapon) -> void:
 			stop(get_animation_deselect(weapon),0.2)
 		if inter:
 			inter.can_interact_no_share = true
-		anim_weapon = false
+		anim_asset = false
 
 func stop_load_weapon() -> void:
 	var inter : Interact = get_interact()
@@ -868,8 +860,6 @@ func stop_load_weapon() -> void:
 		stop(get_animation_deselect(weapon),0.2)
 	if inter:
 		inter.can_interact_no_share = true
-	if anim_weapon:
-		anim_weapon_stopped = true
 
 
 func load_weapon(weapon: Weapon = null,animation:bool=true,first_animation = true) -> void:
@@ -917,12 +907,11 @@ func get_animation_deselect(asset:Asset) -> String:
 	return asset.deselect_anim
 
 func aim_process() -> void:
-	if is_interacted() || user_front() || current_weapon && get_animation_blend("repos"+current_weapon.type) > 0.8:
+	if is_interacted() || user_front_asset() || current_weapon && get_animation_blend("repos"+current_weapon.type) > 0.8:
 		undo_aim_fov()
 		aim = false
 		return
-	if !enabled_aim:return
-	if can_aim_() || in_inventory:return
+	if !enabled_aim || !can_aim:return
 	if aim && current_weapon:
 		user_has("sensibility_cam",apply_input_sensibility_weapon,[current_weapon.sensibility_input])
 		if current_cam:
@@ -933,6 +922,8 @@ func undo_aim():
 	if !enabled_aim:return
 	if no_load_asset():return
 	if !is_charging():
+		change_strafe_user(false)
+		aim = false
 		repos_animation(current_weapon)
 		current_asset_method("aim",[false])
 
@@ -1110,17 +1101,9 @@ func global_scale(node:Node3D) -> Vector3:
 		1.0 / scale.z
 	)
 
-
-func can_use_inventory() -> bool:
-	return !flag_change_inventory || in_failure()
-
-func can_shoot_() -> bool:
-	return is_interacted() || !flag_show_inventory || in_failure()
-
-func can_aim_() -> bool:
-	return only_interact || in_failure() || !can_aim
-
-func in_failure() -> bool:
+func no_actions() -> bool:
+	if user_in_alignment():
+		return user_in_alignment()
 	if MissionManager.current_mission:
 		return MissionManager.current_mission.state == MissionManager.current_mission.MissionState.FAILED && MissionManager.current_mission.failure_screen
 	return false
@@ -1130,6 +1113,9 @@ func stop_animation(path: String,interpolation:float = 0.2) -> void:
 		var tween := create_tween()
 		tween.tween_property(animation_tree,PARAMETERSPATH+path+BLENDAMOUNTPATH,0.0,interpolation)
 		await tween.finished
+
+func user_in_alignment() -> bool:
+	return user.has_meta("alignment") && user.get_meta("alignment")
 
 ###########################################################################################
 #GETTER AND SETTER

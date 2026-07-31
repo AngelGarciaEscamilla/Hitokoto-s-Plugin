@@ -451,21 +451,12 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 				velocity -= (n * velocity.dot(n))
 				state = IDLE
 				return
-		if velocity.length() > 0.1:
-			var n := get_wall_normal()
-			n.y = 0
-			n = n.normalized()
-			var dir := direction
-			dir.y = 0
-			dir = dir.normalized()
-			var rdot := dir.dot(n)
-			dot = rdot
 	if direction:
 		var target_x = direction.x * (CURRENT_SPEED_LIMIT - friction)
 		var target_z = direction.z * (CURRENT_SPEED_LIMIT - friction)
 		velocity.x = move_toward(velocity.x, target_x, accel * delta)
 		velocity.z = move_toward(velocity.z, target_z, accel * delta)
-		if state == IDLE && dot > -0.9:
+		if state == IDLE:
 			state = WALK
 	else:
 		if state == WALK || state == RUN:

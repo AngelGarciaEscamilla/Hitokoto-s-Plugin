@@ -21,7 +21,6 @@ func _on_button_pressed():
 	user = get_parent()
 	user.unequip_current_item()
 
-
 func _on_button_2_pressed():
 	items_list.deselect_all()
 

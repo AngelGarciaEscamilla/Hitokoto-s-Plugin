@@ -158,6 +158,15 @@ func create_model() -> void:
 			model.user = self
 		setup_references_entity()
 
+func get_crouch(node:Node=self) -> CrouchState:
+	for child in node.get_children():
+		if child is CrouchState:
+			return child
+		var result = get_crouch(child)
+		if result:
+			return result
+	return null
+
 
 
 ###############################################################################################################################################
@@ -200,6 +209,9 @@ func axis(v: float, t := 0.25) -> int:
 	if v < -t:
 		return -1
 	return 0
+
+func in_alignment() -> bool:
+	return has_meta("alignment") && get_meta("alignment")
 
 func apply_knockback(from_position: Vector3, force: float, force_jump: float = 0.1) -> void:
 	method(model, "apply_knockback", [force])

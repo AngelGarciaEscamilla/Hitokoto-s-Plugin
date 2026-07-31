@@ -9,9 +9,12 @@
 size = Vector3(0.3215332, 0.22189331, 0.10473633)
 
 [node name="Revolver" type="RigidBody3D" unique_id=553087116]
-collision_layer = 80
-collision_mask = 80
-max_contacts_reported = 1
+collision_layer = 81
+collision_mask = 81
+can_sleep = false
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_1amoo")
 
 [node name="target" type="Marker3D" parent="." unique_id=1402201853]

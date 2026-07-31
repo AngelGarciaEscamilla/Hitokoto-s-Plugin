@@ -7,7 +7,7 @@
 shader = ExtResource("2_f6tyq")
 shader_parameter/blur = 2.0
 
-[node name="InventoryPanel" type="Control" node_paths=PackedStringArray("details_item", "items_list")]
+[node name="InventoryPanel" type="Control" unique_id=697660996 node_paths=PackedStringArray("details_item", "items_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ script = ExtResource("1_dfv75")
 details_item = NodePath("detailsItem")
 items_list = NodePath("Items")
 
-[node name="BackgroundInventory" type="ColorRect" parent="."]
+[node name="BackgroundInventory" type="ColorRect" parent="." unique_id=1491741478]
 visible = false
 material = SubResource("ShaderMaterial_se05t")
 layout_mode = 1
@@ -30,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.756863)
 
-[node name="detailsItem" type="Label" parent="."]
+[node name="detailsItem" type="Label" parent="." unique_id=371005760]
 process_mode = 3
 layout_mode = 1
 anchors_preset = 8
@@ -49,7 +49,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Items" type="ItemList" parent="."]
+[node name="Items" type="ItemList" parent="." unique_id=1679778956]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.359
@@ -64,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/guide_color = Color(1, 1, 1, 1)
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1216722635]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,7 +78,7 @@ grow_vertical = 2
 text = "reset
 "
 
-[node name="Button2" type="Button" parent="."]
+[node name="Button2" type="Button" parent="." unique_id=741606383]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
