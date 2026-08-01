@@ -15,8 +15,8 @@ enum ViewMode {
 }
 
 @export var view_mode: ViewMode = ViewMode.FAR
-@export var max_rotate_head : float = 90.0
-@export var rotation_self_duration: float = 0.2
+@export var max_rotate_head : float = 100.0
+@export var rotation_self_duration: float = 0.1
 @export_range(0,180,0.1,"prefer_slider") var max_angle : float = 45
 @export_range(0.0,15,0.1) var measurement_shoulder : float = 1.0
 @export var distance_interact : float = 3.0:
@@ -145,6 +145,7 @@ var neck_rotation : Vector3
 var rotate_motion : Tween
 var model_rot : Tween
 
+var playing_masurement : bool
 var stop_tween : bool
 var over_shoulder : bool 
 var to_target_model : bool
@@ -459,21 +460,21 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 		if state == IDLE:
 			state = WALK
 	else:
+		velocity = lerp(velocity, Vector3.ZERO, accel * delta)
 		if state == WALK || state == RUN:
 			state = IDLE
 
 
 func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
+	if playing_masurement || over_shoulder:
+		return
 	if advancing_to_wall():
 		return
 	if strafe:
 		if (get_direction() == Direction.RIGHT || get_direction() == Direction.LEFT) && !is_walk():
 			set_model_relative_to_target()
 			return
-	if get_direction() == Direction.RIGHT && (neck.rotation_degrees.y > 90):
-		return
-	if get_direction() == Direction.LEFT && (neck.rotation_degrees.y < -90):
-		return
+	var neck_back : bool = (neck.rotation_degrees.y < -90 || neck.rotation_degrees.y > 90)
 	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
 	if get_direction() == Direction.BACK || get_direction() == Direction.BACK_RIGHT || get_direction() == Direction.BACK_LEFT:
 		move_direction = target.global_basis.z * velocity.y + target.global_basis.x * velocity.x
@@ -484,25 +485,19 @@ func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
 		last_direction = move_direction
 	var target_angle = Vector3.BACK.signed_angle_to(last_direction,Vector3.UP)
 	var main_keys = (get_direction() == Direction.BACK) || (get_direction() == Direction.FORWARD)
-	var neck_back : bool = (neck.rotation_degrees.y < -90 || neck.rotation_degrees.y > 90)
-	var laterals_keys = (get_direction() == Direction.RIGHT) || (get_direction() == Direction.LEFT  || 
-	get_direction() == Direction.FORWARD_RIGHT) || (get_direction() == Direction.FORWARD_LEFT || get_direction() == Direction.BACK_RIGHT) || (get_direction() == Direction.BACK_LEFT)
+	var laterals_keys = (get_direction() == Direction.RIGHT) || (get_direction() == Direction.LEFT)
+	var extense_keys = get_direction() == Direction.FORWARD_RIGHT || (get_direction() == Direction.FORWARD_LEFT || get_direction() == Direction.BACK_RIGHT) || (get_direction() == Direction.BACK_LEFT)
 	var current_angle = (model.global_rotation.y)
 	var interval_angle = blend_speed*delta
-	if model && !(model_rot && model_rot.is_running()):
-		if main_keys:
-			model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
-			return
-		if laterals_keys:
-			model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
+	if get_direction() > Direction.IDLE && model && !playing_masurement:
+		model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
 
 func animation_rotate_look(delta:float)  -> void:
 	if !model:return
 	neck.look_at(target_sight.global_position,Vector3.UP,true)
 	neck_rotation = neck.rotation
 	measurement = -measurement_shoulder
-	over_shoulder = is_on_over_shoulder_view(neck.rotation_degrees)
-	if over_shoulder && can_move:
+	if is_on_over_shoulder_view(neck.rotation_degrees) && can_move:
 		if model.rotation.y > 0:
 			measurement = abs(measurement)
 		if measurement > 0:
@@ -511,16 +506,30 @@ func animation_rotate_look(delta:float)  -> void:
 			method(model,"over_shoulder_view",[Vector3.LEFT])
 		if inventory.aim && view_mode == ViewMode.FAR && state == IDLE:
 			set_model_relative_to_target()
-		var current_angle = (model.global_rotation.y)
-		var interval_angle = blend_speed*delta
-		if (view_mode == ViewMode.CLOSE  || (view_mode == ViewMode.FAR && state == WALK)) && !stop_tween:
-			if !(model_rot && model_rot.is_running()):
-				set_ik_bones(false,rotation_self_duration)
-				rotate_motion = create_tween()
-				timer_kill_rot.start()
-				rotate_motion.tween_property(model,"rotation:y",model.rotation.y-measurement,rotation_self_duration)
+		if (view_mode == ViewMode.CLOSE || (view_mode == ViewMode.FAR && state == WALK)) && !stop_tween:
+			measurement_tween()
+	over_shoulder = is_on_over_shoulder_view(neck.rotation_degrees)
 	neck.rotation.y = clamp(neck.rotation.y,-1,1)
 	rotate_model_assign()
+
+func measurement_tween() -> void:
+	if playing_masurement:
+		return
+	playing_masurement = true
+	set_ik_bones(false, rotation_self_duration)
+	timer_kill_rot.start()
+	var from := model.global_rotation.y
+	var to := from - measurement
+	rotate_motion = create_tween()
+	rotate_motion.tween_method(
+		func(weight: float):
+			model.global_rotation.y = lerp_angle(from, to, weight),
+		0.0,
+		1.0,
+		rotation_self_duration
+	)
+	await rotate_motion.finished
+	playing_masurement = false
 
 func is_on_over_shoulder_view(marker_rotation_degrees: Vector3,tolerance:float=0.0) -> bool:
 	var max = max_rotate_head

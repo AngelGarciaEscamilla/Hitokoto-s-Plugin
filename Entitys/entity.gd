@@ -90,11 +90,11 @@ var state : int = IDLE:
 		if lock_state:return
 		var old_state : int = state
 		state = value
-		if state == IDLE:
-			var smooth_idle_x = create_tween()
-			var smooth_idle_z = create_tween()
-			smooth_idle_x.tween_property(self,"velocity:x",0.0,0.2)
-			smooth_idle_z.tween_property(self,"velocity:z",0.0,0.2)
+		# if state == IDLE:
+		# 	var smooth_idle_x = create_tween()
+		# 	var smooth_idle_z = create_tween()
+		# 	smooth_idle_x.tween_property(self,"velocity:x",0.0,0.2)
+		# 	smooth_idle_z.tween_property(self,"velocity:z",0.0,0.2)
 		var speed_state : Array = [0,WALK_SPEED,RUN_SPEED]
 		if state < FALL:
 			CURRENT_SPEED_LIMIT = speed_state[state]
@@ -173,6 +173,12 @@ func get_crouch(node:Node=self) -> CrouchState:
 #NAVIGATION AND TARGET
 ###############################################################################################################################################
 
+var last_rotation_y := 0.0
+
+func is_rotating() -> bool:
+	var rotating := !is_equal_approx(model.rotation.y, last_rotation_y)
+	last_rotation_y = model.rotation.y
+	return rotating
 
 func get_direction() -> int:
 	if velocity.length() < 0.01:
@@ -285,10 +291,6 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 			state = IDLE
 
 func movement_model(target:Node3D,velocity:Vector2,delta:float) -> void:
-	if get_direction() == Direction.RIGHT && (neck.rotation_degrees.y > 90):
-		return
-	if get_direction() == Direction.LEFT && (neck.rotation_degrees.y < -90):
-		return
 	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
 	if get_direction() == Direction.BACK || get_direction() == Direction.BACK_RIGHT || get_direction() == Direction.BACK_LEFT:
 		move_direction = target.global_basis.z * velocity.y + target.global_basis.x * velocity.x
@@ -398,9 +400,9 @@ func go_to(destination:Node3D,delta:float,transition:float=1) -> void:
 
 
 static func round_number_vector(vec:Vector3,y_null:bool=false) -> Vector3:
-	var xround = round(vec.x * 3) / 3.0
-	var yround = round(vec.y * 3) / 3.0
-	var zround = round(vec.z * 3) / 3.0
+	var xround = round(vec.x * 5) / 5.0
+	var yround = round(vec.y * 5) / 5.0
+	var zround = round(vec.z * 5) / 5.0
 	if y_null:
 		yround = 0
 	return Vector3(xround,yround,zround)

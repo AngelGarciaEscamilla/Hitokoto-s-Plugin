@@ -6,9 +6,7 @@ enum Behaviour {REST,WALK,TALKING,FALL,FALLEN}
 
 var not_change_property_freeze : Dictionary = {}
 var move_head : bool = true
-var rotate_to_target : bool
 var is_freeze : bool 
-var target_rotation_y := 0.0
 @export var target_look : Node3D
 @export var target : NodePath
 @export var old_target : Node
@@ -102,8 +100,8 @@ func _physics_process(delta:float) -> void:
 			position += forward * 1
 			get_body_in_front().apply_knockback(position,knockback_interrupt)
 	match state:
-		Entity.WALK:go_to(get_node_or_null(target),delta)
-		Entity.RUN:go_to(get_node_or_null(target),delta)
+		Entity.WALK:go_to(get_target(),delta)
+		Entity.RUN:go_to(get_target(),delta)
 	if !is_on_floor():
 		if !fall.is_in_free_fall:
 			current_behaviour = Behaviour.FALL
@@ -113,16 +111,6 @@ func _physics_process(delta:float) -> void:
 		if current_behaviour == Behaviour.FALL:
 			current_behaviour = Behaviour.REST
 	move_and_slide()
-	if rotate_to_target:
-		rotation.y = lerp_angle(
-			rotation.y,
-			target_rotation_y,
-			delta * 8.0
-		)
-
-		if abs(angle_difference(rotation.y, target_rotation_y)) < 0.01:
-			rotation.y = target_rotation_y
-			rotate_to_target = false
 
 func _process(delta:float) -> void:
 	if Engine.is_editor_hint():
@@ -133,10 +121,12 @@ func _process(delta:float) -> void:
 		input_vec = input_vec.normalized()
 	else:
 		input_vec = Vector2.ZERO
-	if get_node_or_null(target) && can_move:
-		var target_pos: Vector3 = get_node_or_null(target).global_position
-		var direction = (target_pos - global_position).normalized()
-		movement_direction(direction,delta)
+	var target_pos: Vector3 = Vector3.ZERO
+	var direction : Vector3 = Vector3.ZERO
+	if get_target() && current_behaviour != Behaviour.REST:
+		target_pos = get_target().global_position
+		direction = (target_pos - global_position).normalized()
+	movement_direction(direction,delta)
 	if !is_freeze:
 		movement_model(self,input_vec,delta)
 	process_behaviour()
@@ -160,7 +150,7 @@ func init_dialogue(dialogue:DialogueData) -> void:
 	current_behaviour = Behaviour.TALKING
 	state = IDLE
 	if interrupt_movement:
-		old_target = get_node_or_null(target)
+		old_target = get_target()
 		target = NodePath()
 	if !dialogue.propertys.has("look_at_user"):return
 	var user : Node3D = get_node_or_null(dialogue.user_path)
@@ -194,8 +184,8 @@ func get_up() -> void:
 func process_behaviour() -> void:
 	if current_behaviour != Behaviour.REST:return
 	if !in_destination():
-		if get_node_or_null(target):
-			move_to_position(get_node_or_null(target).get_path())
+		if get_target():
+			move_to_position(get_target().get_path())
 	else:
 		if is_on_floor():
 			state = IDLE
@@ -209,16 +199,28 @@ func move_to_position(target_:NodePath)->void:
 
 func in_target_node() -> void:
 	current_behaviour = Behaviour.REST
-	if inherited_global_rotation && velocity.length() > 0.1:
-		target_rotation_y = get_node(target).rotation.y
-		rotate_to_target = true
+	if inherited_global_rotation:
+		set_model_relative_to_target()
+		var from := global_rotation.y
+		var to := get_target().global_rotation.y
+		var tween := create_tween()
+		tween.tween_method(
+			func(weight: float):
+				global_rotation.y = lerp_angle(from, to, weight),
+			0.0,
+			1.0,
+			0.25
+		)
+		await tween.finished
+
 
 func in_destination() -> bool:
 	if get_node_or_null(target):
-		return round_number_vector(global_position,true) == round_number_vector(get_node_or_null(target).global_position,true)
+		return round_number_vector(global_position,true) == round_number_vector(get_target().global_position,true)
 	return false
 
-
+func get_target() -> Node3D:
+	return get_node_or_null(target)
 
 ############################################################################################
 #STADISTICS
