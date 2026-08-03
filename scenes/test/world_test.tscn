@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bq7ojtukhreqp" path="res://addons/Hitokoto´s Plugin/UI/calendar.gd" id="1_brtl8"]
 [ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto´s Plugin/UI/load_setting.gd" id="1_fa6tm"]
 [ext_resource type="Script" uid="uid://ui0nqqye7n4t" path="res://addons/Hitokoto´s Plugin/scenes/test/test_.gd" id="2_0hrsv"]
-[ext_resource type="Environment" uid="uid://ryq6apmj1dqu" path="res://addons/Hitokoto´s Plugin/shaders/clouds.tres" id="2_2u76e"]
 [ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto´s Plugin/UI/property_node.gd" id="3_3ypb7"]
 [ext_resource type="Script" uid="uid://q4xjgyqtgi15" path="res://addons/Hitokoto´s Plugin/weapons/ammo_ui.gd" id="3_lbqgv"]
 [ext_resource type="Script" uid="uid://bofj0bjugq8hy" path="res://addons/Hitokoto´s Plugin/Componets/componets.gd" id="3_tfwsm"]
@@ -43,6 +42,7 @@
 [ext_resource type="Script" uid="uid://dosnws0bm0joa" path="res://addons/Hitokoto´s Plugin/Entitys/interpolationAnimation.gd" id="29_5rxwi"]
 [ext_resource type="Script" uid="uid://2j03bofleeam" path="res://addons/Hitokoto´s Plugin/UI/UI.gd" id="30_lhud8"]
 [ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueData.gd" id="31_5rxwi"]
+[ext_resource type="Environment" uid="uid://gh2y1cldylk6" path="res://addons/Hitokoto´s Plugin/shaders/sky.tres" id="31_8bdiv"]
 [ext_resource type="PackedScene" uid="uid://btb35g1bin5fc" path="res://addons/Hitokoto´s Plugin/player/model/humanoid.tscn" id="32_s5fh0"]
 [ext_resource type="Resource" uid="uid://cgeybbcmqpeem" path="res://addons/Hitokoto´s Plugin/mission/the dog.tres" id="35_brtl8"]
 [ext_resource type="ArrayMesh" uid="uid://bwsvmxja4m31u" path="res://addons/Hitokoto´s Plugin/furniture/models/steps.obj" id="37_7hfam"]
@@ -148,6 +148,60 @@ albedo_texture = ExtResource("28_wa62t")
 [sub_resource type="SphereMesh" id="SphereMesh_7nhvg"]
 material = SubResource("StandardMaterial3D_7ulx0")
 
+[sub_resource type="Resource" id="Resource_7nhvg"]
+script = ExtResource("21_tfwsm")
+textEN = "adawd"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_kv82n"]
+script = ExtResource("31_5rxwi")
+anim = &"test_damage"
+subtitles = SubResource("Resource_7nhvg")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_6u73q"]
+script = ExtResource("21_tfwsm")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_lhud8"]
+script = ExtResource("31_5rxwi")
+audio = ExtResource("56_pqayd")
+anim = &"test_damage"
+subtitles = SubResource("Resource_6u73q")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_tfig4"]
+script = ExtResource("21_tfwsm")
+textEN = "uf"
+textES = "a"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_wa62t"]
+script = ExtResource("31_5rxwi")
+subtitles = SubResource("Resource_tfig4")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_ssdq2"]
+script = ExtResource("21_tfwsm")
+textEN = "aaaaaaaaaa"
+textES = "aaaaaaad"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_brtl8"]
+script = ExtResource("31_5rxwi")
+subtitles = SubResource("Resource_ssdq2")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wdxcr"]
+
 [sub_resource type="Resource" id="Resource_b5u4b"]
 script = ExtResource("21_tfwsm")
 metadata/_custom_type_script = "uid://dxy5ox0runloa"
@@ -203,60 +257,6 @@ condition_value = null
 metadata/_custom_type_script = "uid://bung0s3emq7k2"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgejc"]
-
-[sub_resource type="Resource" id="Resource_7nhvg"]
-script = ExtResource("21_tfwsm")
-textEN = "adawd"
-metadata/_custom_type_script = "uid://dxy5ox0runloa"
-
-[sub_resource type="Resource" id="Resource_kv82n"]
-script = ExtResource("31_5rxwi")
-anim = &"test_damage"
-subtitles = SubResource("Resource_7nhvg")
-add_dependence = null
-condition_value = null
-metadata/_custom_type_script = "uid://bung0s3emq7k2"
-
-[sub_resource type="Resource" id="Resource_6u73q"]
-script = ExtResource("21_tfwsm")
-metadata/_custom_type_script = "uid://dxy5ox0runloa"
-
-[sub_resource type="Resource" id="Resource_lhud8"]
-script = ExtResource("31_5rxwi")
-audio = ExtResource("56_pqayd")
-anim = &"test_damage"
-subtitles = SubResource("Resource_6u73q")
-add_dependence = null
-condition_value = null
-metadata/_custom_type_script = "uid://bung0s3emq7k2"
-
-[sub_resource type="Resource" id="Resource_tfig4"]
-script = ExtResource("21_tfwsm")
-textEN = "uf"
-textES = "a"
-metadata/_custom_type_script = "uid://dxy5ox0runloa"
-
-[sub_resource type="Resource" id="Resource_wa62t"]
-script = ExtResource("31_5rxwi")
-subtitles = SubResource("Resource_tfig4")
-add_dependence = null
-condition_value = null
-metadata/_custom_type_script = "uid://bung0s3emq7k2"
-
-[sub_resource type="Resource" id="Resource_ssdq2"]
-script = ExtResource("21_tfwsm")
-textEN = "aaaaaaaaaa"
-textES = "aaaaaaad"
-metadata/_custom_type_script = "uid://dxy5ox0runloa"
-
-[sub_resource type="Resource" id="Resource_brtl8"]
-script = ExtResource("31_5rxwi")
-subtitles = SubResource("Resource_ssdq2")
-add_dependence = null
-condition_value = null
-metadata/_custom_type_script = "uid://bung0s3emq7k2"
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wdxcr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bn43r"]
 
@@ -593,7 +593,7 @@ transform = Transform3D(1.905, 0, 0, 0, 1.905, 0, 0, 0, 1.905, 0, 0, 0)
 shape = SubResource("BoxShape3D_4fieg")
 
 [node name="SkyAmbient" type="WorldEnvironment" parent="." unique_id=921010490]
-environment = ExtResource("2_2u76e")
+environment = ExtResource("31_8bdiv")
 script = ExtResource("14_u0bac")
 metadata/_custom_type_script = "uid://danlpdtp3xsit"
 
@@ -601,7 +601,7 @@ metadata/_custom_type_script = "uid://danlpdtp3xsit"
 transform = Transform3D(0.97753716, -0.2107635, -0.00028195878, 0.2107502, 0.9774884, -0.010031536, 0.0023898904, 0.009746748, 0.99994993, 0, 8.636658, 0)
 
 [node name="Sun" type="Marker3D" parent="OrbitZ" unique_id=624894730]
-transform = Transform3D(1.0000005, 0, 0, 0, -0.71324944, 0.7009084, 0, -0.70090836, -0.71324944, 0.60760117, 0.0669384, 0.047863416)
+transform = Transform3D(1.0000005, 0, 0, 0, 0.8660239, 0.49999934, 0, -0.49999934, 0.8660239, 0.60760117, 0.0669384, 0.047863416)
 script = ExtResource("15_w0aq2")
 metadata/_custom_type_script = "uid://yxpnc6bj5crb"
 
@@ -627,36 +627,14 @@ metadata/_custom_type_script = "uid://cub5lqivv1hyp"
 transform = Transform3D(-3.6955277e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -3.6955277e-07, -13.897693, 1.0189226, -17.353598)
 weapon = ExtResource("24_qgejc")
 
-[node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
-transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)
-collision_layer = 14
-collision_mask = 14
-script = ExtResource("21_o7kkv")
-target_look = NodePath("../Player")
-target = NodePath("../target")
-timeline = SubResource("Resource_uhj0f")
-distance_interact = 2.0
-default = SubResource("Resource_3xpcf")
-slots = Array[ExtResource("43_8bdiv")]([ExtResource("41_s5fh0"), null, null])
-gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
-inventory_slots = Array[ExtResource("23_brtl8")]([null, null, null])
-dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_s5fh0")])
-model_scene = ExtResource("32_s5fh0")
-collision_shape = SubResource("CapsuleShape3D_qgejc")
-bone_neck = "mixamorig_Head"
-bone_torso = "mixamorig_Spine2"
-name_path = "NPC"
-metadata/_custom_type_script = "uid://ccu6rfa11wigy"
-
 [node name="Player" type="CharacterBody3D" parent="." unique_id=895990541]
-transform = Transform3D(0.9999999, 0, 3.258414e-07, 0, 1, 0, -3.258414e-07, 0, 0.9999999, -20.420053, 0.82506037, -11.579647)
+transform = Transform3D(0.9999999, 0, 3.258414e-07, 0, 1, 0, -3.258414e-07, 0, 0.9999999, -1.2889938, 0.82506037, -11.579647)
 collision_layer = 12
 collision_mask = 12
 script = ExtResource("1_3n3ca")
 inventory_scene = ExtResource("19_qgejc")
 death_screen = ExtResource("51_bn43r")
 damage_screen = ExtResource("52_4fieg")
-max_rotate_cam_target = Vector2(-0.8, 0.7)
 up_key = "w"
 down_key = "s"
 right_key = "d"
@@ -685,7 +663,7 @@ ammo = {
 "general_ammo": 0,
 "melee": 0
 }
-inventory_slots = Array[ExtResource("43_8bdiv")]([ExtResource("41_s5fh0"), null, null])
+inventory_slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null, null])
 dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_kv82n"), SubResource("Resource_lhud8")])
 exhausted_dialogue = SubResource("Resource_wa62t")
 dialogue_fall = SubResource("Resource_brtl8")
@@ -731,15 +709,36 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=178317360]
-transform = Transform3D(1.0000001, 1.3731771e-07, 3.4493894e-08, -1.3788458e-07, 0.889189, 0.4575405, 3.2156777e-08, -0.4575379, 0.88919, 0.6491947, 0.7210264, 1.64785)
-
 [node name="DebugOverlay" type="Node" parent="Player" unique_id=117507507]
 script = ExtResource("52_07isp")
 HUD = ExtResource("53_07isp")
 enabled = true
 key_hud = "f3"
 metadata/_custom_type_script = "uid://cccttabml57hn"
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=418301135]
+transform = Transform3D(0.998735, -0.0049214065, 0.050043486, -3.189047e-08, 0.9951991, 0.09787112, -0.050284903, -0.09774732, 0.9939402, 0.31583983, 0.63956094, 1.5499115)
+
+[node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)
+collision_layer = 14
+collision_mask = 14
+script = ExtResource("21_o7kkv")
+target_look = NodePath("../Player")
+target = NodePath("../target")
+timeline = SubResource("Resource_uhj0f")
+distance_interact = 2.0
+default = SubResource("Resource_3xpcf")
+slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null, null])
+gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
+inventory_slots = Array[ExtResource("23_brtl8")]([null, null, null])
+dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_s5fh0")])
+model_scene = ExtResource("32_s5fh0")
+collision_shape = SubResource("CapsuleShape3D_qgejc")
+bone_neck = "mixamorig_Head"
+bone_torso = "mixamorig_Spine2"
+name_path = "NPC"
+metadata/_custom_type_script = "uid://ccu6rfa11wigy"
 
 [node name="CloseUp" type="Area3D" parent="." unique_id=1726554988]
 transform = Transform3D(2, 0, -5.684342e-14, 0, 2, 0, 5.684342e-14, 0, 2, -20.287285, 1.0581703, -14.199106)
@@ -836,12 +835,13 @@ omni_attenuation = -6.216
 [node name="BulbLight" type="SpotLight3D" parent="." unique_id=694082142]
 transform = Transform3D(0.0480101, -0.849659, 0.525142, 0.0198093, 0.526455, 0.849972, -0.99865, -0.0304046, 0.0421062, -18.4893, 5.16097, -13.2548)
 light_color = Color(1, 0.9322192, 0.9943455, 1)
-light_energy = 0.0
+light_energy = 12.0
 shadow_enabled = true
 spot_range = 13.521393
 spot_angle = 59.63181
 spot_angle_attenuation = 0.00023325822
 script = ExtResource("24_u50qv")
+on = true
 automatic_mode = true
 bulb_material = SubResource("StandardMaterial3D_aby0v")
 mesh = SubResource("BoxMesh_7ulx0")
@@ -859,7 +859,7 @@ transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338
 mesh = SubResource("BoxMesh_brtl8")
 
 [node name="hour" type="Marker3D" parent="Clock" unique_id=1145154694]
-transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.49999955, -0.86602485, 0, 0.86602485, 0.49999955, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/hour" unique_id=1817297042]
 transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
@@ -867,7 +867,7 @@ mesh = SubResource("BoxMesh_kvr7o")
 skeleton = NodePath("../../..")
 
 [node name="minute" type="Marker3D" parent="Clock" unique_id=1234155709]
-transform = Transform3D(1, 0, 0, 0, 0.97814626, -0.20791148, 0, 0.20791148, 0.97814626, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999986, 0, 0, 0, 0.9999986, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/minute" unique_id=298471058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527947, -0.00369453)
@@ -886,7 +886,7 @@ transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338
 mesh = SubResource("BoxMesh_brtl8")
 
 [node name="hour" type="Marker3D" parent="Clock2" unique_id=196457758]
-transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.49999955, -0.86602485, 0, 0.86602485, 0.49999955, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2/hour" unique_id=607809439]
 transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
@@ -894,7 +894,7 @@ mesh = SubResource("BoxMesh_kvr7o")
 skeleton = NodePath("../../..")
 
 [node name="minute" type="Marker3D" parent="Clock2" unique_id=1280949984]
-transform = Transform3D(1, 0, 0, 0, 0.97814626, -0.20791148, 0, 0.20791148, 0.97814626, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999986, 0, 0, 0, 0.9999986, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2/minute" unique_id=1540237415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527947, -0.00369453)

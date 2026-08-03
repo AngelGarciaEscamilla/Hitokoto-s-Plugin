@@ -70,9 +70,9 @@ var speed_walk_user : float
 var speed_run_user : float
 var global_delta : float
 var anim_asset : bool 
+var condition_automatic_weapon : bool
 var flag_show_inventory : bool = true
 var flag_change_slot : bool = true
-var flag_shoot : bool = true
 var flag_charger : bool = true
 var flag_change_inventory : bool = true
 var shoot_no_auto : bool
@@ -417,7 +417,6 @@ func give_item(item: Item) -> void:
 		add_item(item)
 
 func add_item(item: Item) -> void:
-	flag_shoot = false
 	if !flag_change_inventory:return
 	for i in inventory_slots.size():
 		if !inventory_slots[i]:
@@ -509,7 +508,6 @@ func charger_current_slot() -> void:
 	var time := current_weapon.time_to_charger
 	if current_weapon.bullet_at_time:
 		time = time / current_weapon.charger
-	flag_shoot = false
 	flag_charger = false
 	flag_change_slot = false
 	timer_charger.wait_time = time
@@ -722,8 +720,6 @@ func shoot() -> void:
 	if is_shooting || shoot_no_auto:return
 	if no_load_asset():return
 	if !current_weapon.is_melee() && !ammo_available_shoot():return
-	if current_weapon.fully_automatic:
-		shoot_no_auto = false
 	shoot_no_auto = !current_weapon.fully_automatic
 	reboot_charger_action()
 	var slot = current_slot
@@ -745,7 +741,6 @@ func shoot() -> void:
 	create_bullet(current_weapon)
 	emit_signal("shoot_weapon",current_weapon)
 	flag_show_inventory = false
-	flag_shoot = false
 	timer_shoot.start()
 	shoot_animation(current_weapon)
 	if !current_weapon.is_melee():
@@ -754,6 +749,9 @@ func shoot() -> void:
 	if aim && shoot_no_aim:
 		await get_tree().create_timer(interval_asset_time).timeout
 		aim = false
+	await timer_shoot.timeout
+	if condition_automatic_weapon:
+		shoot()
 
 func ammo_available_shoot() -> bool:
 	var slots = get_divisibles(current_weapon.charger, current_weapon.shoot_bullet)
@@ -809,7 +807,6 @@ func reboot_charger_action() -> void:
 		repos_animation(current_weapon)
 	reboot_animation_per_weapon("charger")
 	timer_charger.stop()
-	flag_shoot = true
 	flag_charger = true
 	flag_change_slot = true
 
@@ -890,7 +887,6 @@ func load_weapon(weapon: Weapon = null,animation:bool=true,first_animation = tru
 		else:
 			reboot_asset_in_hand()
 	reboot_repos = false
-	flag_shoot = true
 	flag_charger = true
 	timer_shoot.wait_time = weapon.delay_to_shoot
 	repos_animation(weapon)
@@ -1082,6 +1078,7 @@ func attachment_property_slot(slot:int) -> Variant:
 	return null
 
 func attachment_visible() -> void:
+	if is_interacted():return
 	for slot_ in gun_attachment:
 		if current_weapon && current_slot == slot_[0] && current_weapon.type.to_lower() == slot_[2].to_lower():
 			if slot_[1] in user:

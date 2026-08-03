@@ -34,8 +34,6 @@ var crouch : CrouchState
 var inventory : Inventory
 var animation_tree : AnimationTree
 
-var previous_shoot : bool
-
 func _ready():
 	if get_parent() is Node3D:
 		set_user()
@@ -119,25 +117,16 @@ func handle_animation(delta:float) -> void:
 		return
 	match user.state_hands:
 		Humanoid.REPOS:
-			previous_shoot = false
 			comprobate_state_anim(6,blend_speed_normalized)
 		Humanoid.AIM:
-			if user.inventory.aim && previous_shoot:
-				value_anim[7] = 1.0
-				previous_shoot = false
-			else:
-				comprobate_state_anim(7,blend_speed_normalized)
+			comprobate_state_anim(7,blend_speed_normalized)
 		Humanoid.CHARGING:
-			previous_shoot = false
 			comprobate_state_anim(8,blend_speed_normalized)
 		Humanoid.HOLDITEM:
-			previous_shoot = false
 			comprobate_state_anim(9,blend_speed_normalized)
 		Humanoid.USEITEM:
-			previous_shoot = false
 			comprobate_state_anim(10,blend_speed_normalized)
 		Humanoid.SHOOT:
-			previous_shoot = true
 			comprobate_state_anim(11,blend_speed_normalized)
 	
 	

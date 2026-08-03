@@ -7,8 +7,17 @@ var moon_light : DirectionalLight3D = DirectionalLight3D.new()
 var minutes : Timer = Timer.new()
 
 @export_range(0.001,60.0,0.1) var waiting_time : float = 2.0
-@export_range(0.10,15.0,0.05) var moon_intensity : float = 2.0
+@export_range(0.10,15.0,0.05) var moon_intensity : float = 0.2
 @export var continuous_time : bool = true
+
+@export var color_light_sun : Color = Color.WHITE:
+	set(value):
+		color_light_sun = value
+		sun_light.light_color = color_light_sun
+@export var color_light_moon : Color = Color.WHITE:
+	set(value):
+		color_light_moon = value
+		moon_light.light_color = color_light_moon
 
 func _ready() -> void:
 	add_to_group("sun")
@@ -26,14 +35,15 @@ func create_timer() -> void:
 
 func create_moon_light():
 	add_child(moon_light)
+	moon_light.position.y += 1
 	moon_light.rotation_degrees.x = -90
 	moon_light.shadow_enabled = true
 	moon_light.set_layer_mask_value(19,true)
-	moon_light.light_color = Color(0.179, 0.198, 0.244)
 	moon_light.light_energy = moon_intensity
 
 func create_sun_light() -> void:
 	add_child(sun_light)
+	sun_light.position.y -= 1
 	sun_light.set_layer_mask_value(19,true)
 	sun_light.rotation_degrees.x = 90
 	sun_light.shadow_enabled = true
@@ -41,10 +51,6 @@ func create_sun_light() -> void:
 func _process(delta:float) -> void:
 	moon_light.light_energy = moon_intensity
 	var direction = -self.global_transform.basis.y.normalized()
-	if direction.dot(Vector3.DOWN) > 0.0:
-		sun_light.light_energy = 0.0
-	else:
-		sun_light.light_energy = 1.0
 
 func pass_minute() -> void:
 	if Engine.is_editor_hint() || !continuous_time:return

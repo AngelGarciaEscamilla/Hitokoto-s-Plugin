@@ -92,6 +92,7 @@ var current_sensibility_cam : Vector2
 		use_key = value
 
 var cam_move : bool = true
+var condition_automatic_weapon : bool
 var is_freeze : bool 
 var not_change_property_freeze : Dictionary = {}
 var blocked_direction : String
@@ -182,7 +183,7 @@ func aim_button() -> void:
 
 func shoot_button() -> void:
 	if !InputMap.has_action(shoot_key):return
-	if Input.is_action_pressed(shoot_key):
+	if Input.is_action_just_pressed(shoot_key):
 		inventory.shoot()
 	else:
 		inventory.undo_shoot()
@@ -257,6 +258,8 @@ func captured_mouse(value:bool) -> void:
 
 func camera_move(event: InputEvent) -> void:
 	if !cam_target || !cam_move || !camera_input || focus_node:return
+	if out_of_neck() && view_mode == ViewMode.CLOSE:
+		return
 	global_event = event
 	if event is InputEventMouseMotion:
 		if !lock_horizontal_view:
@@ -309,6 +312,7 @@ func movement(delta: float) -> void:
 
 func _physics_process(delta:float) -> void:
 	if Engine.is_editor_hint():return
+	inventory.condition_automatic_weapon = key_input(shoot_key,KeyAction.PRESSED)
 	interact_state()
 	match state:
 		IDLE:

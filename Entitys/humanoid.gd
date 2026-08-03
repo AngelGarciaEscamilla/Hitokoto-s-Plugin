@@ -7,8 +7,6 @@ var push_sense : PushSense = PushSense.new()
 var fall : FallState = FallState.new()
 var dialogue : DialogueManager = DialogueManager.new()
 
-var timer_kill_rot = Timer.new()
-
 enum ViewMode {
 	CLOSE,
 	FAR
@@ -216,11 +214,6 @@ func take_damage(damage: float) -> void:
 
 func setup_mesh_references() -> void:
 	if model && skeleton:
-		add_child(timer_kill_rot)
-		timer_kill_rot.wait_time = 0.35
-		timer_kill_rot.timeout.connect(func():
-			if rotate_motion && rotate_motion.is_running():
-				rotate_motion.kill())
 		holster_right = get_attachment("right")
 		holster_left = get_attachment("left")
 		gun_upper_back = get_attachment("upperback")
@@ -494,32 +487,43 @@ func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
 
 func animation_rotate_look(delta:float)  -> void:
 	if !model:return
+	if !out_of_neck() && !playing_masurement:
+		stop_rotate()
 	neck.look_at(target_sight.global_position,Vector3.UP,true)
 	neck_rotation = neck.rotation
 	measurement = -measurement_shoulder
-	if is_on_over_shoulder_view(neck.rotation_degrees) && can_move:
-		if model.rotation.y > 0:
-			measurement = abs(measurement)
-		if measurement > 0:
-			method(model,"over_shoulder_view",[Vector3.RIGHT])
-		else:
-			method(model,"over_shoulder_view",[Vector3.LEFT])
-		if inventory.aim && view_mode == ViewMode.FAR && state == IDLE:
-			set_model_relative_to_target()
-		if (view_mode == ViewMode.CLOSE || (view_mode == ViewMode.FAR && state == WALK)) && !stop_tween:
-			measurement_tween()
+	if can_move:
+		if view_mode == ViewMode.FAR:
+			if is_on_over_shoulder_view(neck.rotation_degrees):
+				if model.rotation.y > 0:
+					measurement = abs(measurement)
+				if measurement > 0:
+					method(model,"over_shoulder_view",[Vector3.RIGHT])
+				else:
+					method(model,"over_shoulder_view",[Vector3.LEFT])
+				if inventory.aim && state == IDLE:
+					set_model_relative_to_target()
+				if (state == WALK) && !stop_tween:
+					measurement_tween()
+		if view_mode == ViewMode.CLOSE:
+			if out_of_neck():
+				measurement_tween(neck.rotation.y < -1)
 	over_shoulder = is_on_over_shoulder_view(neck.rotation_degrees)
 	neck.rotation.y = clamp(neck.rotation.y,-1,1)
 	rotate_model_assign()
 
-func measurement_tween() -> void:
+func out_of_neck() -> bool:
+	if neck:
+		return (neck.rotation.y >= 1 || neck.rotation.y <= -1)
+	return false
+
+func measurement_tween(plus:bool = false) -> void:
 	if playing_masurement:
 		return
 	playing_masurement = true
 	set_ik_bones(false, rotation_self_duration)
-	timer_kill_rot.start()
 	var from := model.global_rotation.y
-	var to := from - measurement
+	var to : = from + measurement if plus else from - measurement
 	rotate_motion = create_tween()
 	rotate_motion.tween_method(
 		func(weight: float):
