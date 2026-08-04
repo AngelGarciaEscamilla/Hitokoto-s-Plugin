@@ -305,7 +305,7 @@ size = Vector3(1, 0.5, 1)
 albedo_color = Color(1, 0.345077, 0.7631935, 1)
 emission_enabled = true
 emission = Color(1, 0.9322192, 0.9943455, 1)
-emission_energy_multiplier = 0.0
+emission_energy_multiplier = 12.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ulx0"]
 material = SubResource("StandardMaterial3D_aby0v")
@@ -601,7 +601,7 @@ metadata/_custom_type_script = "uid://danlpdtp3xsit"
 transform = Transform3D(0.97753716, -0.2107635, -0.00028195878, 0.2107502, 0.9774884, -0.010031536, 0.0023898904, 0.009746748, 0.99994993, 0, 8.636658, 0)
 
 [node name="Sun" type="Marker3D" parent="OrbitZ" unique_id=624894730]
-transform = Transform3D(1.0000005, 0, 0, 0, 0.8660239, 0.49999934, 0, -0.49999934, 0.8660239, 0.60760117, 0.0669384, 0.047863416)
+transform = Transform3D(1.0000005, 0, 0, 0, 0.8660239, 0.49999914, 0, -0.49999914, 0.8660239, 0.60760117, 0.0669384, 0.047863416)
 script = ExtResource("15_w0aq2")
 metadata/_custom_type_script = "uid://yxpnc6bj5crb"
 

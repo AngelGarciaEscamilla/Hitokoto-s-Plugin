@@ -16,8 +16,8 @@ uniform float sun_emission : hint_range(0.0, 1000.0, 0.1) = 2.0;
 group_uniforms MoonSettings;
 uniform sampler2D moon_texture : source_color, filter_linear_mipmap;
 uniform vec2 moon_texture_offset = vec2(-90.0, 100.0);
-uniform float moon_scale : hint_range(1.0, 100.0) = 7.0;
-uniform float moon_emission : hint_range(0.0, 10000.0, 0.1) = 20.0;
+uniform float moon_scale : hint_range(1.0, 100.0) = 10.0;
+uniform float moon_emission : hint_range(0.0, 10000.0, 0.1) = 500.0;
 uniform float moon_emission_sharpness : hint_range(1.0, 10.0, 0.1) = 2.0;
 uniform mat3 moon_matrix;
 
@@ -51,6 +51,9 @@ uniform float clouds_g_opacity : hint_range(0.0, 1.0) = 0.0;
 uniform float clouds_b_opacity : hint_range(0.0, 1.0) = 0.0;
 uniform float clouds_a_opacity : hint_range(0.0, 1.0) = 0.0;
 uniform float clouds_rotation : hint_range(-180, 180.0) = 0.0;
+uniform vec2 clouds_offset = vec2(0.0);
+uniform vec2 clouds_wind = vec2(0.01, 0.0);
+uniform float clouds_speed = 1.0;
 uniform vec4 clouds_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 
 group_uniforms RayMarching;
@@ -229,15 +232,8 @@ vec3 get_stars(vec3 eye_dir, vec3 sun_dir, float sun_energy) {
 	rotated_dir = rotate_x(rotated_dir, radians(stars_texture_offset.y));
 	vec2 uv = get_spherical_uv(rotated_dir, true, true);
 	vec3 stars = texture(stars_texture, uv).rgb;
-	
-	float sun_visibility = smoothstep(stars_threshold - 0.1, stars_threshold + 0.1, sun_dir.y);
-	float star_fade = 1.0 - sun_visibility;
-	star_fade *= clamp(1.0 - (sun_energy / 10.0), 0.0, 1.0);
-	float sun_horizon_mask = smoothstep(stars_threshold + 0.1, stars_threshold - 0.1, sun_dir.y);
-	float sun_energy_mask = clamp(1.0 - (sun_energy / 1.0), 0.0, 1.0);
-	float space_factor = smoothstep(0.0, ATMOSPHERE_HEIGHT, altitude);
-	//float visibility = max(star_fade, space_factor);
-	float visibility = max(max(sun_horizon_mask, sun_energy_mask), space_factor);
+	float night = smoothstep(0.05, -0.15, sun_dir.y);
+	float visibility = max(night, 0.0);
 	return stars * visibility * stars_intensity;
 }
 
@@ -267,7 +263,7 @@ vec3 get_moon(vec3 eye_dir, vec3 sun_dir, vec3 moon_dir, vec3 moon_color, vec3 t
 		float moon_phase = clamp(dot(moon_normal, sun_dir), 0.0, 1.0);
 
 		vec3 tex = texture(moon_texture, moon_uv).rgb;
-		moon_disk = tex * moon_color * (moon_phase + (pow(moon_phase, moon_emission_sharpness) * moon_emission * LIGHT1_ENERGY));
+		moon_disk = tex * moon_color * (moon_phase + (pow(moon_phase, moon_emission_sharpness) * moon_emission * LIGHT1_ENERGY * 0.01));
 	}
 	
 	float glow_radius = moon_angular_radius * 15.0;
@@ -283,8 +279,8 @@ vec3 get_moon(vec3 eye_dir, vec3 sun_dir, vec3 moon_dir, vec3 moon_color, vec3 t
 }
 
 float sample_cloud_density(vec2 uv) {
+	uv += clouds_offset;
 	vec4 tex = texture(clouds_texture, uv);
-	
 	vec4 channel_weights = vec4(
 		clouds_r_opacity,
 		clouds_g_opacity,

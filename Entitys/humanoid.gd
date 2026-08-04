@@ -487,8 +487,6 @@ func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
 
 func animation_rotate_look(delta:float)  -> void:
 	if !model:return
-	if !out_of_neck() && !playing_masurement:
-		stop_rotate()
 	neck.look_at(target_sight.global_position,Vector3.UP,true)
 	neck_rotation = neck.rotation
 	measurement = -measurement_shoulder
