@@ -43,9 +43,6 @@ func create_timer() -> void:
 func create_moon_light():
 	add_child(moon_light)
 	moon_light.position.y += 1
-	var meshito = MeshInstance3D.new()
-	moon_light.add_child(meshito)
-	meshito.mesh = BoxMesh.new()
 	moon_light.rotation_degrees.x = -90
 	moon_light.shadow_enabled = true
 	moon_light.set_layer_mask_value(19,true)

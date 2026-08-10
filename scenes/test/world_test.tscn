@@ -42,7 +42,7 @@
 [ext_resource type="Script" uid="uid://dosnws0bm0joa" path="res://addons/Hitokoto´s Plugin/Entitys/interpolationAnimation.gd" id="29_5rxwi"]
 [ext_resource type="Script" uid="uid://2j03bofleeam" path="res://addons/Hitokoto´s Plugin/UI/UI.gd" id="30_lhud8"]
 [ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueData.gd" id="31_5rxwi"]
-[ext_resource type="Environment" uid="uid://gh2y1cldylk6" path="res://addons/Hitokoto´s Plugin/shaders/sky.tres" id="31_8bdiv"]
+[ext_resource type="Environment" uid="uid://ryq6apmj1dqu" path="res://addons/Hitokoto´s Plugin/shaders/clouds.tres" id="31_8bdiv"]
 [ext_resource type="PackedScene" uid="uid://btb35g1bin5fc" path="res://addons/Hitokoto´s Plugin/player/model/humanoid.tscn" id="32_s5fh0"]
 [ext_resource type="Resource" uid="uid://cgeybbcmqpeem" path="res://addons/Hitokoto´s Plugin/mission/the dog.tres" id="35_brtl8"]
 [ext_resource type="ArrayMesh" uid="uid://bwsvmxja4m31u" path="res://addons/Hitokoto´s Plugin/furniture/models/steps.obj" id="37_7hfam"]
@@ -305,7 +305,7 @@ size = Vector3(1, 0.5, 1)
 albedo_color = Color(1, 0.345077, 0.7631935, 1)
 emission_enabled = true
 emission = Color(1, 0.9322192, 0.9943455, 1)
-emission_energy_multiplier = 12.0
+emission_energy_multiplier = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ulx0"]
 material = SubResource("StandardMaterial3D_aby0v")
@@ -601,8 +601,9 @@ metadata/_custom_type_script = "uid://danlpdtp3xsit"
 transform = Transform3D(0.97753716, -0.2107635, -0.00028195878, 0.2107502, 0.9774884, -0.010031536, 0.0023898904, 0.009746748, 0.99994993, 0, 8.636658, 0)
 
 [node name="Sun" type="Marker3D" parent="OrbitZ" unique_id=624894730]
-transform = Transform3D(1.0000005, 0, 0, 0, 0.8660239, 0.49999914, 0, -0.49999914, 0.8660239, 0.60760117, 0.0669384, 0.047863416)
+transform = Transform3D(1.0000005, 0, 0, 0, -0.86602384, 0.49999917, 0, -0.49999917, -0.86602384, 0.60760117, 0.0669384, 0.047863416)
 script = ExtResource("15_w0aq2")
+color_light_moon = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
 metadata/_custom_type_script = "uid://yxpnc6bj5crb"
 
 [node name="cutscene test" type="Node3D" parent="." unique_id=364013158 node_paths=PackedStringArray("c")]
@@ -835,13 +836,12 @@ omni_attenuation = -6.216
 [node name="BulbLight" type="SpotLight3D" parent="." unique_id=694082142]
 transform = Transform3D(0.0480101, -0.849659, 0.525142, 0.0198093, 0.526455, 0.849972, -0.99865, -0.0304046, 0.0421062, -18.4893, 5.16097, -13.2548)
 light_color = Color(1, 0.9322192, 0.9943455, 1)
-light_energy = 12.0
+light_energy = 0.0
 shadow_enabled = true
 spot_range = 13.521393
 spot_angle = 59.63181
 spot_angle_attenuation = 0.00023325822
 script = ExtResource("24_u50qv")
-on = true
 automatic_mode = true
 bulb_material = SubResource("StandardMaterial3D_aby0v")
 mesh = SubResource("BoxMesh_7ulx0")
@@ -859,7 +859,7 @@ transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338
 mesh = SubResource("BoxMesh_brtl8")
 
 [node name="hour" type="Marker3D" parent="Clock" unique_id=1145154694]
-transform = Transform3D(1, 0, 0, 0, 0.49999955, -0.86602485, 0, 0.86602485, 0.49999955, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/hour" unique_id=1817297042]
 transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
@@ -886,7 +886,7 @@ transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338
 mesh = SubResource("BoxMesh_brtl8")
 
 [node name="hour" type="Marker3D" parent="Clock2" unique_id=196457758]
-transform = Transform3D(1, 0, 0, 0, 0.49999955, -0.86602485, 0, 0.86602485, 0.49999955, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2/hour" unique_id=607809439]
 transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
