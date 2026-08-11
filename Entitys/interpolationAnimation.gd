@@ -79,17 +79,24 @@ func animation_value(path:String,value_in_dictionary:int) -> void:
 		return
 	animation_tree[PARAMETERSPATH+path+BLENDAMOUNTPATH] = value_anim[value_in_dictionary]
 
-func comprobate_state_anim(x:int,delta:float) -> void:
+func comprobate_state_anim(anim_index:Array,delta:float) -> void:
 	if !user.model_scene: return
 	for i in value_anim.size()-1:
 		var interpolation : float = 0.0
-		if i == x || i in current_animations:
+		if index_in_array(i,anim_index) || i in current_animations:
 			interpolation = 1.0
 			if !(i in current_animations):
 				current_animations.append(i)
-		if !(i == x):
+		if !(index_in_array(i,anim_index)):
 			current_animations.erase(i)
 		value_anim[i] = lerp(value_anim[i],interpolation,delta)
+
+func index_in_array(x:Variant,array:Array) -> bool:
+	for i in array:
+		if i == x:
+			return true
+	return false
+
 
 func set_animation(index:int,value:String) -> void:
 	if index >= 0 || index < animations.size():
@@ -105,29 +112,29 @@ func handle_animation(delta:float) -> void:
 	var blend_speed_normalized : float = blend_speed * delta
 	if !has_state():return
 	match user.state:
-		Entity.IDLE:comprobate_state_anim(index_idle,blend_speed_normalized)
-		Entity.WALK:comprobate_state_anim(index_walk,blend_speed_normalized)
-		Entity.RUN:comprobate_state_anim(2,blend_speed_normalized)
-		Entity.FALL:comprobate_state_anim(3,blend_speed_normalized)
-		Humanoid.FALLEN:comprobate_state_anim(4,blend_speed_normalized)
-		Humanoid.EXAMINE:comprobate_state_anim(5,blend_speed_normalized)
+		Entity.IDLE:comprobate_state_anim([index_idle],blend_speed_normalized)
+		Entity.WALK:comprobate_state_anim([index_walk],blend_speed_normalized)
+		Entity.RUN:comprobate_state_anim([2],blend_speed_normalized)
+		Entity.FALL:comprobate_state_anim([3],blend_speed_normalized)
+		Humanoid.FALLEN:comprobate_state_anim([4],blend_speed_normalized)
+		Humanoid.EXAMINE:comprobate_state_anim([5],blend_speed_normalized)
 	if !("state_hands" in user):return
 	if (inventory.is_interacted() && !inventory.current_item):
 		state_hands_value_zero(0.1,delta)
 		return
 	match user.state_hands:
 		Humanoid.REPOS:
-			comprobate_state_anim(6,blend_speed_normalized)
+			comprobate_state_anim([6],blend_speed_normalized)
 		Humanoid.AIM:
-			comprobate_state_anim(7,blend_speed_normalized)
+			comprobate_state_anim([7],blend_speed_normalized)
 		Humanoid.CHARGING:
-			comprobate_state_anim(8,blend_speed_normalized)
+			comprobate_state_anim([8],blend_speed_normalized)
 		Humanoid.HOLDITEM:
-			comprobate_state_anim(9,blend_speed_normalized)
+			comprobate_state_anim([9],blend_speed_normalized)
 		Humanoid.USEITEM:
-			comprobate_state_anim(10,blend_speed_normalized)
+			comprobate_state_anim([10],blend_speed_normalized)
 		Humanoid.SHOOT:
-			comprobate_state_anim(11,blend_speed_normalized)
+			comprobate_state_anim([7,11],blend_speed_normalized)
 	
 	
 func state_hands_value_zero(interpolation:float,delta:float) -> void:
