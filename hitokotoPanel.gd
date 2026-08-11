@@ -47,7 +47,7 @@ func _on_action_pressed() -> void:
 func update_time():
 	var current_root := EditorInterface.get_edited_scene_root()
 	if !current_root:return
-	var sun : Marker3D = current_root.get_tree().get_first_node_in_group("sun")
+	var sun : Node3D = current_root.get_tree().get_first_node_in_group("sun")
 	var minutes :float = minute.value
 	var hours :float = hour.value
 	if !sun:return

@@ -600,11 +600,9 @@ metadata/_custom_type_script = "uid://danlpdtp3xsit"
 [node name="OrbitZ" type="Marker3D" parent="." unique_id=1172989592]
 transform = Transform3D(0.97753716, -0.2107635, -0.00028195878, 0.2107502, 0.9774884, -0.010031536, 0.0023898904, 0.009746748, 0.99994993, 0, 8.636658, 0)
 
-[node name="Sun" type="Marker3D" parent="OrbitZ" unique_id=624894730]
-transform = Transform3D(1.0000005, 0, 0, 0, -0.86602384, 0.49999917, 0, -0.49999917, -0.86602384, 0.60760117, 0.0669384, 0.047863416)
+[node name="Sun" type="Node3D" parent="OrbitZ" unique_id=1037191033]
+transform = Transform3D(1.0000005, 0, 0, 0, -0.51503694, 0.8571655, 0, -0.8571655, -0.51503694, 0.60760117, 0.0669384, 0.047863416)
 script = ExtResource("15_w0aq2")
-color_light_moon = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
-metadata/_custom_type_script = "uid://yxpnc6bj5crb"
 
 [node name="cutscene test" type="Node3D" parent="." unique_id=364013158 node_paths=PackedStringArray("c")]
 transform = Transform3D(-0.9872004, 0, -0.15948485, 0, 1, 0, 0.15948485, 0, -0.9872004, -4.217798, 0.914067, -17.4319)
@@ -718,7 +716,7 @@ key_hud = "f3"
 metadata/_custom_type_script = "uid://cccttabml57hn"
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=418301135]
-transform = Transform3D(0.998735, -0.0049214065, 0.050043486, -3.189047e-08, 0.9951991, 0.09787112, -0.050284903, -0.09774732, 0.9939402, 0.31583983, 0.63956094, 1.5499115)
+transform = Transform3D(0.998735, -0.0049213944, 0.050043505, -0.0048851906, 0.9809957, 0.19396877, -0.05004706, -0.19396788, 0.97973067, 0.31583953, 0.9065192, 1.5499115)
 
 [node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)
@@ -859,7 +857,7 @@ transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338
 mesh = SubResource("BoxMesh_brtl8")
 
 [node name="hour" type="Marker3D" parent="Clock" unique_id=1145154694]
-transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371136e-08, 0.99999934, 0, -0.99999934, -4.371136e-08, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/hour" unique_id=1817297042]
 transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
@@ -867,7 +865,7 @@ mesh = SubResource("BoxMesh_kvr7o")
 skeleton = NodePath("../../..")
 
 [node name="minute" type="Marker3D" parent="Clock" unique_id=1234155709]
-transform = Transform3D(1, 0, 0, 0, 0.9999986, 0, 0, 0, 0.9999986, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.91354424, -0.4067359, 0, 0.4067359, 0.91354424, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/minute" unique_id=298471058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527947, -0.00369453)
@@ -886,7 +884,7 @@ transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338
 mesh = SubResource("BoxMesh_brtl8")
 
 [node name="hour" type="Marker3D" parent="Clock2" unique_id=196457758]
-transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371136e-08, 0.99999934, 0, -0.99999934, -4.371136e-08, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2/hour" unique_id=607809439]
 transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
@@ -894,7 +892,7 @@ mesh = SubResource("BoxMesh_kvr7o")
 skeleton = NodePath("../../..")
 
 [node name="minute" type="Marker3D" parent="Clock2" unique_id=1280949984]
-transform = Transform3D(1, 0, 0, 0, 0.9999986, 0, 0, 0, 0.9999986, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.91354424, -0.4067359, 0, 0.4067359, 0.91354424, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2/minute" unique_id=1540237415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527947, -0.00369453)
@@ -971,7 +969,7 @@ transform = Transform3D(1.01942e-07, 9.64944, 4.62914e-07, 2.33215, -4.21792e-07
 mesh = SubResource("SphereMesh_6hem0")
 
 [node name="floor" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1658311191]
-transform = Transform3D(96.135, 0, 0, 0, 4.68432, 0, 0, 0, 72.545, -10.3326, -1.90907, 0)
+transform = Transform3D(170.96497, 0, 0, 0, 0.248, 0, 0, 0, 120, -10.3326, 0.30658057, 0)
 layers = 0
 mesh = SubResource("BoxMesh_u0bac")
 
