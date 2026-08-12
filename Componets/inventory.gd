@@ -275,9 +275,17 @@ func _physics_process(delta: float) -> void:
 	if user.state > Entity.WALK && aim:
 		aim = false
 
-func user_front_asset() -> bool:
-	if !(current_asset_in_hand() is RigidBody3D):return false
-	return current_asset_in_hand().get_contact_count()
+func user_front_asset() -> Variant:
+	var asset = current_asset_in_hand()
+	if !asset:
+		return null
+	for area in asset.find_children("*", "Area3D", true, false):
+		for body in area.get_overlapping_bodies():
+			if body == user or user.is_ancestor_of(body):
+				continue
+
+			return body
+	return null
 
 func stop_activities() -> void:
 	current_asset_method("stop")
@@ -701,8 +709,6 @@ func add_item_in_hand(item:Asset) -> void:
 	has(slot,"inventory",self)
 	has(slot,"weapon",get_weapon(current_slot))
 	hand_target.add_child(slot)
-	if slot is RigidBody3D:
-		slot.freeze = false
 	slot.scale = global_scale(slot)
 	current_asset_method("load")
 

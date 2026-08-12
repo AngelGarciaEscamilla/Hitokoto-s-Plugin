@@ -18,7 +18,8 @@ var value_anim : Array[float] = []
 @export var blend_speed : float = 7.0
 @export var enabled_ready_animations : bool = true
 @export var animations : Array[String] = ["idle","walk","run","fall","fallen","test","test","test","test","test","test","test"
-		,"walk_backward","strafe_left","strafe_right","crouch","crouch_walk","crouch_walk_back","crouch_strafe_left","crouch_strafe_right",]:
+		,"walk_backward","strafe_left","strafe_right","strafe_right_back","strafe_left_back","crouch","crouch_walk","crouch_walk_back","crouch_strafe_left","crouch_strafe_right",
+		"crouch_strafe_right_back","crouch_strafe_left_back"]:
 		set(value):
 			animations = value
 			value_anim.resize(animations.size()-1)
@@ -160,30 +161,38 @@ func update_animations() -> void:
 		if !crouch.is_crouching:
 			normal_anims()
 		else:
-			index_idle = 15
+			index_idle = 17
 			if get_direction() == 0:
-				index_walk = 16
-			if is_walk_back():
-				index_walk = 17
+				index_walk = 18
 			if "strafe" in user && user.strafe:
-				if get_direction() == 7:
-					index_walk = 18
-				if get_direction() == 3:
+				if is_walk_back():
 					index_walk = 19
+				if get_direction() == 7:
+					index_walk = 20
+				if get_direction() == 3:
+					index_walk = 21
+				if get_direction() == 4:
+					index_walk = 22
+				if get_direction() == 6:
+					index_walk = 23
 			if is_walk():
-				index_walk = 16
+				index_walk = 18
 	else:normal_anims()
 
 func normal_anims() -> void:
 	index_idle = 0
 	index_walk = 1
-	if is_walk_back():
-		index_walk = 12
 	if "strafe" in user && user.strafe:
+		if get_direction() == 5:
+			index_walk = 12
 		if get_direction() == 7:
 			index_walk = 13
 		if get_direction() == 3:
 			index_walk = 14
+		if get_direction() == 4:
+			index_walk = 15
+		if get_direction() == 6:
+			index_walk = 16
 	if is_walk():
 		index_walk = 1
 

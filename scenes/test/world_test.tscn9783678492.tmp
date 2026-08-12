@@ -473,7 +473,6 @@ metadata/_custom_type_script = "uid://dwksru2ek2ycx"
 [node name="InterpolationState" type="Node" parent="Component" unique_id=95205369]
 process_mode = 1
 script = ExtResource("29_5rxwi")
-animations = Array[String](["idle", "walk", "run", "fall", "fallen", "test", "test", "test", "test", "test", "test", "test", "walk_backward", "strafe_left", "strafe_right", "crouch", "crouch_walk", "crouch_walk_back", "crouch_strafe_left", "crouch_strafe_right"])
 metadata/_custom_type_script = "uid://dosnws0bm0joa"
 
 [node name="CrouchState" type="Node" parent="Component" unique_id=1103969489]
@@ -672,7 +671,6 @@ inventory_slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null,
 dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_kv82n"), SubResource("Resource_lhud8")])
 exhausted_dialogue = SubResource("Resource_wa62t")
 dialogue_fall = SubResource("Resource_brtl8")
-blend_speed = 11.0
 model_scene = ExtResource("32_s5fh0")
 collision_shape = SubResource("CapsuleShape3D_wdxcr")
 bone_neck = "mixamorig_Head"
@@ -739,7 +737,6 @@ slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null, null])
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
 inventory_slots = Array[ExtResource("23_brtl8")]([null, null, null])
 dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_s5fh0")])
-blend_speed = 11.0
 model_scene = ExtResource("32_s5fh0")
 collision_shape = SubResource("CapsuleShape3D_qgejc")
 bone_neck = "mixamorig_Head"

@@ -131,7 +131,6 @@ func _process(delta:float) -> void:
 		movement_model(self,input_vec,delta)
 	process_behaviour()
 	if target_look:
-		cam_target.rotation.y = clamp(cam_target.rotation.y,-deg_to_rad(limit_look),deg_to_rad(limit_look))
 		smooth_look_at(cam_target, target_look.global_position, 1)
 	else:
 		reposition_head()

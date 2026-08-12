@@ -62,9 +62,7 @@ func call_signal() -> void:
 func _physics_process(delta:float) -> void:
 	global_delta = delta
 	if look_at && body_:
-		if "model" in body_:
-			if body_.model is Node3D:
-				body_.model.rotation.y = 0
+		body_.set_model_relative_to_target()
 		look_axis_y(body_,user.global_position,30)
 	if !aligning:
 		return

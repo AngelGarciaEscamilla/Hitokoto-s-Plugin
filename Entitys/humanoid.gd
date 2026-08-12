@@ -433,18 +433,24 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 		return
 	if interrupt_movement:
 		if is_on_wall() && is_on_floor():
-			var n := get_wall_normal()
-			n.y = 0
-			n = n.normalized()
-			var dir := direction
-			dir.y = 0
-			dir = dir.normalized()
-			var rdot := dir.dot(n)
-			dot = rdot
-			if dot < -0.9:
-				velocity -= (n * velocity.dot(n))
-				state = IDLE
-				return
+			var wall_normal := get_wall_normal()
+			wall_normal.y = 0.0
+			if wall_normal.length_squared() > 0.0:
+				wall_normal = wall_normal.normalized()
+				var move_dir := direction
+				move_dir.y = 0.0
+				if move_dir.length_squared() > 0.0:
+					move_dir = move_dir.normalized()
+					var into_wall := move_dir.dot(wall_normal)
+					if into_wall < -0.1:
+						var normal_velocity := velocity.dot(wall_normal)
+						if normal_velocity < 0.0:
+							velocity -= wall_normal * normal_velocity
+						if into_wall < -0.9:
+							velocity.x = 0.0
+							velocity.z = 0.0
+							state = IDLE
+							return
 	if direction:
 		var target_x = direction.x * (CURRENT_SPEED_LIMIT - friction)
 		var target_z = direction.z * (CURRENT_SPEED_LIMIT - friction)
@@ -459,30 +465,26 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 
 
 func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
-	if playing_masurement || over_shoulder:
-		return
-	if advancing_to_wall():
-		return
-	if strafe:
-		if (get_direction() == Direction.RIGHT || get_direction() == Direction.LEFT) && !is_walk():
-			set_model_relative_to_target()
+	if playing_masurement:
+		if view_mode == ViewMode.CLOSE && over_shoulder:
 			return
-	var neck_back : bool = (neck.rotation_degrees.y < -90 || neck.rotation_degrees.y > 90)
+		return
+	if advancing_to_wall() || velocity.length() < 0.2:
+		return
+	if strafe && !is_walk():
+		set_model_relative_to_target()
+		return
+	var direction : int = get_direction()
 	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
-	if get_direction() == Direction.BACK || get_direction() == Direction.BACK_RIGHT || get_direction() == Direction.BACK_LEFT:
-		move_direction = target.global_basis.z * velocity.y + target.global_basis.x * velocity.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
 	var last_direction = Vector3.BACK
 	if move_direction.length() > 0.2:
 		last_direction = move_direction
 	var target_angle = Vector3.BACK.signed_angle_to(last_direction,Vector3.UP)
-	var main_keys = (get_direction() == Direction.BACK) || (get_direction() == Direction.FORWARD)
-	var laterals_keys = (get_direction() == Direction.RIGHT) || (get_direction() == Direction.LEFT)
-	var extense_keys = get_direction() == Direction.FORWARD_RIGHT || (get_direction() == Direction.FORWARD_LEFT || get_direction() == Direction.BACK_RIGHT) || (get_direction() == Direction.BACK_LEFT)
-	var current_angle = (model.global_rotation.y)
-	var interval_angle = blend_speed*delta
-	if get_direction() > Direction.IDLE && model && !playing_masurement:
+	if model && !to_target_model:
+		var current_angle = (model.global_rotation.y)
+		var interval_angle = blend_speed*delta
 		model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
 
 func animation_rotate_look(delta:float)  -> void:
@@ -501,8 +503,6 @@ func animation_rotate_look(delta:float)  -> void:
 					method(model,"over_shoulder_view",[Vector3.LEFT])
 				if inventory.aim && state == IDLE:
 					set_model_relative_to_target()
-				if (state == WALK) && !stop_tween:
-					measurement_tween()
 		if view_mode == ViewMode.CLOSE:
 			if out_of_neck():
 				measurement_tween(neck.rotation.y < -1)
@@ -594,6 +594,7 @@ func set_model_relative_to_target() -> void:
 	model_rot = create_tween()
 	model_rot.tween_property(model,"rotation:y",0.0,0.2)
 	await model_rot.finished
+	await get_tree().create_timer(0.4).timeout
 	to_target_model = false
 
 

@@ -9,7 +9,7 @@ enum Direction {IDLE=0,FORWARD=1,RIGHT=3,LEFT=7,BACK=5,FORWARD_RIGHT=2,BACK_RIGH
 	"Energy": 20,
 	"Energy_limit":[0,20],
 }
-@export_range(0,50) var blend_speed : float = 11.0
+@export_range(0,50) var blend_speed : float = 8.0
 @export_range(0,50) var friction : float = 0.0
 @export_range(0.0,20,0.1) var WALK_SPEED : float = 2.5
 @export_range(0,50) var JUMP_SIZE : float = 19.0:
@@ -79,6 +79,7 @@ var skeleton : Skeleton3D
 @export var bone_torso : String
 var torso_index : int
 var neck_index : int
+var last_rotation_y : float = 0.0
 var neck : Marker3D = Marker3D.new()
 
 @export var name_path : String
@@ -173,17 +174,12 @@ func get_crouch(node:Node=self) -> CrouchState:
 #NAVIGATION AND TARGET
 ###############################################################################################################################################
 
-var last_rotation_y := 0.0
-
 func is_rotating() -> bool:
 	var rotating := !is_equal_approx(model.rotation.y, last_rotation_y)
 	last_rotation_y = model.rotation.y
 	return rotating
 
 func get_direction() -> int:
-	if velocity.length() < 0.01:
-		return 0
-
 	var local_vel: Vector3 = global_transform.basis.inverse() * velocity
 
 	var x := axis(local_vel.x)
@@ -207,6 +203,7 @@ func get_direction() -> int:
 	if dir == Vector2i(0, 1):
 		return 5
 	return 0
+
 
 
 func axis(v: float, t := 0.25) -> int:
@@ -287,32 +284,26 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 		if state == IDLE:
 			state = WALK
 	else:
+		velocity = lerp(velocity, Vector3.ZERO, accel * delta)
 		if state == WALK || state == RUN:
 			state = IDLE
 
 func movement_model(target:Node3D,velocity:Vector2,delta:float) -> void:
 	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
-	if get_direction() == Direction.BACK || get_direction() == Direction.BACK_RIGHT || get_direction() == Direction.BACK_LEFT:
+	var direction : int = get_direction()
+	if direction == Direction.BACK || direction == Direction.BACK_RIGHT || direction == Direction.BACK_LEFT:
 		move_direction = target.global_basis.z * velocity.y + target.global_basis.x * velocity.x
 	var last_direction = Vector3.BACK
 	if move_direction.length() > 0.2:
 		last_direction = move_direction
 	var target_angle = Vector3.BACK.signed_angle_to(last_direction,Vector3.UP)
-	var main_keys = (get_direction() == Direction.BACK) || (get_direction() == Direction.FORWARD)
-	var neck_back : bool = (neck.rotation_degrees.y < -90 || neck.rotation_degrees.y > 90)
-	var laterals_keys = (get_direction() == Direction.RIGHT) || (get_direction() == Direction.LEFT  || 
-	get_direction() == Direction.FORWARD_RIGHT) || (get_direction() == Direction.FORWARD_LEFT || get_direction() == Direction.BACK_RIGHT) || (get_direction() == Direction.BACK_LEFT)
 	if model:
 		var current_angle = (model.global_rotation.y)
 		var interval_angle = blend_speed*delta
-		if main_keys:
-			model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
-			return
-		if !neck_back && laterals_keys:
-			model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
+		model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
 
 func run(value:bool):
-	if !can_run || !is_on_floor() || is_walk_back():
+	if !can_run || !is_on_floor():
 		return
 	if value:
 		if velocity.length() > 0.2:

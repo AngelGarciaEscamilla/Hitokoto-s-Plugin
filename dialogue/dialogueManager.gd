@@ -1,8 +1,7 @@
 @tool
 class_name DialogueManager extends Component
 
-@export var subtitles_scene : PackedScene = preload("res://addons/Hitokoto´s Plugin/dialogue/subtitles.tscn")
-@onready var subtitles : Label = subtitles_scene.instantiate()
+var subtitles : Node
 @onready var voice : Voice = Voice.new()
 @export var interpolation_anim : float = 0.2
 @export var distance_listener : float = 5
@@ -22,13 +21,13 @@ var current_dialogue_reproduce : DialogueData
 var is_talking : bool 
 var in_conversation : bool
 var process_function : bool
+var pause : bool
 var conversation_index : int
+var current_text_dialogue : String
+
 var interpolation : Tween
 var mixer : AnimationMixer
-var pause : bool
 var timeline_owner : DialogueManager
-
-var canva_sub  : CanvasLayer = CanvasLayer.new()
 var current : Node
 
 
@@ -40,7 +39,6 @@ const BLENDAMOUNTPATH : String = "/blend_amount"
 
 func _ready() -> void:
 	set_user()
-	add_child(canva_sub)
 	mixer = find_animation_node(user)
 
 func get_current_user() -> Node:
@@ -97,7 +95,6 @@ func start_conversation() -> void:
 
 func _process(delta:float) -> void:
 	if distance_listener > 0:
-		canva_sub.visible = on_near_from_target(distance_listener)
 		if limit_distance_dialogue && !on_near_from_target(distance_listener):
 			pause_conversation()
 
@@ -126,7 +123,7 @@ func condition_alternative(dialogue:DialogueData) -> bool:
 func reproduce_dialogue(dialogue: DialogueData) -> void:
 	if !dialogue || disabled:
 		return
-	await stop_dialogue()
+	stop_dialogue()
 	if current_dialogue_reproduce:
 		emit_signal("finished_dialogue",current_dialogue_reproduce)
 	is_talking = true
@@ -141,6 +138,7 @@ func reproduce_dialogue(dialogue: DialogueData) -> void:
 	emit_signal("init_dialogue",dialogue)
 	method(user,"talking",[dialogue])
 	interpolate_anim_value(dialogue.anim, 0.0, 1.0, interpolation_anim)
+	lipsync_anim(dialogue)
 	current_dialogue_reproduce = dialogue
 	await get_tree().create_timer(dialogue.duration).timeout
 	if !current_dialogue_reproduce:return
@@ -148,7 +146,7 @@ func reproduce_dialogue(dialogue: DialogueData) -> void:
 		await interpolate_anim_value(dialogue.anim, 1.0, 0.0, interpolation_anim)
 		if dialogue.auto_hide:
 			await reset_ui()
-			emit_signal("finished_dialogue",dialogue)
+		emit_signal("finished_dialogue",dialogue)
 		return
 	if dialogue == current_dialogue_reproduce:
 		await interpolate_anim_value(dialogue.anim, 1.0, 0.0, interpolation_anim)
@@ -156,22 +154,38 @@ func reproduce_dialogue(dialogue: DialogueData) -> void:
 		await reset_ui()
 	emit_signal("finished_dialogue",dialogue)
 
+func lipsync_anim(dialogue:DialogueData) -> void:
+	var phonemes_json = FileAccess.open(dialogue.phonemes,FileAccess.READ)
+	if phonemes_json:
+		var phonemes = phonemes_json.get_as_text()
+		var data = JSON.parse_string(phonemes)
+		if phonemes:
+			for phoneme in data["phonemes"]:
+				interpolate_anim_value(phoneme["value"], 0.0, 1.0, interpolation_anim)
+				var duration = phoneme["end"] - phoneme["start"]
+				await get_tree().create_timer(duration).timeout
+				interpolate_anim_value(phoneme["value"], 1.0, 0.0, interpolation_anim)
+				if is_talking:
+					break
+
 func create_ui(dialogue:DialogueData) -> void:
 	voice = Voice.new()
-	subtitles = subtitles_scene.instantiate()
+	subtitles = get_tree().get_first_node_in_group("subtitles")
+	if !subtitles:return
 	add_child(voice)
 	if !dialogue.subtitles.current_lenguage_text().is_empty() && GameSettings.is_subtitles():
-		canva_sub.add_child(subtitles)
-	for property_name in dialogue.propertys.keys():
-		if property_name is String || property_name is StringName:
-			if property_name in subtitles:
-				subtitles.set(property_name,dialogue.propertys[property_name])
-
+		for property_name in dialogue.propertys.keys():
+			if property_name is String || property_name is StringName:
+				if property_name in subtitles:
+					subtitles.set(property_name,dialogue.propertys[property_name])
+		method(subtitles,"enter")
 
 func reset_ui() -> void:
 	if subtitles_exist():
-		await method(subtitles,"exit")
-		subtitles.queue_free()
+		subtitles.text = subtitles.text.replace(current_text_dialogue,"")
+		if subtitles.text.is_empty():
+			await method(subtitles,"exit")
+
 	if voice && voice.is_inside_tree():
 		voice.queue_free()
 	is_talking = false
@@ -208,6 +222,7 @@ func find_animation_node(node: Node) -> AnimationMixer:
 	return null
 
 func pause_conversation() -> void:
+	reset_ui()
 	if in_conversation:
 		pause = true
 
@@ -234,7 +249,11 @@ func update_global_values(dialogue: DialogueData) -> void:
 func set_dialogue_UI(dialogue : DialogueData) -> void:
 	create_ui(dialogue)
 	if GameSettings.is_subtitles() && !dialogue.subtitles.current_lenguage_text().is_empty():
-		subtitles.text = dialogue.subtitles.current_lenguage_text()
+		var tab : String = "\n"
+		if subtitles.text.is_empty():
+			tab = ""
+		current_text_dialogue = tab+dialogue.subtitles.current_lenguage_text()
+		subtitles.text += current_text_dialogue
 	if voice:
 		voice.stream = dialogue.audio
 		voice.play()

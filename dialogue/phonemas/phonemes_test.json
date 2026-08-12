@@ -1,0 +1,11 @@
+
+
+
+{
+    "text":"ola ",
+    "phonemes": [
+            {"value": "O", "start": 0.00, "end": 0.10},
+            {"value": "L", "start": 0.10, "end": 0.20},
+            {"value": "A", "start": 0.20, "end": 0.35}
+        ]
+}

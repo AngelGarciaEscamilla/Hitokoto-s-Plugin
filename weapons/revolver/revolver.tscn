@@ -8,6 +8,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_1amoo"]
 size = Vector3(0.3215332, 0.22189331, 0.10473633)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.31628418, 0.23120117, 0.10668945)
+
 [node name="Revolver" type="RigidBody3D" unique_id=553087116]
 collision_layer = 81
 collision_mask = 81
@@ -51,3 +54,9 @@ mesh = SubResource("CapsuleMesh_1amoo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=543998752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.032104492, -0.0024261475, -0.01550293)
 shape = SubResource("BoxShape3D_1amoo")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1044154241]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1273000533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028869629, -0.0076904297, -0.018432617)
+shape = SubResource("BoxShape3D_g4v7s")

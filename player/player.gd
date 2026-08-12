@@ -99,11 +99,8 @@ var blocked_direction : String
 
 var mouse_input : Vector2
 var self_yaw : float 
-var last_press_time := 0.0
-var press_count := 0
-
+var last_input_direction: int = 1
 var global_event : InputEvent
-
 var reposition_head : Tween
 
 signal key_pressed(key:String,action:int)
@@ -308,7 +305,6 @@ func movement(delta: float) -> void:
 		input_vec = Vector2.ZERO
 	movement_direction(direction,delta)
 	movement_model(cam_target,input_vec,delta)
-
 
 func _physics_process(delta:float) -> void:
 	if Engine.is_editor_hint():return

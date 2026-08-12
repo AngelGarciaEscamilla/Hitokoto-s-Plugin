@@ -5,6 +5,7 @@ class_name DialogueData extends Resource
 @export var finish_timeline : bool
 @export var auto_hide : bool = true
 @export var audio : AudioStream
+@export_file("*.json") var phonemes: String
 @export_range(0.2,99.9) var duration : float = 1.0
 @export var anim : StringName = &"test"
 @export var subtitles : TranslatorText = TranslatorText.new()
