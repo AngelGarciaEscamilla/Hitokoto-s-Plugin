@@ -255,7 +255,7 @@ func captured_mouse(value:bool) -> void:
 
 func camera_move(event: InputEvent) -> void:
 	if !cam_target || !cam_move || !camera_input || focus_node:return
-	if out_of_neck() && view_mode == ViewMode.CLOSE:
+	if out_of_neck(2.0) && view_mode == ViewMode.CLOSE:
 		return
 	global_event = event
 	if event is InputEventMouseMotion:

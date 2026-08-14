@@ -8,15 +8,18 @@ var fall : FallState = FallState.new()
 var dialogue : DialogueManager = DialogueManager.new()
 
 enum ViewMode {
-	CLOSE,
-	FAR
+	FAR,
+	CLOSE
 }
 
-@export var view_mode: ViewMode = ViewMode.FAR
+@export var view_mode: ViewMode = ViewMode.FAR:
+	set(value):
+		view_mode = value
+		strafe = view_mode
 @export var max_rotate_head : float = 100.0
 @export var rotation_self_duration: float = 0.1
 @export_range(0,180,0.1,"prefer_slider") var max_angle : float = 45
-@export_range(0.0,15,0.1) var measurement_shoulder : float = 1.0
+@export_range(0.0,15,0.1) var measurement_shoulder : float = 0.5
 @export var distance_interact : float = 3.0:
 	set(value):
 		distance_interact = value
@@ -465,10 +468,6 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 
 
 func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
-	if playing_masurement:
-		if view_mode == ViewMode.CLOSE && over_shoulder:
-			return
-		return
 	if advancing_to_wall() || velocity.length() < 0.2:
 		return
 	if strafe && !is_walk():
@@ -494,25 +493,25 @@ func animation_rotate_look(delta:float)  -> void:
 	measurement = -measurement_shoulder
 	if can_move:
 		if view_mode == ViewMode.FAR:
-			if is_on_over_shoulder_view(neck.rotation_degrees):
-				if model.rotation.y > 0:
-					measurement = abs(measurement)
-				if measurement > 0:
-					method(model,"over_shoulder_view",[Vector3.RIGHT])
-				else:
-					method(model,"over_shoulder_view",[Vector3.LEFT])
 				if inventory.aim && state == IDLE:
 					set_model_relative_to_target()
-		if view_mode == ViewMode.CLOSE:
+		if view_mode == ViewMode.CLOSE && state == IDLE:
 			if out_of_neck():
 				measurement_tween(neck.rotation.y < -1)
+	if is_on_over_shoulder_view(neck.rotation_degrees):
+			if model.rotation.y > 0:
+				measurement = abs(measurement)
+			if measurement > 0:
+				method(model,"over_shoulder_view",[Vector3.RIGHT])
+			else:
+				method(model,"over_shoulder_view",[Vector3.LEFT])
 	over_shoulder = is_on_over_shoulder_view(neck.rotation_degrees)
 	neck.rotation.y = clamp(neck.rotation.y,-1,1)
 	rotate_model_assign()
 
-func out_of_neck() -> bool:
+func out_of_neck(limit:float = 1.0) -> bool:
 	if neck:
-		return (neck.rotation.y >= 1 || neck.rotation.y <= -1)
+		return (neck_rotation.y >= limit || neck_rotation.y <= -limit)
 	return false
 
 func measurement_tween(plus:bool = false) -> void:
