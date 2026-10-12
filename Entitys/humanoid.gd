@@ -107,7 +107,12 @@ enum ViewMode {
 
 var rotation_body : Quaternion
 
-@export_category("Expressions")
+@export_category("Dialogue & Animation")
+@export var animation_paths : Array[String] = ["parameters/locomotion/blend_position","parameters/locomotion/advance/blend_position",
+"parameters/fall/blend_amount","parameters/fallen/blend_amount"]:
+	set(value):
+		animation_paths = value
+		interpolation.animation_paths = animation_paths
 @export var limit_distance_dialogue : bool = true:
 	set(value):
 		limit_distance_dialogue = value
@@ -137,6 +142,8 @@ var head_mesh : Node3D
 enum {EXAMINE=4,FALLEN=6}
 enum {REPOS,AIM,SHOOT,CHARGING,HOLDITEM,USEITEM}
 
+var last_direction = Vector3.BACK
+
 var state_hands : int
 
 var dot : float
@@ -151,9 +158,6 @@ var stop_tween : bool
 var over_shoulder : bool 
 var to_target_model : bool
 var reproducing_dialogue_damage : bool
-
-var current_anim_examine : String
-var default_anim_examine : String
 
 signal in_cutscene
 signal out_cutscene
@@ -279,7 +283,7 @@ func run(value:bool) -> void:
 	if strafe:
 		if get_direction() == Direction.LEFT || get_direction() == Direction.RIGHT:
 			return
-	if !can_run || !is_on_floor() || is_walk_back():
+	if !can_run || (is_walk_back() && strafe):
 		return
 	if value:
 		if velocity.length() > 0.1:
@@ -303,10 +307,7 @@ func examine(anim : String,animation_duration:float=0.0) -> void:
 		if !has_animation(anim):
 			return
 		if interpolation:
-			interpolation.set_animation(5,anim)
-		if default_anim_examine.is_empty():
-			default_anim_examine = current_anim_examine
-		current_anim_examine = anim
+			interpolation.anim_examine = anim
 		state = Humanoid.EXAMINE
 		velocity = Vector3.ZERO
 		set_ik_bones(false,animation_duration)
@@ -316,13 +317,10 @@ func examine(anim : String,animation_duration:float=0.0) -> void:
 				examin_stop()
 
 func examin_stop() -> void:
-	emit_signal("finish_examine",current_anim_examine)
-	current_anim_examine = ""
+	if interpolation:
+		emit_signal("finish_examine",interpolation.anim_examine)
 	if state == Humanoid.EXAMINE:
 		state = Humanoid.IDLE
-	while interpolation.value_anim[5] > 0.001:
-		await get_tree().process_frame
-	interpolation.set_animation(5, default_anim_examine)
 		
 
 func hide_head() -> void:
@@ -420,11 +418,9 @@ func exclude_body_physics() -> void:
 		else:
 			floor_max_angle = deg_to_rad(max_angle)
 
-func movement_direction(direction:Vector3,delta:float) -> void:
+func movement_direction(direction:Vector3,delta:float,input:bool=false) -> void:
 	call_deferred("exclude_body_physics")
 	if !can_move:return
-	if is_walk_back() && state == RUN:
-		state = WALK
 	if fall.in_free_fall():
 		return
 	match state:
@@ -455,36 +451,36 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 							state = IDLE
 							return
 	if direction:
-		var target_x = direction.x * (CURRENT_SPEED_LIMIT - friction)
-		var target_z = direction.z * (CURRENT_SPEED_LIMIT - friction)
-		velocity.x = move_toward(velocity.x, target_x, accel * delta)
-		velocity.z = move_toward(velocity.z, target_z, accel * delta)
+		var move_direction = (-global_basis.z * input_dir.y + -global_basis.x * input_dir.x)
+		var target = -move_direction * (CURRENT_SPEED_LIMIT - friction)
+		if input:
+			target = direction * (CURRENT_SPEED_LIMIT - friction)
+		velocity.x = move_toward(velocity.x,target.x,accel * delta)
+		velocity.z = move_toward(velocity.z,target.z,accel * delta)
 		if state == IDLE:
 			state = WALK
 	else:
-		velocity = lerp(velocity, Vector3.ZERO, accel * delta)
+		var blend := 1.0 - exp(-blend_speed * delta)
+		velocity.x = move_toward(velocity.x, 0.0, (accel*2) * delta)
+		velocity.z = move_toward(velocity.z, 0.0, (accel*2) * delta)
 		if state == WALK || state == RUN:
 			state = IDLE
 
-
 func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
-	if advancing_to_wall() || velocity.length() < 0.2:
+	if advancing_to_wall():
 		return
-	if strafe && !is_walk():
-		set_model_relative_to_target()
-		return
-	var direction : int = get_direction()
 	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
 	move_direction.y = 0.0
-	move_direction = move_direction.normalized()
-	var last_direction = Vector3.BACK
+	var interval_angle :float= (1.0 - exp(-(blend_speed) * delta))
 	if move_direction.length() > 0.2:
 		last_direction = move_direction
+		interval_angle = (1.0 - exp(-(blend_speed/2) * delta))
 	var target_angle = Vector3.BACK.signed_angle_to(last_direction,Vector3.UP)
-	if model && !to_target_model:
-		var current_angle = (model.global_rotation.y)
-		var interval_angle = blend_speed*delta
-		model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
+	if strafe:
+		model.rotation.y = lerp(model.rotation.y,0.0,interval_angle)
+		return
+	if model && state != IDLE:
+		model.global_rotation.y = (lerp_angle(model.global_rotation.y,target_angle,interval_angle))
 
 func animation_rotate_look(delta:float)  -> void:
 	if !model:return
@@ -515,11 +511,9 @@ func out_of_neck(limit:float = 1.0) -> bool:
 	return false
 
 func measurement_tween(plus:bool = false) -> void:
-	if playing_masurement:
-		return
+	if playing_masurement || self is NPC:return
 	playing_masurement = true
-	set_ik_bones(false, rotation_self_duration)
-	var from := model.global_rotation.y
+	var from : float= model.global_rotation.y
 	var to : = from + measurement if plus else from - measurement
 	rotate_motion = create_tween()
 	rotate_motion.tween_method(

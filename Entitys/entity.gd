@@ -11,7 +11,7 @@ enum Direction {IDLE=0,FORWARD=1,RIGHT=3,LEFT=7,BACK=5,FORWARD_RIGHT=2,BACK_RIGH
 }
 @export_range(0,50) var blend_speed : float = 8.0
 @export_range(0,50) var friction : float = 0.0
-@export_range(0.0,20,0.1) var WALK_SPEED : float = 2.5
+@export_range(0.0,20,0.1) var WALK_SPEED : float = 1.5
 @export_range(0,50) var JUMP_SIZE : float = 19.0:
 	set(value):
 		JUMP_SIZE = value
@@ -33,7 +33,7 @@ func get_fall(node: Node = self) -> FallState:
 @export_range(0.0,20,0.1) var RUN_SPEED : float = 4.0
 var CURRENT_SPEED_LIMIT : float = 0.0
 var CURRENT_SPEED : float = 0.0
-@export var accel : float = 4.0
+@export var accel : float = 10.0
 
 @export_category("Model")
 var collision : CollisionShape3D = CollisionShape3D.new()
@@ -91,11 +91,6 @@ var state : int = IDLE:
 		if lock_state:return
 		var old_state : int = state
 		state = value
-		# if state == IDLE:
-		# 	var smooth_idle_x = create_tween()
-		# 	var smooth_idle_z = create_tween()
-		# 	smooth_idle_x.tween_property(self,"velocity:x",0.0,0.2)
-		# 	smooth_idle_z.tween_property(self,"velocity:z",0.0,0.2)
 		var speed_state : Array = [0,WALK_SPEED,RUN_SPEED]
 		if state < FALL:
 			CURRENT_SPEED_LIMIT = speed_state[state]
@@ -117,6 +112,9 @@ var kick_knockback : bool
 var touch_target : bool
 
 var tween_animation : Tween
+
+var direction : Vector3
+var input_dir : Vector2
 
 signal in_state(old_state,new_state)
 signal setting_stadistic
@@ -152,6 +150,7 @@ func agent() -> void:
 	add_to_group(name_path)
 
 func create_model() -> void:
+	accel
 	if model_scene:
 		create_collision()
 		add_child(model)
@@ -203,6 +202,13 @@ func get_direction() -> int:
 	if dir == Vector2i(0, 1):
 		return 5
 	return 0
+
+func get_direction_vector() -> Vector2:
+	var local_vel: Vector3 = global_transform.basis.inverse() * velocity
+	var x := axis(local_vel.x)
+	var z := axis(local_vel.z)
+	var dir = Vector2i(x, z)
+	return dir
 
 
 
@@ -284,7 +290,9 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 		if state == IDLE:
 			state = WALK
 	else:
-		velocity = lerp(velocity, Vector3.ZERO, accel * delta)
+		var blend := 1.0 - exp(-blend_speed * delta)
+		velocity.x = move_toward(velocity.x, 0.0, (accel*2) * delta)
+		velocity.z = move_toward(velocity.z, 0.0, (accel*2) * delta)
 		if state == WALK || state == RUN:
 			state = IDLE
 
@@ -425,7 +433,9 @@ func play(animation:String,time:float=0.0,interpolation:float=0.2) -> void:
 	animation_tree[anim], 1.0, interpolation)
 	tween_animation.tween_callback(tween_animation.kill)
 	await tween_animation.finished
-	await get_tree().create_timer(time).timeout
+	if time > 0.0:
+		await get_tree().create_timer(time).timeout
+		stop(animation,interpolation)
 	
 func stop(animation:String,interpolation:float=0.2) -> void:
 	var value_init : float = animation_tree[PARAMETERSPATH+animation+BLENDAMOUNTPATH]
@@ -516,7 +526,7 @@ func increase_energy(delta: float) -> void:
 
 func decreased_energy(delta: float) -> void:
 	if state == RUN && !is_walk_back():
-		set_stadistic("Energy",-delta)
+		set_stadistic("Energy",-((velocity.length()/2) * delta))
 
 func set_childrens(value:bool) -> void:
 	for i in get_children():

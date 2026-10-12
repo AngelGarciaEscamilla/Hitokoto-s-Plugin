@@ -3,7 +3,8 @@ class_name DialogueManager extends Component
 
 var subtitles : Node
 @onready var voice : Voice = Voice.new()
-@export var interpolation_anim : float = 0.2
+@export var anim_interpolation : float = 0.2
+@export var phoneme_interpolation : float = 0.05
 @export var distance_listener : float = 5
 @export var limit_distance_dialogue : bool = true
 
@@ -30,7 +31,7 @@ var mixer : AnimationMixer
 var timeline_owner : DialogueManager
 var current : Node
 
-
+signal out_of_range
 signal finished_dialogue(current:DialogueData)
 signal init_dialogue(current:DialogueData)
 
@@ -55,9 +56,6 @@ func find_dialogue(parent:Node) -> DialogueManager:
 	return user_dialogue
 
 func start_conversation() -> void:
-	if "state" in user:
-		if user.state == Humanoid.FALLEN:
-			return
 	if !timeline || process_function:return
 	process_function = true
 	if !timeline.has_next_dialogue() || timeline.finished || !get_current_user():
@@ -96,6 +94,7 @@ func start_conversation() -> void:
 func _process(delta:float) -> void:
 	if distance_listener > 0:
 		if limit_distance_dialogue && !on_near_from_target(distance_listener):
+			emit_signal("out_of_range")
 			pause_conversation()
 
 
@@ -137,19 +136,19 @@ func reproduce_dialogue(dialogue: DialogueData) -> void:
 			set_dialogue_UI(dialogue)
 	emit_signal("init_dialogue",dialogue)
 	method(user,"talking",[dialogue])
-	interpolate_anim_value(dialogue.anim, 0.0, 1.0, interpolation_anim)
+	interpolate_anim_value(dialogue.anim, 0.0, 1.0, anim_interpolation)
 	lipsync_anim(dialogue)
 	current_dialogue_reproduce = dialogue
 	await get_tree().create_timer(dialogue.duration).timeout
 	if !current_dialogue_reproduce:return
 	if !is_talking:
-		await interpolate_anim_value(dialogue.anim, 1.0, 0.0, interpolation_anim)
+		await interpolate_anim_value(dialogue.anim, 1.0, 0.0, anim_interpolation)
 		if dialogue.auto_hide:
 			await reset_ui()
 		emit_signal("finished_dialogue",dialogue)
 		return
 	if dialogue == current_dialogue_reproduce:
-		await interpolate_anim_value(dialogue.anim, 1.0, 0.0, interpolation_anim)
+		await interpolate_anim_value(dialogue.anim, 1.0, 0.0, anim_interpolation)
 	if dialogue.auto_hide:
 		await reset_ui()
 	emit_signal("finished_dialogue",dialogue)
@@ -160,13 +159,16 @@ func lipsync_anim(dialogue:DialogueData) -> void:
 		var phonemes = phonemes_json.get_as_text()
 		var data = JSON.parse_string(phonemes)
 		if phonemes:
+			var iterator : int = -1
 			for phoneme in data["phonemes"]:
-				interpolate_anim_value(phoneme["value"], 0.0, 1.0, interpolation_anim)
-				var duration = phoneme["end"] - phoneme["start"]
+				iterator += 1
+				interpolate_anim_value(phoneme["value"], 0.0, 1.0, phoneme_interpolation)
+				var duration = abs(phoneme["end"] - phoneme["start"])
 				await get_tree().create_timer(duration).timeout
-				interpolate_anim_value(phoneme["value"], 1.0, 0.0, interpolation_anim)
-				if is_talking:
-					break
+				interpolate_anim_value(phoneme["value"], 1.0, 0.0, phoneme_interpolation)
+				if (iterator + 1) < data["phonemes"].size():
+					var duration_to_next_phoneme : float = abs(data["phonemes"][(iterator + 1)]["start"] - phoneme["end"])
+					await get_tree().create_timer(duration_to_next_phoneme).timeout
 
 func create_ui(dialogue:DialogueData) -> void:
 	voice = Voice.new()
@@ -210,8 +212,9 @@ func interpolate_anim_value(path: String, start_value: float, end_value: float, 
 		if start_value == 1.0 && end_value == 0.0:
 			mixer.stop()
 		else:
-			mixer.play(path)
-
+			if mixer.has_animation(path):
+				mixer.play(path)
+			
 func find_animation_node(node: Node) -> AnimationMixer:
 	if node is AnimationMixer:
 		return node
@@ -228,7 +231,8 @@ func pause_conversation() -> void:
 
 func stop_dialogue() -> void:
 	if "animation_tree" in user && current_dialogue_reproduce:
-		interpolation.kill()
+		if interpolation:
+			interpolation.kill()
 		var tween := create_tween()
 		tween.tween_property(
 			user.animation_tree,

@@ -5,7 +5,7 @@ var body_ : Node3D
 
 var alignment_anim : Tween
 var align_target: Vector3
-@export_range(0.2,15,0.1) var align_speed : float = 0.25
+@export_range(0.2,15,0.1) var align_speed : float = 1.0
 var aligning := false
 var save_strafe : bool
 var look_at : bool
@@ -76,7 +76,7 @@ func _physics_process(delta:float) -> void:
 		stop_alignment()
 		call_signal()
 		return
-	var direction := to_target.normalized()
+	var direction := to_target
 	method(body_,"movement_direction",[direction,delta])
 	if !body_.has_method("movement_direction"):
 		body_.velocity.x = direction.x * align_speed

@@ -116,16 +116,18 @@ func _process(delta:float) -> void:
 	if Engine.is_editor_hint():
 		return
 	var local_vel: Vector3 = global_transform.basis.inverse() * velocity
-	var input_vec := Vector2(local_vel.x, local_vel.z)
+	var input_vec : Vector2= Vector2(local_vel.x, local_vel.z)
 	if input_vec.length() > 0.05:
 		input_vec = input_vec.normalized()
 	else:
 		input_vec = Vector2.ZERO
 	var target_pos: Vector3 = Vector3.ZERO
-	var direction : Vector3 = Vector3.ZERO
+	direction = Vector3.ZERO
 	if get_target() && current_behaviour != Behaviour.REST:
 		target_pos = get_target().global_position
 		direction = (target_pos - global_position).normalized()
+	var local_direction = global_transform.basis.inverse() * direction
+	input_dir = Vector2(local_direction.x, local_direction.z)
 	movement_direction(direction,delta)
 	if !is_freeze:
 		movement_model(self,input_vec,delta)

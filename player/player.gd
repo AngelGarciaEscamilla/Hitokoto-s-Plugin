@@ -92,6 +92,7 @@ var current_sensibility_cam : Vector2
 		use_key = value
 
 var cam_move : bool = true
+var run_pending := false
 var condition_automatic_weapon : bool
 var is_freeze : bool 
 var not_change_property_freeze : Dictionary = {}
@@ -99,7 +100,6 @@ var blocked_direction : String
 
 var mouse_input : Vector2
 var self_yaw : float 
-var last_input_direction: int = 1
 var global_event : InputEvent
 var reposition_head : Tween
 
@@ -200,10 +200,21 @@ func jump_button(delta: float):
 		fall.jump_action(delta)
 
 func run_button() -> void:
-	if key_input(run_key,KeyAction.JUST_PRESSED):
+	if state == RUN:
+		CURRENT_SPEED_LIMIT = RUN_SPEED + (0.5 if key_input(run_key, KeyAction.PRESSED) else 0.0)
+	if !key_input(run_key, KeyAction.JUST_PRESSED):
+		return
+	if state != RUN:
 		run(true)
-	if key_input(run_key,KeyAction.RELEASED):
+		return
+	if run_pending:
+		return
+	run_pending = true
+	await get_tree().create_timer(0.2).timeout
+	run_pending = false
+	if state == RUN and !key_input(run_key, KeyAction.PRESSED):
 		run(false)
+
 
 ###############################################################################
 #CREATE_TREE_____________________________________________________________________
@@ -292,18 +303,17 @@ func model_rot_with_per_bodie() -> void:
 	model.rotation.y += global_event.relative.x * current_sensibility_cam.y / 1000
 
 func movement(delta: float) -> void:
-	var input_dir = Input.get_vector(left_key, right_key, up_key, down_key)
-	var target = basis_target
-	if target.is_empty():
-		target = self.get_path()
-	var direction = (get_node(target).global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	input_dir = Input.get_vector(left_key, right_key, up_key, down_key)
+	if basis_target.is_empty():
+		basis_target = "."
 	var local_vel: Vector3 = global_transform.basis.inverse() * velocity
-	var input_vec := Vector2(local_vel.x, local_vel.z)
+	direction = (get_node(basis_target).global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var input_vec = Vector2(local_vel.x, local_vel.z)
 	if input_vec.length() > 0.05:
 		input_vec = input_vec.normalized()
 	else:
 		input_vec = Vector2.ZERO
-	movement_direction(direction,delta)
+	movement_direction(direction,delta,true)
 	movement_model(cam_target,input_vec,delta)
 
 func _physics_process(delta:float) -> void:

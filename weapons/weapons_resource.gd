@@ -25,7 +25,8 @@ class_name Weapon
 @export_range(0,999) var damage_amount : float 
 @export_range(0,999) var knockback_amount : float 
 @export_range(0,50) var scope : float = 5.0
-@export_range(0,25) var delay_to_shoot : float = 1.0
+@export_range(0,25) var wait_to_shoot : float = 1.0
+@export_range(0,25) var delay_to_shoot : float = 0.0
 @export_range(0,50) var trauma : float = 13.5
 @export var velocity : float = 30.0
 @export var sensibility_input : Vector2 = Vector2(0.7,0.7)

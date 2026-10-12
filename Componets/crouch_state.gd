@@ -60,7 +60,7 @@ func _physics_process(delta:float) -> void:
 	if !user:return
 	if !has_state():return
 	if !valid_user("PhysicsBody3D"):return
-	if !user.is_on_floor() || user.state == Humanoid.EXAMINE || user.state == Entity.RUN || user.state == Humanoid.FALLEN:
+	if !user.is_on_floor() || user.state == Humanoid.EXAMINE || user.state == Entity.RUN:
 		is_crouching = false
 	if !is_crouching:
 		collision_in_normal()

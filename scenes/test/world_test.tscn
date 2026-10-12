@@ -445,7 +445,6 @@ metadata/_custom_type_script = "uid://bofj0bjugq8hy"
 [node name="DialogueManager" type="Node" parent="Component" unique_id=611518287]
 process_mode = 1
 script = ExtResource("5_6hem0")
-interpolation_anim = 0.35
 metadata/_custom_type_script = "uid://cpw50h4bsfi2f"
 
 [node name="Interact" type="Node" parent="Component" unique_id=1123178653]
@@ -473,7 +472,6 @@ metadata/_custom_type_script = "uid://dwksru2ek2ycx"
 [node name="InterpolationState" type="Node" parent="Component" unique_id=95205369]
 process_mode = 1
 script = ExtResource("29_5rxwi")
-animations = Array[String](["idle", "walk", "run", "fall", "fallen", "test", "test", "test", "test", "test", "test", "test", "walk_backward", "strafe_left", "strafe_right", "crouch", "crouch_walk", "crouch_walk_back", "crouch_strafe_left", "crouch_strafe_right"])
 metadata/_custom_type_script = "uid://dosnws0bm0joa"
 
 [node name="CrouchState" type="Node" parent="Component" unique_id=1103969489]
@@ -633,7 +631,7 @@ transform = Transform3D(-3.6955277e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -3
 weapon = ExtResource("24_qgejc")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=895990541]
-transform = Transform3D(0.9999999, 0, 3.258414e-07, 0, 1, 0, -3.258414e-07, 0, 0.9999999, -10.289189, 0.82506037, -27.087513)
+transform = Transform3D(0.9999999, 0, 3.258414e-07, 0, 1, 0, -3.258414e-07, 0, 0.9999999, -19.4389, 0.8211138, -24.427586)
 collision_layer = 12
 collision_mask = 12
 script = ExtResource("1_3n3ca")
@@ -653,10 +651,8 @@ interact_key = "e"
 aim_key = "Mouse2"
 undo_key = "1"
 use_key = "q"
-view_mode = 1
 time_get_up = 1.0
 time_fall = 1.0
-strafe = true
 default = SubResource("Resource_3xpcf")
 slots = Array[ExtResource("43_8bdiv")]([null, ExtResource("51_3xpcf"), null])
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
@@ -673,7 +669,6 @@ inventory_slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null,
 dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_kv82n"), SubResource("Resource_lhud8")])
 exhausted_dialogue = SubResource("Resource_wa62t")
 dialogue_fall = SubResource("Resource_brtl8")
-blend_speed = 11.0
 model_scene = ExtResource("32_s5fh0")
 collision_shape = SubResource("CapsuleShape3D_wdxcr")
 bone_neck = "mixamorig_Head"
@@ -724,7 +719,7 @@ key_hud = "f3"
 metadata/_custom_type_script = "uid://cccttabml57hn"
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=418301135]
-transform = Transform3D(0.998735, -0.0049213944, 0.050043505, -0.0048851906, 0.9809957, 0.19396877, -0.05004706, -0.19396788, 0.97973067, 0.31583953, 0.9065192, 1.5499115)
+transform = Transform3D(0.99831593, -0.002526408, -0.057958543, 0.0061109737, 0.9980728, 0.06175352, 0.05769082, -0.062003702, 0.9964074, 3.8146973e-06, 0.5120292, 2.094698)
 
 [node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)
@@ -734,7 +729,6 @@ script = ExtResource("21_o7kkv")
 target_look = NodePath("../Player")
 target = NodePath("../target")
 timeline = SubResource("Resource_uhj0f")
-view_mode = 1
 measurement_shoulder = 1.0
 distance_interact = 2.0
 default = SubResource("Resource_3xpcf")
@@ -742,7 +736,6 @@ slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null, null])
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
 inventory_slots = Array[ExtResource("23_brtl8")]([null, null, null])
 dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_s5fh0")])
-blend_speed = 11.0
 model_scene = ExtResource("32_s5fh0")
 collision_shape = SubResource("CapsuleShape3D_qgejc")
 bone_neck = "mixamorig_Head"
@@ -1011,7 +1004,7 @@ transform = Transform3D(6.53869, 0, 0, 0, 3.35294, 0, 0, 0, 6.53869, -14.238, 5.
 mesh = SubResource("BoxMesh_2u76e")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1220876255]
-transform = Transform3D(0, 0, -0.5959316, 0, 0.14039443, 0, 0.19841011, 0, 0, -19.673775, 0.42982227, -26.5277)
+transform = Transform3D(0, 0, -0.5959316, 0, 0.14171325, 0, 0.23898779, 0, 0, -19.673775, 0.41288304, -26.259558)
 mesh = ExtResource("37_7hfam")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=1414139251]

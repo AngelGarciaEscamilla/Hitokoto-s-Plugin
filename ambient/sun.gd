@@ -54,9 +54,6 @@ func create_timer() -> void:
 
 func create_moon_light():
 	moon_orbit.add_child(moon_light)
-	var m = MeshInstance3D.new()
-	moon_light.add_child(m)
-	m.mesh = BoxMesh.new()
 	moon_light.position.y += 1
 	moon_light.rotation_degrees.x = -90
 	moon_light.shadow_enabled = true

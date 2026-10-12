@@ -6,7 +6,6 @@ var inventory : Array
 @export var physics_bones : PhysicalBoneSimulator3D
 @export var skeleton : Skeleton3D
 
-
 func death() -> void:
 	physics_bones.physical_bones_start_simulation()
 	user.eliminate()

@@ -187,7 +187,7 @@ func load_slot_deferred() -> void:
 		index += 1
 		if asset is Weapon:
 			set_weapon(index,slots[index])
-			attachment_gun_in_body(slots[index],index)
+			add_attachment_gun(slots[index],index)
 	if is_valid_slot(slot_interactive) && slots[slot_interactive] is Item:
 		current_item = slots[slot_interactive]
 	slot_select(current_slot)
@@ -348,7 +348,6 @@ func used_item(item:Item) -> void:
 	if is_using || !item || !(is_interacted() && flag_change_inventory && !in_inventory):return
 	if true in [!flag_change_inventory,no_actions(),!item.can_use]:return
 	emit_signal("use_item",item)
-	set_animation(10,item.use_anim)
 	user_has("state_hands",use_item_state)
 	if item.time_use > 0.0:
 		timer_use_item.wait_time = item.time_use
@@ -362,7 +361,6 @@ func load_item(item:Item,anim:bool=true) -> void:
 	if current_slot != slot_interactive:return
 	if item:
 		unequip_current_item()
-		set_animation(9,item.hold_anim)
 		flag_show_inventory = true
 		flag_change_inventory = true
 		affect_speed_item_weight(item.weight)
@@ -492,7 +490,7 @@ func has_slot_interactive() -> bool:
 func unequip_weapon(slot:int) -> void:
 	slot_select(slot_interactive)
 	set_weapon(slot,default)
-	attachment_gun_in_body(default,slot)
+	add_attachment_gun(default,slot)
 
 func charger_current_slot() -> void:
 	if no_load_asset():return
@@ -512,7 +510,6 @@ func charger_current_slot() -> void:
 			ammo += missing_ammo
 			break
 	current_asset_method("bullet_at_time",[abs(abs(missing_ammo)-current_weapon.shoot_bullet)])
-	charger_animation(current_weapon)
 	var time := current_weapon.time_to_charger
 	if current_weapon.bullet_at_time:
 		time = time / current_weapon.charger
@@ -541,7 +538,6 @@ func charger_action() -> void:
 					break
 		reboot_charger_action()
 		if !current_weapon.current_charger_full() and ammo_available():
-			charger_animation(current_weapon)
 			timer_charger.start()
 
 			var ammo_enough := 0
@@ -609,7 +605,6 @@ func unequip_current_item() -> void:
 	if is_interacted():
 		if "state_hands" in user:
 			user.state_hands = Humanoid.REPOS
-		repos_animation(current_weapon)
 		reboot_animation_per_item_use()
 		reboot_animation_per_item_hold()
 		reboot_asset_in_hand()
@@ -733,22 +728,20 @@ func shoot() -> void:
 	flag_charger = true
 	is_shooting = true
 	if !aim:
-		aim_animation(current_weapon)
 		aim = true
 		shoot_no_aim = true
 		await get_tree().create_timer(interval_asset_time).timeout
 	if !is_shooting:
 		return
-	is_shooting = false
 	if current_slot != slot:
 		return
 	method(current_cam,("add_trauma"),[current_weapon.trauma])
 	current_asset_method("shoot")
+	await get_tree().create_timer(current_weapon.delay_to_shoot).timeout
 	create_bullet(current_weapon)
 	emit_signal("shoot_weapon",current_weapon)
 	flag_show_inventory = false
 	timer_shoot.start()
-	shoot_animation(current_weapon)
 	if !current_weapon.is_melee():
 		rest_charger_bullet(current_weapon.shoot_bullet)
 		update_charger_slots()
@@ -756,6 +749,7 @@ func shoot() -> void:
 		await get_tree().create_timer(interval_asset_time).timeout
 		aim = false
 	await timer_shoot.timeout
+	is_shooting = false
 	if condition_automatic_weapon:
 		shoot()
 
@@ -804,13 +798,9 @@ func get_bullet_transform() -> Dictionary:
 func timeout_shoot() -> void:
 	flag_show_inventory = true
 	reboot_charger_action()
-	if aim:
-		aim_animation(current_weapon)
 
 
 func reboot_charger_action() -> void:
-	if !aim:
-		repos_animation(current_weapon)
 	reboot_animation_per_weapon("charger")
 	timer_charger.stop()
 	flag_charger = true
@@ -894,8 +884,7 @@ func load_weapon(weapon: Weapon = null,animation:bool=true,first_animation = tru
 			reboot_asset_in_hand()
 	reboot_repos = false
 	flag_charger = true
-	timer_shoot.wait_time = weapon.delay_to_shoot
-	repos_animation(weapon)
+	timer_shoot.wait_time = weapon.wait_to_shoot
 	set_weapon(current_slot,weapon)
 
 
@@ -926,7 +915,7 @@ func undo_aim():
 	if !is_charging():
 		change_strafe_user(false)
 		aim = false
-		repos_animation(current_weapon)
+		# repos_animation(current_weapon)
 		current_asset_method("aim",[false])
 
 func undo_aim_fov() -> void:
@@ -942,14 +931,15 @@ func aim_action() -> void:
 	reboot_charger_action()
 	current_asset_method("aim",[true])
 	emit_signal("aim_weapon")
-	aim_animation(current_weapon)
 
 ###########################################################################################
 #ANIMATION
 ###################################################################################
 
 func has_animation(animation:String) -> bool:
-	var anim : String = PARAMETERSPATH+animation+BLENDAMOUNTPATH
+	if !animation_tree:
+		return false
+	var anim : String = PARAMETERSPATH + animation + BLENDAMOUNTPATH
 	var node_tr : AnimationNodeBlendTree = animation_tree.tree_root
 	return node_tr.has_node(animation)
 
@@ -957,7 +947,6 @@ func play(animation:String,interpolation:float=0.2,duration:float=0.0)-> void:
 	var anim : String = PARAMETERSPATH+animation+BLENDAMOUNTPATH
 	if !animation_tree:return
 	if !has_animation(animation):return
-	if animation_tree[anim] == 1.0:return
 	tween_animation = create_tween()
 	tween_animation.tween_method(
 	func(value):
@@ -998,40 +987,13 @@ func apply_input_sensibility_weapon(sensibility: Vector2) -> void:
 	if "current_sensibility_cam" in user:
 		user.current_sensibility_cam = lerp(user.current_sensibility_cam,sensibility,global_delta*3.0)
 
-func repos_animation(weapon:Weapon) -> void:
-	reboot_animation_per_weapon("repos")
-	current_asset_method("repos")
-	if current_weapon:
-		emit_signal("repos_weapon",weapon)
-		set_animation(6,"repos"+weapon.type_weapon)
-		user_has("state_hands",repos_state)
-
-func charger_animation(weapon: Weapon) -> void:
-	reboot_animation_per_weapon("charger")
-	set_animation(8,"charger"+weapon.type_weapon)
-	user_has("state_hands",charging_state)
-
-func shoot_animation(weapon: Weapon) -> void:
-	reboot_animation_per_weapon("shoot")
-	set_animation(11,"shoot"+weapon.type_weapon)
-	user_has("state_hands",shoot_state)
-
-func aim_animation(weapon:Weapon) -> void:
-	user_has("state_hands",aim_state)
-	set_animation(7,"aim"+weapon.type_weapon)
-	reboot_animation_per_weapon("aim")
-
-func set_animation(index:int,value:String) -> void:
-	if !interpolation:return
-	interpolation.set_animation(index,value)
-
 func get_attachment(slot:int) -> String:
 	for i in gun_attachment:
 		if i[0] == slot:
 			return i[1]
 	return ""
 
-func attachment_gun_in_body(weapon: Weapon,slot_num:int) -> void:
+func add_attachment_gun(weapon: Weapon,slot_num:int) -> void:
 	var anchor = attachment_property_slot(slot_num)
 	if !anchor:
 		return
@@ -1059,13 +1021,6 @@ func show_all_attachment() -> void:
 					user[slot_[1]].add_child(inst)
 					inst.scale = global_scale(inst)
 
-
-func is_valid_slot(index: int) -> bool:
-	return index >= 0 && index < slots.size()
-
-func is_valid_slot_inventory(index: int) -> bool:
-	return index >= 0 && index < inventory_slots.size()
-
 func delete_all_attachment() -> void:
 	for slot_ in gun_attachment:
 		if slot_[1] in user:
@@ -1076,13 +1031,6 @@ func delete_all_attachment() -> void:
 					if !user[slot_[1]].get_children():continue
 					user[slot_[1]].get_child(0).queue_free()
 
-func attachment_property_slot(slot:int) -> Variant:
-	for slot_ in gun_attachment:
-		if slot == slot_[0] && get_weapon(slot).type.to_lower() == slot_[2].to_lower():
-			if slot_[1] in user:
-				return user[slot_[1]]
-	return null
-
 func attachment_visible() -> void:
 	if is_interacted():return
 	for slot_ in gun_attachment:
@@ -1092,6 +1040,19 @@ func attachment_visible() -> void:
 					if user[slot_[1]].get_children():
 						user[slot_[1]].get_child(0).queue_free()
 				break
+
+func is_valid_slot(index: int) -> bool:
+	return index >= 0 && index < slots.size()
+
+func is_valid_slot_inventory(index: int) -> bool:
+	return index >= 0 && index < inventory_slots.size()
+
+func attachment_property_slot(slot:int) -> Variant:
+	for slot_ in gun_attachment:
+		if slot == slot_[0] && get_weapon(slot).type.to_lower() == slot_[2].to_lower():
+			if slot_[1] in user:
+				return user[slot_[1]]
+	return null
 
 
 func global_scale(node:Node3D) -> Vector3:
