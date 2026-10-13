@@ -6,10 +6,15 @@ extends Node3D
 #0= IK
 #1= RAY
 #2= Target or step
-#3= bone name
+#3= bone attachment
+#4= bone name
+
+#setting the interpolation for the foot planting
+
 @export var foots : Array[Array]
 @export var skeleton: Skeleton3D
-@export var interpolation : float = 20.0
+@export var interpolation : float = 30.0
+@export var add_position_ray_y : float = 0.5
 var bones_idx : Array[int]
 var bone_left_idx: int
 var bone_right_idx: int
@@ -18,7 +23,7 @@ var anim : Tween
 
 func _ready() -> void:
 	for i in foots:
-		bones_idx.append(skeleton.find_bone(i[3]))
+		bones_idx.append(skeleton.find_bone(i[4]))
 		get_node_or_null(i[0]).start()
 	var root = get_parent().get_parent().get_parent().get_parent()
 	if !(root is Window) && !user:
@@ -36,9 +41,13 @@ func _add_user_exceptions(node: Node) -> void:
 func _physics_process(delta: float) -> void:
 	if !user:return
 	for i in range(foots.size()):
-		var ik = get_node_or_null(foots[i][0])
-		var ray = get_node_or_null(foots[i][1])
-		var target = get_node_or_null(foots[i][2])
+		var ik : SkeletonIK3D = get_node_or_null(foots[i][0])
+		var ray : RayCast3D = get_node_or_null(foots[i][1])
+		var target : Node3D = get_node_or_null(foots[i][2])
+		var attachment : Node3D = get_node_or_null(foots[i][3])
+		var new_pos_ray : Vector3 = attachment.global_transform.origin
+		new_pos_ray.y += add_position_ray_y
+		ray.global_transform.origin = new_pos_ray
 		_adjust_foot_height(ray, target, bones_idx[i], delta)
 		ik.influence = lerp(ik.influence,float(user.is_on_floor()),interpolation * delta)
 
