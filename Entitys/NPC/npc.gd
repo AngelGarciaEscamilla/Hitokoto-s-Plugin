@@ -39,6 +39,7 @@ func _ready() -> void:
 	dead.connect(death_entity)
 	set_model_relative_to_target()
 
+
 func create_interact() -> void:
 	add_child(interact)
 
@@ -111,6 +112,7 @@ func _physics_process(delta:float) -> void:
 		if current_behaviour == Behaviour.FALL:
 			current_behaviour = Behaviour.REST
 	move_and_slide()
+
 
 func _process(delta:float) -> void:
 	if Engine.is_editor_hint():

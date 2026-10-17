@@ -28,7 +28,7 @@ enum ViewMode {
 	set(value):
 		resistance_push = value
 		push_sense.strenght_limit = value
-
+@export var range_blocked_wall : float = 0.8
 @export var fall_damage_threshold : float = 15.0
 
 @export_range(0,99,0.1) var time_get_up : float = 7.5:
@@ -150,6 +150,8 @@ var dot : float
 var measurement : float 
 
 var neck_rotation : Vector3
+var blocked_normal :Vector3 = Vector3.ZERO
+
 var rotate_motion : Tween
 var model_rot : Tween
 
@@ -159,9 +161,11 @@ var over_shoulder : bool
 var to_target_model : bool
 var reproducing_dialogue_damage : bool
 
+
 signal in_cutscene
 signal out_cutscene
 signal in_limit_
+signal disrupted
 
 signal finish_examine(anim:String,disrupted:bool)
 
@@ -418,7 +422,7 @@ func exclude_body_physics() -> void:
 		else:
 			floor_max_angle = deg_to_rad(max_angle)
 
-func movement_direction(direction:Vector3,delta:float,input:bool=false) -> void:
+func movement_direction(direction:Vector3,delta:float) -> void:
 	call_deferred("exclude_body_physics")
 	if !can_move:return
 	if fall.in_free_fall():
@@ -430,41 +434,50 @@ func movement_direction(direction:Vector3,delta:float,input:bool=false) -> void:
 	if is_exhausted():
 		state = WALK
 		return
-	if interrupt_movement:
-		if is_on_wall() && is_on_floor():
-			var wall_normal := get_wall_normal()
-			wall_normal.y = 0.0
-			if wall_normal.length_squared() > 0.0:
-				wall_normal = wall_normal.normalized()
-				var move_dir := direction
-				move_dir.y = 0.0
-				if move_dir.length_squared() > 0.0:
-					move_dir = move_dir.normalized()
-					var into_wall := move_dir.dot(wall_normal)
-					if into_wall < -0.1:
-						var normal_velocity := velocity.dot(wall_normal)
-						if normal_velocity < 0.0:
-							velocity -= wall_normal * normal_velocity
-						if into_wall < -0.9:
-							velocity.x = 0.0
-							velocity.z = 0.0
-							state = IDLE
-							return
+	if interrupt_movement && is_on_floor() && _is_blocked_by_wall(direction):
+		velocity.x = 0.0
+		velocity.z = 0.0
+		state = IDLE
+		emit_signal("disrupted")
+		return
 	if direction:
-		var move_direction = (-global_basis.z * input_dir.y + -global_basis.x * input_dir.x)
-		var target = -move_direction * (CURRENT_SPEED_LIMIT - friction)
-		if input:
-			target = direction * (CURRENT_SPEED_LIMIT - friction)
+		var target = direction * (CURRENT_SPEED_LIMIT - friction)
 		velocity.x = move_toward(velocity.x,target.x,accel * delta)
 		velocity.z = move_toward(velocity.z,target.z,accel * delta)
 		if state == IDLE:
 			state = WALK
 	else:
-		var blend := 1.0 - exp(-blend_speed * delta)
+		var blend : float = 1.0 - exp(-blend_speed * delta)
 		velocity.x = move_toward(velocity.x, 0.0, (accel*2) * delta)
 		velocity.z = move_toward(velocity.z, 0.0, (accel*2) * delta)
 		if state == WALK || state == RUN:
 			state = IDLE
+
+func _is_blocked_by_wall(direction: Vector3) -> bool:
+	var move_dir := Vector3(direction.x, 0.0, direction.z)
+	if move_dir.length_squared() < 0.0001:
+		blocked_normal = Vector3.ZERO
+		return false
+	move_dir = move_dir.normalized()
+
+	var collision := KinematicCollision3D.new()
+	var hit := test_move(global_transform, move_dir * 0.05, collision)
+	if not hit:
+		blocked_normal = Vector3.ZERO
+		return false
+
+	var n := collision.get_normal()
+	n.y = 0.0
+	if n.length_squared() < 0.0001:
+		blocked_normal = Vector3.ZERO
+		return false
+
+	blocked_normal = n.normalized()
+	if move_dir.dot(blocked_normal) < -range_blocked_wall:
+		return true
+
+	blocked_normal = Vector3.ZERO
+	return false
 
 func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
 	if advancing_to_wall():

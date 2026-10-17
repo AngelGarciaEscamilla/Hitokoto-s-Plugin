@@ -14,7 +14,7 @@ extends Node3D
 @export var foots : Array[Array]
 @export var skeleton: Skeleton3D
 @export var interpolation : float = 30.0
-@export var add_position_ray_y : float = 0.5
+@export var add_position_ray : Vector3 = Vector3(0,0.5,0.0)
 var bones_idx : Array[int]
 var bone_left_idx: int
 var bone_right_idx: int
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		var target : Node3D = get_node_or_null(foots[i][2])
 		var attachment : Node3D = get_node_or_null(foots[i][3])
 		var new_pos_ray : Vector3 = attachment.global_transform.origin
-		new_pos_ray.y += add_position_ray_y
+		new_pos_ray += add_position_ray
 		ray.global_transform.origin = new_pos_ray
 		_adjust_foot_height(ray, target, bones_idx[i], delta)
 		ik.influence = lerp(ik.influence,float(user.is_on_floor()),interpolation * delta)

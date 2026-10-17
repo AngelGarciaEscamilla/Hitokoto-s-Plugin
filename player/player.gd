@@ -313,7 +313,7 @@ func movement(delta: float) -> void:
 		input_vec = input_vec.normalized()
 	else:
 		input_vec = Vector2.ZERO
-	movement_direction(direction,delta,true)
+	movement_direction(direction,delta)
 	movement_model(cam_target,input_vec,delta)
 
 func _physics_process(delta:float) -> void:
