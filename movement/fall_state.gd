@@ -96,8 +96,8 @@ func jump_action(delta:float) -> void:
 	if !(user is Node3D && user.is_on_floor() && can_jump) || no_share_jump:return
 	emit_signal("jump")
 	timer_fall.start()
-	state_before_jump_input = user.state
-	user_has("state",func():user.state = Humanoid.FALL)
+	state_before_jump_input = user.current_state
+	user_has("current_state",func():user.current_state = Entity.State.FALL)
 	method(user,"jump")
 	user_has("velocity",func():user.velocity.y += (JUMP_SIZE *10) * delta)
 	no_share_jump = true
@@ -117,16 +117,15 @@ func impact_floor() -> void:
 			if dialogue_sibling:
 				dialogue_sibling.stop_dialogue()
 		else:
-			user_has("state",func():
-				if user.state != Humanoid.FALLEN:
+			if has_state():
+				if user.current_state != Humanoid.State.FALLEN:
 					if state_before_jump_input >= 0:
-						user.state = state_before_jump_input
+						user.current_state = state_before_jump_input
 					else:
-						if state_before_jump == Entity.WALK || state_before_jump == Entity.RUN:
-							user.state = Entity.IDLE
+						if state_before_jump == Entity.State.WALK || state_before_jump == Entity.State.RUN:
+							user.current_state = Entity.State.IDLE
 						else:
-							user.state = state_before_jump
-						)
+							user.current_state = state_before_jump
 		is_in_free_fall = false
 		timer_fall.stop()
 		fallen = true
@@ -162,21 +161,21 @@ func _physics_process(delta:float) -> void:
 				timer_fall.start()
 				init_fall = false
 			user.velocity += user.get_gravity() * delta
-			user_has("state",func():
-				if user.state != Humanoid.FALLEN:
-					user.state = Entity.FALL)
+			user_has("current_state",func():
+				if user.current_state != Humanoid.State.FALLEN:
+					user.current_state = Entity.State.FALL)
 	else:
 		if !in_floor:
 			emit_signal("in_air",false)
 			in_floor = true
-	if !("state" in user):return
-	match user.state:
-		Entity.FALL:
+	if !has_state():return
+	match user.current_state:
+		Entity.State.FALL:
 			strength_impact += 10 * delta
 			if !is_in_free_fall:
 				method(user,"movement",[delta])
 			impact_floor()
-		Humanoid.FALLEN:
+		Humanoid.State.FALLEN:
 			user_has("can_move",func():
 				can_move_before = user.can_move
 				user.can_move = false)
@@ -195,9 +194,9 @@ func in_free_fall() -> bool:
 func _process(delta:float) -> void:
 	if Engine.is_editor_hint():return
 	if !user:return
-	if !("state" in user):return
-	match user.state:
-		Entity.FALL:
+	if !("current_state" in user):return
+	match user.current_state:
+		Entity.State.FALL:
 			if !is_in_free_fall:
 				if user.has_method("camera_move"):
 					user.camera_move(global_event)
@@ -216,16 +215,16 @@ func fallen_action() -> void:
 	timer_fall.stop()
 	emit_signal("fallen_down")
 	user_has("lock_state",func():user.lock_state = false)
-	user_has("state",func():
-		state_before = user.state
-		user.state = Humanoid.FALLEN)
+	if has_state():
+		state_before = user.current_state
+		user.current_state = Humanoid.State.FALLEN
 
 func stop_timers() -> void:
 	timer_fall.stop()
 	timer_get_up.stop()
 
 func jump_forward(forward_range: float, jump_force: float) -> void:
-	if user.state == Entity.FALL || user.is_on_wall():return
+	if user.current_state == Entity.State.FALL || user.is_on_wall():return
 	if user is Entity:
 		if user.is_walk_back() || user.get_direction() == Entity.Direction.IDLE:return
 	var forward = -user.transform.basis.z.normalized()
@@ -241,16 +240,17 @@ func to_idle() -> void:
 	emit_signal("get_up")
 	is_in_free_fall = false
 	user_has("can_move",func():
-		if state_before == Humanoid.EXAMINE:
+		if state_before == Humanoid.State.EXAMINE:
 			user.can_move = true
 		else:
 			user.can_move = !can_move_before)
 	user_has("cam_move",func():
-		if state_before == Humanoid.EXAMINE:
+		if state_before == Humanoid.State.EXAMINE:
 			user.cam_move = true
 		else:
 			user.cam_move = !cam_move_before)
-	user_has("state",func():user.state = Entity.IDLE)
+	if has_state():
+		user.current_state = Entity.State.IDLE
 	stop_timers()
 
 func push(strenght:float) -> void:

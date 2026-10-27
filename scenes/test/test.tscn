@@ -142,7 +142,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.821677, -1.063622, -6.4525
 curve = SubResource("Curve3D_l0fk2")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=1618010275]
-transform = Transform3D(-0.006236804, -0.0053009056, 0.9999627, 2.3282212e-10, 0.9998774, 0.005301564, -0.99994385, 3.30628e-05, -0.006236922, 12.088125, 0, 1.8158743)
+transform = Transform3D(-0.006236804, -0.0053009056, 0.9999627, 2.3282212e-10, 0.99987733, 0.005301564, -0.99994385, 3.30628e-05, -0.006236922, 12.088125, 0, 1.8158743)
 
 [node name="player" type="Marker3D" parent="Path3D/PathFollow3D" unique_id=143838042]
 gizmo_extents = 1.85

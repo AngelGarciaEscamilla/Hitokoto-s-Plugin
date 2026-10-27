@@ -68,15 +68,15 @@ func _process(delta:float) -> void:
 		target_speed = Vector2(user.input_dir.x,-user.input_dir.y).normalized()
 	else:
 		target_speed = Vector2(0,user.direction.length()).normalized()
-		if user.state == Entity.IDLE:
+		if user.current_state == Entity.State.IDLE:
 			target_speed = Vector2.ZERO
 	current_speed = current_speed.move_toward(-target_speed,strafe_acc*delta)
 	var strafe_input = Vector2(current_speed.x,-current_speed.y)
 	var blend := 1.0 - exp(-blend_speed * delta)
 
 	smooth_fall = lerp(smooth_fall,float(!user.is_on_floor() && user.collidable),0.1)
-	smooth_fallen = lerp(smooth_fallen,float("state" in user && user.state == Humanoid.FALLEN),0.1)
-	value_examine = lerp(value_examine,float("state" in user && user.state == Humanoid.EXAMINE && !anim_examine.is_empty()),blend)
+	smooth_fallen = lerp(smooth_fallen,float("current_state" in user && user.current_state == Humanoid.State.FALLEN),0.1)
+	value_examine = lerp(value_examine,float("current_state" in user && user.current_state == Humanoid.State.EXAMINE && !anim_examine.is_empty()),blend)
 	value_aim = lerp(value_aim,float(inventory.aim),blend)
 	value_shoot = lerp(value_shoot,float(inventory.is_shooting),blend)
 	value_charger = lerp(value_charger,float(inventory.is_charging()),blend)
@@ -89,13 +89,17 @@ func _process(delta:float) -> void:
 	animation_tree.set(animation_paths[3],smooth_fallen)
 	animation_tree.set("parameters/"+anim_examine+"/blend_amount",value_examine)
 	if current_weapon_anim && current_weapon_anim != inventory.current_weapon:
-		var aim_des = lerp(animation_tree.get("parameters/aim"+current_weapon_anim.type_weapon+"/blend_amount"),0.0,blend)
-		var repos_des = lerp(animation_tree.get("parameters/repos"+current_weapon_anim.type_weapon+"/blend_amount"),0.0,blend)
-		var shoot_des = lerp(animation_tree.get("parameters/shoot"+current_weapon_anim.type_weapon+"/blend_amount"),0.0,blend)
-		animation_tree.set("parameters/aim"+current_weapon_anim.type_weapon+"/blend_amount",aim_des)
-		animation_tree.set("parameters/repos"+current_weapon_anim.type_weapon+"/blend_amount",repos_des)
-		animation_tree.set("parameters/shoot"+current_weapon_anim.type_weapon+"/blend_amount",shoot_des)
-		animation_tree.set("parameters/charger"+current_weapon_anim.type_weapon+"/blend_amount",0.0)
+		var tween = create_tween().set_parallel(true)
+		var type = current_weapon_anim.type_weapon
+		var paths = [
+			"parameters/aim" + type + "/blend_amount",
+			"parameters/repos" + type + "/blend_amount",
+			"parameters/shoot" + type + "/blend_amount",
+			"parameters/charger" + type + "/blend_amount"
+		]
+		for path in paths:
+			if animation_tree.get(path) != null:
+				tween.tween_property(animation_tree, path, 0.0, blend)
 	if inventory && inventory.current_weapon:
 		current_weapon_anim = inventory.current_weapon
 		animation_tree.set("parameters/aim"+inventory.current_weapon.type_weapon+"/blend_amount",value_aim)

@@ -60,7 +60,7 @@ func _physics_process(delta:float) -> void:
 	if !user:return
 	if !has_state():return
 	if !valid_user("PhysicsBody3D"):return
-	if !user.is_on_floor() || user.state == Humanoid.EXAMINE || user.state == Entity.RUN:
+	if !user.is_on_floor() || user.current_state == Humanoid.State.EXAMINE || user.current_state == Entity.State.RUN:
 		is_crouching = false
 	if !is_crouching:
 		collision_in_normal()
@@ -77,7 +77,7 @@ func crouch() -> void:
 		var to = Vector3(user.global_position.x,user.global_position.y+(0.5+(user.scale.y/2)),user.global_position.z)
 		if ray_hits(user.global_position,to):
 			return
-		user_has("state",func():user.state = Entity.IDLE)
+		user_has("state",func():user.state = Entity.State.IDLE)
 		is_crouching = false
 	else:
 		if inventory && inventory.current_item && inventory.current_item.weight > 0:

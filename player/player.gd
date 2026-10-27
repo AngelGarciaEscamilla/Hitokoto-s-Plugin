@@ -186,11 +186,11 @@ func shoot_button() -> void:
 		inventory.undo_shoot()
 	
 func interact_state() -> void:
-	match state:
-		Entity.IDLE:
+	match current_state:
+		Entity.State.IDLE:
 			if InputMap.has_action(interact_key) && Input.is_action_just_pressed(interact_key):
 				interact.interact(interact.collider_index)
-		Entity.WALK:
+		Entity.State.WALK:
 			if InputMap.has_action(interact_key) && Input.is_action_just_pressed(interact_key):
 				interact.interact(interact.collider_index)
 
@@ -200,11 +200,11 @@ func jump_button(delta: float):
 		fall.jump_action(delta)
 
 func run_button() -> void:
-	if state == RUN:
+	if current_state == State.RUN:
 		CURRENT_SPEED_LIMIT = RUN_SPEED + (0.5 if key_input(run_key, KeyAction.PRESSED) else 0.0)
 	if !key_input(run_key, KeyAction.JUST_PRESSED):
 		return
-	if state != RUN:
+	if current_state != State.RUN:
 		run(true)
 		return
 	if run_pending:
@@ -212,7 +212,7 @@ func run_button() -> void:
 	run_pending = true
 	await get_tree().create_timer(0.2).timeout
 	run_pending = false
-	if state == RUN and !key_input(run_key, KeyAction.PRESSED):
+	if current_state == State.RUN and !key_input(run_key, KeyAction.PRESSED):
 		run(false)
 
 
@@ -236,7 +236,9 @@ func setting_node() -> void:
 ########################################################################################
 
 func freeze(value:bool) -> void:
-	state = IDLE
+	velocity.x = 0.0
+	velocity.z = 0.0
+	current_state = State.IDLE
 	if is_freeze == value:return
 	var propertys : Dictionary = {
 		"can_move":can_move,
@@ -303,6 +305,7 @@ func model_rot_with_per_bodie() -> void:
 	model.rotation.y += global_event.relative.x * current_sensibility_cam.y / 1000
 
 func movement(delta: float) -> void:
+	if lock_state:return
 	input_dir = Input.get_vector(left_key, right_key, up_key, down_key)
 	if basis_target.is_empty():
 		basis_target = "."
@@ -320,8 +323,8 @@ func _physics_process(delta:float) -> void:
 	if Engine.is_editor_hint():return
 	inventory.condition_automatic_weapon = key_input(shoot_key,KeyAction.PRESSED)
 	interact_state()
-	match state:
-		IDLE:
+	match current_state:
+		State.IDLE:
 			run_button()
 			shoot_button()
 			used_button()
@@ -329,14 +332,14 @@ func _physics_process(delta:float) -> void:
 			charger_button()
 			if idle_jump:
 				jump_button(delta)
-		WALK:
+		State.WALK:
 			inventory_button()
 			used_button()
 			charger_button()
 			shoot_button()
 			run_button()
 			jump_button(delta)
-		RUN:
+		State.RUN:
 			inventory_button()
 			shoot_button()
 			run_button()
@@ -355,14 +358,14 @@ func _process(delta: float) -> void:
 
 func _input(event:InputEvent) -> void:
 	if Engine.is_editor_hint():return
-	match state:
-		IDLE:
+	match current_state:
+		State.IDLE:
 			camera_move(event)
 			aim_button()
-		WALK:
+		State.WALK:
 			camera_move(event)
 			aim_button()
-		RUN:camera_move(event)
+		State.RUN:camera_move(event)
 	if input_movement():
 		if in_alignment():
 			get_meta("alignment").stop_alignment()
@@ -412,7 +415,7 @@ func failure(mission:Mission) -> void:
 			if InputMap.has_action(key):
 				Input.action_release(key)##################
 		velocity = Vector3.ZERO
-		state = IDLE
+		current_state = State.IDLE
 
 func started_alignment() -> void:
 	var restart_cam_target : Tween = create_tween()

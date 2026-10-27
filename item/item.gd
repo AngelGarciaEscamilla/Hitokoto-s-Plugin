@@ -95,12 +95,12 @@ func i(body: Node) -> void:
 			dissapear()
 
 
-func take_anim():
+func take_anim() -> void:
 	if !body_.has_method(call_method_interacter):return
 	method(body_,"freeze",[true])
 	method(body_,call_method_interacter,[examin_anim,duration_take+duration_save])
 	await get_tree().process_frame
-	if "state" in body_ && body_.state != Humanoid.EXAMINE:
+	if "current_state" in body_ && body_.current_state != Humanoid.State.EXAMINE:
 		stop()
 		return
 	await get_tree().create_timer(duration_take).timeout
@@ -108,7 +108,7 @@ func take_anim():
 	give_item()
 	if duration_save >= 0.1:
 		await get_tree().create_timer(duration_save-0.1).timeout
-	if !body_ || ("state" in body_ && body_.state != Humanoid.EXAMINE):
+	if !body_ || ("current_state" in body_ && body_.current_state != Humanoid.State.EXAMINE):
 		stop()
 		dissapear()
 		return

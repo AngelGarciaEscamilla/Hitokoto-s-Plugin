@@ -51,7 +51,9 @@ func create_inventory():
 	inventory.gun_attachment = gun_attachment
 
 func freeze(value:bool) -> void:
-	state = IDLE
+	velocity.x = 0.0
+	velocity.z = 0.0
+	current_state = State.IDLE
 	if is_freeze == value:return
 	current_behaviour = Behaviour.REST
 	velocity = Vector3.ZERO
@@ -100,9 +102,9 @@ func _physics_process(delta:float) -> void:
 			var forward = -global_transform.basis.z
 			position += forward * 1
 			get_body_in_front().apply_knockback(position,knockback_interrupt)
-	match state:
-		Entity.WALK:go_to(get_target(),delta)
-		Entity.RUN:go_to(get_target(),delta)
+	match current_state:
+		Entity.State.WALK:go_to(get_target(),delta)
+		Entity.State.RUN:go_to(get_target(),delta)
 	if !is_on_floor():
 		if !fall.is_in_free_fall:
 			current_behaviour = Behaviour.FALL
@@ -151,7 +153,7 @@ func init_dialogue(dialogue:DialogueData) -> void:
 	if (dialogue in dialogues_damage):
 		return
 	current_behaviour = Behaviour.TALKING
-	state = IDLE
+	current_state = State.IDLE
 	if interrupt_movement:
 		old_target = get_target()
 		target = NodePath()
@@ -191,7 +193,7 @@ func process_behaviour() -> void:
 			move_to_position(get_target().get_path())
 	else:
 		if is_on_floor():
-			state = IDLE
+			current_state = State.IDLE
 
 func move_to_position(target_:NodePath)->void:
 	if !target || !can_move || !(Hitokoto.get_navigation_mesh() && Hitokoto.get_navigation_mesh().navigation_mesh) || in_destination():return

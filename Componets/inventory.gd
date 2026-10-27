@@ -260,19 +260,19 @@ func _physics_process(delta: float) -> void:
 	global_delta = delta
 	if user_front_asset():
 		undo_aim()
-	match user.state:
-		Entity.IDLE:
+	match user.current_state:
+		Entity.State.IDLE:
 			aim_process()
-		Entity.WALK:
+		Entity.State.WALK:
 			aim_process()
-		Entity.RUN:
+		Entity.State.RUN:
 			undo_aim()
 			undo_aim_fov()
-		Entity.FALL:
+		Entity.State.FALL:
 			undo_aim_fov()
-		Humanoid.FALLEN:
+		Humanoid.State.FALLEN:
 			undo_aim_fov()
-	if user.state > Entity.WALK && aim:
+	if user.current_state > Entity.State.WALK && aim:
 		aim = false
 
 func user_front_asset() -> Variant:
@@ -348,7 +348,7 @@ func used_item(item:Item) -> void:
 	if is_using || !item || !(is_interacted() && flag_change_inventory && !in_inventory):return
 	if true in [!flag_change_inventory,no_actions(),!item.can_use]:return
 	emit_signal("use_item",item)
-	user_has("state_hands",use_item_state)
+	user_has("current_state_hands",use_item_state)
 	if item.time_use > 0.0:
 		timer_use_item.wait_time = item.time_use
 		timer_use_item.start()
@@ -369,7 +369,7 @@ func load_item(item:Item,anim:bool=true) -> void:
 		current_item = item
 		if anim:
 			anim_select_item(current_item)
-		user_has("state_hands",hold_item_state)
+		user_has("current_state_hands",hold_item_state)
 		current_asset_method("hold")
 	else:
 		if current_asset_in_hand():
@@ -604,7 +604,7 @@ func unequip_current_item() -> void:
 	revers_speed_item_weight()
 	if is_interacted():
 		if "state_hands" in user:
-			user.state_hands = Humanoid.REPOS
+			user.current_StateHands.state_hands = Humanoid.StateHands.REPOS
 		reboot_animation_per_item_use()
 		reboot_animation_per_item_hold()
 		reboot_asset_in_hand()
@@ -915,7 +915,6 @@ func undo_aim():
 	if !is_charging():
 		change_strafe_user(false)
 		aim = false
-		# repos_animation(current_weapon)
 		current_asset_method("aim",[false])
 
 func undo_aim_fov() -> void:
@@ -1130,19 +1129,19 @@ func user_method(method:String,args := []) -> void:
 		user.callv(method,args)
 
 func repos_state() -> void:
-	user.state_hands = Humanoid.REPOS
+	user.current_state_hands = Humanoid.StateHands.REPOS
 
 func use_item_state() -> void:
-	user.state_hands = Humanoid.USEITEM
+	user.current_state_hands = Humanoid.StateHands.USEITEM
 
 func shoot_state() -> void:
-	user.state_hands = Humanoid.SHOOT
+	user.current_state_hands = Humanoid.StateHands.SHOOT
 
 func charging_state() -> void:
-	user.state_hands = Humanoid.CHARGING
+	user.current_state_hands = Humanoid.StateHands.CHARGING
 
 func aim_state() -> void:
-	user.state_hands = Humanoid.AIM
+	user.current_state_hands = Humanoid.StateHands.AIM
 
 func hold_item_state() -> void:
-	user.state_hands = Humanoid.HOLDITEM
+	user.current_state_hands = Humanoid.StateHands.HOLDITEM

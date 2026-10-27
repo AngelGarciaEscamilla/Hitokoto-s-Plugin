@@ -85,16 +85,28 @@ var neck : Marker3D = Marker3D.new()
 @export var name_path : String
 @export var function_path : String = "update_target_location"
 
-enum {IDLE,WALK,RUN,FALL}
-var state : int = IDLE:
+enum State {IDLE,WALK,RUN,FALL,FALLEN,EXAMINE}
+var current_state : int = State.IDLE:
 	set(value):
-		if lock_state:return
-		var old_state : int = state
-		state = value
+		if lock_state:
+			return
+		var old_state : int = current_state
+		current_state = value
+		if current_state != old_state:
+			var transition : String = get_state_name(old_state)+"_"+get_state_name(current_state)
+			emit_signal("transition",get_state_name(old_state)+"_"+get_state_name(current_state))
 		var speed_state : Array = [0,WALK_SPEED,RUN_SPEED]
-		if state < FALL:
-			CURRENT_SPEED_LIMIT = speed_state[state]
-		emit_signal("in_state",old_state,state)
+		if current_state < State.FALL:
+			CURRENT_SPEED_LIMIT = speed_state[current_state]
+		emit_signal("in_state",old_state,current_state)
+
+var lock_state : bool
+
+func get_state_name(value: int) -> String:
+	for key in State.keys():
+		if State[key] == value:
+			return key	
+	return "UNKWON"
 
 var nav_agent = NavigationAgent3D.new()
 var interpolation : InterpolationState = InterpolationState.new()
@@ -107,7 +119,6 @@ const FALLPATH : String = "parameters/fall/blend_amount"
 const PARAMETERSPATH : String = "parameters/"
 const BLENDAMOUNTPATH : String = "/blend_amount"
 
-var lock_state : bool
 var kick_knockback : bool
 var touch_target : bool
 
@@ -116,12 +127,14 @@ var tween_animation : Tween
 var direction : Vector3
 var input_dir : Vector2
 
+signal transition(vel:int)
 signal in_state(old_state,new_state)
 signal setting_stadistic
 signal received_damage(damage:float)
 signal dead
 signal set_move
 signal in_target
+
 
 
 func setup_references_entity() -> void:
@@ -267,34 +280,34 @@ func get_body() -> Node3D:
 
 func movement_direction(direction:Vector3,delta:float) -> void:
 	if !can_move || kick_knockback:return
-	match state:
-		IDLE:increase_energy(delta)
-		WALK:increase_energy(delta)
-		RUN:decreased_energy(delta)
+	match current_state:
+		State.IDLE:increase_energy(delta)
+		State.WALK:increase_energy(delta)
+		State.RUN:decreased_energy(delta)
 	if is_exhausted():
-		state = WALK
+		current_state = State.WALK
 		return
 	if is_on_wall() && is_on_floor():
-		var n := get_wall_normal()
-		var dir := direction.normalized()
-		var dot := dir.dot(n)
+		var n :Vector3= get_wall_normal()
+		var dir :Vector3= direction.normalized()
+		var dot :float= dir.dot(n)
 		if dot < -0.9 && is_on_floor():
 			velocity -= n * velocity.dot(n)
-			state = IDLE
+			current_state = State.IDLE
 			return
 	if direction:
 		var target_x = direction.x * (CURRENT_SPEED_LIMIT - friction)
 		var target_z = direction.z * (CURRENT_SPEED_LIMIT - friction)
 		velocity.x = move_toward(velocity.x, target_x, accel * delta)
 		velocity.z = move_toward(velocity.z, target_z, accel * delta)
-		if state == IDLE:
-			state = WALK
+		if current_state == State.IDLE:
+			current_state = State.WALK
 	else:
 		var blend := 1.0 - exp(-blend_speed * delta)
 		velocity.x = move_toward(velocity.x, 0.0, (accel*2) * delta)
 		velocity.z = move_toward(velocity.z, 0.0, (accel*2) * delta)
-		if state == WALK || state == RUN:
-			state = IDLE
+		if current_state == State.WALK || current_state == State.RUN:
+			current_state = State.IDLE
 
 func movement_model(target:Node3D,velocity:Vector2,delta:float) -> void:
 	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
@@ -313,16 +326,9 @@ func movement_model(target:Node3D,velocity:Vector2,delta:float) -> void:
 func run(value:bool):
 	if !can_run || !is_on_floor():
 		return
-	if value:
-		if velocity.length() > 0.2:
-			state = RUN
-		else:
-			state = IDLE
-	else:
-		if velocity.length() > 0.2:
-			state = WALK
-		else:
-			state = IDLE
+	if velocity.length() <= 0.1:current_state = State.IDLE
+	elif value:current_state = State.RUN
+	else:current_state = State.WALK
 
 func round_number(value: float) -> float:
 	var rounded = round(value * 100) / 100
@@ -383,7 +389,7 @@ func go_to(destination:Node3D,delta:float,transition:float=1) -> void:
 	var next_location = nav_agent.get_next_path_position()
 	var new_velocity = (next_location-current_location).normalized()
 	if round_number_vector(global_position,true) == round_number_vector(destination.global_position,true):
-		state = IDLE
+		current_state = State.IDLE
 		emit_signal("in_target")
 		touch_target = true
 		await get_tree().create_timer(1.5).timeout
@@ -420,6 +426,8 @@ func is_walk() -> bool:
 func has_animation(animation:String) -> bool:
 	var anim : String = PARAMETERSPATH+animation+BLENDAMOUNTPATH
 	var node_tr : AnimationNodeBlendTree = animation_tree.tree_root
+	if !node_tr.has_node(animation):
+		push_error("not found animation: "+anim+", in "+self.name)
 	return node_tr.has_node(animation)
 
 func play(animation:String,time:float=0.0,interpolation:float=0.2) -> void:
@@ -521,11 +529,11 @@ func find_inventory(node: Node) -> Inventory:
 
 
 func increase_energy(delta: float) -> void:
-	if state != RUN:
+	if current_state != State.RUN:
 		set_stadistic("Energy",0.6 * delta)
 
 func decreased_energy(delta: float) -> void:
-	if state == RUN && !is_walk_back():
+	if current_state == State.RUN && !is_walk_back():
 		set_stadistic("Energy",-((velocity.length()/2) * delta))
 
 func set_childrens(value:bool) -> void:

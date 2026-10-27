@@ -10,7 +10,7 @@ func set_user() -> void:
 		name = get_script().get_global_name()
 
 func has_state() -> bool:
-	return ("state" in user)
+	return ("current_state" in user)
 
 func valid_user(type:String) -> bool:
 	return user.is_class(type)

@@ -1,12 +1,12 @@
 class_name AlignmentUser extends Component
+
+@export_range(0.2,15,0.1) var align_speed : float = 1.0
+
 var alignment : Node3D
-
 var body_ : Node3D
-
 var alignment_anim : Tween
 var align_target: Vector3
-@export_range(0.2,15,0.1) var align_speed : float = 1.0
-var aligning := false
+var aligning : bool= false
 var save_strafe : bool
 var look_at : bool
 var global_delta : float
@@ -59,29 +59,32 @@ func call_signal() -> void:
 	has(body_,"cam_move",true)
 	emit_signal("finished_alignment")
 
-func _physics_process(delta:float) -> void:
+func _physics_process(delta: float) -> void:
 	global_delta = delta
 	if look_at && body_:
-		body_.set_model_relative_to_target()
-		look_axis_y(body_,user.global_position,30)
+		look_axis_y(body_, user.global_position, 30)
 	if !aligning:
 		return
-	if body_.test_move(body_.global_transform, Vector3.ZERO) \
-	|| ("state" in body_ && body_.state != Entity.WALK):
+	if body_.test_move(body_.global_transform, Vector3.ZERO) || ("current_state" in body_ && body_.current_state != Entity.State.WALK):
 		stop_alignment()
 		return
-	var to_target := align_target - body_.global_position
-	var distance := to_target.length()
+	var to_target : Vector3 = align_target - body_.global_position
+	to_target.y = 0.0
+	var distance : float = to_target.length()
 	if distance < 0.05:
 		stop_alignment()
 		call_signal()
 		return
-	var direction := to_target
-	method(body_,"movement_direction",[direction,delta])
+	var direction : Vector3 = to_target.normalized()
+	if "input_dir" in body_:
+		var forward_dot = direction.dot(-body_.global_basis.z)
+		var right_dot = direction.dot(body_.global_basis.x)
+		body_.input_dir = Vector2(right_dot, forward_dot)
+	method(body_, "movement_direction", [direction, delta])
 	if !body_.has_method("movement_direction"):
 		body_.velocity.x = direction.x * align_speed
 		body_.velocity.z = direction.z * align_speed
-		body_.move_and_slide()
+	body_.move_and_slide()
 
 
 func stop_alignment() -> void:
@@ -95,21 +98,21 @@ func stop_alignment() -> void:
 	look_at = false
 
 func walk_in(body:Node) -> void:
-	has(body,"state",Entity.WALK)
+	has(body,"current_state",Entity.State.WALK)
 	has(body,"lock_state",true)
 
 func walk_out(body:Node) -> void:
 	has(body,"lock_state",false)
 
 func look_axis_y(node: Node3D, target: Vector3, speed_rotation: float) -> void:
-	var my_position := node.global_transform.origin
+	var my_position :Vector3 = node.global_transform.origin
 	target.y = my_position.y
-	var direction := target - my_position
+	var direction :Vector3 = target - my_position
 	if direction.length_squared() < 0.0001:
 		return
 	direction = direction.normalized()
-	var current_q := node.global_transform.basis.get_rotation_quaternion()
-	var target_q := Quaternion(Basis().looking_at(direction, Vector3.UP))
-	var t := speed_rotation * get_process_delta_time()
-	var result_q := current_q.slerp(target_q, t)
+	var current_q :Quaternion = node.global_transform.basis.get_rotation_quaternion()
+	var target_q :Quaternion = Quaternion(Basis().looking_at(direction, Vector3.UP))
+	var t :float = speed_rotation * get_process_delta_time()
+	var result_q :Quaternion = current_q.slerp(target_q, t)
 	node.global_transform.basis = Basis(result_q)

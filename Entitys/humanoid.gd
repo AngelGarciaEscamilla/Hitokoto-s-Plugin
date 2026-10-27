@@ -28,7 +28,6 @@ enum ViewMode {
 	set(value):
 		resistance_push = value
 		push_sense.strenght_limit = value
-@export var range_blocked_wall : float = 0.8
 @export var fall_damage_threshold : float = 15.0
 
 @export_range(0,99,0.1) var time_get_up : float = 7.5:
@@ -43,6 +42,7 @@ enum ViewMode {
 	set(value):
 		cooldown_jump = value
 		fall.cooldown_jump = cooldown_jump
+
 
 @export var strafe : bool
 @export var interrupt_movement : bool = true
@@ -59,6 +59,11 @@ enum ViewMode {
 @export var can_crouch : bool = true:
 	set(value):
 		can_crouch = value
+
+@export_group("Range Movement")
+@export var range_blocked_wall : float = 0.8
+@export var max_wall_angle: float = 50.0
+@export var step_height: float = 0.3
 
 @export_category("Inventory")
 @export var only_interact : bool:
@@ -138,19 +143,18 @@ var hand_target : Node3D
 var head_pos : Node3D
 var head_mesh : Node3D
 
+enum StateHands {REPOS,AIM,SHOOT,CHARGING,HOLDITEM,USEITEM}
 
-enum {EXAMINE=4,FALLEN=6}
-enum {REPOS,AIM,SHOOT,CHARGING,HOLDITEM,USEITEM}
+var current_state_hands : int
 
-var last_direction = Vector3.BACK
-
-var state_hands : int
 
 var dot : float
 var measurement : float 
 
 var neck_rotation : Vector3
-var blocked_normal :Vector3 = Vector3.ZERO
+var last_direction = Vector3.BACK
+var blocked_normal : Vector3 = Vector3.ZERO
+var smoothed_move_direction: Vector3 = Vector3.ZERO
 
 var rotate_motion : Tween
 var model_rot : Tween
@@ -177,7 +181,7 @@ func setup_signals_humanoid() -> void:
 		in_state.connect(changed_state)
 
 func changed_state(old_state:int,new_state:int) -> void:
-	if old_state == Humanoid.EXAMINE && new_state != Humanoid.EXAMINE:
+	if old_state == Humanoid.State.EXAMINE && new_state != Humanoid.State.EXAMINE:
 		examin_stop()
 
 func create_target_camera() -> void:
@@ -289,16 +293,9 @@ func run(value:bool) -> void:
 			return
 	if !can_run || (is_walk_back() && strafe):
 		return
-	if value:
-		if velocity.length() > 0.1:
-			state = RUN
-		else:
-			state = IDLE
-	else:
-		if velocity.length() > 0.1:
-			state = WALK
-		else:
-			state = IDLE
+	if velocity.length() <= 0.1:current_state = State.IDLE
+	elif value:current_state = State.RUN
+	else:current_state = State.WALK
 
 func create_inventory() -> void:
 	add_child(inventory)
@@ -307,24 +304,24 @@ func create_inventory() -> void:
 	inventory.gun_attachment = gun_attachment
 
 func examine(anim : String,animation_duration:float=0.0) -> void:
-	if state == Entity.WALK || state == Entity.IDLE:
+	if current_state == Entity.State.WALK || current_state == Entity.State.IDLE:
 		if !has_animation(anim):
 			return
 		if interpolation:
 			interpolation.anim_examine = anim
-		state = Humanoid.EXAMINE
+		current_state = Humanoid.State.EXAMINE
 		velocity = Vector3.ZERO
 		set_ik_bones(false,animation_duration)
 		if animation_duration > 0:
 			await get_tree().create_timer(animation_duration).timeout
-			if state == Humanoid.EXAMINE:
+			if current_state == Humanoid.State.EXAMINE:
 				examin_stop()
 
 func examin_stop() -> void:
 	if interpolation:
 		emit_signal("finish_examine",interpolation.anim_examine)
-	if state == Humanoid.EXAMINE:
-		state = Humanoid.IDLE
+	if current_state == Humanoid.State.EXAMINE:
+		current_state = Humanoid.State.IDLE
 		
 
 func hide_head() -> void:
@@ -427,73 +424,78 @@ func movement_direction(direction:Vector3,delta:float) -> void:
 	if !can_move:return
 	if fall.in_free_fall():
 		return
-	match state:
-		IDLE:increase_energy(delta)
-		WALK:increase_energy(delta)
-		RUN:decreased_energy(delta)
+	match current_state:
+		State.IDLE:increase_energy(delta)
+		State.WALK:increase_energy(delta)
+		State.RUN:decreased_energy(delta)
 	if is_exhausted():
-		state = WALK
+		current_state = State.WALK
 		return
 	if interrupt_movement && is_on_floor() && _is_blocked_by_wall(direction):
 		velocity.x = 0.0
 		velocity.z = 0.0
-		state = IDLE
+		current_state = State.IDLE
 		emit_signal("disrupted")
 		return
 	if direction:
 		var target = direction * (CURRENT_SPEED_LIMIT - friction)
 		velocity.x = move_toward(velocity.x,target.x,accel * delta)
 		velocity.z = move_toward(velocity.z,target.z,accel * delta)
-		if state == IDLE:
-			state = WALK
+		if current_state == State.IDLE:
+			current_state = State.WALK
 	else:
 		var blend : float = 1.0 - exp(-blend_speed * delta)
 		velocity.x = move_toward(velocity.x, 0.0, (accel*2) * delta)
 		velocity.z = move_toward(velocity.z, 0.0, (accel*2) * delta)
-		if state == WALK || state == RUN:
-			state = IDLE
+		if current_state == State.WALK || current_state == State.RUN:
+			current_state = State.IDLE
 
 func _is_blocked_by_wall(direction: Vector3) -> bool:
-	var move_dir := Vector3(direction.x, 0.0, direction.z)
+	var move_dir : Vector3 = Vector3(direction.x, 0.0, direction.z)
 	if move_dir.length_squared() < 0.0001:
 		blocked_normal = Vector3.ZERO
 		return false
 	move_dir = move_dir.normalized()
-
-	var collision := KinematicCollision3D.new()
-	var hit := test_move(global_transform, move_dir * 0.05, collision)
-	if not hit:
+	var collision : KinematicCollision3D = KinematicCollision3D.new()
+	var test_transform = global_transform
+	test_transform.origin.y += step_height
+	var hit :bool= test_move(test_transform, move_dir * 0.05, collision)
+	if !hit:
 		blocked_normal = Vector3.ZERO
 		return false
-
-	var n := collision.get_normal()
+	var n : Vector3 = collision.get_normal()
+	var angle_with_up = rad_to_deg(n.angle_to(Vector3.UP))
+	if angle_with_up < max_wall_angle:
+		blocked_normal = Vector3.ZERO
+		return false
 	n.y = 0.0
 	if n.length_squared() < 0.0001:
 		blocked_normal = Vector3.ZERO
 		return false
-
 	blocked_normal = n.normalized()
 	if move_dir.dot(blocked_normal) < -range_blocked_wall:
 		return true
-
 	blocked_normal = Vector3.ZERO
 	return false
 
 func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
 	if advancing_to_wall():
 		return
-	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
-	move_direction.y = 0.0
-	var interval_angle :float= (1.0 - exp(-(blend_speed) * delta))
-	if move_direction.length() > 0.2:
-		last_direction = move_direction
-		interval_angle = (1.0 - exp(-(blend_speed/2) * delta))
-	var target_angle = Vector3.BACK.signed_angle_to(last_direction,Vector3.UP)
+	var raw_move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
+	raw_move_direction.y = 0.0
+	if raw_move_direction.length() > 0.1:
+		var clean_direction = raw_move_direction.normalized()
+		smoothed_move_direction = smoothed_move_direction.lerp(clean_direction, 15.0 * delta)
+		last_direction = smoothed_move_direction
+	if last_direction == Vector3.ZERO:
+		last_direction = -target.global_basis.z
+	var interval_angle: float = 1.0 - exp(-blend_speed * delta)
+	var target_angle = Vector3.BACK.signed_angle_to(last_direction, Vector3.UP)
 	if strafe:
-		model.rotation.y = lerp(model.rotation.y,0.0,interval_angle)
+		model.rotation.y = lerp_angle(model.rotation.y, 0.0, interval_angle)
 		return
-	if model && state != IDLE:
-		model.global_rotation.y = (lerp_angle(model.global_rotation.y,target_angle,interval_angle))
+	if model && current_state != State.IDLE and velocity.length() > 0.01:
+		model.global_rotation.y = lerp_angle(model.global_rotation.y, target_angle, interval_angle)
 
 func animation_rotate_look(delta:float)  -> void:
 	if !model:return
@@ -502,9 +504,9 @@ func animation_rotate_look(delta:float)  -> void:
 	measurement = -measurement_shoulder
 	if can_move:
 		if view_mode == ViewMode.FAR:
-				if inventory.aim && state == IDLE:
+				if inventory.aim && current_state == State.IDLE:
 					set_model_relative_to_target()
-		if view_mode == ViewMode.CLOSE && state == IDLE:
+		if view_mode == ViewMode.CLOSE && current_state == State.IDLE:
 			if out_of_neck():
 				measurement_tween(neck.rotation.y < -1)
 	if is_on_over_shoulder_view(neck.rotation_degrees):
@@ -541,7 +543,7 @@ func measurement_tween(plus:bool = false) -> void:
 
 func is_on_over_shoulder_view(marker_rotation_degrees: Vector3,tolerance:float=0.0) -> bool:
 	var max = max_rotate_head
-	if state == IDLE:
+	if current_state == State.IDLE:
 		return marker_rotation_degrees.y < -max-tolerance || marker_rotation_degrees.y > max+tolerance
 	return marker_rotation_degrees.y < -max-tolerance || marker_rotation_degrees.y > max+tolerance
 

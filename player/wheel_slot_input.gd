@@ -1,9 +1,7 @@
 @tool
-extends Node
+extends Component
 
 var inventory : Inventory
-
-var user
 
 func _ready():
 	user = get_parent()
@@ -13,11 +11,11 @@ func _ready():
 
 func _input(event:InputEvent) -> void:
 	if !(user is Node3D):return
-	if !("state" in user):return
-	match user.state:
-		Entity.IDLE:wheel_slots_select(event)
-		Entity.WALK:wheel_slots_select(event)
-		Entity.RUN:wheel_slots_select(event)
+	if !has_state():return
+	match user.current_state:
+		Entity.State.IDLE:wheel_slots_select(event)
+		Entity.State.WALK:wheel_slots_select(event)
+		Entity.State.RUN:wheel_slots_select(event)
 
 
 func wheel_slots_select(event: InputEvent) -> void:
