@@ -19,29 +19,6 @@ var inventory : Inventory
 var animation_tree : AnimationTree
 var fall : FallState
 
-func _ready():
-	if get_parent() is Node3D:
-		set_user()
-		call_deferred("find_sibling")
-
-
-func find_sibling():
-	crouch = find_node(user,"CrouchState")
-	inventory = find_node(user,"Inventory")
-	fall = find_node(user,"FallState")
-	animation_tree = find_node(user,"AnimationTree")
-
-func find_node(node: Node, class_type:String) -> Node:
-	if node.is_class(class_type):
-		return node
-	for child in node.get_children():
-		if child.name == class_type || child.name == class_type+node.name:
-			return child
-		var result = find_node(child, class_type)
-		if result:
-			return result
-	return null
-
 var current_speed = Vector2.ZERO
 var target_speed
 var strafe_acc = 3
@@ -62,6 +39,37 @@ var anim_examine : String
 
 var current_velocity : float
 
+func _ready():
+	if get_parent() is Node3D:
+		set_user()
+		call_deferred("find_sibling")
+
+func is_foot_on_floor() -> bool:
+	if !user:return false
+	for i in get_tree().get_nodes_in_group("sole"):
+		if user.is_ancestor_of(i) && i is RayCast3D && i.is_colliding():
+			return true
+	return false
+
+
+func find_sibling():
+	crouch = find_node(user,"CrouchState")
+	inventory = find_node(user,"Inventory")
+	fall = find_node(user,"FallState")
+	animation_tree = find_node(user,"AnimationTree")
+
+func find_node(node: Node, class_type:String) -> Node:
+	if node.is_class(class_type):
+		return node
+	for child in node.get_children():
+		if child.name == class_type || child.name == class_type+node.name:
+			return child
+		var result = find_node(child, class_type)
+		if result:
+			return result
+	return null
+
+
 func _process(delta:float) -> void:
 	if Engine.is_editor_hint() || !animation_tree: return
 	if user.strafe:
@@ -72,9 +80,8 @@ func _process(delta:float) -> void:
 			target_speed = Vector2.ZERO
 	current_speed = current_speed.move_toward(-target_speed,strafe_acc*delta)
 	var strafe_input = Vector2(current_speed.x,-current_speed.y)
-	var blend := 1.0 - exp(-blend_speed * delta)
-
-	smooth_fall = lerp(smooth_fall,float(!user.is_on_floor() && user.collidable),0.1)
+	var blend :float = 1.0 - exp(-blend_speed * delta)
+	smooth_fall = lerp(smooth_fall,float(!is_foot_on_floor() && !user.is_on_floor() && user.collidable),0.1)
 	smooth_fallen = lerp(smooth_fallen,float("current_state" in user && user.current_state == Humanoid.State.FALLEN),0.1)
 	value_examine = lerp(value_examine,float("current_state" in user && user.current_state == Humanoid.State.EXAMINE && !anim_examine.is_empty()),blend)
 	value_aim = lerp(value_aim,float(inventory.aim),blend)

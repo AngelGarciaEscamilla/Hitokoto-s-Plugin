@@ -14,7 +14,7 @@ extends Node3D
 @export var foots : Array[Array]
 @export var skeleton: Skeleton3D
 @export var interpolation : float = 30.0
-@export var add_position_ray : Vector3 = Vector3(0,0.5,0.0)
+@export var add_position_ray : Vector3 = Vector3(0,0.25,0.0)
 var bones_idx : Array[int]
 var bone_left_idx: int
 var bone_right_idx: int

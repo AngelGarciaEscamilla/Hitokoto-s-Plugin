@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		if !foot_collide:
 			emit_signal("step",foot_ray.get_collider())
 			foot_collide = true
-	if !foot_ray.is_colliding():
+	else:
 		foot_collide = false
 
 func step_function(collider:Node3D) -> void:

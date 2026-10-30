@@ -98,7 +98,6 @@ var current_state : int = State.IDLE:
 		var speed_state : Array = [0,WALK_SPEED,RUN_SPEED]
 		if current_state < State.FALL:
 			CURRENT_SPEED_LIMIT = speed_state[current_state]
-		emit_signal("in_state",old_state,current_state)
 
 var lock_state : bool
 
@@ -128,7 +127,6 @@ var direction : Vector3
 var input_dir : Vector2
 
 signal transition(vel:int)
-signal in_state(old_state,new_state)
 signal setting_stadistic
 signal received_damage(damage:float)
 signal dead

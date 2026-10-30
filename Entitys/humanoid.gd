@@ -177,12 +177,6 @@ func setup_signals_humanoid() -> void:
 	var pause_callable = Callable(self, "pause")
 	if !GameTime.in_pause_game.is_connected(pause_callable):
 		GameTime.in_pause_game.connect(pause_callable)
-	if !in_state.is_connected(changed_state):
-		in_state.connect(changed_state)
-
-func changed_state(old_state:int,new_state:int) -> void:
-	if old_state == Humanoid.State.EXAMINE && new_state != Humanoid.State.EXAMINE:
-		examin_stop()
 
 func create_target_camera() -> void:
 	if cam_target && !cam_target.is_inside_tree():

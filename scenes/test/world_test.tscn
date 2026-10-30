@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bq7ojtukhreqp" path="res://addons/Hitokoto´s Plugin/UI/calendar.gd" id="1_brtl8"]
 [ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto´s Plugin/UI/load_setting.gd" id="1_fa6tm"]
 [ext_resource type="PackedScene" uid="uid://mja5xwexcqan" path="res://addons/Hitokoto´s Plugin/dialogue/subtitles.tscn" id="1_h2alf"]
-[ext_resource type="Script" uid="uid://ui0nqqye7n4t" path="res://addons/Hitokoto´s Plugin/scenes/test/test_.gd" id="2_0hrsv"]
 [ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto´s Plugin/UI/property_node.gd" id="3_3ypb7"]
 [ext_resource type="Script" uid="uid://q4xjgyqtgi15" path="res://addons/Hitokoto´s Plugin/weapons/ammo_ui.gd" id="3_lbqgv"]
 [ext_resource type="Script" uid="uid://bofj0bjugq8hy" path="res://addons/Hitokoto´s Plugin/Componets/componets.gd" id="3_tfwsm"]
@@ -104,51 +103,6 @@ metadata/_custom_type_script = "uid://dxy5ox0runloa"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4fieg"]
 
-[sub_resource type="Animation" id="Animation_dae2w"]
-length = 2.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.54, 0.88, 1.34, 1.55, 1.95),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-4.217798, 0.914067, -17.4319), Vector3(1.1945748, 0.914067, -19.069622), Vector3(5.385965, 0.914067, -16.803362), Vector3(5.3859653, 0.914067, -12.239785), Vector3(5.3859653, 0.914067, -7.2618413), Vector3(2.1517973, 0.914067, -5.9941626), Vector3(-2.3985786, 0.914067, -5.9941626)]
-}
-
-[sub_resource type="Animation" id="Animation_bvbcx"]
-resource_name = "new_animation"
-length = 5.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4.1666665),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector3(-4.217798, 0.914067, -17.4319), Vector3(-4.217798, 0.914067, -9.385335)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_aby0v"]
-_data = {
-&"RESET": SubResource("Animation_dae2w"),
-&"new_animation": SubResource("Animation_bvbcx")
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ulx0"]
-albedo_texture = ExtResource("28_wa62t")
-
-[sub_resource type="SphereMesh" id="SphereMesh_7nhvg"]
-material = SubResource("StandardMaterial3D_7ulx0")
-
 [sub_resource type="Resource" id="Resource_7nhvg"]
 script = ExtResource("21_tfwsm")
 textEN = "adawd"
@@ -202,6 +156,9 @@ condition_value = null
 metadata/_custom_type_script = "uid://bung0s3emq7k2"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wdxcr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+radius = 0.3
 
 [sub_resource type="Resource" id="Resource_b5u4b"]
 script = ExtResource("21_tfwsm")
@@ -262,6 +219,7 @@ metadata/_custom_type_script = "uid://bung0s3emq7k2"
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgejc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bn43r"]
+size = Vector3(2.3482056, 1.5185547, 2.338501)
 
 [sub_resource type="Resource" id="Resource_pqayd"]
 script = ExtResource("21_tfwsm")
@@ -609,17 +567,6 @@ transform = Transform3D(0.97753716, -0.2107635, -0.00028195878, 0.2107502, 0.977
 transform = Transform3D(1.0000005, 0, 0, 0, -0.51503694, 0.8571655, 0, -0.8571655, -0.51503694, 0.60760117, 0.0669384, 0.047863416)
 script = ExtResource("15_w0aq2")
 
-[node name="cutscene test" type="Node3D" parent="." unique_id=364013158 node_paths=PackedStringArray("c")]
-transform = Transform3D(-0.9872004, 0, -0.15948485, 0, 1, 0, 0.15948485, 0, -0.9872004, -4.217798, 0.914067, -17.4319)
-script = ExtResource("2_0hrsv")
-c = NodePath("../CutScene")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="cutscene test" unique_id=325066241]
-libraries/ = SubResource("AnimationLibrary_aby0v")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="cutscene test" unique_id=591857112]
-mesh = SubResource("SphereMesh_7nhvg")
-
 [node name="CutScene" type="Node3D" parent="." unique_id=2058591890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7836056, 1.9392518, -15.388851)
 script = ExtResource("44_df2rt")
@@ -632,9 +579,10 @@ transform = Transform3D(-3.6955277e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -3
 weapon = ExtResource("24_qgejc")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=895990541]
-transform = Transform3D(0.9999999, 0, 3.258414e-07, 0, 1, 0, -3.258414e-07, 0, 0.9999999, -11.208166, 0.8211138, -9.9057455)
+transform = Transform3D(0.9999999, 0, 3.258414e-07, 0, 1, 0, -3.258414e-07, 0, 0.9999999, -5.661929, 0.8211138, -21.66053)
 collision_layer = 12
 collision_mask = 12
+floor_snap_length = 0.04
 script = ExtResource("1_3n3ca")
 inventory_scene = ExtResource("19_qgejc")
 death_screen = ExtResource("51_bn43r")
@@ -720,7 +668,10 @@ key_hud = "f3"
 metadata/_custom_type_script = "uid://cccttabml57hn"
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=418301135]
-transform = Transform3D(0.99831593, -0.002526408, -0.057958543, 0.0061109737, 0.9980728, 0.06175352, 0.05769082, -0.062003702, 0.9964074, 3.8146973e-06, 0.5120292, 2.094698)
+transform = Transform3D(0.99831593, -0.002526408, -0.057958543, 0.0061109737, 0.9980728, 0.06175352, 0.05769082, -0.062003702, 0.9964074, 4.7683716e-06, -0.45452547, 2.094698)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1247187108]
+shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)
@@ -731,8 +682,6 @@ target_look = NodePath("../Player")
 target = NodePath("../target")
 timeline = SubResource("Resource_uhj0f")
 distance_interact = 2.0
-max_wall_angle = null
-step_height = null
 default = SubResource("Resource_3xpcf")
 slots = Array[ExtResource("23_brtl8")]([ExtResource("41_s5fh0"), null, null])
 gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
@@ -746,20 +695,20 @@ name_path = "NPC"
 metadata/_custom_type_script = "uid://ccu6rfa11wigy"
 
 [node name="CloseUp" type="Area3D" parent="." unique_id=1726554988]
-transform = Transform3D(2, 0, -5.684342e-14, 0, 2, 0, 5.684342e-14, 0, 2, -20.287285, 1.0581703, -14.199106)
+transform = Transform3D(2, 0, -5.684342e-14, 0, 2, 0, 5.684342e-14, 0, 2, -0.3246932, 1.0581703, -17.967163)
 collision_layer = 9
 collision_mask = 9
 monitorable = false
 script = ExtResource("51_cc03v")
 transition_scene = ExtResource("42_u3vuk")
 cam_path = NodePath("Camera3D")
-captured_mouse = false
 metadata/_custom_type_script = "uid://bwlst6wr3qxd6"
 
 [node name="Camera3D" type="Camera3D" parent="CloseUp" unique_id=296336601]
 transform = Transform3D(-2.2042569e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.2042569e-08, 1.6369591, 0.08660239, 0.041623592)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CloseUp" unique_id=2102501673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025543213, 0.25927734, -0.27703857)
 shape = SubResource("BoxShape3D_bn43r")
 
 [node name="ItemObject" type="StaticBody3D" parent="." unique_id=572573725]
