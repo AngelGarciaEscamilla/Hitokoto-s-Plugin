@@ -107,8 +107,6 @@ func _physics_process(delta: float) -> void:
 		Entity.State.WALK, Entity.State.RUN:
 			go_to(get_target(), delta)
 	move_and_slide()
-	if Input.is_action_just_pressed("2"):
-		interact.interact(interact.collider_index)
 
 func _process(delta:float) -> void:
 	if Engine.is_editor_hint():

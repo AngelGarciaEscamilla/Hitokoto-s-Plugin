@@ -392,7 +392,7 @@ func go_to(destination: Node3D, delta: float, transition: float = 1) -> void:
 	var new_velocity = (next_location - global_transform.origin).normalized()
 	var flat_pos = Vector3(global_position.x, 0, global_position.z)
 	var flat_dest = Vector3(destination.global_position.x, 0, destination.global_position.z)
-	if flat_pos.distance_to(flat_dest) < 0.1 && !touch_target:
+	if flat_pos.distance_to(flat_dest) < 0.1 && !touch_target && current_state != State.IDLE:
 		current_state = State.IDLE
 		velocity = Vector3.ZERO
 		emit_signal("in_target")
