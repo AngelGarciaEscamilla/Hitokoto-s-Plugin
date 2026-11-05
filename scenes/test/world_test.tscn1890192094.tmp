@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk0857mhuygf"]
+
+[ext_resource type="Script" uid="uid://13fg8hd0rbd3" path="res://addons/Hitokoto's Plugin/player/player.gd" id="1_3n3ca"]
+[ext_resource type="Resource" uid="uid://cvrfx2t72lrw2" path="res://addons/Hitokoto's Plugin/weapons/melee/triangle.tres" id="2_ft5i4"]
+[ext_resource type="Script" uid="uid://c0sxldognhkl" path="res://addons/Hitokoto's Plugin/UI/save.gd" id="2_xgo5x"]
+[ext_resource type="Script" uid="uid://ccj4iqlg53w33" path="res://addons/Hitokoto's Plugin/weapons/item/weapon_item.gd" id="4_kfor2"]
+[ext_resource type="Script" uid="uid://bnq8je56yns4x" path="res://addons/Hitokoto's Plugin/weapons/item/ammo_item.gd" id="5_d70pn"]
+[ext_resource type="Script" uid="uid://bwlst6wr3qxd6" path="res://addons/Hitokoto's Plugin/cinematics/cinematic_area.gd" id="6_nkyaq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nkyaq"]
+
+[node name="world_test" type="Node3D"]
+
+[node name="collision" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="collision"]
+transform = Transform3D(17.7952, 0, 0, 0, 0.536751, 0, 0, 0, 16.8739, 0, 0, 0)
+mesh = SubResource("BoxMesh_nkyaq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62288, 0.863326, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03256, 2.61974, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="collision"]
+transform = Transform3D(0.561564, -0.366224, 0.741975, 0, 0.896718, 0.442602, -0.827434, -0.248549, 0.503564, 10.4388, 10.9508, 3.3315)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.72741, 2.15876, -2.50327)
+script = ExtResource("1_3n3ca")
+only_interact = true
+can_courch = true
+can_jump = true
+weapon_slot_3 = ExtResource("2_ft5i4")
+screen_complete = false
+
+[node name="Save" type="Node" parent="."]
+script = ExtResource("2_xgo5x")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.28488, 0)
+
+[node name="Triangle" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.928356, 0.371693, 0, -0.371693, 0.928356, 0, 1.41299, -5.54558)
+collision_layer = 3
+collision_mask = 3
+mass = 0.7
+script = ExtResource("4_kfor2")
+weapon = ExtResource("2_ft5i4")
+
+[node name="Ammo_item" type="Area3D" parent="."]
+script = ExtResource("5_d70pn")
+ammo = 7
+
+[node name="Ammo_item2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.42036)
+script = ExtResource("5_d70pn")
+ammo = 7
+
+[node name="Cinematic_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60586, 0)
+script = ExtResource("6_nkyaq")
+metadata/_custom_type_script = "uid://bwlst6wr3qxd6"

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk0857mhuygf"]
+
+[ext_resource type="Script" path="res://addons/Hitokoto's Plugin/player/player.gd" id="1_3n3ca"]
+[ext_resource type="Resource" uid="uid://cvrfx2t72lrw2" path="res://addons/Hitokoto's Plugin/weapons/melee/triangle.tres" id="2_ft5i4"]
+[ext_resource type="Script" path="res://addons/Hitokoto's Plugin/UI/save.gd" id="2_xgo5x"]
+[ext_resource type="Script" path="res://addons/Hitokoto's Plugin/weapons/item/weapon_item.gd" id="3_di3bt"]
+[ext_resource type="Resource" uid="uid://dobaft1d3f1ht" path="res://addons/Hitokoto's Plugin/weapons/melee/cube.tres" id="4_7nogn"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ubo7i"]
+
+[node name="world_test" type="Node3D"]
+
+[node name="collision" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="collision"]
+transform = Transform3D(8.45316, 0, 0, 0, 8.45316, 0, 0, 0, 8.45316, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ubo7i")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62288, 0.863326, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03256, 2.15246, 0)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9216, 0)
+script = ExtResource("1_3n3ca")
+can_courch = true
+can_jump = true
+weapon_slot_3 = ExtResource("2_ft5i4")
+
+[node name="Save" type="Node" parent="."]
+script = ExtResource("2_xgo5x")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.28488, 0)
+
+[node name="Weapon_item" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.871363, -5.02475)
+script = ExtResource("3_di3bt")
+weapon = ExtResource("4_7nogn")

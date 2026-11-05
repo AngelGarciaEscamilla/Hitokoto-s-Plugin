@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk0857mhuygf"]
+
+[ext_resource type="Script" path="res://addons/Hitokoto's Plugin/player/player.gd" id="1_3n3ca"]
+[ext_resource type="Script" path="res://addons/Hitokoto's Plugin/UI/save.gd" id="2_xgo5x"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ubo7i"]
+
+[node name="world_test" type="Node3D"]
+
+[node name="collision" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="collision"]
+transform = Transform3D(8.45316, 0, 0, 0, 8.45316, 0, 0, 0, 8.45316, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ubo7i")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62288, 0.863326, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03256, 2.15246, 0)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9216, 0)
+script = ExtResource("1_3n3ca")
+can_courch = true
+can_jump = true
+bob = null
+bob_amb = null
+SPEED = null
+RUN_SPEED = null
+COURCH_SPEED = null
+weapon_slot_1 = null
+Note = null
+
+[node name="Save" type="Node" parent="."]
+script = ExtResource("2_xgo5x")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.28488, 0)

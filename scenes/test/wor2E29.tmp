@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk0857mhuygf"]
+
+[ext_resource type="PackedScene" uid="uid://fvc1iidmeg7q" path="res://addons/Hitokoto's Plugin/player/player.tscn" id="1_6qp7l"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ubo7i"]
+
+[node name="world_test" type="Node3D"]
+
+[node name="collision" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="collision"]
+transform = Transform3D(8.45316, 0, 0, 0, 8.45316, 0, 0, 0, 8.45316, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ubo7i")
+
+[node name="player" parent="." instance=ExtResource("1_6qp7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.901208, 0)
+bob = 6.0
+bob_amb = 0.02

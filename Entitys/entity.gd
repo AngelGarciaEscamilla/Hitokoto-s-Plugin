@@ -1,0 +1,591 @@
+@tool
+class_name Entity extends CharacterBody3D
+
+enum Direction {IDLE=0,FORWARD=1,RIGHT=3,LEFT=7,BACK=5,FORWARD_RIGHT=2,BACK_RIGHT=4,BACK_LEFT=6,FORWARD_LEFT=8}
+
+@export var stadistics : Dictionary = {
+	"Life" : 200,
+	"Life_limit": [0,200],
+	"Energy": 20,
+	"Energy_limit":[0,20],
+}
+@export_range(0,50) var blend_speed : float = 8.0
+@export_range(0,50) var friction : float = 0.0
+@export_range(0.0,20,0.1) var WALK_SPEED : float = 1.5
+@export_range(0,50) var JUMP_SIZE : float = 19.0:
+	set(value):
+		JUMP_SIZE = value
+		var fall : FallState = get_fall()
+		if fall:
+			fall.JUMP_SIZE = JUMP_SIZE
+
+func get_fall(node: Node = self) -> FallState:
+	for child in node.get_children():
+		if child is FallState:
+			return child
+
+		var fall : FallState = get_fall(child)
+		if fall:
+			return fall
+
+	return null
+
+@export_range(0.0,20,0.1) var RUN_SPEED : float = 4.0
+var CURRENT_SPEED_LIMIT : float = 0.0
+var CURRENT_SPEED : float = 0.0
+@export var accel : float = 10.0
+
+@export_category("Model")
+var collision : CollisionShape3D = CollisionShape3D.new()
+@export var model_scene : PackedScene:
+	set(value):
+		model_scene = value
+		if model && model.is_inside_tree():
+			model.queue_free()
+			model = null
+		if model_scene:
+			model = model_scene.instantiate()
+		create_model()
+@export var collision_shape : Shape3D = CapsuleShape3D.new():
+	set(value):
+		collision_shape = value
+		collision.shape = collision_shape
+
+@export var collidable : bool = true:
+	set(value):
+		collidable = value
+		collision.disabled = !value
+		emit_signal("set_move")
+
+@export var can_move : bool = true:
+	set(value):
+		can_move = value
+		emit_signal("set_move")
+
+@export var can_run : bool = true:
+	set(value):
+		can_run = value
+		if !value:
+			run(false)
+	get:
+		return can_run
+	
+var model : Node3D
+var animation_tree : AnimationTree
+var skeleton : Skeleton3D 
+@export_category("bone")
+@export var look_at_target : bool = true
+@export var bone_neck : String
+@export var bone_torso : String
+var torso_index : int
+var neck_index : int
+var last_rotation_y : float = 0.0
+var neck : Marker3D = Marker3D.new()
+
+@export var name_path : String
+@export var function_path : String = "update_target_location"
+
+enum State {IDLE,WALK,RUN,FALL,FALLEN,EXAMINE}
+var current_state : int = State.IDLE:
+	set(value):
+		if lock_state:
+			return
+		var old_state : int = current_state
+		current_state = value
+		if current_state != old_state:
+			var transition : String = get_state_name(old_state)+"_"+get_state_name(current_state)
+			emit_signal("transition",get_state_name(old_state)+"_"+get_state_name(current_state))
+		var speed_state : Array = [0,WALK_SPEED,RUN_SPEED]
+		if current_state < State.FALL:
+			CURRENT_SPEED_LIMIT = speed_state[current_state]
+
+var lock_state : bool
+
+func get_state_name(value: int) -> String:
+	for key in State.keys():
+		if State[key] == value:
+			return key	
+	return "UNKWON"
+
+var nav_agent = NavigationAgent3D.new()
+var alignment : AlignmentUser = AlignmentUser.new()
+var interpolation : InterpolationState = InterpolationState.new()
+
+const WALKPATH : String = "parameters/walk/blend_amount"
+const RUNPATH : String = "parameters/run/blend_amount"
+const IDLEPATH : String = "parameters/idle/blend_amount"
+const FALLPATH : String = "parameters/fall/blend_amount"
+
+const PARAMETERSPATH : String = "parameters/"
+const BLENDAMOUNTPATH : String = "/blend_amount"
+
+var kick_knockback : bool
+var touch_target : bool
+
+var tween_animation : Tween
+
+var direction : Vector3
+var input_dir : Vector2
+
+signal transition(vel:int)
+signal setting_stadistic
+signal received_damage(damage:float)
+signal dead
+signal set_move
+signal in_target
+
+
+
+func setup_references_entity() -> void:
+	if model_scene:
+		animation_tree = find_node(model,"AnimationTree")
+		skeleton = find_node(model,"Skeleton3D")
+		if neck && !neck.is_inside_tree():
+			model.call_deferred("add_child",neck)
+			neck.rotation_degrees.y = 180
+		call_deferred("find_bones")
+	else:
+		push_warning("dont found a model scene")
+
+func create_alignment() -> void:
+	add_child(alignment)
+
+
+func find_bones() -> void:
+	if model_scene && model:
+		neck_index = skeleton.find_bone(bone_neck)
+		torso_index  = skeleton.find_bone(bone_torso)
+
+func create_collision() -> void:
+	if collision && !collision.is_inside_tree():
+		add_child(collision)
+
+func agent() -> void:
+	add_child(nav_agent)
+	add_to_group(name_path)
+
+func create_model() -> void:
+	accel
+	if model_scene:
+		create_collision()
+		add_child(model)
+		if "user" in model:
+			model.user = self
+		setup_references_entity()
+
+func get_crouch(node:Node=self) -> CrouchState:
+	for child in node.get_children():
+		if child is CrouchState:
+			return child
+		var result = get_crouch(child)
+		if result:
+			return result
+	return null
+
+
+
+###############################################################################################################################################
+#NAVIGATION AND TARGET
+###############################################################################################################################################
+
+func is_rotating() -> bool:
+	var rotating := !is_equal_approx(model.rotation.y, last_rotation_y)
+	last_rotation_y = model.rotation.y
+	return rotating
+
+func get_direction() -> int:
+	var local_vel: Vector3 = global_transform.basis.inverse() * velocity
+
+	var x := axis(local_vel.x)
+	var z := axis(local_vel.z)
+	var dir = Vector2i(x, z)
+
+	if dir == Vector2i(0, -1):
+		return 1
+	if dir == Vector2i(1, 0):
+		return 3
+	if dir == Vector2i(-1, 0):
+		return 7
+	if dir == Vector2i(-1, -1):
+		return 8
+	if dir == Vector2i(1, -1):
+		return 2
+	if dir == Vector2i(1, 1):
+		return 4
+	if dir == Vector2i(-1, 1):
+		return 6
+	if dir == Vector2i(0, 1):
+		return 5
+	return 0
+
+func get_direction_vector() -> Vector2:
+	var local_vel: Vector3 = global_transform.basis.inverse() * velocity
+	var x := axis(local_vel.x)
+	var z := axis(local_vel.z)
+	var dir = Vector2i(x, z)
+	return dir
+
+
+
+func axis(v: float, t := 0.25) -> int:
+	if v > t:
+		return 1
+	if v < -t:
+		return -1
+	return 0
+
+func in_alignment() -> bool:
+	return has_meta("alignment") && get_meta("alignment")
+
+func apply_knockback(from_position: Vector3, force: float, force_jump: float = 0.1) -> void:
+	method(model, "apply_knockback", [force])
+	kick_knockback = true
+	var direction = global_transform.origin - from_position
+	direction = direction.normalized()
+	velocity += direction * force
+	velocity.y = force_jump 
+	await until_stopped()
+	kick_knockback = false
+
+func until_stopped():
+	while velocity.length() > 0.01:
+		await get_tree().process_frame
+
+func get_side(target: Vector3) -> float:
+	var forward = -global_transform.basis.z
+	var direction = (target - global_transform.origin).normalized()
+	var cross = forward.cross(direction)
+	return cross.y
+
+func get_body_in_front() -> Node3D:
+	var forward = -global_transform.basis.z.normalized()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is Node3D:
+			var dir = (collider.global_transform.origin - global_transform.origin).normalized()
+			var dot = forward.dot(dir)
+			if dot > 0.7:
+				return collider
+	return null
+
+func get_body() -> Node3D:
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is Node3D:
+			if collider.global_position.y < global_position.y-(scale.y):
+				continue
+			return collider
+
+	return null
+
+func movement_direction(direction:Vector3,delta:float) -> void:
+	if !can_move || kick_knockback:return
+	match current_state:
+		State.IDLE:increase_energy(delta)
+		State.WALK:increase_energy(delta)
+		State.RUN:decreased_energy(delta)
+	if is_exhausted():
+		current_state = State.WALK
+		return
+	if is_on_wall() && is_on_floor():
+		var n :Vector3= get_wall_normal()
+		var dir :Vector3= direction.normalized()
+		var dot :float= dir.dot(n)
+		if dot < -0.9 && is_on_floor():
+			velocity -= n * velocity.dot(n)
+			current_state = State.IDLE
+			return
+	if direction:
+		var target_x = direction.x * (CURRENT_SPEED_LIMIT - friction)
+		var target_z = direction.z * (CURRENT_SPEED_LIMIT - friction)
+		velocity.x = move_toward(velocity.x, target_x, accel * delta)
+		velocity.z = move_toward(velocity.z, target_z, accel * delta)
+		if current_state == State.IDLE:
+			current_state = State.WALK
+	else:
+		var blend := 1.0 - exp(-blend_speed * delta)
+		velocity.x = move_toward(velocity.x, 0.0, (accel*2) * delta)
+		velocity.z = move_toward(velocity.z, 0.0, (accel*2) * delta)
+		if current_state == State.WALK || current_state == State.RUN:
+			current_state = State.IDLE
+
+func movement_model(target:Node3D,velocity:Vector2,delta:float) -> void:
+	var move_direction = -target.global_basis.z * velocity.y + -target.global_basis.x * velocity.x
+	var direction : int = get_direction()
+	if direction == Direction.BACK || direction == Direction.BACK_RIGHT || direction == Direction.BACK_LEFT:
+		move_direction = target.global_basis.z * velocity.y + target.global_basis.x * velocity.x
+	var last_direction = Vector3.BACK
+	if move_direction.length() > 0.2:
+		last_direction = move_direction
+	var target_angle = Vector3.BACK.signed_angle_to(last_direction,Vector3.UP)
+	if model:
+		var current_angle = (model.global_rotation.y)
+		var interval_angle = blend_speed*delta
+		model.global_rotation.y = (lerp_angle((current_angle),target_angle,interval_angle))
+
+func run(value:bool):
+	if !can_run || !is_on_floor():
+		return
+	if velocity.length() <= 0.1:current_state = State.IDLE
+	elif value:current_state = State.RUN
+	else:current_state = State.WALK
+
+func round_number(value: float) -> float:
+	var rounded = round(value * 100) / 100
+	if abs(rounded) < 0.01:
+		return 0.0
+	return rounded
+
+func lerp_angle_op(from: float, to: float, weight: float) -> float:
+	var diff = wrapf(to - from, -PI, PI)
+
+	if diff >= 0:
+		diff -= TAU
+	else:
+		diff += TAU
+
+	return from + diff * weight
+
+func move_node_3d(node:Node3D,to_node:Node3D) -> void:
+	var g = node.global_transform
+	remove_child(node)
+	node.global_transform = g
+	to_node.add_child(node)
+
+func move_node(node:Node,to_node:Node) -> void:
+	remove_child(node)
+	to_node.add_child(node)
+
+func update_target_location(target_location:Vector3) -> void:
+	nav_agent.set_target_position(target_location)
+
+func look_axis_y(target: Vector3, speed_rotation: float = 1):
+	var my_position = global_transform.origin
+	target.y = my_position.y
+	var direction = target - my_position
+	if direction.length_squared() < 0.0001:
+		return
+	direction = direction.normalized()
+	var forward = -global_transform.basis.z
+	forward.y = 0
+	forward = forward.normalized()
+	var cross = forward.cross(direction)
+	var measurement = cross.y
+	if abs(measurement) > 0.1:
+		if measurement > 0:
+			method(model, "over_shoulder_view", [Vector3.LEFT])
+		else:
+			method(model, "over_shoulder_view", [Vector3.RIGHT])
+	var current_basis = global_transform.basis
+	var target_rotation = Basis().looking_at(direction, Vector3.UP)
+	global_transform.basis = current_basis.slerp(
+		target_rotation,
+		(speed_rotation * 10) * get_process_delta_time()
+	).orthonormalized()
+
+func go_to(destination: Node3D, delta: float, transition: float = 1) -> void:
+	if !destination || !can_move || kick_knockback: 
+		return
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - global_transform.origin).normalized()
+	var flat_pos = Vector3(global_position.x, 0, global_position.z)
+	var flat_dest = Vector3(destination.global_position.x, 0, destination.global_position.z)
+	if flat_pos.distance_to(flat_dest) < 0.1 && !touch_target:
+		current_state = State.IDLE
+		velocity = Vector3.ZERO
+		emit_signal("in_target")
+		touch_target = true
+		return
+	else:
+		if look_at_target && !touch_target:
+			look_axis_y(next_location, transition)
+	movement_direction(new_velocity, delta)
+	get_tree().call_group(name_path, function_path, destination.global_position)
+
+func is_walk_back() -> bool:
+	return get_direction() == Direction.BACK || get_direction() == Direction.BACK_RIGHT || get_direction() == Direction.BACK_LEFT
+
+func is_walk() -> bool:
+	return get_direction() == Direction.FORWARD || get_direction() == Direction.FORWARD_RIGHT || get_direction() == Direction.FORWARD_LEFT
+
+
+###############################################################################################################################################
+#ANIMATION
+###############################################################################################################################################
+
+func has_animation(animation:String) -> bool:
+	var anim : String = PARAMETERSPATH+animation+BLENDAMOUNTPATH
+	var node_tr : AnimationNodeBlendTree = animation_tree.tree_root
+	if !node_tr.has_node(animation):
+		push_error("not found animation: "+anim+", in "+self.name)
+	return node_tr.has_node(animation)
+
+func play(animation:String,time:float=0.0,interpolation:float=0.2) -> void:
+	var anim : String = PARAMETERSPATH+animation+BLENDAMOUNTPATH
+	if !animation_tree:return
+	if animation_tree[anim] == 1.0:return
+	tween_animation = create_tween()
+	tween_animation.tween_method(
+	func(value):
+		animation_tree.set(anim, value),
+	animation_tree[anim], 1.0, interpolation)
+	tween_animation.tween_callback(tween_animation.kill)
+	await tween_animation.finished
+	if time > 0.0:
+		await get_tree().create_timer(time).timeout
+		stop(animation,interpolation)
+	
+func stop(animation:String,interpolation:float=0.2) -> void:
+	var value_init : float = animation_tree[PARAMETERSPATH+animation+BLENDAMOUNTPATH]
+	tween_animation = create_tween()
+	tween_animation.tween_method(
+	func(value):
+		animation_tree.set(PARAMETERSPATH + animation + BLENDAMOUNTPATH, value),
+	value_init, 0.0, interpolation)
+	tween_animation.tween_callback(tween_animation.kill)
+
+#########################################################################################################
+#STADISTICS
+#########################################################################################################
+
+func is_exhausted() -> bool:
+	if get_stadistic("Energy") <= get_stadistic("Energy_limit")[0]:
+		return true
+	return false
+
+func set_stadistic(path:String,value:Variant) -> void:
+	path = find_key(stadistics,path)
+	if !get_stadistic(path):return
+	if !path.contains("_limit"):
+		if stadistics.has(path+"_limit"):
+			stadistics[path] = clamp(stadistics[path],stadistics[path+"_limit"][0],stadistics[path+"_limit"][1])
+		if !stadistics.has(path+"_limit"):
+			stadistics[path] = clamp(stadistics[path],0,9999)
+		stadistics[path] += value
+	else:
+		stadistics[path][1] += value
+	emit_signal("setting_stadistic",value)
+
+func get_stadistic(path:String) -> Variant:
+	if !stadistics.has(path):return null
+	return stadistics[find_key(stadistics,path)]
+
+func find_key(dict:Dictionary, key:String) -> String:
+	var search = key.to_lower()
+	for k in dict.keys():
+		if k.to_lower() == search:
+			return k
+	return ""
+
+func take_damage(damage: float) -> void:
+	if !get_stadistic("Life"):return
+	emit_signal("received_damage",damage)
+	set_stadistic("Life",-damage)
+	method(model,"received_damage",[damage])
+	if get_stadistic("Life") < 1:
+		death()
+
+func death() -> void:
+	var inv = find_inventory(self)
+	emit_signal("dead")
+	if inv:
+		inv.set_physics_process(false)
+		inv.set_process_input(false)
+	set_physics_process(false)
+	set_process_input(false)
+	method(model,"death")
+
+func eliminate() -> void:
+	var inv = find_inventory(self)
+	if inv:
+		if "inventory" in model && model.inventory is Array:
+			model.inventory = inv.get_items()
+	move_node_3d(model,get_tree().current_scene)
+	queue_free()
+
+func find_inventory(node: Node) -> Inventory:
+	if node is Inventory:
+		return node
+	for child in node.get_children():
+		var result = find_inventory(child)
+		if result:
+			return result
+	return null
+
+
+#########################################################################################################
+#TOOLS
+#########################################################################################################
+
+
+func increase_energy(delta: float) -> void:
+	if current_state != State.RUN:
+		set_stadistic("Energy",0.6 * delta)
+
+func decreased_energy(delta: float) -> void:
+	if current_state == State.RUN && !is_walk_back():
+		set_stadistic("Energy",-((velocity.length()/2) * delta))
+
+func set_childrens(value:bool) -> void:
+	for i in get_children():
+		i.set_physics_process(value)
+		i.set_process(value)
+		i.set_process_input(value)
+
+static func get_random_element(array: Array) -> Variant:
+	if array.size() == 1:
+		return array[0]
+	if array.is_empty():
+		return null
+	return array[randi() % array.size()-1]
+
+
+func find_node(node:Node,type:String) -> Variant:
+	for child in node.get_children():
+		if child.is_class(type):
+			return child
+		for grandchild in child.get_children():
+			if grandchild.is_class(type):
+				return grandchild
+	return null
+
+
+func smooth_look_at(node: Node3D, target: Vector3, duration: float = 1.0):
+	if !node:
+		return
+		
+	var my_pos = node.global_transform.origin
+
+	if my_pos.distance_squared_to(target) < 0.0001:
+		return
+	var start_basis = node.global_transform.basis
+	var end_basis = node.global_transform.looking_at(target, Vector3.UP).basis
+	if start_basis.determinant() == 0 or end_basis.determinant() == 0:
+		return
+	var node_path := node.get_path()
+	var tween := get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_method(
+		func(value):
+			var n = get_node_or_null(node_path)
+			if n:
+				var interpolated = start_basis.slerp(end_basis, value)
+				n.global_transform.basis = interpolated.orthonormalized(),
+		0.0, 1.0, duration
+	)
+
+func method(node:Node,method:String,args := []) -> void:
+	if node && node.has_method(method):
+		if get_method_node_args(node,method).size() > args.size():
+			return
+		if args && !get_method_node_args(node,method):
+			args = []
+		await node.callv(method,args)
+
+func get_method_node_args(node:Node,name:String) -> Array:
+	if !node:return []
+	for i in node.get_method_list():
+		if i.name == name:
+			return i.args
+	return []

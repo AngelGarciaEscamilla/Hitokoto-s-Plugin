@@ -1,0 +1,1198 @@
+[gd_scene format=3 uid="uid://bk0857mhuygf"]
+
+[ext_resource type="Script" uid="uid://13fg8hd0rbd3" path="res://addons/Hitokoto´s Plugin/player/player.gd" id="1_3n3ca"]
+[ext_resource type="Script" uid="uid://dxx7vy0fd68sh" path="res://addons/Hitokoto´s Plugin/UI/transition_start.gd" id="1_bm86r"]
+[ext_resource type="Script" uid="uid://bq7ojtukhreqp" path="res://addons/Hitokoto´s Plugin/UI/calendar.gd" id="1_brtl8"]
+[ext_resource type="Script" uid="uid://c6jid8qojtnsk" path="res://addons/Hitokoto´s Plugin/UI/load_setting.gd" id="1_fa6tm"]
+[ext_resource type="Script" uid="uid://ui0nqqye7n4t" path="res://addons/Hitokoto´s Plugin/scenes/test/test_.gd" id="2_0hrsv"]
+[ext_resource type="Environment" uid="uid://ryq6apmj1dqu" path="res://addons/Hitokoto´s Plugin/shaders/clouds.tres" id="2_2u76e"]
+[ext_resource type="Script" uid="uid://i4ri6t1liild" path="res://addons/Hitokoto´s Plugin/UI/property_node.gd" id="3_3ypb7"]
+[ext_resource type="Script" uid="uid://q4xjgyqtgi15" path="res://addons/Hitokoto´s Plugin/weapons/ammo_ui.gd" id="3_lbqgv"]
+[ext_resource type="Script" uid="uid://bofj0bjugq8hy" path="res://addons/Hitokoto´s Plugin/Componets/componets.gd" id="3_tfwsm"]
+[ext_resource type="Script" uid="uid://cpw50h4bsfi2f" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueManager.gd" id="5_6hem0"]
+[ext_resource type="Script" uid="uid://b83q2fhcgpadc" path="res://addons/Hitokoto´s Plugin/Componets/Interact.gd" id="7_bm86r"]
+[ext_resource type="Script" uid="uid://tafqwm4yq813" path="res://addons/Hitokoto´s Plugin/movement/fall_state.gd" id="8_5rxwi"]
+[ext_resource type="Script" uid="uid://wt4oc86ib0rl" path="res://addons/Hitokoto´s Plugin/Componets/levelIluminance.gd" id="9_0hrsv"]
+[ext_resource type="Script" uid="uid://twfmjfueluyq" path="res://addons/Hitokoto´s Plugin/item/item.gd" id="9_hroh1"]
+[ext_resource type="Script" uid="uid://bolklkv28xgbe" path="res://addons/Hitokoto´s Plugin/UI/saveManager.gd" id="12_lbqgv"]
+[ext_resource type="Script" uid="uid://dwksru2ek2ycx" path="res://addons/Hitokoto´s Plugin/Componets/alignamentUser.gd" id="13_cc03v"]
+[ext_resource type="Script" uid="uid://danlpdtp3xsit" path="res://addons/Hitokoto´s Plugin/ambient/weather.gd" id="14_u0bac"]
+[ext_resource type="Script" uid="uid://2ctt3ingr8be" path="res://addons/Hitokoto´s Plugin/furniture/door.gd" id="15_u0bac"]
+[ext_resource type="Script" uid="uid://yxpnc6bj5crb" path="res://addons/Hitokoto´s Plugin/ambient/sun.gd" id="15_w0aq2"]
+[ext_resource type="PackedScene" uid="uid://sy7y77covuwb" path="res://addons/Hitokoto´s Plugin/UI/loadscreen.tscn" id="15_wdxcr"]
+[ext_resource type="Script" uid="uid://bnq8je56yns4x" path="res://addons/Hitokoto´s Plugin/weapons/item/ammo_item.gd" id="16_rrefu"]
+[ext_resource type="PackedScene" uid="uid://xeg7lktjrqwl" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver.tscn" id="18_msexu"]
+[ext_resource type="Script" uid="uid://dschnphk4dsnf" path="res://addons/Hitokoto´s Plugin/UI/indication.gd" id="19_bm86r"]
+[ext_resource type="PackedScene" uid="uid://g10vxkpou6in" path="res://addons/Hitokoto´s Plugin/UI/inventory.tscn" id="19_qgejc"]
+[ext_resource type="Script" uid="uid://bh04scojksqo6" path="res://addons/Hitokoto´s Plugin/Componets/crouch_state.gd" id="19_s5fh0"]
+[ext_resource type="Script" uid="uid://bbl0haaqibcfj" path="res://addons/Hitokoto´s Plugin/Componets/inventory.gd" id="21_lbqgv"]
+[ext_resource type="Script" uid="uid://t6278ijmdsgj" path="res://addons/Hitokoto´s Plugin/SoundScript/SFX.gd" id="21_lhud8"]
+[ext_resource type="Script" uid="uid://ccu6rfa11wigy" path="res://addons/Hitokoto´s Plugin/Entitys/NPC/npc.gd" id="21_o7kkv"]
+[ext_resource type="Script" uid="uid://dnjh7do120isj" path="res://addons/Hitokoto´s Plugin/movement/pushSense.gd" id="21_pqayd"]
+[ext_resource type="Script" uid="uid://dxy5ox0runloa" path="res://addons/Hitokoto´s Plugin/UI/translator.gd" id="21_tfwsm"]
+[ext_resource type="Script" uid="uid://bbebjoiue0hdu" path="res://addons/Hitokoto´s Plugin/dialogue/voice.gd" id="22_lbqgv"]
+[ext_resource type="PackedScene" uid="uid://dj6ax7ivt2jxr" path="res://addons/Hitokoto´s Plugin/weapons/melee/bullet.tscn" id="23_8bdiv"]
+[ext_resource type="Script" uid="uid://bre3hs2ph4cjw" path="res://addons/Hitokoto´s Plugin/item/item_resource.gd" id="23_brtl8"]
+[ext_resource type="AudioStream" uid="uid://bc7gh32iweuv1" path="res://addons/Hitokoto´s Plugin/audio/wait.mp3" id="23_u3vuk"]
+[ext_resource type="Resource" uid="uid://dxuduh3uyhk0f" path="res://addons/Hitokoto´s Plugin/weapons/melee/revolver_white.tres" id="24_qgejc"]
+[ext_resource type="Script" uid="uid://cr4x8io65ig3s" path="res://addons/Hitokoto´s Plugin/furniture/BulbLight.gd" id="24_u50qv"]
+[ext_resource type="Script" uid="uid://duidjh2ou2muh" path="res://addons/Hitokoto´s Plugin/ambient/time/clock.gd" id="26_bmvok"]
+[ext_resource type="Script" uid="uid://bum7vocry2bty" path="res://addons/Hitokoto´s Plugin/weapons/weapons_resource.gd" id="26_h2alf"]
+[ext_resource type="Script" uid="uid://drewru2cgh7ii" path="res://addons/Hitokoto´s Plugin/mission/complete_objetive.gd" id="26_lhud8"]
+[ext_resource type="Texture2D" uid="uid://2drvccqpjmhw" path="res://icon.svg" id="28_wa62t"]
+[ext_resource type="Script" uid="uid://dosnws0bm0joa" path="res://addons/Hitokoto´s Plugin/Entitys/interpolationAnimation.gd" id="29_5rxwi"]
+[ext_resource type="Script" uid="uid://2j03bofleeam" path="res://addons/Hitokoto´s Plugin/UI/UI.gd" id="30_lhud8"]
+[ext_resource type="Script" uid="uid://bung0s3emq7k2" path="res://addons/Hitokoto´s Plugin/dialogue/dialogueData.gd" id="31_5rxwi"]
+[ext_resource type="PackedScene" uid="uid://btb35g1bin5fc" path="res://addons/Hitokoto´s Plugin/player/model/humanoid.tscn" id="32_s5fh0"]
+[ext_resource type="Resource" uid="uid://cgeybbcmqpeem" path="res://addons/Hitokoto´s Plugin/mission/the dog.tres" id="35_brtl8"]
+[ext_resource type="ArrayMesh" uid="uid://bwsvmxja4m31u" path="res://addons/Hitokoto´s Plugin/furniture/models/steps.obj" id="37_7hfam"]
+[ext_resource type="PackedScene" uid="uid://dih4m51rormrf" path="res://addons/Hitokoto´s Plugin/weapons/revolver/revolver2.tscn" id="38_qgejc"]
+[ext_resource type="Resource" uid="uid://bwfa86qo0v7w" path="res://addons/Hitokoto´s Plugin/weapons/melee/revolver.tres" id="40_df2rt"]
+[ext_resource type="Script" uid="uid://b6d8x7famu8wh" path="res://addons/Hitokoto´s Plugin/UI/pause_menu.gd" id="41_lhud8"]
+[ext_resource type="Resource" uid="uid://sw1m5k4oudtr" path="res://addons/Hitokoto´s Plugin/item/consumable/juice_in_stock.tres" id="41_s5fh0"]
+[ext_resource type="PackedScene" uid="uid://dggs3gebptlrg" path="res://addons/Hitokoto´s Plugin/UI/transition.tscn" id="42_u3vuk"]
+[ext_resource type="Script" uid="uid://ddql7mgooxrt" path="res://addons/Hitokoto´s Plugin/weapons/asset.gd" id="43_8bdiv"]
+[ext_resource type="Script" uid="uid://cub5lqivv1hyp" path="res://addons/Hitokoto´s Plugin/cinematics/cut_scene.gd" id="44_df2rt"]
+[ext_resource type="Script" uid="uid://bxw3dqk8xcd4v" path="res://addons/Hitokoto´s Plugin/dialogue/timeline.gd" id="44_pqayd"]
+[ext_resource type="PackedScene" uid="uid://dn2gu4ekt4q4p" path="res://addons/Hitokoto´s Plugin/scenes/test/test.tscn" id="45_bn43r"]
+[ext_resource type="Resource" uid="uid://cvrfx2t72lrw2" path="res://addons/Hitokoto´s Plugin/weapons/melee/triangle.tres" id="51_3xpcf"]
+[ext_resource type="PackedScene" uid="uid://dn5efjfg2xla" path="res://addons/Hitokoto´s Plugin/UI/death Screen.tscn" id="51_bn43r"]
+[ext_resource type="Script" uid="uid://bwlst6wr3qxd6" path="res://addons/Hitokoto´s Plugin/cinematics/close_up.gd" id="51_cc03v"]
+[ext_resource type="Script" uid="uid://d3cln6nsvm7u5" path="res://addons/Hitokoto´s Plugin/player/wheel_slot_input.gd" id="51_wa62t"]
+[ext_resource type="PackedScene" uid="uid://bm8xl00gstbco" path="res://addons/Hitokoto´s Plugin/UI/takeDamageScreen.tscn" id="52_4fieg"]
+[ext_resource type="Script" uid="uid://cccttabml57hn" path="res://addons/Hitokoto´s Plugin/player/debug_overlay.gd" id="52_07isp"]
+[ext_resource type="PackedScene" uid="uid://beismlemw86ie" path="res://addons/Hitokoto´s Plugin/player/overlay.tscn" id="53_07isp"]
+[ext_resource type="Script" uid="uid://bp1l4yxiw8522" path="res://addons/Hitokoto´s Plugin/mission/Mission_starter.gd" id="55_lhud8"]
+[ext_resource type="Script" uid="uid://c2r1107bvqr3l" path="res://addons/Hitokoto´s Plugin/UI/ScreenCallBack.gd" id="55_s5fh0"]
+[ext_resource type="AudioStream" uid="uid://bijx1fyl2oevt" path="res://addons/Hitokoto´s Plugin/resources/sounds/button7.wav" id="56_pqayd"]
+[ext_resource type="PackedScene" uid="uid://b87fcv5x8ouxv" path="res://addons/Hitokoto´s Plugin/item/readable/document.tscn" id="59_bn43r"]
+
+[sub_resource type="Resource" id="Resource_qgejc"]
+script = ExtResource("3_3ypb7")
+node_path = NodePath("../Player")
+property = "up_key"
+path_setting = "controls/up"
+metadata/_custom_type_script = "uid://i4ri6t1liild"
+
+[sub_resource type="BoxMesh" id="BoxMesh_wdxcr"]
+size = Vector3(0.285, 0.12, 0.26)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lbqgv"]
+
+[sub_resource type="Resource" id="Resource_ojs63"]
+script = ExtResource("21_tfwsm")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_3xpcf"]
+script = ExtResource("26_h2alf")
+type_weapon = "fist"
+damage_amount = 20.0
+scope = 1.0
+bullet_size = Vector3(0.5, 0.5, 0.5)
+hitbox_size = Vector3(0.1, 0.1, 0.1)
+img = ExtResource("28_wa62t")
+name = SubResource("Resource_ojs63")
+duration_anim = 1.0
+select_anim = "select_weapon"
+deselect_anim = "deselect_weapon"
+metadata/_custom_type_script = "uid://bum7vocry2bty"
+
+[sub_resource type="Resource" id="Resource_bm86r"]
+script = ExtResource("21_tfwsm")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fieg"]
+
+[sub_resource type="Animation" id="Animation_dae2w"]
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.54, 0.88, 1.34, 1.55, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-4.217798, 0.914067, -17.4319), Vector3(1.1945748, 0.914067, -19.069622), Vector3(5.385965, 0.914067, -16.803362), Vector3(5.3859653, 0.914067, -12.239785), Vector3(5.3859653, 0.914067, -7.2618413), Vector3(2.1517973, 0.914067, -5.9941626), Vector3(-2.3985786, 0.914067, -5.9941626)]
+}
+
+[sub_resource type="Animation" id="Animation_bvbcx"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.1666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector3(-4.217798, 0.914067, -17.4319), Vector3(-4.217798, 0.914067, -9.385335)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aby0v"]
+_data = {
+&"RESET": SubResource("Animation_dae2w"),
+&"new_animation": SubResource("Animation_bvbcx")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ulx0"]
+albedo_texture = ExtResource("28_wa62t")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7nhvg"]
+material = SubResource("StandardMaterial3D_7ulx0")
+
+[sub_resource type="Resource" id="Resource_b5u4b"]
+script = ExtResource("21_tfwsm")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_jc63h"]
+script = ExtResource("31_5rxwi")
+duration = 5.0
+anim = &"talk"
+subtitles = SubResource("Resource_b5u4b")
+propertys = {
+"ik_bones": false,
+"look_at_user": true
+}
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_oqskl"]
+script = ExtResource("21_tfwsm")
+textEN = "dawdadaw"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_2032b"]
+script = ExtResource("31_5rxwi")
+user_path = NodePath("../Player")
+anim = &"talk"
+subtitles = SubResource("Resource_oqskl")
+propertys = {
+"ik_bones": false,
+"look_at_user": true
+}
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_uhj0f"]
+script = ExtResource("44_pqayd")
+timeline = Array[ExtResource("31_5rxwi")]([SubResource("Resource_jc63h"), SubResource("Resource_2032b")])
+metadata/_custom_type_script = "uid://bxw3dqk8xcd4v"
+
+[sub_resource type="Resource" id="Resource_0hrsv"]
+script = ExtResource("21_tfwsm")
+textEN = "ai"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_s5fh0"]
+script = ExtResource("31_5rxwi")
+audio = ExtResource("56_pqayd")
+anim = &"test_damage"
+subtitles = SubResource("Resource_0hrsv")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qgejc"]
+
+[sub_resource type="Resource" id="Resource_7nhvg"]
+script = ExtResource("21_tfwsm")
+textEN = "adawd"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_kv82n"]
+script = ExtResource("31_5rxwi")
+anim = &"test_damage"
+subtitles = SubResource("Resource_7nhvg")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_6u73q"]
+script = ExtResource("21_tfwsm")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_lhud8"]
+script = ExtResource("31_5rxwi")
+audio = ExtResource("56_pqayd")
+anim = &"test_damage"
+subtitles = SubResource("Resource_6u73q")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_tfig4"]
+script = ExtResource("21_tfwsm")
+textEN = "uf"
+textES = "a"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_wa62t"]
+script = ExtResource("31_5rxwi")
+subtitles = SubResource("Resource_tfig4")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="Resource" id="Resource_ssdq2"]
+script = ExtResource("21_tfwsm")
+textEN = "aaaaaaaaaa"
+textES = "aaaaaaad"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_brtl8"]
+script = ExtResource("31_5rxwi")
+subtitles = SubResource("Resource_ssdq2")
+add_dependence = null
+condition_value = null
+metadata/_custom_type_script = "uid://bung0s3emq7k2"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wdxcr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bn43r"]
+
+[sub_resource type="Resource" id="Resource_pqayd"]
+script = ExtResource("21_tfwsm")
+textEN = "teadawawdawdawd"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_084j2"]
+script = ExtResource("21_tfwsm")
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_lbqgv"]
+script = ExtResource("21_tfwsm")
+textEN = "document"
+metadata/_custom_type_script = "uid://dxy5ox0runloa"
+
+[sub_resource type="Resource" id="Resource_4fieg"]
+script = ExtResource("23_brtl8")
+hold_anim = "document"
+weight = 7.1
+time_use = 1.178
+description = SubResource("Resource_084j2")
+title = &"dwa"
+autor = &"awdaw"
+content = SubResource("Resource_pqayd")
+img = ExtResource("28_wa62t")
+name = SubResource("Resource_lbqgv")
+scene = ExtResource("59_bn43r")
+metadata/_custom_type_script = "uid://bre3hs2ph4cjw"
+
+[sub_resource type="BoxMesh" id="BoxMesh_dae2w"]
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bvbcx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lbqgv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pqayd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_e4ic2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_07isp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aby0v"]
+albedo_color = Color(1, 0.345077, 0.7631935, 1)
+emission_enabled = true
+emission = Color(1, 0.9322192, 0.9943455, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ulx0"]
+material = SubResource("StandardMaterial3D_aby0v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_brtl8"]
+albedo_color = Color(0.6685439, 0, 0.2091682, 1)
+metallic = 0.16
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_brtl8"]
+material = SubResource("StandardMaterial3D_brtl8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hroh1"]
+albedo_color = Color(1.82897e-06, 0.428085, 0.450112, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kvr7o"]
+material = SubResource("StandardMaterial3D_hroh1")
+size = Vector3(0.1, 0.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5d1fl"]
+albedo_color = Color(0, 0.358509, 0.806151, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kqyrw"]
+material = SubResource("StandardMaterial3D_5d1fl")
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8lhv"]
+cull_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xpcf"]
+material = SubResource("StandardMaterial3D_j8lhv")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_5ytrk"]
+vertices = PackedVector3Array(-57.800102, 0.7030611, -15.072498, -56.6001, 0.9530611, -15.072498, -56.4001, 0.7030611, -15.672499, -57.800102, 0.7030611, -35.6725, -33.2001, 0.7030611, -22.872498, -32.600098, 0.7030611, -23.2725, -32.600098, 0.7030611, -35.6725, -47.4001, 0.7030611, -15.672499, -46.800102, 0.9530611, -15.072498, -46.800102, 0.7030611, -13.472498, -33.2001, 0.7030611, -13.472498, -22.0001, 0.7030611, -25.672499, -22.2001, 0.7030611, -27.2725, -22.600101, 0.7030611, -27.4725, -25.600101, 0.7030611, -25.872498, -25.2001, 0.7030611, -25.2725, -26.8001, 0.7030611, -23.072498, -26.8001, 0.7030611, -25.4725, -22.600101, 0.7030611, -31.072498, -21.2001, 0.7030611, -35.6725, -22.2001, 0.7030611, -31.4725, -21.0001, 0.7030611, -31.4725, -16.600101, 0.7030611, -27.4725, -17.0001, 0.7030611, -27.2725, -17.0001, 0.7030611, -26.072498, -14.400101, 0.7030611, -25.872498, -14.000099, 0.7030611, -26.4725, -10.000099, 0.7030611, -26.072498, -10.000099, 0.7030611, -24.4725, -9.2001, 0.7030611, -24.672499, -9.2001, 0.7030611, -26.872498, -17.0001, 0.7030611, -31.4725, -16.600101, 0.7030611, -31.072498, -8.800098, 0.7030611, -27.2725, -10.400101, 0.7030611, -26.4725, -7.2001, 0.7030611, -27.2725, -7.2001, 0.7030611, -35.6725, -4.8000984, 0.7030611, -27.2725, -4.8000984, 0.7030611, -35.6725, -4.6001015, 0.7030611, -1.2724991, -4.000099, 0.7030611, -0.87249756, -3.6001015, 0.7030611, -1.2724991, -2.0000992, 0.7030611, -1.2724991, -1.0000992, 0.7030611, -2.0724983, -1.0000992, 0.7030611, -3.6724968, -1.6001015, 0.7030611, -0.07249832, -1.2001, 0.7030611, -0.07249832, -0.8000984, 0.7030611, -1.2724991, -7.4001007, 0.7030611, -9.672499, -5.2001, 0.7030611, -6.8724995, -4.4001007, 0.7030611, -6.472498, 0.9999008, 0.7030611, -4.0724983, 1.3998985, 0.7030611, -3.6724968, 3.9999008, 0.7030611, -1.2724991, -2.8000984, 0.7030611, -23.2725, -3.6001015, 0.9530611, -23.072498, -7.4001007, 0.7030611, -14.072498, -0.6001015, 0.7030611, -1.6724968, 0.79990005, 0.7030611, -1.2724991, 0.9999008, 0.7030611, -1.6724968, -3.2001, 0.7030611, -27.2725, -2.8000984, 0.7030611, -26.872498, 1.3998985, 0.7030611, -2.0724983, 1.1999016, 0.7030611, -0.07249832, 1.9999008, 0.7030611, -0.07249832, 2.3998985, 0.7030611, -1.2724991, -0.6001015, 0.7030611, -4.0724983, 4.3998985, 0.7030611, -0.07249832, 37.199898, 0.7030611, -0.07249832, 37.199898, 0.7030611, -35.6725, -23.0001, 0.7030611, -6.0724983, -23.0001, 0.7030611, -4.6724987, -22.0001, 0.7030611, -4.6724987, -22.0001, 0.7030611, -6.0724983, -11.000099, 0.7030611, -9.672499, -11.000099, 0.7030611, -14.272499, -14.400101, 0.7030611, -20.872498, -25.2001, 0.7030611, -14.272499, -20.600101, 0.7030611, -6.472498, -21.600101, 0.7030611, -6.472498, -25.0001, 0.7030611, -12.272499, -25.0001, 0.7030611, -11.472498, -24.0001, 0.7030611, -6.472498, -14.800098, 0.9530611, -3.8724976, -14.800098, 2.203061, -2.4724998, -13.800098, 2.203061, -2.4724998, -13.800098, 0.9530611, -3.8724976, -17.2001, 0.7030611, -25.672499, -26.0001, 0.7030611, -13.872499, -26.0001, 0.7030611, -12.672499, -15.600101, 0.7030611, -4.0724983, -10.400101, 0.7030611, -14.672499, -10.600101, 0.7030611, -20.4725, -14.000099, 0.7030611, -20.4725, -13.000099, 0.7030611, -4.0724983, -20.2001, 0.7030611, -6.0724983, -20.2001, 0.7030611, -4.272499, -25.600101, 0.7030611, -11.072498, -18.2001, 0.9530611, -25.872498, -17.800098, 1.7030611, -30.2725, -21.4001, 1.7030611, -30.2725, -21.0001, 0.9530611, -25.872498, -18.0001, 1.7030611, -28.072498, -21.2001, 1.7030611, -28.072498, -9.2001, 0.7030611, -23.2725, -10.000099, 0.7030611, -20.872498, -4.000099, 0.9530611, -23.2725, -8.2001, 0.9530611, -23.072498, -7.8000984, 0.7030611, -14.672499, -4.000099, 2.203061, -25.4725, -8.000099, 2.203061, -25.4725, -13.2001, 1.2030611, -25.2725, -13.2001, 1.2030611, -21.672499, -11.2001, 1.2030611, -21.672499, -11.2001, 1.2030611, -25.2725, -32.0001, 5.203061, -21.872498, -32.0001, 5.203061, -12.272499, -26.2001, 5.203061, -12.272499, -26.2001, 5.203061, -21.872498, -26.8001, 0.7030611, -14.272499, -31.6001, 0.7030611, -12.672499, -26.8001, 0.7030611, -21.4725, -31.6001, 0.7030611, -21.4725, -57.800102, 0.7030611, -11.072498, -56.6001, 0.9530611, -11.072498, -56.4001, 0.9530611, -11.672499, -56.4001, 0.9530611, -14.472498, -52.0001, 4.953061, -11.672499, -52.0001, 4.953061, -14.472498, -47.4001, 0.7030611, -10.472498, -48.6001, 0.7030611, -10.472498, -48.4001, 0.7030611, -6.6724987, -46.800102, 0.7030611, -11.072498, -41.0001, 0.7030611, -6.6724987, -40.600098, 0.7030611, -6.0724983, -32.800102, 0.7030611, -11.272499, -33.2001, 0.7030611, -11.672499, -9.800098, 1.7030611, -13.472498, -9.800098, 1.7030611, -10.272499, -8.600101, 1.7030611, -10.272499, -8.600101, 1.7030611, -13.472498, -24.600101, 0.7030611, -6.0724983, -40.600098, 0.7030611, 12.327503, -24.600101, 0.7030611, 12.327503, -57.800102, 0.7030611, -5.272499, -57.0001, 0.7030611, -5.0724983, -57.0001, 0.7030611, -6.272499, -56.4001, 0.7030611, -10.472498, -56.6001, 0.7030611, -6.6724987, -7.8000984, 0.7030611, -9.072498, -5.8000984, 0.7030611, -6.472498, -10.600101, 0.7030611, -9.072498, -12.600101, 0.7030611, -3.8724976, -12.600101, 0.7030611, -2.6724968, -5.8000984, 0.7030611, -2.6724968, -55.800102, 6.203061, -5.472498, -55.800102, 6.203061, 16.927502, -41.800102, 6.203061, 16.927502, -41.800102, 6.203061, -5.472498, -57.800102, 0.7030611, 16.7275, -57.0001, 0.7030611, 16.5275, -23.0001, 0.7030611, 12.5275, -22.0001, 0.7030611, 12.5275, -14.2001, 0.7030611, 10.727501, -14.2001, 0.7030611, 8.727501, -15.600101, 0.7030611, 8.727501, -16.4001, 0.7030611, 10.727501, -16.0001, 0.7030611, -3.8724976, -16.0001, 0.7030611, 8.327503, -16.800098, 0.7030611, 11.127502, -20.2001, 0.7030611, 12.5275, -16.800098, 0.7030611, 12.727501, -1.2001, 0.7030611, 1.9275017, -0.8000984, 0.7030611, 1.5275002, -0.8000984, 0.7030611, 1.1275024, -2.0000992, 0.7030611, 1.1275024, -5.4001007, 0.7030611, -1.0724983, -4.000099, 0.7030611, 0.7275009, -0.8000984, 0.7030611, 3.9275017, -1.2001, 0.7030611, 3.5275002, -10.600101, 1.7030611, 11.127502, -6.1455536, 1.7030611, 7.8547745, -3.472828, 0.7030611, 5.891136, -3.7637367, 0.7030611, 5.6002274, -6.3273735, 1.7030611, 7.6729546, -10.800098, 0.7030611, 18.127502, -12.400101, 0.7030611, 18.127502, -12.400101, 0.7030611, 35.7275, 3.9999008, 0.7030611, 1.1275024, 1.1999016, 0.7030611, 3.5275002, 0.79990005, 0.7030611, 3.9275017, 0.79990005, 0.7030611, 1.1275024, 0.79990005, 0.7030611, 1.5275002, 1.1999016, 0.7030611, 1.9275017, 2.3998985, 0.7030611, 1.1275024, -12.600101, 0.7030611, 8.327503, -11.000099, 1.4530611, 10.727501, -3.6001015, 0.7030611, 1.1275024, -9.195732, 1.7030611, 6.921509, -9.19986, 0.7030611, 4.5272446, -10.3918, 1.2030611, 5.7399826, -6.7877693, 1.4530611, 5.726349, -5.595829, 0.7030611, 4.5136147, -10.387867, 0.7030611, 4.5184555, -10.403694, 1.7030611, 8.116669, -9.203793, 1.4530611, 5.7087708, -10.400101, 0.7030611, 17.7275, -5.8000984, 0.7030611, -1.4724998, -13.000099, 0.7030611, 8.727501, -8.906769, 0.7030611, 15.887501, -5.920101, 1.7030611, 12.2075, -3.6800995, 1.4530611, 9.447502, -2.9334335, 0.7030611, 8.5275, -10.500099, 0.7030611, 14.427502, -4.392086, 1.4530611, 8.116291, -7.991993, 1.7030611, 12.924187, 37.199898, 0.7030611, 35.7275, -4.4016647, 1.4530611, 11.7225, -3.1933212, 0.7030611, 12.918926, -5.6009903, 1.2030611, 14.137779, -6.7959023, 0.7030611, 17.731014, -6.7926445, 0.7030611, 15.334206, -15.2001, 7.453061, 4.327503, -17.0001, 7.453061, 4.327503, -17.0001, 7.453061, 9.927502, -11.400101, 7.453061, 9.927502, -11.400101, 7.453061, 4.327503, -13.400101, 7.453061, 4.327503, -14.800098, 7.453061, 3.9275017, -13.800098, 7.453061, 3.9275017, -22.0001, 0.7030611, 13.927502, -23.0001, 0.7030611, 13.927502, -24.600101, 0.7030611, 13.927502, -40.600098, 0.7030611, 17.7275, -24.2001, 0.7030611, 14.327503, -21.600101, 0.7030611, 14.327503, -16.4001, 0.7030611, 18.127502, -20.2001, 0.7030611, 13.927502, -20.600101, 0.7030611, 14.327503, -16.800098, 0.7030611, 17.7275, -41.0001, 0.7030611, 18.127502, -42.6001, 0.7030611, 35.7275, -14.800098, 0.7030611, 35.7275, -42.6001, 0.7030611, 18.127502, -14.800098, 0.7030611, 18.127502, -15.600101, 1.7030611, 15.127502, -11.600101, 1.7030611, 15.127502, -11.800098, 1.7030611, 13.727501, -15.600101, 1.7030611, 13.727501, -15.600101, 1.2030611, 14.427502, -11.7001, 1.2030611, 14.427502, -57.0001, 0.7030611, 17.7275, -57.800102, 0.7030611, 35.7275, -56.6001, 0.7030611, 18.127502)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(6, 7, 2), PackedInt32Array(6, 2, 3), PackedInt32Array(10, 9, 8), PackedInt32Array(8, 7, 10), PackedInt32Array(10, 7, 4), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 15), PackedInt32Array(13, 15, 14), PackedInt32Array(17, 16, 5), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 5), PackedInt32Array(19, 5, 6), PackedInt32Array(19, 21, 20), PackedInt32Array(14, 17, 13), PackedInt32Array(13, 17, 18), PackedInt32Array(19, 20, 18), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(25, 22, 26), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(33, 32, 31), PackedInt32Array(30, 27, 34), PackedInt32Array(30, 34, 33), PackedInt32Array(33, 34, 26), PackedInt32Array(33, 26, 22), PackedInt32Array(33, 22, 32), PackedInt32Array(31, 21, 19), PackedInt32Array(35, 33, 36), PackedInt32Array(36, 33, 31), PackedInt32Array(36, 31, 19), PackedInt32Array(36, 38, 35), PackedInt32Array(35, 38, 37), PackedInt32Array(41, 40, 39), PackedInt32Array(43, 42, 44), PackedInt32Array(44, 42, 41), PackedInt32Array(45, 42, 46), PackedInt32Array(46, 42, 47), PackedInt32Array(47, 42, 43), PackedInt32Array(50, 49, 48), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 56), PackedInt32Array(53, 56, 55), PackedInt32Array(53, 55, 54), PackedInt32Array(47, 43, 57), PackedInt32Array(47, 57, 58), PackedInt32Array(58, 57, 59), PackedInt32Array(61, 60, 38), PackedInt32Array(59, 62, 58), PackedInt32Array(58, 62, 65), PackedInt32Array(58, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(44, 41, 66), PackedInt32Array(66, 41, 39), PackedInt32Array(66, 39, 50), PackedInt32Array(66, 50, 51), PackedInt32Array(51, 50, 48), PackedInt32Array(51, 48, 56), PackedInt32Array(61, 38, 67), PackedInt32Array(67, 38, 68), PackedInt32Array(68, 38, 69), PackedInt32Array(62, 52, 65), PackedInt32Array(65, 52, 53), PackedInt32Array(60, 37, 38), PackedInt32Array(53, 54, 67), PackedInt32Array(67, 54, 61), PackedInt32Array(73, 72, 70), PackedInt32Array(70, 72, 71), PackedInt32Array(75, 74, 76), PackedInt32Array(76, 74, 78), PackedInt32Array(76, 78, 77), PackedInt32Array(76, 77, 15), PackedInt32Array(73, 70, 79), PackedInt32Array(79, 70, 82), PackedInt32Array(79, 82, 81), PackedInt32Array(79, 81, 80), PackedInt32Array(86, 85, 83), PackedInt32Array(83, 85, 84), PackedInt32Array(11, 87, 15), PackedInt32Array(15, 87, 76), PackedInt32Array(88, 77, 89), PackedInt32Array(89, 77, 80), PackedInt32Array(86, 83, 90), PackedInt32Array(91, 75, 92), PackedInt32Array(92, 75, 93), PackedInt32Array(76, 93, 75), PackedInt32Array(86, 90, 94), PackedInt32Array(94, 90, 95), PackedInt32Array(94, 95, 78), PackedInt32Array(94, 78, 74), PackedInt32Array(24, 25, 87), PackedInt32Array(87, 25, 76), PackedInt32Array(90, 96, 95), PackedInt32Array(81, 82, 97), PackedInt32Array(101, 103, 98), PackedInt32Array(98, 103, 102), PackedInt32Array(102, 103, 100), PackedInt32Array(102, 100, 99), PackedInt32Array(79, 80, 78), PackedInt32Array(78, 80, 77), PackedInt32Array(98, 87, 101), PackedInt32Array(101, 87, 11), PackedInt32Array(29, 104, 28), PackedInt32Array(28, 104, 105), PackedInt32Array(106, 55, 107), PackedInt32Array(107, 55, 105), PackedInt32Array(105, 55, 108), PackedInt32Array(108, 55, 56), PackedInt32Array(105, 104, 107), PackedInt32Array(109, 106, 110), PackedInt32Array(110, 106, 107), PackedInt32Array(92, 105, 91), PackedInt32Array(91, 105, 108), PackedInt32Array(114, 113, 111), PackedInt32Array(111, 113, 112), PackedInt32Array(118, 117, 115), PackedInt32Array(115, 117, 116), PackedInt32Array(88, 89, 119), PackedInt32Array(119, 89, 120), PackedInt32Array(121, 119, 122), PackedInt32Array(122, 119, 120), PackedInt32Array(1, 126, 0), PackedInt32Array(0, 126, 125), PackedInt32Array(0, 125, 124), PackedInt32Array(0, 124, 123), PackedInt32Array(126, 128, 125), PackedInt32Array(125, 128, 127), PackedInt32Array(131, 130, 129), PackedInt32Array(129, 132, 131), PackedInt32Array(131, 132, 133), PackedInt32Array(135, 134, 136), PackedInt32Array(136, 134, 133), PackedInt32Array(132, 9, 133), PackedInt32Array(133, 9, 136), PackedInt32Array(136, 9, 10), PackedInt32Array(140, 139, 137), PackedInt32Array(137, 139, 138), PackedInt32Array(141, 97, 82), PackedInt32Array(97, 141, 135), PackedInt32Array(135, 141, 134), PackedInt32Array(134, 141, 143), PackedInt32Array(134, 143, 142), PackedInt32Array(146, 145, 144), PackedInt32Array(124, 147, 123), PackedInt32Array(123, 147, 146), PackedInt32Array(123, 146, 144), PackedInt32Array(148, 146, 147), PackedInt32Array(147, 130, 148), PackedInt32Array(148, 130, 131), PackedInt32Array(150, 149, 49), PackedInt32Array(49, 149, 48), PackedInt32Array(152, 94, 151), PackedInt32Array(151, 94, 74), PackedInt32Array(149, 150, 151), PackedInt32Array(151, 150, 154), PackedInt32Array(151, 154, 152), PackedInt32Array(152, 154, 153), PackedInt32Array(158, 157, 155), PackedInt32Array(155, 157, 156), PackedInt32Array(160, 159, 145), PackedInt32Array(145, 159, 144), PackedInt32Array(71, 72, 161), PackedInt32Array(161, 72, 162), PackedInt32Array(164, 163, 165), PackedInt32Array(165, 163, 166), PackedInt32Array(167, 96, 90), PackedInt32Array(168, 165, 166), PackedInt32Array(166, 169, 168), PackedInt32Array(168, 169, 170), PackedInt32Array(168, 170, 167), PackedInt32Array(167, 170, 96), PackedInt32Array(169, 171, 170), PackedInt32Array(173, 172, 174), PackedInt32Array(174, 172, 175), PackedInt32Array(174, 175, 46), PackedInt32Array(46, 175, 45), PackedInt32Array(39, 40, 176), PackedInt32Array(176, 40, 177), PackedInt32Array(178, 182, 179), PackedInt32Array(179, 182, 183), PackedInt32Array(183, 182, 181), PackedInt32Array(183, 181, 184), PackedInt32Array(184, 181, 180), PackedInt32Array(187, 186, 185), PackedInt32Array(190, 189, 188), PackedInt32Array(192, 173, 191), PackedInt32Array(191, 173, 174), PackedInt32Array(68, 188, 67), PackedInt32Array(192, 191, 193), PackedInt32Array(193, 191, 194), PackedInt32Array(194, 191, 63), PackedInt32Array(194, 63, 64), PackedInt32Array(197, 199, 153), PackedInt32Array(153, 203, 195), PackedInt32Array(195, 204, 196), PackedInt32Array(196, 204, 180), PackedInt32Array(180, 204, 184), PackedInt32Array(184, 201, 183), PackedInt32Array(183, 197, 179), PackedInt32Array(199, 203, 153), PackedInt32Array(197, 202, 199), PackedInt32Array(203, 200, 195), PackedInt32Array(195, 200, 204), PackedInt32Array(204, 198, 184), PackedInt32Array(201, 202, 183), PackedInt32Array(184, 198, 201), PackedInt32Array(183, 202, 197), PackedInt32Array(199, 205, 203), PackedInt32Array(202, 201, 199), PackedInt32Array(203, 205, 200), PackedInt32Array(200, 198, 204), PackedInt32Array(198, 205, 201), PackedInt32Array(199, 201, 205), PackedInt32Array(205, 198, 200), PackedInt32Array(187, 185, 206), PackedInt32Array(153, 177, 197), PackedInt32Array(153, 154, 207), PackedInt32Array(163, 164, 208), PackedInt32Array(172, 179, 175), PackedInt32Array(175, 179, 197), PackedInt32Array(193, 194, 189), PackedInt32Array(189, 194, 188), PackedInt32Array(208, 195, 163), PackedInt32Array(163, 195, 196), PackedInt32Array(176, 177, 207), PackedInt32Array(207, 177, 153), PackedInt32Array(213, 209, 206), PackedInt32Array(209, 215, 210), PackedInt32Array(210, 181, 211), PackedInt32Array(211, 214, 212), PackedInt32Array(212, 178, 190), PackedInt32Array(178, 212, 182), PackedInt32Array(182, 214, 181), PackedInt32Array(181, 215, 180), PackedInt32Array(180, 215, 213), PackedInt32Array(213, 215, 209), PackedInt32Array(215, 181, 210), PackedInt32Array(181, 214, 211), PackedInt32Array(214, 182, 212), PackedInt32Array(216, 188, 68), PackedInt32Array(188, 218, 190), PackedInt32Array(190, 218, 212), PackedInt32Array(212, 218, 211), PackedInt32Array(211, 217, 210), PackedInt32Array(210, 221, 209), PackedInt32Array(209, 220, 206), PackedInt32Array(206, 220, 187), PackedInt32Array(187, 220, 216), PackedInt32Array(216, 218, 188), PackedInt32Array(218, 217, 211), PackedInt32Array(217, 219, 210), PackedInt32Array(221, 220, 209), PackedInt32Array(210, 219, 221), PackedInt32Array(220, 218, 216), PackedInt32Array(218, 219, 217), PackedInt32Array(221, 219, 220), PackedInt32Array(220, 219, 218), PackedInt32Array(224, 223, 222), PackedInt32Array(227, 226, 225), PackedInt32Array(229, 227, 228), PackedInt32Array(228, 227, 222), PackedInt32Array(222, 227, 224), PackedInt32Array(224, 227, 225), PackedInt32Array(229, 228, 85), PackedInt32Array(85, 228, 84), PackedInt32Array(231, 161, 230), PackedInt32Array(230, 161, 162), PackedInt32Array(232, 234, 142), PackedInt32Array(142, 234, 233), PackedInt32Array(231, 230, 235), PackedInt32Array(231, 235, 234), PackedInt32Array(234, 235, 236), PackedInt32Array(237, 170, 171), PackedInt32Array(237, 171, 238), PackedInt32Array(238, 171, 239), PackedInt32Array(233, 234, 240), PackedInt32Array(240, 234, 236), PackedInt32Array(240, 236, 242), PackedInt32Array(240, 242, 241), PackedInt32Array(239, 236, 238), PackedInt32Array(238, 236, 235), PackedInt32Array(241, 243, 240), PackedInt32Array(236, 244, 242), PackedInt32Array(142, 143, 232), PackedInt32Array(248, 247, 249), PackedInt32Array(249, 247, 250), PackedInt32Array(249, 250, 245), PackedInt32Array(245, 250, 246), PackedInt32Array(160, 251, 159), PackedInt32Array(159, 251, 252), PackedInt32Array(243, 241, 253), PackedInt32Array(253, 241, 252), PackedInt32Array(252, 251, 253), PackedInt32Array(244, 186, 242), PackedInt32Array(242, 186, 187)]
+cell_size = 0.2
+
+[sub_resource type="Gradient" id="Gradient_4fieg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bn43r"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_df2rt"]
+noise = SubResource("FastNoiseLite_bn43r")
+color_ramp = SubResource("Gradient_4fieg")
+seamless = true
+in_3d_space = true
+as_normal_map = true
+seamless_blend_skirt = 0.352
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgejc"]
+albedo_color = Color(0.851769, 0.8517689, 0.85176885, 1)
+roughness_texture = SubResource("NoiseTexture2D_df2rt")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ytrk"]
+material = SubResource("StandardMaterial3D_qgejc")
+
+[sub_resource type="Gradient" id="Gradient_wa62t"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_haku8"]
+seed = 18
+frequency = 0.3621
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wdxcr"]
+noise = SubResource("FastNoiseLite_haku8")
+color_ramp = SubResource("Gradient_wa62t")
+seamless = true
+in_3d_space = true
+normalize = false
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yuk16"]
+noise = SubResource("FastNoiseLite_haku8")
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4ic2"]
+albedo_texture = SubResource("NoiseTexture2D_wdxcr")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_yuk16")
+
+[sub_resource type="BoxMesh" id="BoxMesh_07isp"]
+material = SubResource("StandardMaterial3D_e4ic2")
+
+[sub_resource type="SphereMesh" id="SphereMesh_6hem0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u0bac"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2u76e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df2rt"]
+albedo_color = Color(0.11372549, 0, 0.32156864, 1)
+metallic = 0.33
+metallic_specular = 1.0
+
+[node name="main" type="Node3D" unique_id=1070606866]
+
+[node name="SaveManager" type="Node" parent="." unique_id=1000504592]
+script = ExtResource("12_lbqgv")
+load_screen = ExtResource("15_wdxcr")
+metadata/_custom_type_script = "uid://bolklkv28xgbe"
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1069691800]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("41_lhud8")
+metadata/_custom_type_script = "uid://b6d8x7famu8wh"
+
+[node name="SettingsInNodes" type="Node" parent="." unique_id=246106652]
+script = ExtResource("1_fa6tm")
+enabled = false
+nodes = Array[ExtResource("3_3ypb7")]([SubResource("Resource_qgejc")])
+metadata/_custom_type_script = "uid://c6jid8qojtnsk"
+
+[node name="TransitionStart" type="Node" parent="." unique_id=541682288]
+script = ExtResource("1_bm86r")
+transition_scene = ExtResource("42_u3vuk")
+metadata/_custom_type_script = "uid://dxx7vy0fd68sh"
+
+[node name="Calendar" type="Node" parent="." unique_id=327515313]
+script = ExtResource("1_brtl8")
+day_of_the_week = "Thursday"
+month = "March"
+metadata/_custom_type_script = "uid://bq7ojtukhreqp"
+
+[node name="Component" type="Node" parent="." unique_id=960545059]
+script = ExtResource("3_tfwsm")
+metadata/_custom_type_script = "uid://bofj0bjugq8hy"
+
+[node name="DialogueManager" type="Node" parent="Component" unique_id=611518287]
+process_mode = 1
+script = ExtResource("5_6hem0")
+interpolation_anim = 0.35
+metadata/_custom_type_script = "uid://cpw50h4bsfi2f"
+
+[node name="Interact" type="Node" parent="Component" unique_id=1123178653]
+process_mode = 1
+script = ExtResource("7_bm86r")
+distance_interact = 2.0
+metadata/_custom_type_script = "uid://b83q2fhcgpadc"
+
+[node name="FallState" type="Node" parent="Component" unique_id=512846578]
+process_mode = 1
+script = ExtResource("8_5rxwi")
+JUMP_SIZE = 190.0
+time_fall = 1.0
+metadata/_custom_type_script = "uid://tafqwm4yq813"
+
+[node name="IluminanceLevel" type="Node" parent="Component" unique_id=919362302]
+script = ExtResource("9_0hrsv")
+isDisabled = true
+metadata/_custom_type_script = "uid://wt4oc86ib0rl"
+
+[node name="AlignamentUser" type="Node" parent="Component" unique_id=599472925]
+script = ExtResource("13_cc03v")
+metadata/_custom_type_script = "uid://dwksru2ek2ycx"
+
+[node name="InterpolationState" type="Node" parent="Component" unique_id=95205369]
+process_mode = 1
+script = ExtResource("29_5rxwi")
+metadata/_custom_type_script = "uid://dosnws0bm0joa"
+
+[node name="CrouchState" type="Node" parent="Component" unique_id=1103969489]
+process_mode = 1
+script = ExtResource("19_s5fh0")
+can_crouch = false
+metadata/_custom_type_script = "uid://bh04scojksqo6"
+
+[node name="PushSense" type="Node" parent="Component" unique_id=455370389]
+script = ExtResource("21_pqayd")
+enabled = false
+metadata/_custom_type_script = "uid://dnjh7do120isj"
+
+[node name="Inventory" type="Node" parent="Component" unique_id=2118629962]
+process_mode = 1
+script = ExtResource("21_lbqgv")
+gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
+metadata/_custom_type_script = "uid://bbl0haaqibcfj"
+
+[node name="cutscenePositions" type="Node" parent="." unique_id=1898872414]
+
+[node name="positionCutscene" type="Marker3D" parent="cutscenePositions" unique_id=194388762]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17.662, 0.9, -2.77115)
+gizmo_extents = 10.0
+
+[node name="AlignamentObjects" type="Node" parent="." unique_id=1350994580]
+
+[node name="alignamentObject" type="Marker3D" parent="AlignamentObjects" unique_id=231117975]
+transform = Transform3D(0.0008897346, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0.0008897346, -11.426678, 0.59658635, -11.0602665)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AlignamentObjects/alignamentObject" unique_id=1482864809]
+mesh = SubResource("BoxMesh_wdxcr")
+
+[node name="alignamentObject2" type="Marker3D" parent="AlignamentObjects" unique_id=1320041436]
+transform = Transform3D(0.000889735, 0, -1, 0, 1, 0, 1, 0, 0.000889735, -11.699847, 2.0426931, -10.9314)
+
+[node name="Marker3D" type="Marker3D" parent="AlignamentObjects" unique_id=1212362128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.147, 0.3894341, -18.397884)
+
+[node name="Door" type="StaticBody3D" parent="." unique_id=979326796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.146463, 0.87468207, -19.883589)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("15_u0bac")
+alignment_path = NodePath("../AlignamentObjects/Marker3D")
+metadata/_custom_type_script = "uid://2ctt3ingr8be"
+
+[node name="Audio" type="Node" parent="." unique_id=1346019928]
+
+[node name="Voice" type="AudioStreamPlayer3D" parent="Audio" unique_id=1398891178]
+bus = &"Dialogue"
+script = ExtResource("22_lbqgv")
+metadata/_custom_type_script = "uid://bbebjoiue0hdu"
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="Audio" unique_id=278294658]
+stream = ExtResource("23_u3vuk")
+bus = &"SFX"
+script = ExtResource("21_lhud8")
+metadata/_custom_type_script = "uid://t6278ijmdsgj"
+
+[node name="test" type="MeshInstance3D" parent="." unique_id=1435927014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0672, 1.55162, -17.8004)
+mesh = SubResource("BoxMesh_lbqgv")
+
+[node name="target_hand" type="Marker3D" parent="test" unique_id=2127930684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.858688)
+
+[node name="target_head" type="Node3D" parent="test" unique_id=1941458986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.858688)
+
+[node name="Inventory" type="Node" parent="test" unique_id=755940589]
+process_mode = 1
+script = ExtResource("21_lbqgv")
+use_inventory = false
+default = SubResource("Resource_3xpcf")
+interval_asset_time = 0.32
+slot_interactive = -1
+gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
+metadata/_custom_type_script = "uid://bbl0haaqibcfj"
+
+[node name="Indication" type="Area3D" parent="." unique_id=1302860537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09585619, 1.18784, -5.234884)
+collision_layer = 13
+collision_mask = 13
+monitorable = false
+script = ExtResource("19_bm86r")
+activate = true
+time_indication = 1.0
+indication = SubResource("Resource_bm86r")
+mission = ExtResource("35_brtl8")
+in_objetive = "yes"
+metadata/_custom_type_script = "uid://dschnphk4dsnf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Indication" unique_id=1374102948]
+transform = Transform3D(1.905, 0, 0, 0, 1.905, 0, 0, 0, 1.905, 3.92204, 0, 0)
+shape = SubResource("BoxShape3D_4fieg")
+
+[node name="MissionStarter" type="Area3D" parent="." unique_id=484214094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5487356, 1.20113, -3.6407335)
+collision_layer = 13
+collision_mask = 13
+monitorable = false
+script = ExtResource("55_lhud8")
+mission = ExtResource("35_brtl8")
+metadata/_custom_type_script = "uid://bp1l4yxiw8522"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MissionStarter" unique_id=1337856259]
+transform = Transform3D(1.905, 0, 0, 0, 1.905, 0, 0, 0, 1.905, 0, 0, 0)
+shape = SubResource("BoxShape3D_4fieg")
+
+[node name="CompleteObjetive" type="Area3D" parent="." unique_id=1966222922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5487356, 1.55022, -9.789204)
+collision_layer = 13
+collision_mask = 13
+monitorable = false
+script = ExtResource("26_lhud8")
+id_mission = "the dog"
+objective = "yes"
+metadata/_custom_type_script = "uid://drewru2cgh7ii"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CompleteObjetive" unique_id=2013032799]
+transform = Transform3D(1.905, 0, 0, 0, 1.905, 0, 0, 0, 1.905, 0, 0, 0)
+shape = SubResource("BoxShape3D_4fieg")
+
+[node name="SkyAmbient" type="WorldEnvironment" parent="." unique_id=921010490]
+environment = ExtResource("2_2u76e")
+script = ExtResource("14_u0bac")
+metadata/_custom_type_script = "uid://danlpdtp3xsit"
+
+[node name="OrbitZ" type="Marker3D" parent="." unique_id=1172989592]
+transform = Transform3D(0.97753716, -0.2107635, -0.00028195878, 0.2107502, 0.9774884, -0.010031536, 0.0023898904, 0.009746748, 0.99994993, 0, 8.636658, 0)
+
+[node name="Sun" type="Marker3D" parent="OrbitZ" unique_id=624894730]
+transform = Transform3D(1.0000005, 0, 0, 0, -0.71324944, 0.7009084, 0, -0.70090836, -0.71324944, 0.60760117, 0.0669384, 0.047863416)
+script = ExtResource("15_w0aq2")
+metadata/_custom_type_script = "uid://yxpnc6bj5crb"
+
+[node name="cutscene test" type="Node3D" parent="." unique_id=364013158 node_paths=PackedStringArray("c")]
+transform = Transform3D(-0.9872004, 0, -0.15948485, 0, 1, 0, 0.15948485, 0, -0.9872004, -4.217798, 0.914067, -17.4319)
+script = ExtResource("2_0hrsv")
+c = NodePath("../CutScene")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="cutscene test" unique_id=325066241]
+libraries/ = SubResource("AnimationLibrary_aby0v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cutscene test" unique_id=591857112]
+mesh = SubResource("SphereMesh_7nhvg")
+
+[node name="CutScene" type="Node3D" parent="." unique_id=2058591890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7836056, 1.9392518, -15.388851)
+script = ExtResource("44_df2rt")
+packed_scene = ExtResource("45_bn43r")
+data = Array[NodePath]([NodePath("../Player"), NodePath("../NPC")])
+metadata/_custom_type_script = "uid://cub5lqivv1hyp"
+
+[node name="Revolver" parent="." unique_id=726006492 instance=ExtResource("18_msexu")]
+transform = Transform3D(-3.6955277e-07, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -3.6955277e-07, -13.897693, 1.0189226, -17.353598)
+weapon = ExtResource("24_qgejc")
+
+[node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)
+collision_layer = 14
+collision_mask = 14
+script = ExtResource("21_o7kkv")
+target_look = NodePath("../Player")
+target = NodePath("../target")
+timeline = SubResource("Resource_uhj0f")
+view_mode = 0
+distance_interact = 2.0
+default = SubResource("Resource_3xpcf")
+slots = Array[ExtResource("43_8bdiv")]([ExtResource("41_s5fh0"), null, null])
+gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
+inventory_slots = Array[ExtResource("23_brtl8")]([null, null, null])
+dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_s5fh0")])
+friction = null
+model_scene = ExtResource("32_s5fh0")
+collision_shape = SubResource("CapsuleShape3D_qgejc")
+can_run = Object(Node3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":Resource("res://addons/Hitokoto´s Plugin/player/model/humanoid.gd"),"physics_bones":Object(PhysicalBoneSimulator3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"active":true,"influence":1.0,"script":null)
+,"skeleton":Object(Skeleton3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"motion_scale":1.0,"show_rest_only":false,"modifier_callback_mode_process":1,"animate_physical_bones":true,"bones/0/name":"mixamorig_Hips","bones/0/parent":-1,"bones/0/rest":Transform3D(1, -8.7809625e-05, -2.7869974e-06, 2.7869974e-06, 0, 1, -8.7809625e-05, -1, 0, -6.7570113e-06, 4.84474e-05, -99.79194),"bones/0/enabled":true,"bones/0/position":Vector3(-0.2713239, 0.6080091, -99.03115),"bones/0/rotation":Quaternion(-0.7295528, -0.049855392, 0.014837302, 0.68194354),"bones/0/scale":Vector3(1, 1, 1),"bones/0/bone_meta/extras":{
+"bone_properties": {}
+},"bones/1/name":"mixamorig_Spine","bones/1/parent":0,"bones/1/rest":Transform3D(1, -1.2216126e-05, -7.4326215e-07, 1.2216127e-05, 0.9926236, 0.12123627, -7.4325806e-07, -0.12123627, 0.9926236, 0.0008597856, 9.923462, -1.227335),"bones/1/enabled":true,"bones/1/position":Vector3(0.0008597856, 9.923462, -1.227335),"bones/1/rotation":Quaternion(-0.033793177, 0.012559889, 0.023699239, 0.9990689),"bones/1/scale":Vector3(1, 0.99999994, 0.99999994),"bones/1/bone_meta/extras":{
+"bone_properties": {}
+},"bones/2/name":"mixamorig_Spine1","bones/2/parent":1,"bones/2/rest":Transform3D(1, 1.8632327e-05, -7.3014044e-09, -1.8632327e-05, 0.99999994, -0.00039226923, -7.4842355e-12, 0.00039226923, 0.99999994, -1.1768861e-09, 11.731992, 1.209093e-06),"bones/2/enabled":true,"bones/2/position":Vector3(-1.1768861e-09, 11.731992, 1.209093e-06),"bones/2/rotation":Quaternion(0.00962297, 0.0016742821, 0.014409048, 0.99984854),"bones/2/scale":Vector3(1, 1, 1),"bones/2/bone_meta/extras":{
+"bone_properties": {}
+},"bones/3/name":"mixamorig_Spine2","bones/3/parent":2,"bones/3/rest":Transform3D(1, -6.305869e-06, 4.7635044e-06, 6.812768e-06, 0.9933387, -0.11523108, -4.0051414e-06, 0.11523109, 0.99333864, 2.5174813e-09, 13.458846, 9.862406e-07),"bones/3/enabled":true,"bones/3/position":Vector3(2.5174813e-09, 13.458846, 9.862406e-07),"bones/3/rotation":Quaternion(0.0669198, 0.0026223008, 0.014199179, 0.99765396),"bones/3/scale":Vector3(1, 0.99999994, 0.9999999),"bones/3/bone_meta/extras":{
+"bone_properties": {}
+},"bones/4/name":"mixamorig_Neck","bones/4/parent":3,"bones/4/rest":Transform3D(1, 6.494257e-11, 3.4022607e-12, -6.49223e-11, 0.999984, -0.0056552975, -3.769476e-12, 0.0056552975, 0.999984, 2.5479638e-05, 15.0277405, 0.87790465),"bones/4/enabled":true,"bones/4/position":Vector3(2.54796e-05, 15.0278, 0.877904),"bones/4/rotation":Quaternion(0.049443822, -0.0014657535, 0.0047892593, 0.9987644),"bones/4/scale":Vector3(1, 1, 1),"bones/4/bone_meta/extras":{
+"bone_properties": {}
+},"bones/5/name":"mixamorig_Head","bones/5/parent":4,"bones/5/rest":Transform3D(1, -2.1827458e-11, 3.317666e-13, 2.182746e-11, 0.9999999, 1.2145336e-08, -3.3176687e-13, -1.21453345e-08, 1, 2.5598838e-06, 10.321838, 3.1424289),"bones/5/enabled":true,"bones/5/position":Vector3(2.5598838e-06, 10.321838, 3.1424289),"bones/5/rotation":Quaternion(-0.06777399, 0.011235712, -0.0017584122, 0.99763596),"bones/5/scale":Vector3(1, 0.9999999, 1),"bones/5/bone_meta/extras":{
+"bone_properties": {}
+},"bones/6/name":"mixamorig_HeadTop_End","bones/6/parent":5,"bones/6/rest":Transform3D(1, -3.6387447e-12, -3.364739e-13, 3.6387443e-12, 1.0000001, 6.4184716e-17, 3.364739e-13, -6.418472e-17, 1, 0.00015451612, 18.474686, 6.6364007),"bones/6/enabled":true,"bones/6/position":Vector3(0.00015451612, 18.474686, 6.6364007),"bones/6/rotation":Quaternion(-3.2092358e-17, -1.6823695e-13, 1.8193721e-12, 1),"bones/6/scale":Vector3(1, 1.0000001, 1),"bones/6/bone_meta/extras":{
+"bone_properties": {}
+},"bones/7/name":"mixamorig_LeftShoulder","bones/7/parent":3,"bones/7/rest":Transform3D(-0.20122975, 0.97931886, -0.021008939, 0.009767951, -0.019440416, -0.9997633, -0.9794955, -0.20138733, -0.0056539476, 6.1058245, 9.106251, 0.75706035),"bones/7/enabled":true,"bones/7/position":Vector3(6.1058245, 9.106251, 0.75706035),"bones/7/rotation":Quaternion(-0.5936294, -0.43953064, 0.50904334, -0.44191834),"bones/7/scale":Vector3(1.0000001, 1.0000001, 1),"bones/7/bone_meta/extras":{
+"bone_properties": {}
+},"bones/8/name":"mixamorig_LeftArm","bones/8/parent":7,"bones/8/rest":Transform3D(0.9795347, -0.20123039, -0.00422908, 0.20127483, 0.9793184, 0.020581316, 2.9569488e-08, -0.02101132, 0.9997791, 4.7683716e-07, 12.922286, 2.0288038e-05),"bones/8/enabled":true,"bones/8/position":Vector3(-2.2362701e-07, 12.9223, 7.56147e-06),"bones/8/rotation":Quaternion(0.5490015, 0.18282367, 0.20406659, 0.789639),"bones/8/scale":Vector3(0.9999999, 0.9999998, 0.9999999),"bones/8/bone_meta/extras":{
+"bone_properties": {}
+},"bones/9/name":"mixamorig_LeftForeArm","bones/9/parent":8,"bones/9/rest":Transform3D(1, 2.3344043e-08, 1.6313285e-08, -2.3344022e-08, 1, -1.239292e-06, -1.6313313e-08, 1.239292e-06, 1, 1.354159e-05, 27.404676, 1.2725656e-05),"bones/9/enabled":true,"bones/9/position":Vector3(7.543513e-07, 27.4047, -6.6678876e-07),"bones/9/rotation":Quaternion(5.437163e-07, -6.520888e-08, 0.013037111, 0.999915),"bones/9/scale":Vector3(1, 1, 1),"bones/9/bone_meta/extras":{
+"bone_properties": {}
+},"bones/10/name":"mixamorig_LeftHand","bones/10/parent":9,"bones/10/rest":Transform3D(1, 1.2873278e-07, -1.2872147e-07, -1.2873295e-07, 1, -1.4133439e-06, 1.287213e-07, 1.4133439e-06, 1, -2.2017775e-07, 27.614449, 1.3938879e-06),"bones/10/enabled":true,"bones/10/position":Vector3(3.41916e-06, 27.6144, -1.59757e-06),"bones/10/rotation":Quaternion(0.04891001, -0.27908552, 0.026041519, 0.9586663),"bones/10/scale":Vector3(1, 1, 1),"bones/10/bone_meta/extras":{
+"bone_properties": {}
+},"bones/11/name":"mixamorig_LeftHandThumb1","bones/11/parent":10,"bones/11/rest":Transform3D(0.8944282, -0.44721153, -6.7055225e-07, 0.3872969, 0.77459896, -0.49999756, 0.2236052, 0.44721168, 0.8660268, -3.0029724, 3.7888212, 2.16716),"bones/11/enabled":true,"bones/11/position":Vector3(-3.0029724, 3.7888212, 2.16716),"bones/11/rotation":Quaternion(0.20985906, -0.05956201, 0.20750505, 0.9536002),"bones/11/scale":Vector3(0.99999994, 1, 1),"bones/11/bone_meta/extras":{
+"bone_properties": {}
+},"bones/12/name":"mixamorig_LeftHandThumb2","bones/12/parent":11,"bones/12/rest":Transform3D(1, -1.7955858e-06, 5.5883356e-07, 1.795594e-06, 1, -1.4625498e-05, -5.5880724e-07, 1.4625497e-05, 1.0000001, 5.4240227e-06, 4.7449903, 2.596051e-05),"bones/12/enabled":true,"bones/12/position":Vector3(-2.3245202e-06, 4.74496, 1.0542e-05),"bones/12/rotation":Quaternion(-0.14271304, 0.08659603, -0.2405351, 0.95617837),"bones/12/scale":Vector3(1, 1, 1.0000001),"bones/12/bone_meta/extras":{
+"bone_properties": {}
+},"bones/13/name":"mixamorig_LeftHandThumb3","bones/13/parent":12,"bones/13/rest":Transform3D(1.0000001, 4.023313e-07, -4.6973444e-08, -4.0233138e-07, 1.0000001, -1.5597627e-06, 4.6972822e-08, 1.559763e-06, 1, 5.9604645e-08, 4.382114, -3.2484e-05),"bones/13/enabled":true,"bones/13/position":Vector3(1.84775e-06, 4.38213, 4.0595405e-06),"bones/13/rotation":Quaternion(-0.121022, -0.0755413, 0.0240541, 0.989479),"bones/13/scale":Vector3(1.0000001, 1.0000001, 1),"bones/13/bone_meta/extras":{
+"bone_properties": {}
+},"bones/14/name":"mixamorig_LeftHandThumb4","bones/14/parent":13,"bones/14/rest":Transform3D(0.9580415, -0.1403209, 0.2499331, 0.14491737, 0.98944366, 1.1212787e-05, -0.24729635, 0.036208905, 0.968263, 3.5762787e-07, 3.459084, 5.6589397e-06),"bones/14/enabled":true,"bones/14/position":Vector3(-5.37411e-06, 3.45909, 6.90306e-07),"bones/14/rotation":Quaternion(0.00914626, 0.12563756, 0.07207264, 0.9894125),"bones/14/scale":Vector3(1, 0.9999999, 0.9999999),"bones/14/bone_meta/extras":{
+"bone_properties": {}
+},"bones/15/name":"mixamorig_LeftHandIndex1","bones/15/parent":10,"bones/15/rest":Transform3D(1, -9.372649e-06, 6.5751834e-08, 9.372649e-06, 1, -1.2979334e-06, -6.573967e-08, 1.2979341e-06, 1, -2.822039, 12.266629, 0.2318212),"bones/15/enabled":true,"bones/15/position":Vector3(-2.822039, 12.266629, 0.2318212),"bones/15/rotation":Quaternion(0.06621653, 0.00073317235, 0.008430744, 0.9977695),"bones/15/scale":Vector3(1, 1, 1),"bones/15/bone_meta/extras":{
+"bone_properties": {}
+},"bones/16/name":"mixamorig_LeftHandIndex2","bones/16/parent":15,"bones/16/rest":Transform3D(1, 1.2435029e-05, 9.082357e-08, -1.2435029e-05, 1, 3.1073798e-06, -9.078493e-08, -3.1073807e-06, 1, -4.49254e-08, 3.8919609, 5.0192075e-06),"bones/16/enabled":true,"bones/16/position":Vector3(3.06385e-07, 3.89197, 3.00675e-06),"bones/16/rotation":Quaternion(0.15099606, -4.9820883e-08, -0.015473906, 0.98841333),"bones/16/scale":Vector3(1, 1, 1),"bones/16/bone_meta/extras":{
+"bone_properties": {}
+},"bones/17/name":"mixamorig_LeftHandIndex3","bones/17/parent":16,"bones/17/rest":Transform3D(1, 1.1346615e-08, -1.1346722e-08, -1.1346617e-08, 1, -1.2630338e-07, 1.134672e-08, 1.2630338e-07, 1, 8.691495e-08, 3.4151607, 1.0129398e-05),"bones/17/enabled":true,"bones/17/position":Vector3(-3.54483e-07, 3.41515, 1.0218173e-08),"bones/17/rotation":Quaternion(0.07008192, -1.2554604e-07, -0.0071817227, 0.9975154),"bones/17/scale":Vector3(1, 1, 1),"bones/17/bone_meta/extras":{
+"bone_properties": {}
+},"bones/18/name":"mixamorig_LeftHandIndex4","bones/18/parent":17,"bones/18/rest":Transform3D(0.999968, -4.5391105e-05, 0.008002997, 4.5429326e-05, 1, -4.593755e-06, -0.008002998, 4.957179e-06, 0.99996793, -3.929017e-10, 3.0779996, 1.3560568e-05),"bones/18/enabled":true,"bones/18/position":Vector3(1.73658e-06, 3.078, -3.8859525e-07),"bones/18/rotation":Quaternion(2.3877528e-06, 0.0040015313, 2.270529e-05, 0.999992),"bones/18/scale":Vector3(1, 1, 0.99999994),"bones/18/bone_meta/extras":{
+"bone_properties": {}
+},"bones/19/name":"mixamorig_LeftHandMiddle1","bones/19/parent":10,"bones/19/rest":Transform3D(1, -1.6607322e-09, 1.2086977e-07, 1.6605974e-09, 1, 1.11591e-06, -1.2086977e-07, -1.11591e-06, 1, -1.2186429e-05, 12.775537, -7.5165135e-06),"bones/19/enabled":true,"bones/19/position":Vector3(-1.84252e-05, 12.7755, 9.058667e-07),"bones/19/rotation":Quaternion(0.13652995, -0.0038359086, -0.022952093, 0.99036264),"bones/19/scale":Vector3(1, 1, 1),"bones/19/bone_meta/extras":{
+"bone_properties": {}
+},"bones/20/name":"mixamorig_LeftHandMiddle2","bones/20/parent":19,"bones/20/rest":Transform3D(1, -5.8808607e-09, 5.8803002e-09, 5.8808634e-09, 1, -4.5844354e-07, -5.8802976e-09, 4.5844354e-07, 1, -2.742927e-07, 3.6139612, -1.7386392e-06),"bones/20/enabled":true,"bones/20/position":Vector3(-2.742927e-07, 3.6139612, -1.7386392e-06),"bones/20/rotation":Quaternion(0.15125506, -1.04593035e-07, -0.015500206, 0.98837334),"bones/20/scale":Vector3(1, 1, 1),"bones/20/bone_meta/extras":{
+"bone_properties": {}
+},"bones/21/name":"mixamorig_LeftHandMiddle3","bones/21/parent":20,"bones/21/rest":Transform3D(1, 8.255227e-09, -8.254362e-09, -8.255236e-09, 1, -1.1370612e-06, 8.254353e-09, 1.1370612e-06, 1, 2.8847926e-05, 3.4597664, 2.7381943e-06),"bones/21/enabled":true,"bones/21/position":Vector3(2.84004e-05, 3.45976, 5.52887e-06),"bones/21/rotation":Quaternion(0.15993299, -1.17949995e-07, -0.016389297, 0.9869919),"bones/21/scale":Vector3(1, 1, 1),"bones/21/bone_meta/extras":{
+"bone_properties": {}
+},"bones/22/name":"mixamorig_LeftHandMiddle4","bones/22/parent":21,"bones/22/rest":Transform3D(0.9999572, 0.0013082532, 0.009158668, -0.0013082741, 0.99999917, -3.6897486e-06, -0.009158665, -8.292459e-06, 0.999958, -3.0172894e-05, 3.680192, 3.0402305e-06),"bones/22/enabled":true,"bones/22/position":Vector3(-3.15362e-05, 3.68019, 5.44468e-06),"bones/22/rotation":Quaternion(-1.1506899e-06, 0.004579383, -0.00065413886, 0.9999893),"bones/22/scale":Vector3(1, 1, 0.9999999),"bones/22/bone_meta/extras":{
+"bone_properties": {}
+},"bones/23/name":"mixamorig_LeftHandRing1","bones/23/parent":10,"bones/23/rest":Transform3D(1, -9.136381e-06, 1.9700138e-07, 9.136382e-06, 0.9999999, 1.4309187e-06, -1.9701446e-07, -1.4309167e-06, 1, 2.216638, 12.147019, -0.009996569),"bones/23/enabled":true,"bones/23/position":Vector3(2.216638, 12.147019, -0.009996569),"bones/23/rotation":Quaternion(0.18325, -0.00465309, -0.0314548, 0.982552),"bones/23/scale":Vector3(1, 0.9999999, 1),"bones/23/bone_meta/extras":{
+"bone_properties": {}
+},"bones/24/name":"mixamorig_LeftHandRing2","bones/24/parent":23,"bones/24/rest":Transform3D(1.0000001, 1.6187127e-05, 2.4700794e-08, -1.6187128e-05, 1, 3.29224e-06, -2.4647505e-08, -3.2922405e-06, 1, 9.68379e-07, 3.6011739, -1.4787729e-05),"bones/24/enabled":true,"bones/24/position":Vector3(-2.0588345e-08, 3.60118, 1.6207287e-07),"bones/24/rotation":Quaternion(0.18138896, -7.956493e-08, -0.018588297, 0.9832358),"bones/24/scale":Vector3(1.0000001, 1, 1),"bones/24/bone_meta/extras":{
+"bone_properties": {}
+},"bones/25/name":"mixamorig_LeftHandRing3","bones/25/parent":24,"bones/25/rest":Transform3D(1.0000001, -4.0651815e-07, 4.064807e-07, 4.0651844e-07, 1, -5.564892e-07, -4.0648052e-07, 5.564894e-07, 1, 6.7411747e-09, 3.3073258, 5.4994475e-06),"bones/25/enabled":true,"bones/25/position":Vector3(3.81382e-08, 3.30733, 2.90687e-06),"bones/25/rotation":Quaternion(0.155213, 1.01123014e-07, -0.0159055, 0.987753),"bones/25/scale":Vector3(1.0000001, 1, 1),"bones/25/bone_meta/extras":{
+"bone_properties": {}
+},"bones/26/name":"mixamorig_LeftHandRing4","bones/26/parent":25,"bones/26/rest":Transform3D(0.99988943, -0.0015409465, 0.014791959, 0.0015412096, 0.9999988, -6.3845373e-06, -0.014791931, 2.9181341e-05, 0.99989057, -2.2946726e-05, 3.6601095, 3.3540626e-05),"bones/26/enabled":true,"bones/26/position":Vector3(-2.46871e-05, 3.66012, 1.77703e-05),"bones/26/rotation":Quaternion(8.891716e-06, 0.007396177, 0.00077056035, 0.99997234),"bones/26/scale":Vector3(1, 1, 0.99999994),"bones/26/bone_meta/extras":{
+"bone_properties": {}
+},"bones/27/name":"mixamorig_LeftHandPinky1","bones/27/parent":10,"bones/27/rest":Transform3D(0.9999999, -0.0002818379, 3.4582794e-07, 0.00028183789, 1, -2.7087747e-06, -3.4506448e-07, 2.7088722e-06, 1, 4.7258377, 10.908198, 0.22613092),"bones/27/enabled":true,"bones/27/position":Vector3(4.72583, 10.9082, 0.226134),"bones/27/rotation":Quaternion(0.2338659, -0.0035056283, -0.04900888, 0.97102654),"bones/27/scale":Vector3(0.9999999, 1, 1),"bones/27/bone_meta/extras":{
+"bone_properties": {}
+},"bones/28/name":"mixamorig_LeftHandPinky2","bones/28/parent":27,"bones/28/rest":Transform3D(0.9999997, 0.00073660206, -7.57697e-07, -0.00073660206, 0.9999997, 9.247071e-06, 7.6450823e-07, -9.24651e-06, 1, 1.2054734e-06, 4.136657, 1.41888295e-05),"bones/28/enabled":true,"bones/28/position":Vector3(-4.8929996e-07, 4.13666, -4.4505896e-06),"bones/28/rotation":Quaternion(0.15125893, -4.7962163e-07, -0.015500395, 0.9883726),"bones/28/scale":Vector3(0.99999994, 0.99999994, 1),"bones/28/bone_meta/extras":{
+"bone_properties": {}
+},"bones/29/name":"mixamorig_LeftHandPinky3","bones/29/parent":28,"bones/29/rest":Transform3D(0.9999998, -0.0004608309, 1.1212771e-06, 0.00046083092, 0.99999976, -1.0588221e-05, -1.1163977e-06, 1.0588737e-05, 0.9999999, -1.618042e-06, 2.5948238, 1.851051e-05),"bones/29/enabled":true,"bones/29/position":Vector3(1.8918195e-07, 2.59483, -1.975979e-06),"bones/29/rotation":Quaternion(0.14349903, 5.9634647e-07, -0.014704305, 0.9895413),"bones/29/scale":Vector3(0.99999994, 0.9999999, 0.9999999),"bones/29/bone_meta/extras":{
+"bone_properties": {}
+},"bones/30/name":"mixamorig_LeftHandPinky4","bones/30/parent":29,"bones/30/rest":Transform3D(0.9999657, 0.0011507295, 0.008199106, -0.0011507763, 0.99999934, 1.0021863e-06, -0.0081990985, -1.04374885e-05, 0.9999664, 1.4867182e-06, 2.9238708, 8.736861e-06),"bones/30/enabled":true,"bones/30/position":Vector3(9.44743e-07, 2.92388, 4.14214e-06),"bones/30/rotation":Quaternion(-2.8599432e-06, 0.004099586, -0.0005753814, 0.9999914),"bones/30/scale":Vector3(1, 1, 1),"bones/30/bone_meta/extras":{
+"bone_properties": {}
+},"bones/31/name":"mixamorig_RightShoulder","bones/31/parent":3,"bones/31/rest":Transform3D(-0.20122771, -0.9793192, 0.02101669, -0.009769412, -0.019448046, -0.99976313, 0.9794959, -0.20138538, -0.005653885, -6.105696, 9.106346, 0.75707376),"bones/31/enabled":true,"bones/31/position":Vector3(-6.1057, 9.10637, 0.757077),"bones/31/rotation":Quaternion(0.6001024, -0.4347733, 0.5253819, 0.41811854),"bones/31/scale":Vector3(1.0000001, 1.0000002, 1),"bones/31/bone_meta/extras":{
+"bone_properties": {}
+},"bones/32/name":"mixamorig_RightArm","bones/32/parent":31,"bones/32/rest":Transform3D(0.9795352, 0.2012278, 0.004230293, -0.20127225, 0.9793189, 0.020587975, 6.705522e-08, -0.021018092, 0.99977905, -1.1920929e-07, 12.922288, -2.1355327e-06),"bones/32/enabled":true,"bones/32/position":Vector3(6.73129e-07, 12.9223, 8.83321e-06),"bones/32/rotation":Quaternion(0.46206656, -0.26635748, -0.2310977, 0.8137212),"bones/32/scale":Vector3(0.9999999, 1, 0.99999994),"bones/32/bone_meta/extras":{
+"bone_properties": {}
+},"bones/33/name":"mixamorig_RightForeArm","bones/33/parent":32,"bones/33/rest":Transform3D(1, -5.8467712e-08, 3.907174e-08, 5.8467734e-08, 0.99999994, -4.4896296e-07, -3.9071715e-08, 4.4896294e-07, 1, -6.470191e-07, 27.404663, -2.1143087e-06),"bones/33/enabled":true,"bones/33/position":Vector3(2.94372e-06, 27.4047, 9.739178e-07),"bones/33/rotation":Quaternion(2.2748878e-07, 4.0077904e-08, -0.05833271, 0.9982972),"bones/33/scale":Vector3(1, 0.99999994, 1),"bones/33/bone_meta/extras":{
+"bone_properties": {}
+},"bones/34/name":"mixamorig_RightHand","bones/34/parent":33,"bones/34/rest":Transform3D(1, -4.759488e-09, 4.7599e-09, 4.7594857e-09, 0.99999994, 5.926886e-07, -4.7599027e-09, -5.9268854e-07, 1, 1.3615939e-05, 27.614449, -7.825091e-06),"bones/34/enabled":true,"bones/34/position":Vector3(1.07302e-05, 27.6144, 1.6005099e-05),"bones/34/rotation":Quaternion(0.055622112, 0.1747596, -0.004582872, 0.9830282),"bones/34/scale":Vector3(1, 0.99999994, 1),"bones/34/bone_meta/extras":{
+"bone_properties": {}
+},"bones/35/name":"mixamorig_RightHandThumb1","bones/35/parent":34,"bones/35/rest":Transform3D(0.894428, 0.4472121, -7.807377e-07, -0.38729727, 0.7745966, -0.5000008, -0.22360587, 0.44721496, 0.8660249, 3.0029738, 3.7887971, 2.1671596),"bones/35/enabled":true,"bones/35/position":Vector3(3.0029738, 3.7887971, 2.1671596),"bones/35/rotation":Quaternion(0.21378703, 0.0653717, -0.225649, 0.94821113),"bones/35/scale":Vector3(1.0000001, 0.9999999, 0.99999994),"bones/35/bone_meta/extras":{
+"bone_properties": {}
+},"bones/36/name":"mixamorig_RightHandThumb2","bones/36/parent":35,"bones/36/rest":Transform3D(1.0000001, 1.2628711e-06, -3.0448484e-07, -1.2628759e-06, 1, -1.5340242e-05, 3.0446546e-07, 1.534024e-05, 1.0000001, 1.3411045e-05, 4.7449484, -4.1105137e-05),"bones/36/enabled":true,"bones/36/position":Vector3(-1.9669296e-06, 4.74497, -1.48978e-05),"bones/36/rotation":Quaternion(-0.14410101, -0.07616971, 0.27720702, 0.9468841),"bones/36/scale":Vector3(1.0000001, 1, 1.0000001),"bones/36/bone_meta/extras":{
+"bone_properties": {}
+},"bones/37/name":"mixamorig_RightHandThumb3","bones/37/parent":36,"bones/37/rest":Transform3D(0.9999999, -6.7055254e-07, 1.2977878e-06, 6.705519e-07, 0.9999999, 4.9615454e-07, -1.2977881e-06, -4.961537e-07, 0.99999994, -5.722046e-06, 4.38215, 4.2005477e-06),"bones/37/enabled":true,"bones/37/position":Vector3(-1.7285402e-06, 4.38213, 5.28511e-07),"bones/37/rotation":Quaternion(-0.1552, 0.0746794, -0.0260449, 0.984712),"bones/37/scale":Vector3(0.9999999, 0.9999999, 0.99999994),"bones/37/bone_meta/extras":{
+"bone_properties": {}
+},"bones/38/name":"mixamorig_RightHandThumb4","bones/38/parent":37,"bones/38/rest":Transform3D(0.9572128, 0.14074703, -0.25285208, -0.14544187, 0.98936695, 0.00012504896, 0.25018108, 0.036655582, 0.96750504, 1.4066696e-05, 3.4590669, -2.3829807e-05),"bones/38/enabled":true,"bones/38/position":Vector3(1.57118e-05, 3.45906, -2.71022e-05),"bones/38/rotation":Quaternion(0.009232322, -0.12713102, -0.0723282, 0.98920226),"bones/38/scale":Vector3(1.0000001, 1.0000001, 1),"bones/38/bone_meta/extras":{
+"bone_properties": {}
+},"bones/39/name":"mixamorig_RightHandIndex1","bones/39/parent":34,"bones/39/rest":Transform3D(1, 9.556427e-06, -1.0089085e-07, -9.556428e-06, 0.99999994, -9.571144e-08, 1.00889935e-07, 9.57124e-08, 1, 2.8220422, 12.266604, 0.2318283),"bones/39/enabled":true,"bones/39/position":Vector3(2.82204, 12.2666, 0.231832),"bones/39/rotation":Quaternion(0.059512086, -0.0009913878, -0.010976197, 0.99816674),"bones/39/scale":Vector3(1, 0.99999994, 1),"bones/39/bone_meta/extras":{
+"bone_properties": {}
+},"bones/40/name":"mixamorig_RightHandIndex2","bones/40/parent":39,"bones/40/rest":Transform3D(1, -8.322913e-06, 1.786012e-07, 8.322915e-06, 0.99999994, -3.103551e-06, -1.7857536e-07, 3.1035524e-06, 1, 3.411327e-07, 3.8919632, -6.3938983e-06),"bones/40/enabled":true,"bones/40/position":Vector3(-6.2271596e-08, 3.89196, 2.9494413e-07),"bones/40/rotation":Quaternion(0.15128897, 1.5965101e-07, 0.012324197, 0.98841274),"bones/40/scale":Vector3(1, 0.99999994, 1),"bones/40/bone_meta/extras":{
+"bone_properties": {}
+},"bones/41/name":"mixamorig_RightHandIndex3","bones/41/parent":40,"bones/41/rest":Transform3D(1, -2.5901361e-08, 2.5903512e-08, 2.590136e-08, 0.99999994, 1.2628519e-07, -2.5903516e-08, -1.2628517e-07, 1, -1.3248085e-05, 3.4151592, -1.1473512e-05),"bones/41/enabled":true,"bones/41/position":Vector3(-1.6732974e-07, 3.41516, 1.6540498e-06),"bones/41/rotation":Quaternion(0.07021632, -2.1678009e-08, 0.005719952, 0.9975154),"bones/41/scale":Vector3(1, 0.99999994, 1),"bones/41/bone_meta/extras":{
+"bone_properties": {}
+},"bones/42/name":"mixamorig_RightHandIndex4","bones/42/parent":41,"bones/42/rest":Transform3D(0.9999063, -0.0027484058, -0.013418392, 0.002750354, 0.9999961, 0.00012670038, 0.013417995, -0.0001635938, 0.99991, 2.492925e-07, 3.077981, 1.548813e-05),"bones/42/enabled":true,"bones/42/position":Vector3(1.0368e-06, 3.07799, 3.4145596e-06),"bones/42/rotation":Quaternion(-7.2577066e-05, -0.0067092367, 0.0013747194, 0.9999766),"bones/42/scale":Vector3(1.0000001, 0.9999999, 1),"bones/42/bone_meta/extras":{
+"bone_properties": {}
+},"bones/43/name":"mixamorig_RightHandMiddle1","bones/43/parent":34,"bones/43/rest":Transform3D(1, 7.999595e-07, 3.4434997e-08, -7.999594e-07, 0.99999994, -2.505527e-06, -3.4437e-08, 2.5055267e-06, 1, 1.6385176e-05, 12.775518, 1.8509878e-05),"bones/43/enabled":true,"bones/43/position":Vector3(1.68387e-05, 12.7755, 5.77263e-06),"bones/43/rotation":Quaternion(0.13051498, 0.0036897794, 0.018921798, 0.99125886),"bones/43/scale":Vector3(1, 0.99999994, 1),"bones/43/bone_meta/extras":{
+"bone_properties": {}
+},"bones/44/name":"mixamorig_RightHandMiddle2","bones/44/parent":43,"bones/44/rest":Transform3D(1, -7.313439e-08, 7.314075e-08, 7.313436e-08, 0.99999994, 4.5843268e-07, -7.314078e-08, -4.5843265e-07, 1, -8.2787665e-08, 3.6139748, -2.1359631e-07),"bones/44/enabled":true,"bones/44/position":Vector3(4.7142203e-07, 3.61396, 1.19872e-06),"bones/44/rotation":Quaternion(0.15154506, 2.515881e-07, 0.012345205, 0.98837334),"bones/44/scale":Vector3(1, 0.99999994, 1),"bones/44/bone_meta/extras":{
+"bone_properties": {}
+},"bones/45/name":"mixamorig_RightHandMiddle3","bones/45/parent":44,"bones/45/rest":Transform3D(1, 4.7017934e-08, -4.7021988e-08, -4.7017885e-08, 0.99999994, 1.1370576e-06, 4.702204e-08, -1.1370574e-06, 1, -2.9627434e-05, 3.4597595, -5.1027346e-06),"bones/45/enabled":true,"bones/45/position":Vector3(-2.90153e-05, 3.45975, -3.51903e-06),"bones/45/rotation":Quaternion(0.160239, 5.2015796e-08, 0.0130536, 0.986992),"bones/45/scale":Vector3(1, 0.99999994, 1),"bones/45/bone_meta/extras":{
+"bone_properties": {}
+},"bones/46/name":"mixamorig_RightHandMiddle4","bones/46/parent":45,"bones/46/rest":Transform3D(0.9999045, 0.0034172432, -0.013390087, -0.0034158824, 0.9999941, 0.00012452785, 0.013390435, -7.8777004e-05, 0.9999103, 2.8519096e-05, 3.6801908, -2.0417787e-05),"bones/46/enabled":true,"bones/46/position":Vector3(2.6974e-05, 3.68019, 3.7174595e-06),"bones/46/rotation":Quaternion(-5.082744e-05, -0.0066952915, -0.0017083224, 0.9999761),"bones/46/scale":Vector3(1, 0.99999994, 0.99999994),"bones/46/bone_meta/extras":{
+"bone_properties": {}
+},"bones/47/name":"mixamorig_RightHandRing1","bones/47/parent":34,"bones/47/rest":Transform3D(1, 9.665988e-06, -2.1534728e-08, -9.665989e-06, 0.99999994, -2.8199358e-06, 2.150747e-08, 2.8199358e-06, 1, -2.2166324, 12.146992, -0.009998287),"bones/47/enabled":true,"bones/47/position":Vector3(-2.21663, 12.147, -0.00998895),"bones/47/rotation":Quaternion(0.17745209, 0.0045017423, 0.026459413, 0.98376346),"bones/47/scale":Vector3(1, 0.99999994, 1),"bones/47/bone_meta/extras":{
+"bone_properties": {}
+},"bones/48/name":"mixamorig_RightHandRing2","bones/48/parent":47,"bones/48/rest":Transform3D(1, -1.6084467e-05, -1.1594875e-07, 1.6084468e-05, 0.99999994, 1.320589e-06, 1.1592751e-07, -1.3205907e-06, 1, 3.4302502e-08, 3.601195, -1.7752709e-06),"bones/48/enabled":true,"bones/48/position":Vector3(-1.06657e-06, 3.6012, -9.639e-07),"bones/48/rotation":Quaternion(0.18173501, 1.9547903e-07, 0.014804802, 0.98323613),"bones/48/scale":Vector3(1, 0.99999994, 1),"bones/48/bone_meta/extras":{
+"bone_properties": {}
+},"bones/49/name":"mixamorig_RightHandRing3","bones/49/parent":48,"bones/49/rest":Transform3D(1, -2.2576319e-07, 2.2578364e-07, 2.2576317e-07, 0.99999994, 1.1197623e-07, -2.2578367e-07, -1.1197617e-07, 1, 4.0730765e-07, 3.3073072, -4.639852e-06),"bones/49/enabled":true,"bones/49/position":Vector3(3.07629e-06, 3.30732, 2.31173e-06),"bones/49/rotation":Quaternion(0.15551001, 1.7572702e-07, 0.012668402, 0.9877531),"bones/49/scale":Vector3(1, 0.99999994, 1),"bones/49/bone_meta/extras":{
+"bone_properties": {}
+},"bones/50/name":"mixamorig_RightHandRing4","bones/50/parent":49,"bones/50/rest":Transform3D(0.9998839, 0.00060163037, -0.015226212, -0.0005997833, 0.9999997, 0.000125877, 0.015226286, -0.00011672996, 0.999884, 2.3414983e-05, 3.660116, 3.8635653e-06),"bones/50/enabled":true,"bones/50/position":Vector3(2.41569e-05, 3.66011, -3.364612e-07),"bones/50/rotation":Quaternion(-6.0653518e-05, -0.0076133464, -0.00030036218, 0.999971),"bones/50/scale":Vector3(1, 0.9999999, 0.99999994),"bones/50/bone_meta/extras":{
+"bone_properties": {}
+},"bones/51/name":"mixamorig_RightHandPinky1","bones/51/parent":34,"bones/51/rest":Transform3D(1, 6.224664e-06, -6.6552005e-08, -6.2246645e-06, 0.99999994, -2.3666692e-06, 6.6537275e-08, 2.3666694e-06, 1, -4.725834, 10.908181, 0.22613123),"bones/51/enabled":true,"bones/51/position":Vector3(-4.72583, 10.9082, 0.226139),"bones/51/rotation":Quaternion(0.22849403, 0.0034029905, 0.042981204, 0.97259015),"bones/51/scale":Vector3(1, 0.99999994, 1),"bones/51/bone_meta/extras":{
+"bone_properties": {}
+},"bones/52/name":"mixamorig_RightHandPinky2","bones/52/parent":51,"bones/52/rest":Transform3D(1, -2.0842106e-05, 1.4174545e-07, 2.0842108e-05, 0.99999994, 3.2022422e-07, -1.4175212e-07, -3.2022123e-07, 1, -8.34033e-07, 4.136656, -5.3622257e-06),"bones/52/enabled":true,"bones/52/position":Vector3(-2.71762e-06, 4.13663, 1.5385899e-06),"bones/52/rotation":Quaternion(0.15154798, 1.3503998e-07, 0.012345498, 0.98837286),"bones/52/scale":Vector3(1, 0.99999994, 1),"bones/52/bone_meta/extras":{
+"bone_properties": {}
+},"bones/53/name":"mixamorig_RightHandPinky3","bones/53/parent":52,"bones/53/rest":Transform3D(1, 2.1141728e-05, -1.6276546e-07, -2.114173e-05, 0.99999994, -5.112185e-07, 1.6275465e-07, 5.112219e-07, 1, -1.6561571e-06, 2.5948453, -8.979074e-06),"bones/53/enabled":true,"bones/53/position":Vector3(-1.46212e-06, 2.59484, -2.1974602e-06),"bones/53/rotation":Quaternion(0.14377308, 3.6940804e-08, 0.011712005, 0.9895415),"bones/53/scale":Vector3(1, 0.99999994, 1),"bones/53/bone_meta/extras":{
+"bone_properties": {}
+},"bones/54/name":"mixamorig_RightHandPinky4","bones/54/parent":53,"bones/54/rest":Transform3D(0.9998458, -0.0044108075, -0.01699738, 0.00441363, 0.9999902, 0.00012852829, 0.016996646, -0.00020352862, 0.9998555, 2.7403394e-07, 2.9238644, -8.166587e-06),"bones/54/enabled":true,"bones/54/position":Vector3(4.04153e-07, 2.92387, 3.1507798e-06),"bones/54/rotation":Quaternion(-8.301745e-05, -0.008498834, 0.0022061947, 0.99996144),"bones/54/scale":Vector3(1, 0.99999994, 0.99999994),"bones/54/bone_meta/extras":{
+"bone_properties": {}
+},"bones/55/name":"mixamorig_LeftUpLeg","bones/55/parent":0,"bones/55/rest":Transform3D(-0.99998236, 0.005938867, 7.830617e-05, -0.005939382, -0.9999018, -0.012699922, 2.8753343e-06, -0.012700166, 0.99991924, 9.123873, -6.657196, -0.055403106),"bones/55/enabled":true,"bones/55/position":Vector3(9.123873, -6.657196, -0.055403106),"bones/55/rotation":Quaternion(0.13573004, 0.06714923, 0.9855403, -0.076018184),"bones/55/scale":Vector3(1, 1, 0.9999999),"bones/55/bone_meta/extras":{
+"bone_properties": {}
+},"bones/56/name":"mixamorig_LeftLeg","bones/56/parent":55,"bones/56/rest":Transform3D(0.99992985, 0.011831511, 0.00057973096, -0.011844748, 0.9992735, 0.036219873, -0.00015077395, -0.03622419, 0.9993437, 2.6252195e-07, 40.599438, -1.5948899e-07),"bones/56/enabled":true,"bones/56/position":Vector3(7.27662e-08, 40.5994, 1.64909e-06),"bones/56/rotation":Quaternion(-0.12389755, -0.014463658, 0.033061806, 0.99163866),"bones/56/scale":Vector3(1, 0.9999998, 1),"bones/56/bone_meta/extras":{
+"bone_properties": {}
+},"bones/57/name":"mixamorig_LeftFoot","bones/57/parent":56,"bones/57/rest":Transform3D(0.99834204, -0.026427172, 0.051133838, 0.05749033, 0.41436663, -0.90829235, 0.002815442, 0.90972626, 0.41519892, -5.9153604e-07, 42.099026, -4.7823414e-07),"bones/57/enabled":true,"bones/57/position":Vector3(-5.9153604e-07, 42.099026, -4.7823414e-07),"bones/57/rotation":Quaternion(0.53245455, -0.022973755, -0.02945097, 0.8456341),"bones/57/scale":Vector3(0.99999994, 0.99999994, 0.9999999),"bones/57/bone_meta/extras":{
+"bone_properties": {}
+},"bones/58/name":"mixamorig_LeftToeBase","bones/58/parent":57,"bones/58/rest":Transform3D(0.99741226, 0.015093542, -0.070288755, -0.044713195, 0.8958404, -0.44212058, 0.05629433, 0.4441194, 0.89419734, 5.9301146e-07, 15.721562, 2.3841858e-07),"bones/58/enabled":true,"bones/58/position":Vector3(5.9301146e-07, 15.721562, 2.3841858e-07),"bones/58/rotation":Quaternion(0.26937088, -0.032375686, -0.014591194, 0.96238154),"bones/58/scale":Vector3(0.99999976, 0.99999994, 1),"bones/58/bone_meta/extras":{
+"bone_properties": {}
+},"bones/59/name":"mixamorig_LeftToe_End","bones/59/parent":58,"bones/59/rest":Transform3D(0.9999999, 8.614734e-08, 9.3656126e-08, -8.614734e-08, 0.9999999, -3.2305255e-08, -9.3656126e-08, 3.230525e-08, 0.9999999, 1.4603138e-06, 9.999999, 5.066395e-07),"bones/59/enabled":true,"bones/59/position":Vector3(1.4603138e-06, 9.999999, 5.066395e-07),"bones/59/rotation":Quaternion(1.6152628e-08, 4.682807e-08, -4.3073673e-08, 1),"bones/59/scale":Vector3(0.9999999, 0.9999999, 0.9999999),"bones/59/bone_meta/extras":{
+"bone_properties": {}
+},"bones/60/name":"mixamorig_RightUpLeg","bones/60/parent":0,"bones/60/rest":Transform3D(-0.9999813, -0.006114547, -7.52684e-05, 0.006115008, -0.99990124, -0.012667179, 2.19309e-06, -0.0126674045, 0.9999198, -9.125032, -6.6556015, -0.055352744),"bones/60/enabled":true,"bones/60/position":Vector3(-9.125032, -6.6556015, -0.055352744),"bones/60/rotation":Quaternion(-0.09246193, -0.02322354, 0.9951492, -0.024281079),"bones/60/scale":Vector3(0.99999994, 1.0000001, 1),"bones/60/bone_meta/extras":{
+"bone_properties": {}
+},"bones/61/name":"mixamorig_RightLeg","bones/61/parent":60,"bones/61/rest":Transform3D(0.99992985, -0.011831513, -0.00058053597, 0.011844785, 0.9992714, 0.03628536, 0.00015080234, -0.0362897, 0.99934125, -4.5308667e-07, 40.59946, 4.2608008e-08),"bones/61/enabled":true,"bones/61/position":Vector3(-4.5308667e-07, 40.59946, 4.2608008e-08),"bones/61/rotation":Quaternion(-0.07493279, 0.0842876, -0.024918774, 0.99330753),"bones/61/scale":Vector3(1, 1.0000001, 0.99999994),"bones/61/bone_meta/extras":{
+"bone_properties": {}
+},"bones/62/name":"mixamorig_RightFoot","bones/62/parent":61,"bones/62/rest":Transform3D(0.9983421, 0.02642709, -0.05113375, -0.057490125, 0.41433662, -0.90830606, -0.002817303, 0.90974, 0.41516897, 1.0488736e-07, 42.099022, 2.8405339e-08),"bones/62/enabled":true,"bones/62/position":Vector3(1.0488736e-07, 42.099022, 2.8405339e-08),"bones/62/rotation":Quaternion(0.5703901, 0.010312088, -0.008311313, 0.8212671),"bones/62/scale":Vector3(1, 1, 0.99999994),"bones/62/bone_meta/extras":{
+"bone_properties": {}
+},"bones/63/name":"mixamorig_RightToeBase","bones/63/parent":62,"bones/63/rest":Transform3D(0.997471, -0.015066369, 0.06945862, 0.044322025, 0.8958322, -0.44217706, -0.055561244, 0.44413742, 0.8942343, 5.6816407e-07, 15.721558, 3.516674e-06),"bones/63/enabled":true,"bones/63/position":Vector3(5.6816407e-07, 15.721558, 3.516674e-06),"bones/63/rotation":Quaternion(0.28654847, 0.031902734, 0.014129754, 0.9574302),"bones/63/scale":Vector3(0.9999999, 1.0000001, 1),"bones/63/bone_meta/extras":{
+"bone_properties": {}
+},"bones/64/name":"mixamorig_RightToe_End","bones/64/parent":63,"bones/64/rest":Transform3D(0.9999999, 5.573384e-09, 2.703746e-08, -5.5733844e-09, 0.99999994, 1.6909325e-08, -2.7037458e-08, -1.6909325e-08, 0.99999994, 1.2665987e-07, 10, 5.364418e-07),"bones/64/enabled":true,"bones/64/position":Vector3(1.2665987e-07, 10, 5.364418e-07),"bones/64/rotation":Quaternion(-8.454664e-09, 1.3518731e-08, -2.7866922e-09, 1),"bones/64/scale":Vector3(0.9999999, 0.99999994, 0.99999994),"bones/64/bone_meta/extras":{
+"bone_properties": {}
+},"script":null,"metadata/extras":{
+"bone_properties": {}
+})
+)
+
+bone_neck = "mixamorig_Head"
+bone_torso = "mixamorig_Spine2"
+name_path = "NPC"
+metadata/_custom_type_script = "uid://ccu6rfa11wigy"
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=895990541]
+transform = Transform3D(0.9999999, 0, 3.258414e-07, 0, 1, 0, -3.258414e-07, 0, 0.9999999, -20.420053, 0.82506037, -11.579647)
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("1_3n3ca")
+inventory_scene = ExtResource("19_qgejc")
+death_screen = ExtResource("51_bn43r")
+damage_screen = ExtResource("52_4fieg")
+max_rotate_cam_target = Vector2(-0.8, 0.7)
+up_key = "w"
+down_key = "s"
+right_key = "d"
+left_key = "a"
+run_key = "run"
+shoot_key = "Mouse1"
+inventory_key = "v"
+charger_key = "r"
+jump_key = "space"
+interact_key = "e"
+aim_key = "Mouse2"
+undo_key = "1"
+use_key = "q"
+time_get_up = 1.0
+time_fall = 1.0
+default = SubResource("Resource_3xpcf")
+slots = Array[ExtResource("43_8bdiv")]([null, ExtResource("51_3xpcf"), null])
+gun_attachment = Array[Array]([[2, "holster_left", "Melee"], [1, "holster_right", "Melee"], [2, "holster_left", "Short"], [1, "holster_right", "Short"], [2, "gun_upper_back", "Large"], [1, "gun_shoulder", "Large"]])
+ammo = {
+".12": 0,
+".16": 0,
+".22": 0,
+".45": 0,
+"9mm": 2,
+"general_ammo": 0,
+"melee": 0
+}
+inventory_slots = Array[ExtResource("43_8bdiv")]([ExtResource("41_s5fh0"), null, null])
+dialogues_damage = Array[ExtResource("31_5rxwi")]([SubResource("Resource_kv82n"), SubResource("Resource_lhud8")])
+exhausted_dialogue = SubResource("Resource_wa62t")
+dialogue_fall = SubResource("Resource_brtl8")
+friction = null
+model_scene = ExtResource("32_s5fh0")
+collision_shape = SubResource("CapsuleShape3D_wdxcr")
+bone_neck = "mixamorig_Head"
+bone_torso = "mixamorig_Spine2"
+name_path = "Player"
+
+[node name="CrouchState" type="Node" parent="Player" unique_id=2000493058]
+script = ExtResource("19_s5fh0")
+metadata/_custom_type_script = "uid://bh04scojksqo6"
+
+[node name="WheelSlotInput" type="Node" parent="Player" unique_id=1376874074]
+process_mode = 1
+script = ExtResource("51_wa62t")
+metadata/_custom_type_script = "uid://d3cln6nsvm7u5"
+
+[node name="layer_ammo" type="CanvasLayer" parent="Player" unique_id=1262118783]
+layer = -1
+
+[node name="AmmoUI" type="Control" parent="Player/layer_ammo" unique_id=318272367 node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_lbqgv")
+label = NodePath("Label")
+metadata/_custom_type_script = "uid://q4xjgyqtgi15"
+
+[node name="Label" type="Label" parent="Player/layer_ammo/AmmoUI" unique_id=574740093]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=178317360]
+transform = Transform3D(1.0000001, -3.1583216e-09, -1.4998705e-09, 3.1967886e-09, 0.9996495, 0.026419044, 1.4149464e-09, -0.02642015, 0.99965256, 0.6491947, 0.7210264, 1.64785)
+
+[node name="DebugOverlay" type="Node" parent="Player" unique_id=117507507]
+script = ExtResource("52_07isp")
+HUD = ExtResource("53_07isp")
+enabled = true
+key_hud = "f3"
+metadata/_custom_type_script = "uid://cccttabml57hn"
+
+[node name="CloseUp" type="Area3D" parent="." unique_id=1726554988]
+transform = Transform3D(2, 0, -5.684342e-14, 0, 2, 0, 5.684342e-14, 0, 2, -20.287285, 1.0581703, -14.199106)
+collision_layer = 9
+collision_mask = 9
+monitorable = false
+script = ExtResource("51_cc03v")
+transition_scene = ExtResource("42_u3vuk")
+cam_path = NodePath("Camera3D")
+captured_mouse = false
+metadata/_custom_type_script = "uid://bwlst6wr3qxd6"
+
+[node name="Camera3D" type="Camera3D" parent="CloseUp" unique_id=296336601]
+transform = Transform3D(-2.2042569e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.2042569e-08, 1.6369591, 0.08660239, 0.041623592)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CloseUp" unique_id=2102501673]
+shape = SubResource("BoxShape3D_bn43r")
+
+[node name="ItemObject" type="StaticBody3D" parent="." unique_id=572573725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.003995, 0.8684679, -11.0350895)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("9_hroh1")
+alignment_path = NodePath("../AlignamentObjects/alignamentObject")
+item = SubResource("Resource_4fieg")
+metadata/_custom_type_script = "uid://twfmjfueluyq"
+
+[node name="Node3D" type="MeshInstance3D" parent="." unique_id=1889309771 groups=["save"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.049776, 3.1781669, 4.3300457)
+mesh = SubResource("BoxMesh_dae2w")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D" unique_id=648014947 groups=["save"]]
+mesh = SubResource("CylinderMesh_bvbcx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D" unique_id=340009206 groups=["save"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2807083, 0, 0)
+mesh = SubResource("CylinderMesh_bvbcx")
+
+[node name="ball2" type="RigidBody3D" parent="." unique_id=1319694550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.767263, 2.4033768, -9.368817)
+collision_layer = 257
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ball2" unique_id=419133528]
+shape = SubResource("SphereShape3D_lbqgv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ball2" unique_id=1546480569]
+mesh = SubResource("SphereMesh_pqayd")
+
+[node name="SFX" type="AudioStreamPlayer3D" parent="ball2" unique_id=1325517532]
+stream = ExtResource("23_u3vuk")
+bus = &"SFX"
+script = ExtResource("21_lhud8")
+metadata/_custom_type_script = "uid://t6278ijmdsgj"
+
+[node name="UI" type="Control" parent="." unique_id=980613033]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("30_lhud8")
+metadata/_custom_type_script = "uid://2j03bofleeam"
+
+[node name="ScreenCallBack" type="Control" parent="UI" unique_id=1124135375]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("55_s5fh0")
+metadata/_custom_type_script = "uid://c2r1107bvqr3l"
+
+[node name="pivoteMission" type="MeshInstance3D" parent="." unique_id=1135329866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.40827, 1.33252, -15.5937)
+mesh = SubResource("CapsuleMesh_e4ic2")
+
+[node name="Ammo" type="Area3D" parent="." unique_id=576954510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.922725, 1.1781526, -14.38815)
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("16_rrefu")
+ammo = 7
+sound = ExtResource("56_pqayd")
+metadata/_custom_type_script = "uid://bnq8je56yns4x"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ammo" unique_id=711999582]
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0, 0)
+shape = SubResource("BoxShape3D_07isp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2114645603]
+transform = Transform3D(0.04801012, -0.84965914, 0.5251423, 0.019809308, 0.5264551, 0.8499722, -0.99865043, -0.030404555, 0.04210633, -9.475308, 2.428244, -11.979849)
+light_color = Color(1, 0, 0, 1)
+light_energy = 2.706
+omni_range = 3.881
+omni_attenuation = -6.216
+
+[node name="BulbLight" type="SpotLight3D" parent="." unique_id=694082142]
+transform = Transform3D(0.0480101, -0.849659, 0.525142, 0.0198093, 0.526455, 0.849972, -0.99865, -0.0304046, 0.0421062, -18.4893, 5.16097, -13.2548)
+light_color = Color(1, 0.9322192, 0.9943455, 1)
+light_energy = 0.0
+shadow_enabled = true
+spot_range = 13.521393
+spot_angle = 59.63181
+spot_angle_attenuation = 0.00023325822
+script = ExtResource("24_u50qv")
+automatic_mode = true
+bulb_material = SubResource("StandardMaterial3D_aby0v")
+mesh = SubResource("BoxMesh_7ulx0")
+metadata/_custom_type_script = "uid://cr4x8io65ig3s"
+
+[node name="Clock" type="Node3D" parent="." unique_id=1438887566 node_paths=PackedStringArray("hand_minute", "hand_hour")]
+transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 5.0821957e-21, -8.742278e-08, 7.642737e-15, -1, -25.5091, 2.63154, -16.0998)
+script = ExtResource("26_bmvok")
+hand_minute = NodePath("minute")
+hand_hour = NodePath("hour")
+metadata/_custom_type_script = "uid://duidjh2ou2muh"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock" unique_id=1784549652]
+transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338, 0, 2.220446e-16, 0, 2.0098789, 0, 0, 0)
+mesh = SubResource("BoxMesh_brtl8")
+
+[node name="hour" type="Marker3D" parent="Clock" unique_id=1145154694]
+transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/hour" unique_id=1817297042]
+transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
+mesh = SubResource("BoxMesh_kvr7o")
+skeleton = NodePath("../../..")
+
+[node name="minute" type="Marker3D" parent="Clock" unique_id=1234155709]
+transform = Transform3D(1, 0, 0, 0, 0.97814626, -0.20791148, 0, 0.20791148, 0.97814626, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock/minute" unique_id=298471058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527947, -0.00369453)
+mesh = SubResource("BoxMesh_kqyrw")
+skeleton = NodePath("../../..")
+
+[node name="Clock2" type="Node3D" parent="." unique_id=803576630 node_paths=PackedStringArray("hand_minute", "hand_hour")]
+transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 5.0821957e-21, -8.742278e-08, 7.642737e-15, -1, -25.5091, 2.63154, -18.657722)
+script = ExtResource("26_bmvok")
+hand_minute = NodePath("minute")
+hand_hour = NodePath("hour")
+metadata/_custom_type_script = "uid://duidjh2ou2muh"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2" unique_id=884898805]
+transform = Transform3D(0.035802253, -1.4315325e-21, 0, 2.2204458e-16, 2.1425338, 0, 2.220446e-16, 0, 2.0098789, 0, 0, 0)
+mesh = SubResource("BoxMesh_brtl8")
+
+[node name="hour" type="Marker3D" parent="Clock2" unique_id=196457758]
+transform = Transform3D(1, 0, 0, 0, 0.49999964, 0.86602485, 0, -0.86602485, 0.49999964, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2/hour" unique_id=607809439]
+transform = Transform3D(1, 0, 3.28406e-15, 0, 1, 0, 3.28406e-15, 0, 1, 0, -0.429596, 0)
+mesh = SubResource("BoxMesh_kvr7o")
+skeleton = NodePath("../../..")
+
+[node name="minute" type="Marker3D" parent="Clock2" unique_id=1280949984]
+transform = Transform3D(1, 0, 0, 0, 0.97814626, -0.20791148, 0, 0.20791148, 0.97814626, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Clock2/minute" unique_id=1540237415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527947, -0.00369453)
+mesh = SubResource("BoxMesh_kqyrw")
+skeleton = NodePath("../../..")
+
+[node name="target" type="CSGMesh3D" parent="." unique_id=335427320]
+transform = Transform3D(-1.7854342e-08, 0.008059552, -0.53365344, 0.4177006, -1.6097674e-08, -2.3332467e-08, -1.8653507e-08, -0.3681838, -0.011681658, -14.32852, 1.5388467, -29.258087)
+mesh = SubResource("BoxMesh_3xpcf")
+
+[node name="Camera3D" type="Camera3D" parent="target" unique_id=1107917840]
+transform = Transform3D(-1.0233305e-07, 2.394059, -1.0691276e-07, 0.059425443, -1.1869341e-07, -2.7147338, -1.8729777, -8.1890164e-08, -0.040999528, 0, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1987139251]
+transform = Transform3D(1.0000751, 0, 0, 0, 1.0000751, 0, 0, 0, 1.0000751, 0, -0.596821, 0)
+navigation_mesh = SubResource("NavigationMesh_5ytrk")
+
+[node name="collision" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=683484912]
+layers = 541
+use_collision = true
+collision_layer = 29
+collision_mask = 29
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=204124727]
+transform = Transform3D(-1.94866e-07, 0, -0.101178, 0, 1, 0, 4.458, 0, -4.42265e-09, -5.12106, 0.978457, -3.97397)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1653280286]
+transform = Transform3D(-1.02442e-06, 0, -15.1184, 0, 6.69417, 0, 23.4359, 0, -6.60849e-07, -48.782253, 2.59246, 5.7123)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1939432007]
+transform = Transform3D(-4.50114e-07, 0, -6.64279, 0, 0.310634, 0, 10.2974, 0, -2.90367e-07, -29.0455, 4.61692, -17.0028)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1831953946]
+transform = Transform3D(-2.02725e-07, 0, -6.64279, 4.6378, -1.35783e-08, -2.90367e-07, -2.02725e-07, -0.310634, 1.26923e-14, -29.0455, 2.47012, -22.307)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=111822550]
+transform = Transform3D(-2.02725e-07, 0, -6.64279, 4.6378, -1.35783e-08, -2.90367e-07, -2.02725e-07, -0.310634, 1.26923e-14, -29.0455, 2.47012, -11.9117)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1736360220]
+transform = Transform3D(-2.0272498e-07, 1.3578244e-08, -0.5869506, 4.6377974, -1.35782425e-08, -2.565648e-08, -2.0272458e-07, -0.310634, -2.5656426e-08, -13.019942, 2.47012, -14.035681)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1937939025]
+transform = Transform3D(-2.0272499e-07, 0, -0.5869506, 4.637799, -1.35783e-08, -2.5656554e-08, -2.0272499e-07, -0.310634, 1.1214796e-15, -13.019942, 2.47012, -11.9117)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=435825759]
+transform = Transform3D(2.02725e-07, 0.310634, 4.62914e-07, 4.6378, -1.35783e-08, -4.62916e-07, -2.02725e-07, 1.35783e-08, -10.5902, -32.4012, 2.47012, -17.1918)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="pavement" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1794372403]
+transform = Transform3D(6.4511623e-09, 2.94381, 2.03545e-07, 0.14758511, -1.28678e-07, -2.03546e-07, -6.4511623e-09, 1.28678e-07, -4.65656, -12.18236, 0.76037467, -23.50089)
+mesh = SubResource("BoxMesh_07isp")
+
+[node name="pavement3" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=440264771]
+transform = Transform3D(6.451164e-09, 11.058994, 9.670221e-07, 0.14758514, -4.834039e-07, -9.670268e-07, -6.451164e-09, 4.834039e-07, -22.122852, -31.263521, 0.5275745, 0.88904)
+mesh = SubResource("BoxMesh_07isp")
+
+[node name="pavement2" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1780567810]
+transform = Transform3D(6.4511605e-09, -2.5735602e-07, 4.65656, 0.1475851, -1.28678e-07, -2.0354597e-07, 6.451162e-09, 2.9438097, 4.0708966e-07, -19.654816, 1.1354959, -29.25589)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=952515274]
+transform = Transform3D(2.02725e-07, 0.310634, 4.62914e-07, 4.6378, -1.35783e-08, -4.62916e-07, -2.02725e-07, 1.35783e-08, -10.5902, -25.9692, 2.47012, -19.8473)
+mesh = SubResource("BoxMesh_5ytrk")
+
+[node name="circle" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=938042833]
+transform = Transform3D(1.01942e-07, 9.64944, 4.62914e-07, 2.33215, -4.21792e-07, -4.62916e-07, -1.01942e-07, 4.21792e-07, -10.5902, -7.704115, 0.288558, 9.97847)
+mesh = SubResource("SphereMesh_6hem0")
+
+[node name="floor" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1658311191]
+transform = Transform3D(96.135, 0, 0, 0, 4.68432, 0, 0, 0, 72.545, -10.3326, -1.90907, 0)
+layers = 0
+mesh = SubResource("BoxMesh_u0bac")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=866736338]
+transform = Transform3D(-0.349729, 0, 0.936851, 0, 1, 0, -0.936851, 0, -0.349729, -19.641605, 3.1304662, -6.6932774)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=1093412674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.20446, 0.863326, -11.9079)
+size = Vector3(2.16003, 1, 4.2132)
+
+[node name="wall" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=1707440026]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -21.054585, 3.936054, 3.937015)
+size = Vector3(19.419893, 7.035859, 0.33239758)
+
+[node name="wall2" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=665625374]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -23.823406, 1.3114054, 3.937015)
+size = Vector3(19.419893, 1.786562, 0.33239758)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=2097191862]
+transform = Transform3D(0.315711, 0, 0, 0, 0.662921, -0.74869, 0, 0.74869, 0.662921, -14.3379, 1.29927, 2.20145)
+size = Vector3(6.42084, 10.2275, 6.67792)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=975049938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03256, 2.61974, 0)
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=26655509]
+transform = Transform3D(6.53869, 0, 0, 0, 3.35294, 0, 0, 0, 6.53869, -14.238, 5.51315, 7.07887)
+mesh = SubResource("BoxMesh_2u76e")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/collision" unique_id=1220876255]
+transform = Transform3D(0, 0, -0.5959316, 0, 0.14039443, 0, 0.19841011, 0, 0, -19.673775, 0.42982227, -26.5277)
+mesh = ExtResource("37_7hfam")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=1414139251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2312, 0.0617676, -16.5355)
+size = Vector3(6.89661, 1.12354, 3.87283)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=199139668]
+transform = Transform3D(0.7354, -0.677634, 0, 0.677634, 0.7354, 0, 0, 0, 1, -51.6299, -0.0557796, -13.0115)
+size = Vector3(6.89661, 7.21912, 3.87283)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="NavigationRegion3D/collision" unique_id=1850203056]
+transform = Transform3D(-4.371139e-08, 0, -4.951869, 0, 1, 0, 1, 0, -2.1645307e-07, -8.502123, 0.9754627, -25.38163)
+polygon = PackedVector2Array(-1.0437651, 0.549413, -1.4692864, 2.1653197, -0.63961554, 1.2044003, 0.5087528, 0.33263153, 2.3054047, -0.50789434, -0.9494238, -0.4745701)
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="NavigationRegion3D/collision" unique_id=549058058]
+transform = Transform3D(-4.371139e-08, 0, 4.951869, 0, 1, 0, -1, 0, -2.1645307e-07, -11.162522, 0.9754627, 16.344067)
+polygon = PackedVector2Array(-1.0437651, 0.549413, -0.42676353, 3.5212827, -0.10666466, 1.8100104, 0.76518345, 0.616095, 2.3054047, -0.50789434, -0.9494238, -0.4745701)
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="NavigationRegion3D/collision" unique_id=442031904]
+transform = Transform3D(-4.371139e-08, 0, -4.951869, 0, 1, 0, 1, 0, -2.1645307e-07, -16.181477, 0.9754627, 12.502067)
+polygon = PackedVector2Array(-1.0437651, 0.549413, -0.42676353, 3.5212827, -0.10666466, 1.8100104, 0.76518345, 0.616095, 2.3054047, -0.50789434, -0.9494238, -0.4745701)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=247724915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5262547, 0)
+material = SubResource("StandardMaterial3D_df2rt")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=768872004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9529791, 2.713513)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=1330754169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1437578, 0.9529791, -0.087858915)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=1424625843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7393427, 0.9529791, -0.087858915)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="NavigationRegion3D/collision" unique_id=1749525618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21222067, 0.9529791, -2.8346357)
+
+[node name="crochet" type="ColorRect" parent="." unique_id=672359790]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -5.0
+offset_right = 6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 1, 1)
+
+[node name="Revolver2" parent="." unique_id=1542434799 instance=ExtResource("38_qgejc")]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -15.894566, 0.84333897, -17.852585)
+weapon = ExtResource("40_df2rt")

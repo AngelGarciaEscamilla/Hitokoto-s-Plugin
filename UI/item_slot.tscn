@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cbp34iktexcio"]
+
+[node name="itemSlot" type="Button"]
+offset_right = 184.0
+offset_bottom = 178.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 13.0
+offset_right = 169.0
+offset_bottom = 166.0
+expand_mode = 1
