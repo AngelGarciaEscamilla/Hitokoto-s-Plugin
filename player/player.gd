@@ -323,6 +323,7 @@ func _physics_process(delta:float) -> void:
 	if Engine.is_editor_hint():return
 	inventory.condition_automatic_weapon = key_input(shoot_key,KeyAction.PRESSED)
 	interact_state()
+	update_ik_bones()
 	movement(delta)
 	match current_state:
 		State.IDLE:

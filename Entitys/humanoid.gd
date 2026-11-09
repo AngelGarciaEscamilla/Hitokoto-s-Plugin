@@ -501,7 +501,7 @@ func movement_model(target: Node3D, velocity: Vector2, delta: float) -> void:
 	if strafe:
 		model.rotation.y = lerp_angle(model.rotation.y, 0.0, interval_angle)
 		return
-	if model && current_state != State.IDLE and velocity.length() > 0.01:
+	if model && current_state != State.IDLE && velocity.length() > 0.01:
 		model.global_rotation.y = lerp_angle(model.global_rotation.y, target_angle, interval_angle)
 
 func animation_rotate_look(delta:float)  -> void:

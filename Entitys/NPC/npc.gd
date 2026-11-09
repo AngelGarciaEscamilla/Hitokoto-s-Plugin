@@ -107,6 +107,7 @@ func _physics_process(delta: float) -> void:
 		Entity.State.WALK, Entity.State.RUN:
 			go_to(get_target(), delta)
 	move_and_slide()
+	update_ik_bones()
 
 func _process(delta:float) -> void:
 	if Engine.is_editor_hint():

@@ -1,3 +1,1 @@
-class_name TestScript extends Node3D
-
-
+class_name TestScript extends Node

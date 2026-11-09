@@ -668,11 +668,11 @@ enabled = true
 key_hud = "f3"
 metadata/_custom_type_script = "uid://cccttabml57hn"
 
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=418301135]
-transform = Transform3D(0.99831593, -0.002526408, -0.057958543, 0.0061109737, 0.9980728, 0.06175352, 0.05769082, -0.062003702, 0.9964074, 4.2915344e-06, 0.6581197, 2.094698)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1247187108]
 shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=597784866]
+transform = Transform3D(1.0000001, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 1.0000001, -4.7683716e-07, 0.63196504, 1.86767)
 
 [node name="NPC" type="CharacterBody3D" parent="." unique_id=927159907 node_paths=PackedStringArray("target_look")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -20.610317, 0.84333897, -21.257298)

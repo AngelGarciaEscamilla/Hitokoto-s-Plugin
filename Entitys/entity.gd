@@ -123,9 +123,10 @@ var kick_knockback : bool
 var touch_target : bool
 
 var tween_animation : Tween
-
 var direction : Vector3
 var input_dir : Vector2
+
+var targets_ik : Array = []
 
 signal transition(vel:int)
 signal setting_stadistic
@@ -415,6 +416,35 @@ func is_walk() -> bool:
 #ANIMATION
 ###############################################################################################################################################
 
+func update_ik_bones() -> void:
+	var index = -1
+	for target in targets_ik:
+		index += 1
+		if target is Node3D:
+			target.global_transform = targets_ik[index+1]
+
+func set_ik_pos(ik:SkeletonIK3D,target:Node3D,transform:Transform3D,transition_influence:bool=true) -> void:
+	if target in targets_ik && transform in targets_ik:return
+	ik.influence = 0.0
+	ik.start()
+	targets_ik.append(target)
+	targets_ik.append(transform)
+	if transition_influence:
+		var influence_transition : Tween = create_tween()
+		influence_transition.tween_property(ik,"influence",1.0,1/blend_speed)
+		await influence_transition.finished
+
+func unset_ik_pos(ik:SkeletonIK3D,target:Node3D,transform:Transform3D,transition_influence:bool=true) -> void:
+	if !(target in targets_ik && transform in targets_ik):return
+	if transition_influence:
+		var influence_transition : Tween = create_tween()
+		influence_transition.tween_property(ik,"influence",0.0,1/blend_speed)
+		await influence_transition.finished
+	targets_ik.erase(target)
+	targets_ik.erase(transform)
+	ik.stop()
+
+
 func has_animation(animation:String) -> bool:
 	var anim : String = PARAMETERSPATH+animation+BLENDAMOUNTPATH
 	var node_tr : AnimationNodeBlendTree = animation_tree.tree_root
@@ -564,8 +594,8 @@ func smooth_look_at(node: Node3D, target: Vector3, duration: float = 1.0):
 	var end_basis = node.global_transform.looking_at(target, Vector3.UP).basis
 	if start_basis.determinant() == 0 or end_basis.determinant() == 0:
 		return
-	var node_path := node.get_path()
-	var tween := get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	var node_path : NodePath = node.get_path()
+	var tween : Tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_method(
 		func(value):
 			var n = get_node_or_null(node_path)
